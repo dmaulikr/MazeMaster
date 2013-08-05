@@ -141,6 +141,8 @@
 		8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDB17AF1F9200EE917C /* AppDelegate.m */; };
 		8E38CDDF17AF1F9200EE917C /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* HelloWorldLayer.m */; };
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
+		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
+		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -425,6 +427,8 @@
 		8E38CDDE17AF1F9200EE917C /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
 		8E38CDE017AF1F9200EE917C /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
+		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -501,6 +505,8 @@
 		8E38CC4A17AF1F9000EE917C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DA09DF8017AF2C920048D300 /* Arrow.png */,
+				DA09DF8117AF2C920048D300 /* Arrow@2x.png */,
 				8E38CC4B17AF1F9000EE917C /* Default.png */,
 				8E38CC4D17AF1F9000EE917C /* Default@2x.png */,
 				8E38CC4F17AF1F9000EE917C /* Default-568h@2x.png */,
@@ -942,6 +948,8 @@
 				8E38CC5E17AF1F9000EE917C /* Icon@2x.png in Resources */,
 				8E38CC6117AF1F9000EE917C /* iTunesArtwork in Resources */,
 				8E38CDBA17AF1F9200EE917C /* ChangeLog in Resources */,
+				DA09DF8217AF2C920048D300 /* Arrow.png in Resources */,
+				DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,6 +1177,7 @@
 				8E38CDE717AF1F9200EE917C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
