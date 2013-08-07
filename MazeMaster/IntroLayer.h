@@ -16,6 +16,6 @@
 }
 
 // returns a CCScene that contains the StartLayer as the only child
-+(CCScene *) scene;
++ (CCScene *)scene;
 
 @end

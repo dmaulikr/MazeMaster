@@ -8,7 +8,6 @@
 
 #import "GameLayer.h"
 
-
 @implementation GameLayer
 
 - (id)init
@@ -42,7 +41,7 @@
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
-+(CCScene *) scene
++ (CCScene *)scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -51,7 +50,7 @@
 	GameLayer *layer = [GameLayer node];
 
 	// add layer as a child to scene
-	[scene addChild: layer];
+	[scene addChild:layer];
 
 	// return the scene
 	return scene;

@@ -6,7 +6,6 @@
 //  Copyright Binary Gods 2013. All rights reserved.
 //
 
-
 // Import the interfaces
 #import "StartLayer.h"
 #import "GameLayer.h"
@@ -20,7 +19,7 @@
 @implementation StartLayer
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
-+(CCScene *) scene
++ (CCScene *)scene
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -36,28 +35,12 @@
 }
 
 // on "init" you need to initialize your instance
--(id) init
+- (id)init
 {
 	// always call "super" init
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if (self = [super init])
    {
-      // ask director for the window size
-//      CGSize size = [[CCDirector sharedDirector] winSize];
-//      
-//      CCSprite *rightArrow = [CCSprite spriteWithFile:@"Arrow.png"];
-//      CCSprite *leftArrow = [CCSprite spriteWithFile:@"Arrow.png"];
-//
-//      leftArrow.flipX = YES;
-//      [leftArrow setAnchorPoint:CGPointMake(0,0)];
-//      leftArrow.position = ccp(0, 0);
-//
-//      [rightArrow setAnchorPoint:CGPointMake(1,0)];
-//      rightArrow.position = ccp(size.width, 0);
-//
-//      [self addChild:rightArrow];
-//      [self addChild:leftArrow];
-
 		// create and initialize a Label
 		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Maze Master"
                                              fontName:@"Marker Felt"
@@ -67,17 +50,16 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
 
 		// position the label on the center of the screen
-		label.position =  ccp(size.width/2,
-                            size.height - size.height/4);
+		label.position = ccp(size.width/2,
+                           size.height - size.height/4);
 
 		// add the label as a child to this Layer
 		[self addChild: label];
 
       CCMenuItem *playItem = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
                                                     selectedImage:@"Arrow.png"
-                                                            block:^(id sender) {
-         NSLog(@"play button selected");
-
+                                                            block:^(id sender)
+      {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
                                                                                       scene:[GameLayer scene] ]];
       }];
@@ -108,13 +90,13 @@
 
 -(void) achievementViewControllerDidFinish:(GKAchievementViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	AppController *app = (AppController *) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 
 -(void) leaderboardViewControllerDidFinish:(GKLeaderboardViewController *)viewController
 {
-	AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
+	AppController *app = (AppController *) [[UIApplication sharedApplication] delegate];
 	[[app navController] dismissModalViewControllerAnimated:YES];
 }
 @end
