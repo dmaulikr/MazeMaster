@@ -42,82 +42,49 @@
 	if (self = [super init])
    {
       // ask director for the window size
-      CGSize size = [[CCDirector sharedDirector] winSize];
-      
-      CCSprite *rightArrow = [CCSprite spriteWithFile:@"Arrow.png"];
-      CCSprite *leftArrow = [CCSprite spriteWithFile:@"Arrow.png"];
+//      CGSize size = [[CCDirector sharedDirector] winSize];
+//      
+//      CCSprite *rightArrow = [CCSprite spriteWithFile:@"Arrow.png"];
+//      CCSprite *leftArrow = [CCSprite spriteWithFile:@"Arrow.png"];
+//
+//      leftArrow.flipX = YES;
+//      [leftArrow setAnchorPoint:CGPointMake(0,0)];
+//      leftArrow.position = ccp(0, 0);
+//
+//      [rightArrow setAnchorPoint:CGPointMake(1,0)];
+//      rightArrow.position = ccp(size.width, 0);
+//
+//      [self addChild:rightArrow];
+//      [self addChild:leftArrow];
 
-      leftArrow.flipX = YES;
-      [leftArrow setAnchorPoint:CGPointMake(0,0)];
-      leftArrow.position = ccp(0, 0);
+		// create and initialize a Label
+		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Maze Master"
+                                             fontName:@"Marker Felt"
+                                             fontSize:64];
 
-      [rightArrow setAnchorPoint:CGPointMake(1,0)];
-      rightArrow.position = ccp(size.width, 0);
+		// ask director for the window size
+		CGSize size = [[CCDirector sharedDirector] winSize];
 
-      [self addChild:rightArrow];
-      [self addChild:leftArrow];
+		// position the label on the center of the screen
+		label.position =  ccp(size.width/2,
+                            size.height - size.height/4);
 
-      //		// create and initialize a Label
-      //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Hello World" fontName:@"Marker Felt" fontSize:64];
-      //
-      //		// ask director for the window size
-      //		CGSize size = [[CCDirector sharedDirector] winSize];
-      //
-      //		// position the label on the center of the screen
-      //		label.position =  ccp( size.width /2 , size.height/2 );
-      //
-      //		// add the label as a child to this Layer
-      //		[self addChild: label];
-      //
-      //
-      //
-      //		//
-      //		// Leaderboards and Achievements
-      //		//
-      //
-      //		// Default font size will be 28 points.
-      //		[CCMenuItemFont setFontSize:28];
-      //
-      //		// to avoid a retain-cycle with the menuitem and blocks
-      //		__block id copy_self = self;
-      //
-      //		// Achievement Menu Item using blocks
-      //		CCMenuItem *itemAchievement = [CCMenuItemFont itemWithString:@"Achievements" block:^(id sender) {
-      //
-      //
-      //			GKAchievementViewController *achivementViewController = [[GKAchievementViewController alloc] init];
-      //			achivementViewController.achievementDelegate = copy_self;
-      //
-      //			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-      //
-      //			[[app navController] presentModalViewController:achivementViewController animated:YES];
-      //
-      //			[achivementViewController release];
-      //		}];
-      //
-      //		// Leaderboard Menu Item using blocks
-      //		CCMenuItem *itemLeaderboard = [CCMenuItemFont itemWithString:@"Leaderboard" block:^(id sender) {
-      //
-      //
-      //			GKLeaderboardViewController *leaderboardViewController = [[GKLeaderboardViewController alloc] init];
-      //			leaderboardViewController.leaderboardDelegate = copy_self;
-      //
-      //			AppController *app = (AppController*) [[UIApplication sharedApplication] delegate];
-      //
-      //			[[app navController] presentModalViewController:leaderboardViewController animated:YES];
-      //
-      //			[leaderboardViewController release];
-      //		}];
-      //
-      //
-      //		CCMenu *menu = [CCMenu menuWithItems:itemAchievement, itemLeaderboard, nil];
-      //
-      //		[menu alignItemsHorizontallyWithPadding:20];
-      //		[menu setPosition:ccp( size.width/2, size.height/2 - 50)];
-      //
-      //		// Add the menu to the layer
-      //		[self addChild:menu];
+		// add the label as a child to this Layer
+		[self addChild: label];
 
+      CCMenuItem *playItem = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
+                                                    selectedImage:@"Arrow.png"
+                                                            block:^(id sender) {
+         NSLog(@"play button selected");
+      }];
+
+      playItem.position = ccp(size.width/2,
+                              size.height/2 - size.height/6);
+
+      CCMenu *startMenu = [CCMenu menuWithItems:playItem, nil];
+      startMenu.position = CGPointZero;
+
+      [self addChild:startMenu];
 	}
 	return self;
 }
