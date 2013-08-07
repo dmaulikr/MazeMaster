@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.m
+//  StartLayer.m
 //  MazeMaster
 //
 //  Created by Gregory Klein on 8/4/13.
@@ -14,12 +14,12 @@
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
 
-#pragma mark - HelloWorldLayer
+#pragma mark - StartLayer
 
-// HelloWorldLayer implementation
+// StartLayer implementation
 @implementation StartLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene with the StartLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.

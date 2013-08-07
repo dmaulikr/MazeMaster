@@ -1,5 +1,5 @@
 //
-//  HelloWorldLayer.h
+//  StartLayer.h
 //  MazeMaster
 //
 //  Created by Gregory Klein on 8/4/13.
@@ -12,12 +12,12 @@
 // When you import this file, you import all the cocos2d classes
 #import "cocos2d.h"
 
-// HelloWorldLayer
+// StartLayer
 @interface StartLayer : CCLayer <GKAchievementViewControllerDelegate, GKLeaderboardViewControllerDelegate>
 {
 }
 
-// returns a CCScene that contains the HelloWorldLayer as the only child
+// returns a CCScene that contains the StartLayer as the only child
 +(CCScene *) scene;
 
 @end
