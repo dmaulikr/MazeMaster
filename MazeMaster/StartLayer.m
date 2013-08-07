@@ -8,7 +8,8 @@
 
 
 // Import the interfaces
-#import "HelloWorldLayer.h"
+#import "StartLayer.h"
+#import "GameLayer.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -16,7 +17,7 @@
 #pragma mark - HelloWorldLayer
 
 // HelloWorldLayer implementation
-@implementation HelloWorldLayer
+@implementation StartLayer
 
 // Helper class method that creates a Scene with the HelloWorldLayer as the only child.
 +(CCScene *) scene
@@ -25,7 +26,7 @@
 	CCScene *scene = [CCScene node];
 
 	// 'layer' is an autorelease object.
-	HelloWorldLayer *layer = [HelloWorldLayer node];
+	StartLayer *layer = [StartLayer node];
 
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -76,6 +77,9 @@
                                                     selectedImage:@"Arrow.png"
                                                             block:^(id sender) {
          NSLog(@"play button selected");
+
+         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                      scene:[GameLayer scene] ]];
       }];
 
       playItem.position = ccp(size.width/2,

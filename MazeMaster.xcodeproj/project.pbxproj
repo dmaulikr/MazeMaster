@@ -139,8 +139,9 @@
 		8E38CDD417AF1F9200EE917C /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDD317AF1F9200EE917C /* vec4.c */; };
 		8E38CDD917AF1F9200EE917C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDD817AF1F9200EE917C /* main.m */; };
 		8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDB17AF1F9200EE917C /* AppDelegate.m */; };
-		8E38CDDF17AF1F9200EE917C /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* HelloWorldLayer.m */; };
+		8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* StartLayer.m */; };
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
+		8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.m */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
 /* End PBXBuildFile section */
@@ -423,10 +424,12 @@
 		8E38CDD817AF1F9200EE917C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E38CDDA17AF1F9200EE917C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E38CDDB17AF1F9200EE917C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8E38CDDD17AF1F9200EE917C /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		8E38CDDE17AF1F9200EE917C /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		8E38CDDD17AF1F9200EE917C /* StartLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartLayer.h; sourceTree = "<group>"; };
+		8E38CDDE17AF1F9200EE917C /* StartLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
 		8E38CDE017AF1F9200EE917C /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
+		8EF0063B17B1E66B009046C4 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
 		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -491,12 +494,14 @@
 			children = (
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
-				8E38CDDD17AF1F9200EE917C /* HelloWorldLayer.h */,
-				8E38CDDE17AF1F9200EE917C /* HelloWorldLayer.m */,
+				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
+				8EF0063B17B1E66B009046C4 /* GameLayer.m */,
+				8E38CDDD17AF1F9200EE917C /* StartLayer.h */,
+				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
 				8E38CDE017AF1F9200EE917C /* IntroLayer.h */,
 				8E38CDE117AF1F9200EE917C /* IntroLayer.m */,
-				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E38CC6217AF1F9000EE917C /* libs */,
+				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
 			);
 			path = MazeMaster;
@@ -1070,8 +1075,9 @@
 				8E38CDD417AF1F9200EE917C /* vec4.c in Sources */,
 				8E38CDD917AF1F9200EE917C /* main.m in Sources */,
 				8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */,
-				8E38CDDF17AF1F9200EE917C /* HelloWorldLayer.m in Sources */,
+				8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */,
 				8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */,
+				8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
