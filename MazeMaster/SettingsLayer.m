@@ -41,6 +41,7 @@
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
                                                                                       scene:[StartLayer scene]]];
       }];
+      
       backButtonItem.position = ccp(30, windowSize.height - 30);
       CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
       backButtonMenu.position = CGPointZero;
