@@ -35,6 +35,24 @@
 	return scene;
 }
 
+- (void)addMainLabel:(NSString *)label
+{
+   // ask director for the window size
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   // create and initialize a Label
+   CCLabelTTF *mainlabel = [CCLabelTTF labelWithString:label
+                                              fontName:@"Marker Felt"
+                                              fontSize:64];
+
+   // position the label on the center of the screen
+   mainlabel.position = ccp(windowSize.width/2,
+                            windowSize.height - windowSize.height/4);
+
+   // add the label as a child to this Layer
+   [self addChild: mainlabel];
+}
+
 // on "init" you need to initialize your instance
 - (id)init
 {
@@ -65,24 +83,30 @@
                                                      fontName:@"Marker Felt"
                                                      fontSize:24];
 
-      [levelSelectLabel setHorizontalAlignment:kCCTextAlignmentLeft];
-      [settingsLabel setHorizontalAlignment:kCCTextAlignmentLeft];
-      
-      CCMenuItem *levelSelectItem = [CCMenuItemLabel itemWithLabel:levelSelectLabel
+      // We're using CCMenuItemFont* objects for the menu items because you can actually set the
+      // anchor point on those, as opposed to CCMenuItemLabel* objects -- by resetting the anchor
+      // point on these guys to (0,0), we can easily left-align them
+      CCMenuItemFont *levelSelectItem = [CCMenuItemFont itemWithLabel:levelSelectLabel
                                                              block:^(id sender)
       {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
                                                                                       scene:[LevelSelectLayer scene]]];
       }];
-      CCMenuItem *settingsItem = [CCMenuItemLabel itemWithLabel:settingsLabel block:^(id sender) {
+
+      CCMenuItemFont *settingsItem = [CCMenuItemFont itemWithLabel:settingsLabel
+                                                             block:^(id sender)
+      {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
                                                                                       scene:[SettingsLayer scene]]];
       }];
 
-      CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
+      static int padding = 10;
+      CGPoint firstMenuItemPosition = ccp(mainlabel.boundingBox.origin.x,
                                           windowSize.height/2 - windowSize.height/6);
 
-      static int padding = 10;
+      [levelSelectItem setAnchorPoint:ccp(0,0)];
+      [settingsItem setAnchorPoint:ccp(0,0)];
+      
       levelSelectItem.position = firstMenuItemPosition;
       settingsItem.position = ccp(firstMenuItemPosition.x,
                                   firstMenuItemPosition.y - (levelSelectLabel.boundingBox.size.height + padding));
