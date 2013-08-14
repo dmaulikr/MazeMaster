@@ -150,6 +150,8 @@
 		DA3731C517BB170A007694C4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* Game.m */; };
 		DA3731C817BB174E007694C4 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* Level.m */; };
 		DA3731CB17BB1764007694C4 /* Maze.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731CA17BB1764007694C4 /* Maze.m */; };
+		DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4EB17BB2194003EED00 /* Edge.m */; };
+		DAF6E4F217BB220B003EED00 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4F117BB220B003EED00 /* Tile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -450,6 +452,10 @@
 		DA3731C717BB174E007694C4 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		DA3731C917BB1764007694C4 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
 		DA3731CA17BB1764007694C4 /* Maze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Maze.m; sourceTree = "<group>"; };
+		DAF6E4EA17BB2194003EED00 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
+		DAF6E4EB17BB2194003EED00 /* Edge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edge.m; sourceTree = "<group>"; };
+		DAF6E4F017BB220B003EED00 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
+		DAF6E4F117BB220B003EED00 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -510,12 +516,10 @@
 		8E38CC4917AF1F9000EE917C /* MazeMaster */ = {
 			isa = PBXGroup;
 			children = (
-				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
-				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
-				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
-				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
+				DAF6E4EA17BB2194003EED00 /* Edge.h */,
+				DAF6E4EB17BB2194003EED00 /* Edge.m */,
 				DA3731C317BB170A007694C4 /* Game.h */,
 				DA3731C417BB170A007694C4 /* Game.m */,
 				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
@@ -526,13 +530,19 @@
 				DA3731C717BB174E007694C4 /* Level.m */,
 				DA3731C017BB119B007694C4 /* LevelFactory.h */,
 				DA3731C117BB119B007694C4 /* LevelFactory.m */,
+				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
+				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
+				8E38CC6217AF1F9000EE917C /* libs */,
 				DA3731C917BB1764007694C4 /* Maze.h */,
 				DA3731CA17BB1764007694C4 /* Maze.m */,
+				8E38CC4A17AF1F9000EE917C /* Resources */,
+				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
+				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
 				8E38CDDD17AF1F9200EE917C /* StartLayer.h */,
 				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
-				8E38CC4A17AF1F9000EE917C /* Resources */,
-				8E38CC6217AF1F9000EE917C /* libs */,
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
+				DAF6E4F017BB220B003EED00 /* Tile.h */,
+				DAF6E4F117BB220B003EED00 /* Tile.m */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
@@ -1114,6 +1124,8 @@
 				DA3731CB17BB1764007694C4 /* Maze.m in Sources */,
 				8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */,
 				8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */,
+				DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */,
+				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

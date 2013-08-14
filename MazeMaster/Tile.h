@@ -1,5 +1,5 @@
 //
-//  Maze.h
+//  Tile.h
 //  MazeMaster
 //
 //  Created by Justin Fila on 8/13/13.
@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tile.h"
+#import "Edge.h"
 
-@interface Maze : NSObject
+@interface Tile : NSObject
 {
-   Tile*       _tileWithPlayer;
-   NSMutableArray*    _tiles;
+   Edge* _northEdge;
+   Edge* _eastEdge;
+   Edge* _southEdge;
+   Edge* _westEdge;
 }
 
 @end
