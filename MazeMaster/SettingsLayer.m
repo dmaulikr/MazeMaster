@@ -38,8 +38,9 @@
    CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
                                                          block:^(id sender)
    {
-      [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                   scene:[StartLayer scene]]];
+      CCDirector *director = [CCDirector sharedDirector];
+      [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
+                                                                    scene:[StartLayer scene]]];
    }];
 
    backButtonItem.position = ccp(30, windowSize.height - 30);

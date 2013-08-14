@@ -89,15 +89,19 @@
       CCMenuItemFont *levelSelectItem = [CCMenuItemFont itemWithLabel:levelSelectLabel
                                                              block:^(id sender)
       {
-         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[LevelSelectLayer scene]]];
+         CCDirector *director = [CCDirector sharedDirector];
+         CCScene *levelSelectScene = [LevelSelectLayer scene];
+         [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                   scene:levelSelectScene]];
       }];
 
       CCMenuItemFont *settingsItem = [CCMenuItemFont itemWithLabel:settingsLabel
                                                              block:^(id sender)
       {
-         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[SettingsLayer scene]]];
+         CCDirector *director = [CCDirector sharedDirector];
+         CCScene *settingsScene = [SettingsLayer scene];
+         [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                   scene:settingsScene]];
       }];
 
       static int padding = 10;

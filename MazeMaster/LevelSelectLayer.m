@@ -32,19 +32,20 @@
 
 - (void)addBackButton
 {
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
-   
    CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
                                                     fontName:@"Marker Felt"
                                                     fontSize:40];
+   
    CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
                                                          block:^(id sender)
    {
-      [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                   scene:[StartLayer scene]]];
+      CCDirector *director = [CCDirector sharedDirector];
+      CCScene *startScene = [StartLayer scene];
+      [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
+                                                                    scene:startScene]];
    }];
-   
-   backButtonItem.position = ccp(30, windowSize.height - 30);
+
+   backButtonItem.position = ccp(30, [[CCDirector sharedDirector] winSize].height - 30);
    CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
    backButtonMenu.position = CGPointZero;
    
@@ -54,17 +55,19 @@
 - (void)addLevelMenu
 {
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
-   CCLabelTTF *l1Label = [CCLabelTTF labelWithString:@"Level 1"
-                                                  fontName:@"Marker Felt"
-                                                  fontSize:24];
+   CCLabelTTF *level1Label = [CCLabelTTF labelWithString:@"Level 1"
+                                                fontName:@"Marker Felt"
+                                                fontSize:24];
 
-   [l1Label setHorizontalAlignment:kCCTextAlignmentLeft];
+   [level1Label setHorizontalAlignment:kCCTextAlignmentLeft];
 
-   CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:l1Label
-                                                          block:^(id sender)
+   CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
+                                                     block:^(id sender)
     {
-       [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                    scene:[GameLayer scene]]];
+       CCDirector *director = [CCDirector sharedDirector];
+       CCScene *gameScene = [GameLayer scene];
+       [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                scene:gameScene]];
     }];
 
    CGPoint firstMenuItemPosition = ccp(windowSize.width/2,

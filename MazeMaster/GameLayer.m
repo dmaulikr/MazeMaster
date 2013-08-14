@@ -20,10 +20,12 @@
                                                     fontSize:40];
    CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
                                                          block:^(id sender)
-                                 {
-                                    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                                                 scene:[LevelSelectLayer scene]]];
-                                 }];
+   {
+      CCDirector *director = [CCDirector sharedDirector];
+      CCScene *levelSelectScene = [LevelSelectLayer scene];
+      [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
+                                                                    scene:levelSelectScene]];
+   }];
 
    backButtonItem.position = ccp(30, windowSize.height - 30);
    CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
