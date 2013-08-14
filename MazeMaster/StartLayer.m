@@ -67,9 +67,6 @@
 
       [levelSelectLabel setHorizontalAlignment:kCCTextAlignmentLeft];
       [settingsLabel setHorizontalAlignment:kCCTextAlignmentLeft];
-
-      levelSelectLabel.color = ccWHITE;
-      settingsLabel.color = ccWHITE;
       
       CCMenuItem *levelSelectItem = [CCMenuItemLabel itemWithLabel:levelSelectLabel
                                                              block:^(id sender)

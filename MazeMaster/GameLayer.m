@@ -7,8 +7,30 @@
 //
 
 #import "GameLayer.h"
+#import "LevelSelectLayer.h"
 
 @implementation GameLayer
+
+- (void)addBackButton
+{
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
+                                                    fontName:@"Marker Felt"
+                                                    fontSize:40];
+   CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
+                                                         block:^(id sender)
+                                 {
+                                    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                                                 scene:[LevelSelectLayer scene]]];
+                                 }];
+
+   backButtonItem.position = ccp(30, windowSize.height - 30);
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+   backButtonMenu.position = CGPointZero;
+   
+   [self addChild:backButtonMenu];
+}
 
 - (id)init
 {
@@ -18,6 +40,8 @@
    {
       // ask director for the window size
       CGSize size = [[CCDirector sharedDirector] winSize];
+
+      [self addBackButton];
 
       CCSprite *rightArrow = [CCSprite spriteWithFile:@"Arrow.png"];
       CCSprite *leftArrow = [CCSprite spriteWithFile:@"Arrow.png"];

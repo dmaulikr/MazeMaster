@@ -8,8 +8,74 @@
 
 #import "LevelSelectLayer.h"
 #import "StartLayer.h"
+#import "GameLayer.h"
 
 @implementation LevelSelectLayer
+
+- (void)addMainLabel:(NSString *)label
+{
+   // ask director for the window size
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   // create and initialize a Label
+   CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:label
+                                                     fontName:@"Marker Felt"
+                                                     fontSize:35];
+
+   // position the label on the center of the screen
+   levelSelectLabel.position = ccp(windowSize.width/2.0,
+                                   windowSize.height - windowSize.height/9.0);
+
+   // add the label as a child to this Layer
+   [self addChild:levelSelectLabel];
+}
+
+- (void)addBackButton
+{
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+   
+   CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
+                                                    fontName:@"Marker Felt"
+                                                    fontSize:40];
+   CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
+                                                         block:^(id sender)
+   {
+      [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                   scene:[StartLayer scene]]];
+   }];
+   
+   backButtonItem.position = ccp(30, windowSize.height - 30);
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+   backButtonMenu.position = CGPointZero;
+   
+   [self addChild:backButtonMenu];
+}
+
+- (void)addLevelMenu
+{
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+   CCLabelTTF *l1Label = [CCLabelTTF labelWithString:@"Level 1"
+                                                  fontName:@"Marker Felt"
+                                                  fontSize:24];
+
+   [l1Label setHorizontalAlignment:kCCTextAlignmentLeft];
+
+   CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:l1Label
+                                                          block:^(id sender)
+    {
+       [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                    scene:[GameLayer scene]]];
+    }];
+
+   CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
+                                       windowSize.height/2 - windowSize.height/6);
+
+   level1Item.position = firstMenuItemPosition;
+   CCMenu *levelMenu = [CCMenu menuWithItems:level1Item, nil];
+   levelMenu.position = CGPointZero;
+
+   [self addChild:levelMenu];
+}
 
 - (id)init
 {
@@ -17,35 +83,9 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if (self = [super init])
    {
-      // ask director for the window size
-      CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
-      // create and initialize a Label
-		CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:@"Select Level"
-                                                        fontName:@"Marker Felt"
-                                                        fontSize:64];
-
-		// position the label on the center of the screen
-		levelSelectLabel.position = ccp(windowSize.width/2,
-                                      windowSize.height - windowSize.height/4);
-
-		// add the label as a child to this Layer
-		[self addChild:levelSelectLabel];
-
-      CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
-                                                       fontName:@"Marker Felt"
-                                                       fontSize:40];
-      CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
-                                                            block:^(id sender)
-      {
-         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[StartLayer scene]]];
-      }];
-      backButtonItem.position = ccp(30, windowSize.height - 30);
-      CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
-      backButtonMenu.position = CGPointZero;
-
-      [self addChild:backButtonMenu];
+      [self addMainLabel:@"Select Level"];
+      [self addBackButton];
+      [self addLevelMenu];
    }
 	return self;
 }
