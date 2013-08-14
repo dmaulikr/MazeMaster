@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */; };
+		8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* SettingsLayer.m */; };
 		8E38CC3617AF1F9000EE917C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3517AF1F9000EE917C /* QuartzCore.framework */; };
 		8E38CC3817AF1F9000EE917C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3717AF1F9000EE917C /* OpenGLES.framework */; };
 		8E38CC3A17AF1F9000EE917C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3917AF1F9000EE917C /* OpenAL.framework */; };
@@ -151,6 +153,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
+		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
+		8E1A35E317BB193B008FD26A /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
+		8E1A35E417BB193B008FD26A /* SettingsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsLayer.m; sourceTree = "<group>"; };
 		8E38CC3217AF1F9000EE917C /* MazeMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E38CC3517AF1F9000EE917C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E38CC3717AF1F9000EE917C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -504,6 +510,10 @@
 		8E38CC4917AF1F9000EE917C /* MazeMaster */ = {
 			isa = PBXGroup;
 			children = (
+				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
+				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
+				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
+				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				DA3731C317BB170A007694C4 /* Game.h */,
@@ -1102,6 +1112,8 @@
 				DA3731C517BB170A007694C4 /* Game.m in Sources */,
 				DA3731C817BB174E007694C4 /* Level.m in Sources */,
 				DA3731CB17BB1764007694C4 /* Maze.m in Sources */,
+				8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */,
+				8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
