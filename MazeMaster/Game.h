@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Level.h"
 
 @interface Game : NSObject
+{
+   Level* _level;
+}
 
 @end

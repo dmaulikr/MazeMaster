@@ -10,4 +10,20 @@
 
 @implementation Game
 
+-(id) init
+{
+   if ( self = [super init] )
+   {
+      _level = [[Level alloc] init];
+   }
+   return self;
+}
+
+-(void) dealloc
+{
+   [super dealloc];
+   
+   [_level release];
+}
+
 @end

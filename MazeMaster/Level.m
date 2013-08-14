@@ -10,4 +10,20 @@
 
 @implementation Level
 
+-(id) init
+{
+   if ( self = [super init] )
+   {
+      _maze = [[Maze alloc] init];
+   }
+   return self;
+}
+
+-(void) dealloc
+{
+   [super dealloc];
+   
+   [_maze release];
+}
+
 @end

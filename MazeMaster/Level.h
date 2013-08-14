@@ -7,7 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Maze.h"
 
 @interface Level : NSObject
+{
+   Maze* _maze;
+}
 
 @end
