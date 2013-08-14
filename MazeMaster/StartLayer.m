@@ -8,7 +8,8 @@
 
 // Import the interfaces
 #import "StartLayer.h"
-#import "GameLayer.h"
+#import "LevelSelectLayer.h"
+#import "SettingsLayer.h"
 
 // Needed to obtain the Navigation Controller
 #import "AppDelegate.h"
@@ -41,20 +42,20 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if (self = [super init])
    {
+		// ask director for the window size
+		CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
 		// create and initialize a Label
-		CCLabelTTF *Mainlabel = [CCLabelTTF labelWithString:@"Maze Master"
+		CCLabelTTF *mainlabel = [CCLabelTTF labelWithString:@"Maze Master"
                                              fontName:@"Marker Felt"
                                              fontSize:64];
 
-		// ask director for the window size
-		CGSize size = [[CCDirector sharedDirector] winSize];
-
 		// position the label on the center of the screen
-		Mainlabel.position = ccp(size.width/2,
-                           size.height - size.height/4);
+		mainlabel.position = ccp(windowSize.width/2,
+                               windowSize.height - windowSize.height/4);
 
 		// add the label as a child to this Layer
-		[self addChild: Mainlabel];
+		[self addChild: mainlabel];
       
       CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:@"Select Level"
                                                         fontName:@"Marker Felt"
@@ -74,15 +75,15 @@
                                                              block:^(id sender)
       {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[GameLayer scene]]];
+                                                                                      scene:[LevelSelectLayer scene]]];
       }];
       CCMenuItem *settingsItem = [CCMenuItemLabel itemWithLabel:settingsLabel block:^(id sender) {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[GameLayer scene]]];
+                                                                                      scene:[SettingsLayer scene]]];
       }];
 
-      CGPoint firstMenuItemPosition = ccp(size.width/2,
-                                          size.height/2 - size.height/6);
+      CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
+                                          windowSize.height/2 - windowSize.height/6);
 
       static int padding = 10;
       levelSelectItem.position = firstMenuItemPosition;

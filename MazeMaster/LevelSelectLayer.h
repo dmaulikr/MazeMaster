@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface LevelSelectLayer : CCLayer {
-    
+@interface LevelSelectLayer : CCLayer
+{
 }
+
++ (CCScene *)scene;
 
 @end
