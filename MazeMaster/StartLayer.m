@@ -83,10 +83,11 @@
                                                      fontName:@"Marker Felt"
                                                      fontSize:24];
 
-      // We're using CCMenuItemFont* objects for the menu items because you can actually set the
-      // anchor point on those, as opposed to CCMenuItemLabel* objects -- by resetting the anchor
-      // point on these guys to (0,0), we can easily left-align them
-      CCMenuItemFont *levelSelectItem = [CCMenuItemFont itemWithLabel:levelSelectLabel
+      // DESIGN DECISION: should touch state for each item animate the label up and centered, or
+      // up and to the right??? The type of object we use here for each label depends on the answer
+      // to that question -- if we want to animate up and to the right, then we need to use a
+      // CCMenuItemFont so we can adjust the anchor point which will have an effect on the animation
+      CCMenuItem *levelSelectItem = [CCMenuItemLabel itemWithLabel:levelSelectLabel
                                                              block:^(id sender)
       {
          CCDirector *director = [CCDirector sharedDirector];
@@ -95,7 +96,7 @@
                                                                    scene:levelSelectScene]];
       }];
 
-      CCMenuItemFont *settingsItem = [CCMenuItemFont itemWithLabel:settingsLabel
+      CCMenuItem *settingsItem = [CCMenuItemLabel itemWithLabel:settingsLabel
                                                              block:^(id sender)
       {
          CCDirector *director = [CCDirector sharedDirector];
@@ -105,15 +106,12 @@
       }];
 
       static int padding = 10;
-      CGPoint firstMenuItemPosition = ccp(mainlabel.boundingBox.origin.x,
+      CGPoint firstMenuItemPosition = ccp(mainlabel.boundingBox.origin.x, //- mainlabel.boundingBox.size.width/2.0,
                                           windowSize.height/2 - windowSize.height/6);
 
-      // set the anchor point for each menu item before positioning for left-alignment
-      [levelSelectItem setAnchorPoint:ccp(0,0)];
-      [settingsItem setAnchorPoint:ccp(0,0)];
-      
-      levelSelectItem.position = firstMenuItemPosition;
-      settingsItem.position = ccp(firstMenuItemPosition.x,
+      levelSelectItem.position = ccp(firstMenuItemPosition.x + levelSelectLabel.boundingBox.size.width/2.0,
+                                      firstMenuItemPosition.y);
+      settingsItem.position = ccp(firstMenuItemPosition.x + settingsItem.boundingBox.size.width/2.0,
                                   firstMenuItemPosition.y - (levelSelectLabel.boundingBox.size.height + padding));
 
       CCMenu *startMenu = [CCMenu menuWithItems:levelSelectItem, settingsItem, nil];
