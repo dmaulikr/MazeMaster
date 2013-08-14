@@ -7,7 +7,7 @@
 //
 
 #import "SettingsLayer.h"
-
+#import "StartLayer.h"
 
 @implementation SettingsLayer
 
@@ -31,6 +31,21 @@
 
 		// add the label as a child to this Layer
 		[self addChild:settingsLabel];
+
+      CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
+                                                       fontName:@"Marker Felt"
+                                                       fontSize:40];
+      CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
+                                                            block:^(id sender)
+      {
+         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                      scene:[StartLayer scene]]];
+      }];
+      backButtonItem.position = ccp(30, windowSize.height - 30);
+      CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+      backButtonMenu.position = CGPointZero;
+      
+      [self addChild:backButtonMenu];
 	}
 	return self;
 }
