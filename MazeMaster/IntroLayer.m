@@ -41,7 +41,8 @@
 
 		CCSprite *background;
 		
-		if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
+		if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone )
+      {
 			background = [CCSprite spriteWithFile:@"Default.png"];
 			background.rotation = 90;
 		}

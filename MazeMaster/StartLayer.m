@@ -42,7 +42,7 @@
 	if (self = [super init])
    {
 		// create and initialize a Label
-		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Maze Master"
+		CCLabelTTF *Mainlabel = [CCLabelTTF labelWithString:@"Maze Master"
                                              fontName:@"Marker Felt"
                                              fontSize:64];
 
@@ -50,24 +50,46 @@
 		CGSize size = [[CCDirector sharedDirector] winSize];
 
 		// position the label on the center of the screen
-		label.position = ccp(size.width/2,
+		Mainlabel.position = ccp(size.width/2,
                            size.height - size.height/4);
 
 		// add the label as a child to this Layer
-		[self addChild: label];
+		[self addChild: Mainlabel];
+      
+      CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:@"Select Level"
+                                                        fontName:@"Marker Felt"
+                                                        fontSize:24];
+      
+      CCLabelTTF *settingsLabel = [CCLabelTTF labelWithString:@"Settings"
+                                                     fontName:@"Marker Felt"
+                                                     fontSize:24];
 
-      CCMenuItem *playItem = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
-                                                    selectedImage:@"Arrow.png"
-                                                            block:^(id sender)
+      [levelSelectLabel setHorizontalAlignment:kCCTextAlignmentLeft];
+      [settingsLabel setHorizontalAlignment:kCCTextAlignmentLeft];
+
+      levelSelectLabel.color = ccWHITE;
+      settingsLabel.color = ccWHITE;
+      
+      CCMenuItem *levelSelectItem = [CCMenuItemLabel itemWithLabel:levelSelectLabel
+                                                             block:^(id sender)
       {
          [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                      scene:[GameLayer scene] ]];
+                                                                                      scene:[GameLayer scene]]];
+      }];
+      CCMenuItem *settingsItem = [CCMenuItemLabel itemWithLabel:settingsLabel block:^(id sender) {
+         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                      scene:[GameLayer scene]]];
       }];
 
-      playItem.position = ccp(size.width/2,
-                              size.height/2 - size.height/6);
+      CGPoint firstMenuItemPosition = ccp(size.width/2,
+                                          size.height/2 - size.height/6);
 
-      CCMenu *startMenu = [CCMenu menuWithItems:playItem, nil];
+      static int padding = 10;
+      levelSelectItem.position = firstMenuItemPosition;
+      settingsItem.position = ccp(firstMenuItemPosition.x,
+                                  firstMenuItemPosition.y - (levelSelectLabel.boundingBox.size.height + padding));
+
+      CCMenu *startMenu = [CCMenu menuWithItems:levelSelectItem, settingsItem, nil];
       startMenu.position = CGPointZero;
 
       [self addChild:startMenu];
