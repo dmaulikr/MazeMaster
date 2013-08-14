@@ -108,6 +108,7 @@
       CGPoint firstMenuItemPosition = ccp(mainlabel.boundingBox.origin.x,
                                           windowSize.height/2 - windowSize.height/6);
 
+      // set the anchor point for each menu item before positioning for left-alignment
       [levelSelectItem setAnchorPoint:ccp(0,0)];
       [settingsItem setAnchorPoint:ccp(0,0)];
       
