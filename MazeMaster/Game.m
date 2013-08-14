@@ -21,9 +21,9 @@
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    [_level release];
+   
+   [super dealloc];
 }
 
 @end

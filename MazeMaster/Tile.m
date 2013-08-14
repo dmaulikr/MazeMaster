@@ -11,36 +11,30 @@
 
 @implementation Tile
 
--(id) initWithNorth:(BOOL)northEdge
-           withEast:(BOOL)eastEdge
-          withSouth:(BOOL)southEdge
-           withWest:(BOOL)westEdge
+-(id) init
 {
    if ( self = [super init] )
    {
-      if ( northEdge )
-         _northEdge = [[Edge alloc] init];
-         
-      if ( eastEdge )
-         _eastEdge = [[Edge alloc] init];
-      
-      if ( southEdge )
-         _southEdge = [[Edge alloc] init];
-      
-      if ( westEdge )
-         _westEdge = [[Edge alloc] init];
+      // initialize stuff
    }
    return self;
 }
 
 -(void) dealloc
 {
-   [super dealloc];
+   if ( _northEdge )
+      [_northEdge release];
    
-   [_northEdge release];
-   [_eastEdge release];
-   [_southEdge release];
-   [_westEdge release];
+   if ( _eastEdge )
+      [_eastEdge release];
+   
+   if ( _southEdge )
+      [_southEdge release];
+   
+   if ( _westEdge )
+      [_westEdge release];
+   
+   [super dealloc];
 }
 
 @end

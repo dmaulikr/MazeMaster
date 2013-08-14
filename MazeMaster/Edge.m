@@ -11,6 +11,15 @@
 
 @implementation Edge
 
+-(id) init
+{
+   if ( self = [super init] )
+   {
+      // initialize stuff
+   }
+   return self;
+}
+
 -(id) initWithNorthTile:(BOOL)northTile withSouthTile:(BOOL)southTile
 {
    if ( self = [super init] )
@@ -39,8 +48,6 @@
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    if ( _northTile )
       [_northTile release];
    
@@ -52,6 +59,8 @@
    
    if ( _westTile )
       [_westTile release];
+   
+   [super dealloc];
 }
 
 @end

@@ -31,9 +31,9 @@ static LevelFactory *sharedLevelFactory = nil;
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    NSLog(@"dealloc");
+   
+   [super dealloc];
 }
 
 @end

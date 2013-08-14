@@ -32,14 +32,25 @@
          // increased when it is added into an array
          [subArray release];
       }
+      
+      // o - o - o
+      // |   |   |
+      // o - o - o
+      // |   |   |
+      // o - o - o
+      
+      for (int i = 0; i < rows; i++)
+      {
+         for (int j = 0; j < cols; j++)
+         {
+         }
+      }
    }
    return self;
 }
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    // remove all the objects recursively
    int rows = [_tiles count];
    for (int i = 0; i < rows; i++)
@@ -54,6 +65,8 @@
    
    [_tiles release];
    [_tileWithPlayer release];
+   
+   [super dealloc];
 }
 
 @end

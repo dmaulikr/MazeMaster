@@ -21,9 +21,9 @@
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    [_maze release];
+   
+   [super dealloc];
 }
 
 @end
