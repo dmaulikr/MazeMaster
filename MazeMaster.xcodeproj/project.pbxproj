@@ -532,17 +532,17 @@
 				DA3731C117BB119B007694C4 /* LevelFactory.m */,
 				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
 				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
-				8E38CC6217AF1F9000EE917C /* libs */,
 				DA3731C917BB1764007694C4 /* Maze.h */,
 				DA3731CA17BB1764007694C4 /* Maze.m */,
-				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
 				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
 				8E38CDDD17AF1F9200EE917C /* StartLayer.h */,
 				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
-				8E38CDD617AF1F9200EE917C /* Supporting Files */,
 				DAF6E4F017BB220B003EED00 /* Tile.h */,
 				DAF6E4F117BB220B003EED00 /* Tile.m */,
+				8E38CDD617AF1F9200EE917C /* Supporting Files */,
+				8E38CC4A17AF1F9000EE917C /* Resources */,
+				8E38CC6217AF1F9000EE917C /* libs */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
