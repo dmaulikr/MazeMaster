@@ -111,9 +111,7 @@
 	if (self = [super init])
    {
       _windowSize = [[CCDirector sharedDirector] winSize];
-      
       [self addBackButton];
-      [self setupDrawingForMainGrid];
 	}
 	return self;
 }
