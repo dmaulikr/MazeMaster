@@ -12,6 +12,10 @@
 @interface GameLayer : CCLayer
 {
    CGSize _windowSize;
+   CGSize _tileSize;
+   CGSize _subtileSize;
+   float _topPadding;
+   float _leftPadding;
 }
 
 + (CCScene *)scene;

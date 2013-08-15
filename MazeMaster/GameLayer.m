@@ -11,10 +11,6 @@
 
 @implementation GameLayer
 
-#define TILE_SIZE CGSizeMake(60,60)
-#define SUBTILE_SIZE CGSizeMake(20,20)
-#define LEFT_PADDING 60
-#define TOP_PADDING 70
 #define SUBTILE_ROW_MAX 3
 #define SUBTILE_COL_MAX 3
 
@@ -60,15 +56,15 @@
 - (void)drawSubtilesInTileAtPosition:(CGPoint)pos
 {
    CGPoint subtilePosition;
-   static int yOffset = 20;
+   double yOffset = _subtileSize.width;
    for (int row = 0; row < SUBTILE_ROW_MAX; ++row)
    {
       for (int col = 0; col < SUBTILE_COL_MAX; ++col)
       {
-         subtilePosition = ccp(col*SUBTILE_SIZE.width + pos.x,
-                               _windowSize.height - yOffset - row*SUBTILE_SIZE.height - pos.y);
+         subtilePosition = ccp(col*_subtileSize.width + pos.x,
+                               _windowSize.height - yOffset - row*_subtileSize.height - pos.y);
          [self drawTileWithOrigin:subtilePosition
-                             size:SUBTILE_SIZE];
+                             size:_subtileSize];
       }
    }
 }
@@ -81,8 +77,8 @@
    {
       for (int col = 0; col < cols; ++col)
       {
-         tilePosition = ccp(LEFT_PADDING + col*TILE_SIZE.width,
-                            _windowSize.height - TOP_PADDING - row*TILE_SIZE.height);
+         tilePosition = ccp(_leftPadding + col*_tileSize.width,
+                            _windowSize.height - _topPadding - row*_tileSize.height);
          [self drawSubtilesInTileAtPosition:tilePosition];
       }
    }
@@ -96,10 +92,10 @@
    {
       for (int col = 0; col < cols; ++col)
       {
-         tilePosition = ccp(LEFT_PADDING + col*TILE_SIZE.width,
-                            _windowSize.height - TOP_PADDING - row*TILE_SIZE.height);
+         tilePosition = ccp(_leftPadding + col*_tileSize.width,
+                            _windowSize.height - _topPadding - row*_tileSize.height);
          [self drawTileWithOrigin:tilePosition
-                             size:TILE_SIZE];
+                             size:_tileSize];
       }
    }
 }
@@ -111,6 +107,10 @@
 	if (self = [super init])
    {
       _windowSize = [[CCDirector sharedDirector] winSize];
+      _tileSize = CGSizeMake(_windowSize.height/4.0, _windowSize.height/4.0);
+      _subtileSize = CGSizeMake(_tileSize.height/3.0, _tileSize.height/3.0);
+      _topPadding = _tileSize.width;
+      _leftPadding = 60;
       [self addBackButton];
 	}
 	return self;
@@ -123,8 +123,8 @@
 
 - (void)draw
 {
-   [self drawSubGridForRows:5 columns:6];
-   [self drawGridWithRows:5 columns:6];
+   [self drawSubGridForRows:4 columns:5];
+   [self drawGridWithRows:4 columns:5];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
