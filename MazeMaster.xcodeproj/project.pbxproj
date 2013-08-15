@@ -143,7 +143,7 @@
 		8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDB17AF1F9200EE917C /* AppDelegate.m */; };
 		8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* StartLayer.m */; };
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
-		8E8A6D2C17BC8890003673F2 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A6D2B17BC8890003673F2 /* Player.m */; };
+		8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */; };
 		8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.m */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
@@ -441,8 +441,8 @@
 		8E38CDDE17AF1F9200EE917C /* StartLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
 		8E38CDE017AF1F9200EE917C /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
-		8E8A6D2A17BC8890003673F2 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		8E8A6D2B17BC8890003673F2 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLayer.h; sourceTree = "<group>"; };
+		8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLayer.m; sourceTree = "<group>"; };
 		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		8EF0063B17B1E66B009046C4 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
@@ -526,8 +526,8 @@
 				DA3731C317BB170A007694C4 /* Game.h */,
 				DA3731C417BB170A007694C4 /* Game.m */,
 				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
-				8E8A6D2A17BC8890003673F2 /* Player.h */,
-				8E8A6D2B17BC8890003673F2 /* Player.m */,
+				8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */,
+				8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */,
 				8EF0063B17B1E66B009046C4 /* GameLayer.m */,
 				8E38CDE017AF1F9200EE917C /* IntroLayer.h */,
 				8E38CDE117AF1F9200EE917C /* IntroLayer.m */,
@@ -1131,7 +1131,7 @@
 				8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */,
 				DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */,
 				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
-				8E8A6D2C17BC8890003673F2 /* Player.m in Sources */,
+				8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

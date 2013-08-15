@@ -1,5 +1,5 @@
 //
-//  Player.h
+//  PlayerLayer.h
 //  MazeMaster
 //
 //  Created by Gregory Klein on 8/14/13.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface Player : CCLayer
+@interface PlayerLayer : CCLayer
 {
 }
 
