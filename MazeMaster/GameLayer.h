@@ -11,6 +11,7 @@
 
 @interface GameLayer : CCLayer
 {
+   CGSize _windowSize;
 }
 
 + (CCScene *)scene;

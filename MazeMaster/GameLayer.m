@@ -11,10 +11,13 @@
 
 @implementation GameLayer
 
+#define TILE_SIZE CGSizeMake(60,60)
+#define SUBTILE_SIZE CGSizeMake(20,20)
+#define LEFT_PADDING 60
+#define TOP_PADDING 70
+
 - (void)addBackButton
 {
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
    CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
                                                     fontName:@"Marker Felt"
                                                     fontSize:40];
@@ -27,11 +30,48 @@
                                                                     scene:levelSelectScene]];
    }];
 
-   backButtonItem.position = ccp(30, windowSize.height - 30);
+   backButtonItem.position = ccp(30, _windowSize.height - 30);
    CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
    backButtonMenu.position = CGPointZero;
    
    [self addChild:backButtonMenu];
+}
+
+- (void)setupDrawingForMainGrid
+{
+   ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0);
+   ccPointSize(16);
+}
+
+- (void)setupDrawingForSubGrid
+{
+   ccDrawColor4F(1.0f, 100/255.0f, 100/255.0f, 1.0);
+   ccPointSize(10);
+}
+
+- (void)drawTileWithOrigin:(CGPoint)origin
+{
+   ccDrawRect(origin, ccp(origin.x + TILE_SIZE.width,
+                          origin.y + TILE_SIZE.height));
+}
+
+- (void)drawSubtilesWithOrigin:(CGPoint)origin
+{
+   // Draw subtiles
+}
+
+- (void)drawGridWithRows:(int)rows columns:(int)cols
+{
+   CGPoint tilePosition;
+   for (int row = 0; row < rows; ++row)
+   {
+      for (int col = 0; col < cols; ++col)
+      {
+         tilePosition = ccp(LEFT_PADDING + col*TILE_SIZE.width,
+                            _windowSize.height - TOP_PADDING - row*TILE_SIZE.height);
+         [self drawTileWithOrigin:tilePosition];
+      }
+   }
 }
 
 - (id)init
@@ -40,23 +80,10 @@
 	// Apple recommends to re-assign "self" with the "super's" return value
 	if (self = [super init])
    {
-      // ask director for the window size
-      CGSize size = [[CCDirector sharedDirector] winSize];
-
+      _windowSize = [[CCDirector sharedDirector] winSize];
+      
       [self addBackButton];
-
-      CCSprite *rightArrow = [CCSprite spriteWithFile:@"Arrow.png"];
-      CCSprite *leftArrow = [CCSprite spriteWithFile:@"Arrow.png"];
-
-      leftArrow.flipX = YES;
-      [leftArrow setAnchorPoint:CGPointMake(0,0)];
-      leftArrow.position = ccp(0, 0);
-
-      [rightArrow setAnchorPoint:CGPointMake(1,0)];
-      rightArrow.position = ccp(size.width, 0);
-
-      [self addChild:rightArrow];
-      [self addChild:leftArrow];
+      [self setupDrawingForMainGrid];
 	}
 	return self;
 }
@@ -64,6 +91,11 @@
 - (void)dealloc
 {
    [super dealloc];
+}
+
+- (void)draw
+{
+   [self drawGridWithRows:5 columns:6];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

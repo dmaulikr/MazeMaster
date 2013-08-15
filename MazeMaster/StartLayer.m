@@ -87,6 +87,7 @@
       // up and to the right??? The type of object we use here for each label depends on the answer
       // to that question -- if we want to animate up and to the right, then we need to use a
       // CCMenuItemFont so we can adjust the anchor point which will have an effect on the animation
+      // -- that would also make the left-alignment a little more simple
       CCMenuItem *levelSelectItem = [CCMenuItemLabel itemWithLabel:levelSelectLabel
                                                              block:^(id sender)
       {
