@@ -12,7 +12,9 @@
 
 - (id)init
 {
-   if (self == [super init]) {
+   if (self == [super init])
+   {
+      [self setupDrawingForPlayer];
    }
    return self;
 }
@@ -20,6 +22,18 @@
 - (void)dealloc
 {
    [super dealloc];
+}
+
+- (void)setupDrawingForPlayer
+{
+   ccDrawColor4F(0, 0, 1.0f, 0.8f);
+   ccPointSize([[CCDirector sharedDirector] winSize].height/12.0);
+}
+
+- (void)draw
+{
+   [self setupDrawingForPlayer];
+   ccDrawPoint(_position);
 }
 
 @end

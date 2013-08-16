@@ -8,6 +8,7 @@
 
 #import "GameLayer.h"
 #import "LevelSelectLayer.h"
+#import "PlayerLayer.h"
 
 @implementation GameLayer
 
@@ -33,6 +34,43 @@
    backButtonMenu.position = CGPointZero;
    
    [self addChild:backButtonMenu];
+}
+
+- (void)setupDimensions
+{
+   _windowSize = [[CCDirector sharedDirector] winSize];
+   _tileSize = CGSizeMake(_windowSize.height/4.0,
+                          _windowSize.height/4.0);
+   _subtileSize = CGSizeMake(_tileSize.height/3.0,
+                             _tileSize.height/3.0);
+   _topPadding = _tileSize.width;
+   _leftPadding = 60;
+}
+
+- (void)setupPlayer
+{
+   _player = [[PlayerLayer alloc] init];
+   _player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
+   [self addChild:_player z:1];
+}
+
+- (id)init
+{
+	if (self = [super init])
+   {
+      [self setupDimensions];
+      [self setupPlayer];
+      [self addBackButton];
+
+      [self setTouchEnabled:YES];
+      [self scheduleUpdate];
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+   [super dealloc];
 }
 
 - (void)setupDrawingForMainGrid
@@ -100,31 +138,36 @@
    }
 }
 
-- (id)init
-{
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
-	if (self = [super init])
-   {
-      _windowSize = [[CCDirector sharedDirector] winSize];
-      _tileSize = CGSizeMake(_windowSize.height/4.0, _windowSize.height/4.0);
-      _subtileSize = CGSizeMake(_tileSize.height/3.0, _tileSize.height/3.0);
-      _topPadding = _tileSize.width;
-      _leftPadding = 60;
-      [self addBackButton];
-	}
-	return self;
-}
-
-- (void)dealloc
-{
-   [super dealloc];
-}
-
 - (void)draw
 {
    [self drawSubGridForRows:4 columns:5];
    [self drawGridWithRows:4 columns:5];
+}
+
+- (BOOL)positionInBounds:(CGPoint)pos
+{
+   
+}
+
+- (void)movePlayer
+{
+   _player.position = ccp(_player.position.x + .5,
+                          _player.position.y + .5);
+}
+
+- (void)update:(ccTime)delta
+{
+   [self movePlayer];
+}
+
+- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   NSLog(@"touches began");
+}
+
+- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   NSLog(@"touches ended");
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

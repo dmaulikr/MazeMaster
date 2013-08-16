@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class PlayerLayer;
 @interface GameLayer : CCLayer
 {
    CGSize _windowSize;
    CGSize _tileSize;
    CGSize _subtileSize;
+
    float _topPadding;
    float _leftPadding;
+   
+   CGRect _gameBounds;
+
+   PlayerLayer *_player;
 }
 
 + (CCScene *)scene;
