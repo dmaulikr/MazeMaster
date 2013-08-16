@@ -45,6 +45,9 @@
                              _tileSize.height/3.0);
    _topPadding = _tileSize.width;
    _leftPadding = 60;
+
+   _gameBounds = CGRectMake(0, 0, _tileSize.width*5, _tileSize.height*4);
+   _gameBounds.origin.x = _leftPadding;
 }
 
 - (void)setupPlayer
@@ -144,15 +147,19 @@
    [self drawGridWithRows:4 columns:5];
 }
 
-- (BOOL)positionInBounds:(CGPoint)pos
+- (BOOL)positionInGameBounds:(CGPoint)pos
 {
-   
+   return CGRectContainsPoint(_gameBounds, pos);
 }
 
 - (void)movePlayer
 {
-   _player.position = ccp(_player.position.x + .5,
-                          _player.position.y + .5);
+   if ([self positionInGameBounds:ccp(_player.position.x - .5,
+                                      _player.position.y - .5)]);
+   {
+      _player.position = ccp(_player.position.x - .5,
+                             _player.position.y);
+   }
 }
 
 - (void)update:(ccTime)delta
@@ -162,7 +169,17 @@
 
 - (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-   NSLog(@"touches began");
+   UIView *view = [[CCDirector sharedDirector] view];
+   UITouch *touch = [touches anyObject];
+   CGPoint pos = [touch locationInView:view];
+   if ([self positionInGameBounds:pos])
+   {
+      NSLog(@"point in bounds!");
+   }
+   else
+   {
+      NSLog(@"point NOT in bounds!");
+   }
 }
 
 - (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
