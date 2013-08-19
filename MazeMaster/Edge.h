@@ -18,4 +18,9 @@
    Tile* _westTile;
 }
 
+@property (readwrite, assign) Tile* northTile;
+@property (readwrite, assign) Tile* eastTile;
+@property (readwrite, assign) Tile* southTile;
+@property (readwrite, assign) Tile* westTile;
+
 @end

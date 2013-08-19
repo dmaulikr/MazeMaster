@@ -14,15 +14,13 @@
 {
    if ( self = [super init] )
    {
-      _level = [[Level alloc] init];
+      // initialize stuff
    }
    return self;
 }
 
 -(void) dealloc
 {
-   [_level release];
-   
    [super dealloc];
 }
 

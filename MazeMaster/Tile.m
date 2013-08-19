@@ -11,6 +11,11 @@
 
 @implementation Tile
 
+@synthesize northEdge = _northEdge;
+@synthesize eastEdge = _eastEdge;
+@synthesize southEdge = _southEdge;
+@synthesize westEdge = _westEdge;
+
 -(id) init
 {
    if ( self = [super init] )
@@ -18,6 +23,14 @@
       // initialize stuff
    }
    return self;
+}
+
+-(NSString *) description
+{
+   NSString *string = [[NSString alloc] initWithFormat:
+                       @"Tile: %p\n     northEdge %p\n     eastEdge %p\n     southEdge %p\n     westEdge %p",
+                       self, _northEdge, _eastEdge, _southEdge, _westEdge];
+   return string;
 }
 
 -(void) dealloc

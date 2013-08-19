@@ -17,4 +17,9 @@
    Edge* _westEdge;
 }
 
+@property (readwrite, assign) Edge* northEdge;
+@property (readwrite, assign) Edge* eastEdge;
+@property (readwrite, assign) Edge* southEdge;
+@property (readwrite, assign) Edge* westEdge;
+
 @end

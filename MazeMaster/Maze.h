@@ -15,4 +15,7 @@
    NSMutableArray*    _tiles;
 }
 
+-(void) testMaze;
+-(id) initWithRows:(int)rows withColumns:(int)cols;
+
 @end

@@ -11,6 +11,11 @@
 
 @implementation Edge
 
+@synthesize northTile = _northTile;
+@synthesize eastTile = _eastTile;
+@synthesize southTile = _southTile;
+@synthesize westTile = _westTile;
+
 -(id) init
 {
    if ( self = [super init] )
@@ -46,20 +51,16 @@
    return self;
 }
 
+-(NSString *) description
+{
+   NSString *string = [[NSString alloc] initWithFormat:
+                       @"Edge: %p\n         northTile: %p\n          eastTile: %p\n          southTile: %p\n          westTile: %p",
+                       self, _northTile, _eastTile, _southTile, _westTile];
+   return string;
+}
+
 -(void) dealloc
 {
-   if ( _northTile )
-      [_northTile release];
-   
-   if ( _eastTile )
-      [_eastTile release];
-   
-   if ( _southTile )
-      [_southTile release];
-   
-   if ( _westTile )
-      [_westTile release];
-   
    [super dealloc];
 }
 
