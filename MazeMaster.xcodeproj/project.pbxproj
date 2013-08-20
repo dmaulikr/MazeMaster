@@ -148,7 +148,7 @@
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
 		DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C117BB119B007694C4 /* LevelFactory.m */; };
-		DA3731C517BB170A007694C4 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* Game.m */; };
+		DA3731C517BB170A007694C4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* GameController.m */; };
 		DA3731C817BB174E007694C4 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* Level.m */; };
 		DA3731CB17BB1764007694C4 /* Maze.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731CA17BB1764007694C4 /* Maze.m */; };
 		DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4EB17BB2194003EED00 /* Edge.m */; };
@@ -449,8 +449,8 @@
 		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
 		DA3731C017BB119B007694C4 /* LevelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelFactory.h; sourceTree = "<group>"; };
 		DA3731C117BB119B007694C4 /* LevelFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelFactory.m; sourceTree = "<group>"; };
-		DA3731C317BB170A007694C4 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
-		DA3731C417BB170A007694C4 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
+		DA3731C317BB170A007694C4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
+		DA3731C417BB170A007694C4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
 		DA3731C617BB174E007694C4 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
 		DA3731C717BB174E007694C4 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		DA3731C917BB1764007694C4 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
@@ -523,8 +523,8 @@
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				DAF6E4EA17BB2194003EED00 /* Edge.h */,
 				DAF6E4EB17BB2194003EED00 /* Edge.m */,
-				DA3731C317BB170A007694C4 /* Game.h */,
-				DA3731C417BB170A007694C4 /* Game.m */,
+				DA3731C317BB170A007694C4 /* GameController.h */,
+				DA3731C417BB170A007694C4 /* GameController.m */,
 				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
 				8EF0063B17B1E66B009046C4 /* GameLayer.m */,
 				8E38CDE017AF1F9200EE917C /* IntroLayer.h */,
@@ -1124,7 +1124,7 @@
 				8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */,
 				8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */,
 				DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */,
-				DA3731C517BB170A007694C4 /* Game.m in Sources */,
+				DA3731C517BB170A007694C4 /* GameController.m in Sources */,
 				DA3731C817BB174E007694C4 /* Level.m in Sources */,
 				DA3731CB17BB1764007694C4 /* Maze.m in Sources */,
 				8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */,

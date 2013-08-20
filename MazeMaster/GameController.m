@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 Binary Gods. All rights reserved.
 //
 
-#import "Game.h"
+#import "GameController.h"
 
-@implementation Game
+@implementation GameController
 
 -(id) init
 {
