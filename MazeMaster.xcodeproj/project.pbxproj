@@ -151,6 +151,7 @@
 		DA3731C517BB170A007694C4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* GameController.m */; };
 		DA3731C817BB174E007694C4 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* Level.m */; };
 		DA3731CB17BB1764007694C4 /* Maze.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731CA17BB1764007694C4 /* Maze.m */; };
+		DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA503CDD17C301F3005CA59D /* ControlsLayer.m */; };
 		DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4EB17BB2194003EED00 /* Edge.m */; };
 		DAF6E4F217BB220B003EED00 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4F117BB220B003EED00 /* Tile.m */; };
 /* End PBXBuildFile section */
@@ -455,6 +456,8 @@
 		DA3731C717BB174E007694C4 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
 		DA3731C917BB1764007694C4 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
 		DA3731CA17BB1764007694C4 /* Maze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Maze.m; sourceTree = "<group>"; };
+		DA503CDC17C301F3005CA59D /* ControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsLayer.h; sourceTree = "<group>"; };
+		DA503CDD17C301F3005CA59D /* ControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsLayer.m; sourceTree = "<group>"; };
 		DAF6E4EA17BB2194003EED00 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 		DAF6E4EB17BB2194003EED00 /* Edge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edge.m; sourceTree = "<group>"; };
 		DAF6E4F017BB220B003EED00 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
@@ -548,6 +551,8 @@
 				8E38CC6217AF1F9000EE917C /* libs */,
 				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
+				DA503CDC17C301F3005CA59D /* ControlsLayer.h */,
+				DA503CDD17C301F3005CA59D /* ControlsLayer.m */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
@@ -1132,6 +1137,7 @@
 				DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */,
 				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
 				8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */,
+				DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
