@@ -9,6 +9,7 @@
 #import "GameLayer.h"
 #import "LevelSelectLayer.h"
 #import "PlayerLayer.h"
+#import "ControlsLayer.h"
 
 @implementation GameLayer
 
@@ -196,11 +197,13 @@
 	CCScene *scene = [CCScene node];
 
 	// 'layer' is an autorelease object.
-	GameLayer *layer = [GameLayer node];
+	GameLayer *gameLayer = [GameLayer node];
+   ControlsLayer *controlsLayer = [ControlsLayer node];
 
 	// add layer as a child to scene
-	[scene addChild:layer];
-
+	[scene addChild:gameLayer];
+	[scene addChild:controlsLayer];
+   
 	// return the scene
 	return scene;
 }

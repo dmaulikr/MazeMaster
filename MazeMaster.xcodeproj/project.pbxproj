@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */; };
 		8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */; };
 		8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* SettingsLayer.m */; };
 		8E38CC3617AF1F9000EE917C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3517AF1F9000EE917C /* QuartzCore.framework */; };
@@ -157,6 +158,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
+		4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
 		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
 		8E1A35E317BB193B008FD26A /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
@@ -524,6 +527,8 @@
 			children = (
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
+				4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */,
+				4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */,
 				DAF6E4EA17BB2194003EED00 /* Edge.h */,
 				DAF6E4EB17BB2194003EED00 /* Edge.m */,
 				DA3731C317BB170A007694C4 /* GameController.h */,
@@ -1138,6 +1143,7 @@
 				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
 				8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */,
 				DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */,
+				4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
