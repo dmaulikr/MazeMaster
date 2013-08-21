@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */; };
+		4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */; };
 		8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */; };
 		8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* SettingsLayer.m */; };
 		8E38CC3617AF1F9000EE917C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3517AF1F9000EE917C /* QuartzCore.framework */; };
@@ -161,6 +162,7 @@
 /* Begin PBXFileReference section */
 		4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
 		4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
+		4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = astronaut_front.png; path = Resources/astronaut_front.png; sourceTree = "<group>"; };
 		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
 		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
 		8E1A35E317BB193B008FD26A /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
@@ -532,6 +534,8 @@
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */,
 				4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */,
+				DA503CDC17C301F3005CA59D /* ControlsLayer.h */,
+				DA503CDD17C301F3005CA59D /* ControlsLayer.m */,
 				DAF6E4EA17BB2194003EED00 /* Edge.h */,
 				DAF6E4EB17BB2194003EED00 /* Edge.m */,
 				DA3731C317BB170A007694C4 /* GameController.h */,
@@ -546,23 +550,21 @@
 				DA3731C117BB119B007694C4 /* LevelFactory.m */,
 				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
 				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
+				8E38CC6217AF1F9000EE917C /* libs */,
 				DA3731C917BB1764007694C4 /* Maze.h */,
 				DA3731CA17BB1764007694C4 /* Maze.m */,
+				DA503CDF17C3292A005CA59D /* Player.h */,
+				DA503CE017C3292A005CA59D /* Player.m */,
 				8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */,
 				8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */,
+				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
 				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
 				8E38CDDD17AF1F9200EE917C /* StartLayer.h */,
 				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
+				8E38CDD617AF1F9200EE917C /* Supporting Files */,
 				DAF6E4F017BB220B003EED00 /* Tile.h */,
 				DAF6E4F117BB220B003EED00 /* Tile.m */,
-				8E38CC6217AF1F9000EE917C /* libs */,
-				8E38CC4A17AF1F9000EE917C /* Resources */,
-				8E38CDD617AF1F9200EE917C /* Supporting Files */,
-				DA503CDC17C301F3005CA59D /* ControlsLayer.h */,
-				DA503CDD17C301F3005CA59D /* ControlsLayer.m */,
-				DA503CDF17C3292A005CA59D /* Player.h */,
-				DA503CE017C3292A005CA59D /* Player.m */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
@@ -570,6 +572,7 @@
 		8E38CC4A17AF1F9000EE917C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */,
 				DA09DF8017AF2C920048D300 /* Arrow.png */,
 				DA09DF8117AF2C920048D300 /* Arrow@2x.png */,
 				8E38CC4B17AF1F9000EE917C /* Default.png */,
@@ -1015,6 +1018,7 @@
 				8E38CDBA17AF1F9200EE917C /* ChangeLog in Resources */,
 				DA09DF8217AF2C920048D300 /* Arrow.png in Resources */,
 				DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */,
+				4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

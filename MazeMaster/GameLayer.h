@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Level.h"
+#import "Player.h"
 
 @class PlayerLayer;
 @interface GameLayer : CCLayer
@@ -23,6 +24,7 @@
    CGRect _gameBounds;
 
    PlayerLayer *_player;
+   Player *_playerSprite;
    
    Level *_level;
 }

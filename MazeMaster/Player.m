@@ -11,4 +11,18 @@
 
 @implementation Player
 
+- (id)init
+{
+   if (self == [super init])
+   {
+      // initialize stuff
+   }
+   return self;
+}
+
+- (void)dealloc
+{
+   [super dealloc];
+}
+
 @end

@@ -56,6 +56,10 @@
    _player = [[PlayerLayer alloc] init];
    _player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
    [self addChild:_player z:1];
+   
+   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
+   player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
+   [self addChild:player];
 }
 
 - (id)init
