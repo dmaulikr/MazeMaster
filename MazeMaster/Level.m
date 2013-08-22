@@ -37,4 +37,9 @@
    [super dealloc];
 }
 
+- (void)constructMazeEdgesForLevelNumber:(int)levelNumber
+{
+   
+}
+
 @end

@@ -56,7 +56,7 @@
 {
 //   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
-   _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
+   _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0 + 5);
    [self addChild:_playerSprite];
 }
 
