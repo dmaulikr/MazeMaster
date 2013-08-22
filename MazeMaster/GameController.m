@@ -16,6 +16,7 @@ GameController *s_gameController = nil;
 @synthesize level = _level;
 @synthesize playerDirection = _playerDirection;
 @synthesize gameLayer = _gameLayer;
+@synthesize isPlayerMoving = _isPlayerMoving;
 
 -(id) init
 {
@@ -38,36 +39,35 @@ GameController *s_gameController = nil;
 
 -(void)movePlayer
 {
-   int x, y;
-   
-   switch ( _playerDirection )
+   if ( _isPlayerMoving )
    {
-      case e_NORTH:
-         x = 0;
-         y = 30;
-         NSLog(@"NORTH");
-         break;
-      case e_EAST:
-         x = 30;
-         y = 0;
-         NSLog(@"EAST");
-         break;
-      case e_SOUTH:
-         x = 0;
-         y = -30;
-         NSLog(@"SOUTH");
-         break;
-      case e_WEST:
-         x = -30;
-         y = 0;
-         NSLog(@"WEST");
-         break;
-         
-      default:
-         break;
+      int x, y;
+      
+      switch ( _playerDirection )
+      {
+         case e_NORTH:
+            x = 0;
+            y = 30;
+            break;
+         case e_EAST:
+            x = 30;
+            y = 0;
+            break;
+         case e_SOUTH:
+            x = 0;
+            y = -30;
+            break;
+         case e_WEST:
+            x = -30;
+            y = 0;
+            break;
+            
+         default:
+            break;
+      }
+      
+      [_gameLayer movePlayerByX:x andY:y];
    }
-   
-   [_gameLayer movePlayerByX:x andY:y];
 }
 
 -(void) dealloc
