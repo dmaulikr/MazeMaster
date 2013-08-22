@@ -22,6 +22,7 @@ typedef enum
 {
    PlayerDirection _playerDirection;
    GameLayer *_gameLayer;
+   BOOL _isPlayerMoving;
 }
 
 +(GameController *) gameController;
@@ -30,5 +31,6 @@ typedef enum
 @property (nonatomic, assign) Level *level;
 @property (nonatomic, assign) PlayerDirection playerDirection;
 @property (readwrite, assign) GameLayer *gameLayer;
+@property (readwrite, assign) BOOL isPlayerMoving;
 
 @end

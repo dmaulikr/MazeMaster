@@ -77,7 +77,18 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
       gameController.playerDirection = e_SOUTH;
    }
    
-   [gameController movePlayer];
+   // only call the move player function if it is the first swipe (because it will
+   // be called automatically at the end of the move)
+   if ( !gameController.isPlayerMoving )
+   {
+      gameController.isPlayerMoving = YES;
+      [gameController movePlayer];
+   }
+}
+
+-(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+   [GameController gameController].isPlayerMoving = NO;
 }
 
 -(void) dealloc

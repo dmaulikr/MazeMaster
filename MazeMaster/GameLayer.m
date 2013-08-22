@@ -173,11 +173,23 @@
    return CGRectContainsPoint(_gameBounds, pos);
 }
 
+// called when player is done moving to a tile
+-(void) finishedMovingPlayer:(id)sender
+{
+   [[GameController gameController] movePlayer];
+}
+
+// TODO: what if the player hits an enemy half way through a move?
 -(void) movePlayerByX:(int)x andY:(int)y
 {
    CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
-   [_playerSprite runAction:moveAction];
+   
+   CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
+   
+   
+   CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
+   [_playerSprite runAction:actionSequence];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
