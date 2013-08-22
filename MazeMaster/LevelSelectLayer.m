@@ -7,6 +7,7 @@
 //
 
 #import "LevelSelectLayer.h"
+#import "GameController.h"
 #import "StartLayer.h"
 #import "GameLayer.h"
 
@@ -14,19 +15,15 @@
 
 - (void)addMainLabel:(NSString *)label
 {
-   // ask director for the window size
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
 
-   // create and initialize a Label
    CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:label
                                                      fontName:@"Marker Felt"
                                                      fontSize:35];
 
-   // position the label on the center of the screen
    levelSelectLabel.position = ccp(windowSize.width/2.0,
                                    windowSize.height - windowSize.height/9.0);
-
-   // add the label as a child to this Layer
+   
    [self addChild:levelSelectLabel];
 }
 
@@ -58,23 +55,59 @@
    CCLabelTTF *level1Label = [CCLabelTTF labelWithString:@"Level 1"
                                                 fontName:@"Marker Felt"
                                                 fontSize:24];
+   CCLabelTTF *level2Label = [CCLabelTTF labelWithString:@"Level 2"
+                                                fontName:@"Marker Felt"
+                                                fontSize:24];
+   CCLabelTTF *level3Label = [CCLabelTTF labelWithString:@"Level 3"
+                                                fontName:@"Marker Felt"
+                                                fontSize:24];
 
    [level1Label setHorizontalAlignment:kCCTextAlignmentLeft];
+   [level2Label setHorizontalAlignment:kCCTextAlignmentLeft];
+   [level3Label setHorizontalAlignment:kCCTextAlignmentLeft];
 
+   GameController *gameController = [GameController gameController];
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
                                                      block:^(id sender)
-    {
-       CCDirector *director = [CCDirector sharedDirector];
-       CCScene *gameScene = [GameLayer scene];
-       [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                scene:gameScene]];
-    }];
+                              {
+                                 [[gameController level] setLevelNumber:1];
+                                 CCDirector *director = [CCDirector sharedDirector];
+                                 CCScene *gameScene = [GameLayer scene];
+                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                        scene:gameScene]];
+                              }];
+
+   CCMenuItem *level2Item = [CCMenuItemLabel itemWithLabel:level2Label
+                                                     block:^(id sender)
+                              {
+                                 [[gameController level] setLevelNumber:2];
+                                 CCDirector *director = [CCDirector sharedDirector];
+                                 CCScene *gameScene = [GameLayer scene];
+                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                          scene:gameScene]];
+                              }];
+
+   CCMenuItem *level3Item = [CCMenuItemLabel itemWithLabel:level3Label
+                                                     block:^(id sender)
+                              {
+                                 [[gameController level] setLevelNumber:3];
+                                 CCDirector *director = [CCDirector sharedDirector];
+                                 CCScene *gameScene = [GameLayer scene];
+                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                                           scene:gameScene]];
+                              }];
 
    CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
                                        windowSize.height/2 - windowSize.height/6);
 
+   int padding = 5;
    level1Item.position = firstMenuItemPosition;
-   CCMenu *levelMenu = [CCMenu menuWithItems:level1Item, nil];
+   level2Item.position = ccp(firstMenuItemPosition.x,
+                             firstMenuItemPosition.y - level2Item.boundingBox.size.height - padding);
+   level3Item.position = ccp(firstMenuItemPosition.x,
+                             firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding)*2);
+
+   CCMenu *levelMenu = [CCMenu menuWithItems:level1Item, level2Item, level3Item, nil];
    levelMenu.position = CGPointZero;
 
    [self addChild:levelMenu];
@@ -98,19 +131,12 @@
    [super dealloc];
 }
 
-// Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-
-	// 'layer' is an autorelease object.
 	LevelSelectLayer *layer = [LevelSelectLayer node];
-
-	// add layer as a child to scene
 	[scene addChild:layer];
-
-	// return the scene
+   
 	return scene;
 }
 
