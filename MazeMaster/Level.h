@@ -12,6 +12,10 @@
 @interface Level : NSObject
 {
    Maze* _maze;
+   int _levelNumber;
 }
+
+@property (nonatomic, assign) int levelNumber;
+@property (nonatomic, assign) Maze *maze;
 
 @end

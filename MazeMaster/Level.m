@@ -10,6 +10,9 @@
 
 @implementation Level
 
+@synthesize levelNumber = _levelNumber;
+@synthesize maze = _maze;
+
 -(id) init
 {
    if ( self = [super init] )
@@ -19,6 +22,12 @@
       [_maze testMaze];
    }
    return self;
+}
+
+- (id)initWithLevelNumber:(int)levelNumber
+{
+   _levelNumber = levelNumber;
+   return [self init];
 }
 
 -(void) dealloc
