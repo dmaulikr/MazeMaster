@@ -15,6 +15,8 @@
    NSMutableArray*    _tiles;
 }
 
+@property (nonatomic, assign) NSMutableArray *tiles;
+
 -(void) testMaze;
 -(id) initWithRows:(int)rows withColumns:(int)cols;
 

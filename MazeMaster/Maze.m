@@ -11,6 +11,8 @@
 
 @implementation Maze
 
+@synthesize tiles = _tiles;
+
 -(id) initWithRows:(int)rows withColumns:(int)cols
 {
    if ( self = [super init] )
