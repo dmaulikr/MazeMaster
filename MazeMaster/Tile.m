@@ -15,6 +15,7 @@
 @synthesize eastEdge = _eastEdge;
 @synthesize southEdge = _southEdge;
 @synthesize westEdge = _westEdge;
+@synthesize position = _position;
 
 -(id) init
 {

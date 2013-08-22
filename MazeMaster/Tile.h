@@ -15,11 +15,13 @@
    Edge* _eastEdge;
    Edge* _southEdge;
    Edge* _westEdge;
+   CGPoint _position;
 }
 
 @property (readwrite, assign) Edge* northEdge;
 @property (readwrite, assign) Edge* eastEdge;
 @property (readwrite, assign) Edge* southEdge;
 @property (readwrite, assign) Edge* westEdge;
+@property (readwrite, assign) CGPoint position;
 
 @end
