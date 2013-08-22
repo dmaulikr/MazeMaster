@@ -13,6 +13,7 @@ GameController *s_gameController = nil;
 
 @implementation GameController
 
+@synthesize level = _level;
 @synthesize playerDirection = _playerDirection;
 
 -(id) init
@@ -41,9 +42,8 @@ GameController *s_gameController = nil;
 
 -(void) dealloc
 {
-   [super dealloc];
-   
    [_level dealloc];
+   [super dealloc];
 }
 
 @end

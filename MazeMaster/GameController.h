@@ -20,12 +20,12 @@ typedef enum
 @interface GameController : NSObject
 {
    PlayerDirection _playerDirection;
-   Level *_level;
 }
 
 +(GameController *) gameController;
 -(void) movePlayer;
 
+@property (nonatomic, assign) Level *level;
 @property (nonatomic, assign) PlayerDirection playerDirection;
 
 @end
