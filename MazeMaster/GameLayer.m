@@ -66,7 +66,6 @@
 {
 	if (self = [super init])
    {
-      _level = [[Level alloc] init];
       [self setupDimensions];
       [self setupPlayer];
       [self addBackButton];
@@ -79,7 +78,6 @@
 
 - (void)dealloc
 {
-   [_level dealloc];
    [super dealloc];
 }
 

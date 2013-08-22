@@ -7,9 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Level.h"
+
+typedef enum
+{
+   e_NORTH,
+   e_EAST,
+   e_SOUTH,
+   e_WEST
+} PlayerDirection;
 
 @interface GameController : NSObject
 {
+   PlayerDirection _playerDirection;
+   Level *_level;
 }
+
++(GameController *) gameController;
+-(void) movePlayer;
+
+@property (nonatomic, assign) PlayerDirection playerDirection;
 
 @end

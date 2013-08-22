@@ -8,6 +8,7 @@
 
 #import "ControlsLayer.h"
 #import "CCNode+SFGestureRecognizers.h"
+#import "GameController.h"
 
 static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKey";
 
@@ -55,9 +56,12 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 // handles the swipe for each direction
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+   GameController *gameController = [GameController gameController];
+   
    if ( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
    {
       NSLog(@"Right");
+//      gameController.playerDirection =
    }
    else if ( recognizer.direction == UISwipeGestureRecognizerDirectionLeft )
    {
@@ -71,6 +75,8 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    {
       NSLog(@"Down");
    }
+   
+   [gameController movePlayer];
 }
 
 -(void) dealloc

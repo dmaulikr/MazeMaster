@@ -8,20 +8,42 @@
 
 #import "GameController.h"
 
+// for singleton
+GameController *s_gameController = nil;
+
 @implementation GameController
+
+@synthesize playerDirection = _playerDirection;
 
 -(id) init
 {
    if ( self = [super init] )
    {
-      // initialize stuff
+      _level = [[Level alloc] init];
    }
    return self;
+}
+
++(GameController *) gameController
+{
+   if ( s_gameController == nil )
+   {
+      s_gameController = [[GameController alloc] init];
+   }
+   
+   return s_gameController;
+}
+
+-(void)movePlayer
+{
+   NSLog(@"move player in %u direction", _playerDirection);
 }
 
 -(void) dealloc
 {
    [super dealloc];
+   
+   [_level dealloc];
 }
 
 @end

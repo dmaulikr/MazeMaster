@@ -25,8 +25,6 @@
 
    PlayerLayer *_player;
    Player *_playerSprite;
-   
-   Level *_level;
 }
 
 + (CCScene *)scene;
