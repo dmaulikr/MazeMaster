@@ -20,6 +20,11 @@
    return self;
 }
 
++(Player *) playerWithFile:(NSString *)filename
+{
+   return [CCSprite spriteWithFile:filename];
+}
+
 - (void)dealloc
 {
    [super dealloc];

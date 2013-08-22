@@ -13,4 +13,6 @@
 {
 }
 
++(Player *) playerWithFile:(NSString *)filename;
+
 @end

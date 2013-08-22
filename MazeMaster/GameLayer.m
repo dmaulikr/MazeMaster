@@ -54,9 +54,10 @@
 
 - (void)setupPlayer
 {
-   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
-   player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
-   [self addChild:player];
+//   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
+   _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
+   _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
+   [self addChild:_playerSprite];
 }
 
 - (id)init
@@ -172,6 +173,13 @@
    return CGRectContainsPoint(_gameBounds, pos);
 }
 
+-(void) movePlayerByX:(int)x andY:(int)y
+{
+   CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
+   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
+   [_playerSprite runAction:moveAction];
+}
+
 // Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
@@ -180,6 +188,12 @@
 
 	// 'layer' is an autorelease object.
 	GameLayer *gameLayer = [GameLayer node];
+   // TODO: get the tag to work, currently does nothing. Then we could take
+   // the gameLayer out of the controlsLayer class
+   gameLayer.tag = 1;
+   // currently needed to access the game layer
+   [GameController gameController].gameLayer = gameLayer;
+   
    ControlsLayer *controlsLayer = [ControlsLayer node];
 
 	// add layer as a child to scene

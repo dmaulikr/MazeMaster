@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Level.h"
+#import "GameLayer.h"
 
 typedef enum
 {
@@ -20,6 +21,7 @@ typedef enum
 @interface GameController : NSObject
 {
    PlayerDirection _playerDirection;
+   GameLayer *_gameLayer;
 }
 
 +(GameController *) gameController;
@@ -27,5 +29,6 @@ typedef enum
 
 @property (nonatomic, assign) Level *level;
 @property (nonatomic, assign) PlayerDirection playerDirection;
+@property (readwrite, assign) GameLayer *gameLayer;
 
 @end

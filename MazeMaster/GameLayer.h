@@ -27,5 +27,7 @@
    Player *_playerSprite;
 }
 
+-(void) movePlayerByX:(int)x andY:(int)y;
 + (CCScene *)scene;
+
 @end

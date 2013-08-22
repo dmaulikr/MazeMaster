@@ -56,24 +56,25 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 // handles the swipe for each direction
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
+   // TODO: that'd be nice to get the tags working instead of using the game controller...
+   
    GameController *gameController = [GameController gameController];
    
    if ( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
    {
-      NSLog(@"Right");
-//      gameController.playerDirection =
+     gameController.playerDirection = e_EAST;
    }
    else if ( recognizer.direction == UISwipeGestureRecognizerDirectionLeft )
    {
-      NSLog(@"Left");
+      gameController.playerDirection = e_WEST;
    }
    else if ( recognizer.direction == UISwipeGestureRecognizerDirectionUp )
    {
-      NSLog(@"Up");
+      gameController.playerDirection = e_NORTH;
    }
    else if ( recognizer.direction == UISwipeGestureRecognizerDirectionDown )
    {
-      NSLog(@"Down");
+      gameController.playerDirection = e_SOUTH;
    }
    
    [gameController movePlayer];
