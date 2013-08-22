@@ -10,14 +10,14 @@
 
 @implementation LevelFactory
 
-static LevelFactory *sharedLevelFactory = nil;
+static LevelFactory *s_sharedLevelFactory = nil;
 +(id) levelFactory
 {
-   if ( sharedLevelFactory == nil )
+   if ( s_sharedLevelFactory == nil )
    {
-      sharedLevelFactory = [[self alloc] init];
+      s_sharedLevelFactory = [[self alloc] init];
    }
-   return sharedLevelFactory;
+   return s_sharedLevelFactory;
 }
 
 -(id) init
