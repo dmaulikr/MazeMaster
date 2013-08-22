@@ -7,6 +7,8 @@
 //
 
 #import "GameLayer.h"
+#import "GameController.h"
+#import "Tile.h"
 #import "LevelSelectLayer.h"
 #import "PlayerLayer.h"
 #import "ControlsLayer.h"
@@ -37,15 +39,14 @@
    [self addChild:backButtonMenu];
 }
 
+// used for testing, should be removed soon
 - (void)setupDimensions
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
-   _tileSize = CGSizeMake(_windowSize.height/4.0,
-                          _windowSize.height/4.0);
-   _subtileSize = CGSizeMake(_tileSize.height/3.0,
-                             _tileSize.height/3.0);
-   _topPadding = _tileSize.width;
-   _leftPadding = 60;
+   _tileSize = CGSizeMake(30, 30);
+   _subtileSize = CGSizeMake(20, 20);
+   _topPadding = 25;
+   _leftPadding = 90;
 
    _gameBounds = CGRectMake(0, 0, _tileSize.width*5, _tileSize.height*4);
    _gameBounds.origin.x = _leftPadding;
@@ -53,10 +54,6 @@
 
 - (void)setupPlayer
 {
-   _player = [[PlayerLayer alloc] init];
-   _player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
-   [self addChild:_player z:1];
-   
    CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
    player.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0);
    [self addChild:player];
@@ -67,6 +64,7 @@
 	if (self = [super init])
    {
       [self setupDimensions];
+      [self setupMaze];
       [self setupPlayer];
       [self addBackButton];
 
@@ -146,50 +144,32 @@
    }
 }
 
+- (void)setupMaze
+{
+   NSLog(@"setting up maze for level %d: ", [[[GameController gameController] level] levelNumber]);
+   for (int row = 0; row < 10; ++row)
+   {
+      CGPoint tilePosition;
+      for (int col = 0; col < 12; ++col)
+      {
+         tilePosition = ccp(_leftPadding + col*_tileSize.width,
+                            _windowSize.height - _topPadding - row*_tileSize.height);
+         CCSprite *tileSprite = [CCSprite spriteWithFile:@"tron_tile.png"];
+         tileSprite.position = tilePosition;
+         [self addChild:tileSprite];
+      }
+   }
+}
+
 - (void)draw
 {
-   [self drawSubGridForRows:4 columns:5];
-   [self drawGridWithRows:4 columns:5];
+//   [self drawSubGridForRows:4 columns:5];
+//   [self drawGridWithRows:4 columns:5];
 }
 
 - (BOOL)positionInGameBounds:(CGPoint)pos
 {
    return CGRectContainsPoint(_gameBounds, pos);
-}
-
-- (void)movePlayer
-{
-   if ([self positionInGameBounds:ccp(_player.position.x - .5,
-                                      _player.position.y - .5)]);
-   {
-      _player.position = ccp(_player.position.x - .5,
-                             _player.position.y);
-   }
-}
-
-- (void)update:(ccTime)delta
-{
-   [self movePlayer];
-}
-
-- (void)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   UIView *view = [[CCDirector sharedDirector] view];
-   UITouch *touch = [touches anyObject];
-   CGPoint pos = [touch locationInView:view];
-   if ([self positionInGameBounds:pos])
-   {
-      NSLog(@"point in bounds!");
-   }
-   else
-   {
-      NSLog(@"point NOT in bounds!");
-   }
-}
-
-- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-   NSLog(@"touches ended");
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
