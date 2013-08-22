@@ -146,6 +146,8 @@
 		8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* StartLayer.m */; };
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
 		8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */; };
+		8EA2A1D917C5AA6800035F64 /* tron_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2A1D717C5AA6800035F64 /* tron_edge.png */; };
+		8EA2A1DA17C5AA6800035F64 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2A1D817C5AA6800035F64 /* tron_tile.png */; };
 		8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.m */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
@@ -450,6 +452,8 @@
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLayer.h; sourceTree = "<group>"; };
 		8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLayer.m; sourceTree = "<group>"; };
+		8EA2A1D717C5AA6800035F64 /* tron_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_edge.png; sourceTree = "<group>"; };
+		8EA2A1D817C5AA6800035F64 /* tron_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_tile.png; sourceTree = "<group>"; };
 		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		8EF0063B17B1E66B009046C4 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
@@ -572,6 +576,8 @@
 		8E38CC4A17AF1F9000EE917C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8EA2A1D717C5AA6800035F64 /* tron_edge.png */,
+				8EA2A1D817C5AA6800035F64 /* tron_tile.png */,
 				4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */,
 				DA09DF8017AF2C920048D300 /* Arrow.png */,
 				DA09DF8117AF2C920048D300 /* Arrow@2x.png */,
@@ -1019,6 +1025,8 @@
 				DA09DF8217AF2C920048D300 /* Arrow.png in Resources */,
 				DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */,
 				4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */,
+				8EA2A1D917C5AA6800035F64 /* tron_edge.png in Resources */,
+				8EA2A1DA17C5AA6800035F64 /* tron_tile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
