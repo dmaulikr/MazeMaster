@@ -20,22 +20,23 @@
 
 - (void)addBackButton
 {
-   CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
-                                                    fontName:@"Marker Felt"
-                                                    fontSize:40];
-   CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
-                                                         block:^(id sender)
-   {
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
+                                                   selectedImage:@"Arrow.png"];
+
+   [backButton setBlock:^(id sender) {
       CCDirector *director = [CCDirector sharedDirector];
-      CCScene *levelSelectScene = [LevelSelectLayer scene];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
-                                                                    scene:levelSelectScene]];
+                                                                    scene:[LevelSelectLayer scene]]];
    }];
 
-   backButtonItem.position = ccp(30, _windowSize.height - 30);
-   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+   backButton.scale = .25;
+   backButton.rotation = 180;
+   backButton.position = ccp(30, windowSize.height - 30);
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
    backButtonMenu.position = CGPointZero;
-   
+
    [self addChild:backButtonMenu];
 }
 

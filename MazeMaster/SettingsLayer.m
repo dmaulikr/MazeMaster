@@ -17,7 +17,7 @@
 
    // create and initialize a Label
    CCLabelTTF *settingsLabel = [CCLabelTTF labelWithString:label
-                                                  fontName:@"Marker Felt"
+                                                  fontName:@"Helvetica"
                                                   fontSize:35];
 
    // position the label on the center of the screen
@@ -31,20 +31,20 @@
 - (void)addBackButton
 {
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
+                                                   selectedImage:@"Arrow.png"];
    
-   CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
-                                                    fontName:@"Marker Felt"
-                                                    fontSize:40];
-   CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
-                                                         block:^(id sender)
-   {
+   [backButton setBlock:^(id sender) {
       CCDirector *director = [CCDirector sharedDirector];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
                                                                     scene:[StartLayer scene]]];
    }];
 
-   backButtonItem.position = ccp(30, windowSize.height - 30);
-   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+   backButton.scale = .25;
+   backButton.rotation = 180;
+   backButton.position = ccp(30, windowSize.height - 30);
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
    backButtonMenu.position = CGPointZero;
    
    [self addChild:backButtonMenu];

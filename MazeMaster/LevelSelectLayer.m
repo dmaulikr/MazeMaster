@@ -19,7 +19,7 @@
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
 
    CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:label
-                                                     fontName:@"Marker Felt"
+                                                     fontName:@"Helvetica"
                                                      fontSize:35];
 
    levelSelectLabel.position = ccp(windowSize.width/2.0,
@@ -30,23 +30,23 @@
 
 - (void)addBackButton
 {
-   CCLabelTTF *backButtonLabel = [CCLabelTTF labelWithString:@"<"
-                                                    fontName:@"Marker Felt"
-                                                    fontSize:40];
-   
-   CCMenuItem *backButtonItem = [CCMenuItemLabel itemWithLabel:backButtonLabel
-                                                         block:^(id sender)
-   {
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
+                                                   selectedImage:@"Arrow.png"];
+
+   [backButton setBlock:^(id sender) {
       CCDirector *director = [CCDirector sharedDirector];
-      CCScene *startScene = [StartLayer scene];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
-                                                                    scene:startScene]];
+                                                                    scene:[StartLayer scene]]];
    }];
 
-   backButtonItem.position = ccp(30, [[CCDirector sharedDirector] winSize].height - 30);
-   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButtonItem, nil];
+   backButton.scale = .25;
+   backButton.rotation = 180;
+   backButton.position = ccp(30, windowSize.height - 30);
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
    backButtonMenu.position = CGPointZero;
-   
+
    [self addChild:backButtonMenu];
 }
 
@@ -54,13 +54,13 @@
 {
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
    CCLabelTTF *level1Label = [CCLabelTTF labelWithString:@"Level 1"
-                                                fontName:@"Marker Felt"
+                                                fontName:@"Helvetica"
                                                 fontSize:24];
    CCLabelTTF *level2Label = [CCLabelTTF labelWithString:@"Level 2"
-                                                fontName:@"Marker Felt"
+                                                fontName:@"Helvetica"
                                                 fontSize:24];
    CCLabelTTF *level3Label = [CCLabelTTF labelWithString:@"Level 3"
-                                                fontName:@"Marker Felt"
+                                                fontName:@"Helvetica"
                                                 fontSize:24];
 
    [level1Label setHorizontalAlignment:kCCTextAlignmentLeft];
@@ -116,8 +116,6 @@
 
 - (id)init
 {
-	// always call "super" init
-	// Apple recommends to re-assign "self" with the "super's" return value
 	if (self = [super init])
    {
       [self addMainLabel:@"Select Level"];

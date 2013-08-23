@@ -42,7 +42,7 @@
 
    // create and initialize a Label
    CCLabelTTF *mainlabel = [CCLabelTTF labelWithString:label
-                                              fontName:@"Marker Felt"
+                                              fontName:@"Helvetica"
                                               fontSize:64];
 
    // position the label on the center of the screen
@@ -65,7 +65,7 @@
 
 		// create and initialize a Label
 		CCLabelTTF *mainlabel = [CCLabelTTF labelWithString:@"Maze Master"
-                                             fontName:@"Marker Felt"
+                                             fontName:@"Helvetica"
                                              fontSize:64];
 
 		// position the label on the center of the screen
@@ -76,11 +76,11 @@
 		[self addChild: mainlabel];
       
       CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:@"Select Level"
-                                                        fontName:@"Marker Felt"
+                                                        fontName:@"Helvetica"
                                                         fontSize:24];
       
       CCLabelTTF *settingsLabel = [CCLabelTTF labelWithString:@"Settings"
-                                                     fontName:@"Marker Felt"
+                                                     fontName:@"Helvetica"
                                                      fontSize:24];
 
       // DESIGN DECISION: should touch state for each item animate the label up and centered, or
