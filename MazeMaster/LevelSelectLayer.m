@@ -16,12 +16,11 @@
 
 - (void)addMainLabel:(NSString *)label
 {
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
    CCLabelTTF *levelSelectLabel = [CCLabelTTF labelWithString:label
                                                      fontName:@"Helvetica"
                                                      fontSize:35];
 
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
    levelSelectLabel.position = ccp(windowSize.width/2.0,
                                    windowSize.height - windowSize.height/9.0);
    
@@ -30,8 +29,6 @@
 
 - (void)addBackButton
 {
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
    CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
                                                    selectedImage:@"Arrow.png"];
 
@@ -41,9 +38,11 @@
                                                                     scene:[StartLayer scene]]];
    }];
 
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+   backButton.position = ccp(30, windowSize.height - 30);
    backButton.scale = .25;
    backButton.rotation = 180;
-   backButton.position = ccp(30, windowSize.height - 30);
+
    CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
    backButtonMenu.position = CGPointZero;
 
@@ -52,7 +51,6 @@
 
 - (void)addLevelMenu
 {
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
    CCLabelTTF *level1Label = [CCLabelTTF labelWithString:@"Level 1"
                                                 fontName:@"Helvetica"
                                                 fontSize:24];
@@ -62,10 +60,6 @@
    CCLabelTTF *level3Label = [CCLabelTTF labelWithString:@"Level 3"
                                                 fontName:@"Helvetica"
                                                 fontSize:24];
-
-   [level1Label setHorizontalAlignment:kCCTextAlignmentLeft];
-   [level2Label setHorizontalAlignment:kCCTextAlignmentLeft];
-   [level3Label setHorizontalAlignment:kCCTextAlignmentLeft];
 
    GameController *gameController = [GameController gameController];
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
@@ -98,9 +92,9 @@
                                                                                            scene:gameScene]];
                               }];
 
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
    CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
                                        windowSize.height/2 - windowSize.height/6);
-
    int padding = 5;
    level1Item.position = firstMenuItemPosition;
    level2Item.position = ccp(firstMenuItemPosition.x,
