@@ -7,6 +7,7 @@
 //
 
 #import "LevelFactory.h"
+#import "Level.h"
 
 @implementation LevelFactory
 
@@ -32,8 +33,12 @@ static LevelFactory *s_sharedLevelFactory = nil;
 -(void) dealloc
 {
    NSLog(@"dealloc");
-   
    [super dealloc];
+}
+
++(Level *) levelForLevelNumber:(int)levelNumber
+{
+   return [[Level alloc] initWithLevelNumber:levelNumber];
 }
 
 @end

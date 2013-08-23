@@ -7,6 +7,7 @@
 //
 
 #import "LevelSelectLayer.h"
+#import "LevelFactory.h"
 #import "GameController.h"
 #import "StartLayer.h"
 #import "GameLayer.h"
@@ -70,7 +71,7 @@
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
                                                      block:^(id sender)
                               {
-                                 [[gameController level] setLevelNumber:1];
+                                 [gameController setLevel:[LevelFactory levelForLevelNumber:1]];
                                  CCDirector *director = [CCDirector sharedDirector];
                                  CCScene *gameScene = [GameLayer scene];
                                  [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
@@ -80,7 +81,7 @@
    CCMenuItem *level2Item = [CCMenuItemLabel itemWithLabel:level2Label
                                                      block:^(id sender)
                               {
-                                 [[gameController level] setLevelNumber:2];
+                                 [gameController setLevel:[LevelFactory levelForLevelNumber:2]];
                                  CCDirector *director = [CCDirector sharedDirector];
                                  CCScene *gameScene = [GameLayer scene];
                                  [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
@@ -90,7 +91,7 @@
    CCMenuItem *level3Item = [CCMenuItemLabel itemWithLabel:level3Label
                                                      block:^(id sender)
                               {
-                                 [[gameController level] setLevelNumber:3];
+                                 [gameController setLevel:[LevelFactory levelForLevelNumber:3]];
                                  CCDirector *director = [CCDirector sharedDirector];
                                  CCScene *gameScene = [GameLayer scene];
                                  [director replaceScene:[CCTransitionFade transitionWithDuration:1.0

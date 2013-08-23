@@ -8,8 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+@class Level;
 @interface LevelFactory : NSObject
+{
+}
 
 +(id) levelFactory;
++(Level *) levelForLevelNumber:(int)levelNumber;
 
 @end

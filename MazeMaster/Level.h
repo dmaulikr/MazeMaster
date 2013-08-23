@@ -18,4 +18,6 @@
 @property (nonatomic, assign) int levelNumber;
 @property (nonatomic, assign) Maze *maze;
 
+- (id)initWithLevelNumber:(int)levelNumber;
+
 @end
