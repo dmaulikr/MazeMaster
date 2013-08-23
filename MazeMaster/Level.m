@@ -17,7 +17,7 @@
 {
    if ( self = [super init] )
    {
-      _maze = [[Maze alloc] initWithRows:5 withColumns:4];
+      _maze = [[Maze alloc] initWithRows:10 withColumns:12];
       
       [_maze testMaze];
    }

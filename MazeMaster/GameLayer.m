@@ -162,12 +162,6 @@
    }
 }
 
-- (void)draw
-{
-//   [self drawSubGridForRows:4 columns:5];
-//   [self drawGridWithRows:4 columns:5];
-}
-
 - (BOOL)positionInGameBounds:(CGPoint)pos
 {
    return CGRectContainsPoint(_gameBounds, pos);
