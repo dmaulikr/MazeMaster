@@ -24,8 +24,8 @@
 
    CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
                                                    selectedImage:@"Arrow.png"];
-
-   [backButton setBlock:^(id sender) {
+   [backButton setBlock:^(id sender)
+   {
       CCDirector *director = [CCDirector sharedDirector];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
                                                                     scene:[LevelSelectLayer scene]]];
