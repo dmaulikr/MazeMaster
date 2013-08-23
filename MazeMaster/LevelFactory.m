@@ -38,7 +38,10 @@ static LevelFactory *s_sharedLevelFactory = nil;
 
 +(Level *) levelForLevelNumber:(int)levelNumber
 {
-   return [[Level alloc] initWithLevelNumber:levelNumber];
+   Level* level = [[Level alloc] init];
+   [level setLevelNumber:levelNumber];
+
+   return level;
 }
 
 @end

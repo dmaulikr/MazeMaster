@@ -24,12 +24,6 @@
    return self;
 }
 
-- (id)initWithLevelNumber:(int)levelNumber
-{
-   _levelNumber = levelNumber;
-   return [self init];
-}
-
 -(void) dealloc
 {
    [_maze release];

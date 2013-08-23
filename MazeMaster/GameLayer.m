@@ -180,8 +180,7 @@
    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
    
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
-   
-   
+
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
    [_playerSprite runAction:actionSequence];
 }
