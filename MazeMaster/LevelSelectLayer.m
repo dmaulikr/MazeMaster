@@ -98,7 +98,7 @@
    int padding = 5;
    level1Item.position = firstMenuItemPosition;
    level2Item.position = ccp(firstMenuItemPosition.x,
-                             firstMenuItemPosition.y - level2Item.boundingBox.size.height - padding);
+                             firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding));
    level3Item.position = ccp(firstMenuItemPosition.x,
                              firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding)*2);
 
