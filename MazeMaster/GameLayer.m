@@ -44,9 +44,9 @@
 - (void)setupDimensions
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
-   _tileSize = CGSizeMake(30, 30);
+   _tileSize = CGSizeMake(102, 102);
    _subtileSize = CGSizeMake(20, 20);
-   _topPadding = 25;
+   _topPadding = 50;
    _leftPadding = 90;
 
    _gameBounds = CGRectMake(0, 0, _tileSize.width*5, _tileSize.height*4);
@@ -58,6 +58,7 @@
 //   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0 + 5);
+   _playerSprite.scale = 2;
    [self addChild:_playerSprite];
 }
 
@@ -81,91 +82,19 @@
    [super dealloc];
 }
 
-- (void)setupDrawingForMainGrid
-{
-   ccDrawColor4F(1.0f, 1.0f, 1.0f, 0.6f);
-   ccPointSize(16);
-}
-
-- (void)setupDrawingForSubGrid
-{
-   ccDrawColor4F(1.0f, 100/255.0f, 100/255.0f, 0.2f);
-   ccPointSize(10);
-}
-
-- (void)drawTileWithOrigin:(CGPoint)origin size:(CGSize)size
-{
-   ccDrawRect(origin, ccp(origin.x + size.width,
-                          origin.y + size.height));
-}
-
-- (void)drawSubtilesInTileAtPosition:(CGPoint)pos
-{
-   CGPoint subtilePosition;
-   double yOffset = _subtileSize.width;
-   for (int row = 0; row < SUBTILE_ROW_MAX; ++row)
-   {
-      for (int col = 0; col < SUBTILE_COL_MAX; ++col)
-      {
-         subtilePosition = ccp(col*_subtileSize.width + pos.x,
-                               _windowSize.height - yOffset - row*_subtileSize.height - pos.y);
-         [self drawTileWithOrigin:subtilePosition
-                             size:_subtileSize];
-      }
-   }
-}
-
-- (void)drawSubGridForRows:(int)rows columns:(int)cols
-{
-   [self setupDrawingForSubGrid];
-   CGPoint tilePosition;
-   for (int row = 0; row < rows; ++row)
-   {
-      for (int col = 0; col < cols; ++col)
-      {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         [self drawSubtilesInTileAtPosition:tilePosition];
-      }
-   }
-}
-
-- (void)drawGridWithRows:(int)rows columns:(int)cols
-{
-   [self setupDrawingForMainGrid];
-   CGPoint tilePosition;
-   for (int row = 0; row < rows; ++row)
-   {
-      for (int col = 0; col < cols; ++col)
-      {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         [self drawTileWithOrigin:tilePosition
-                             size:_tileSize];
-      }
-   }
-}
-
 - (void)setupMaze
 {
    NSLog(@"setting up maze for level %d: ", [[[GameController gameController] level] levelNumber]);
-   for (int row = 0; row < 10; ++row)
+   for (int row = 0; row < 3; ++row)
    {
-      CGPoint tilePosition;
-      for (int col = 0; col < 12; ++col)
+      for (int col = 0; col < 3; ++col)
       {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         CCSprite *tileSprite = [CCSprite spriteWithFile:@"tron_tile.png"];
-         tileSprite.position = tilePosition;
+         CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
+         tileSprite.position = ccp(_leftPadding + col*_tileSize.width,
+                                   _windowSize.height - _topPadding - row*_tileSize.height);
          [self addChild:tileSprite];
       }
    }
-}
-
-- (BOOL)positionInGameBounds:(CGPoint)pos
-{
-   return CGRectContainsPoint(_gameBounds, pos);
 }
 
 // called when player is done moving to a tile
