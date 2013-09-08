@@ -80,7 +80,6 @@
    _mazeLayer = mazeLayer;
    _mazeLayer.anchorPoint = CGPointZero;
    _moveMaze = NO;
-   NSLog(@"_mazeLayer.position: %@", NSStringFromCGPoint([_mazeLayer position]));
    return [self init];
 }
 
@@ -120,7 +119,8 @@
       case e_NORTH:
       {
          float northMazeBound = _mazeLayer.position.y + _mazeLayer.mazeSize.height;
-         if ((northMazeBound > _windowSize.height) && [self playerIsVerticallyCenteredOnScreen])
+         if ((northMazeBound > _windowSize.height) &&
+             [self playerIsVerticallyCenteredOnScreen])
             retVal = YES;
          break;
       }
@@ -128,7 +128,8 @@
       case e_SOUTH:
       {
          float southMazeBound = _mazeLayer.position.y;
-         if ((southMazeBound < _outsideEdgePadding) && [self playerIsVerticallyCenteredOnScreen])
+         if ((southMazeBound < _outsideEdgePadding) &&
+             [self playerIsVerticallyCenteredOnScreen])
             retVal = YES;
          break;
       }
@@ -136,7 +137,8 @@
       case e_EAST:
       {
          float eastMazeBound = _mazeLayer.position.x + _mazeLayer.mazeSize.width;
-         if ((eastMazeBound > _windowSize.width) && [self playerIsHorizontallyCenteredOnScreen])
+         if ((eastMazeBound > _windowSize.width) &&
+             [self playerIsHorizontallyCenteredOnScreen])
             retVal = YES;
          break;
       }
@@ -144,7 +146,8 @@
       case e_WEST:
       {
          float westMazeBound = _mazeLayer.position.x;
-         if ((westMazeBound < _outsideEdgePadding) && [self playerIsHorizontallyCenteredOnScreen])
+         if ((westMazeBound < _outsideEdgePadding) &&
+             [self playerIsHorizontallyCenteredOnScreen])
             retVal = YES;
          break;
       }
