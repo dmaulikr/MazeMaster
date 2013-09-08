@@ -9,6 +9,7 @@
 #import "GameLayer.h"
 #import "GameController.h"
 #import "Tile.h"
+#import "MazeLayer.h"
 #import "LevelSelectLayer.h"
 #import "PlayerLayer.h"
 #import "ControlsLayer.h"
@@ -67,7 +68,6 @@
 	if (self = [super init])
    {
       [self setupDimensions];
-      [self setupMaze];
       [self setupPlayer];
       [self addBackButton];
 
@@ -80,21 +80,6 @@
 - (void)dealloc
 {
    [super dealloc];
-}
-
-- (void)setupMaze
-{
-   NSLog(@"setting up maze for level %d: ", [[[GameController gameController] level] levelNumber]);
-   for (int row = 0; row < 3; ++row)
-   {
-      for (int col = 0; col < 3; ++col)
-      {
-         CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
-         tileSprite.position = ccp(_leftPadding + col*_tileSize.width,
-                                   _windowSize.height - _topPadding - row*_tileSize.height);
-         [self addChild:tileSprite];
-      }
-   }
 }
 
 // called when player is done moving to a tile
@@ -128,10 +113,12 @@
    gameLayer.tag = 1;
    // currently needed to access the game layer
    [GameController gameController].gameLayer = gameLayer;
-   
+
+   MazeLayer *mazeLayer = [MazeLayer node];
    ControlsLayer *controlsLayer = [ControlsLayer node];
 
 	// add layer as a child to scene
+   [scene addChild:mazeLayer];
 	[scene addChild:gameLayer];
 	[scene addChild:controlsLayer];
    
