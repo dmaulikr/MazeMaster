@@ -9,8 +9,8 @@
 #import "GameLayer.h"
 #import "GameController.h"
 #import "Tile.h"
+#import "MazeLayer.h"
 #import "LevelSelectLayer.h"
-#import "PlayerLayer.h"
 #import "ControlsLayer.h"
 
 @implementation GameLayer
@@ -24,11 +24,12 @@
 
    CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
                                                    selectedImage:@"Arrow.png"];
-
-   [backButton setBlock:^(id sender) {
+   [backButton setBlock:^(id sender)
+   {
       CCDirector *director = [CCDirector sharedDirector];
+      CCScene *levelSelectScene = [LevelSelectLayer scene];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
-                                                                    scene:[LevelSelectLayer scene]]];
+                                                                    scene:levelSelectScene]];
    }];
 
    backButton.scale = .25;
@@ -44,20 +45,19 @@
 - (void)setupDimensions
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
-   _tileSize = CGSizeMake(30, 30);
+   _tileSize = CGSizeMake(102, 102);
    _subtileSize = CGSizeMake(20, 20);
-   _topPadding = 25;
-   _leftPadding = 90;
 
-   _gameBounds = CGRectMake(0, 0, _tileSize.width*5, _tileSize.height*4);
-   _gameBounds.origin.x = _leftPadding;
+   _outsideEdgePadding = 10;
+   _insideEdgePadding = 5;
 }
 
 - (void)setupPlayer
 {
-//   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
-   _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0 + 5);
+   _playerSprite.anchorPoint = CGPointZero;
+   _playerSprite.position = ccp(_windowSize.width/2.0, _windowSize.height/2.0);
+   _playerSprite.scale = 2;
    [self addChild:_playerSprite];
 }
 
@@ -66,7 +66,6 @@
 	if (self = [super init])
    {
       [self setupDimensions];
-      [self setupMaze];
       [self setupPlayer];
       [self addBackButton];
 
@@ -76,96 +75,19 @@
 	return self;
 }
 
+- (id)initWithMaze:(MazeLayer *)mazeLayer
+{
+   _mazeLayer = mazeLayer;
+   _mazeLayer.anchorPoint = CGPointZero;
+   _moveMaze = NO;
+   NSLog(@"_mazeLayer.position: %@", NSStringFromCGPoint([_mazeLayer position]));
+   return [self init];
+}
+
 - (void)dealloc
 {
+   [_mazeLayer release];
    [super dealloc];
-}
-
-- (void)setupDrawingForMainGrid
-{
-   ccDrawColor4F(1.0f, 1.0f, 1.0f, 0.6f);
-   ccPointSize(16);
-}
-
-- (void)setupDrawingForSubGrid
-{
-   ccDrawColor4F(1.0f, 100/255.0f, 100/255.0f, 0.2f);
-   ccPointSize(10);
-}
-
-- (void)drawTileWithOrigin:(CGPoint)origin size:(CGSize)size
-{
-   ccDrawRect(origin, ccp(origin.x + size.width,
-                          origin.y + size.height));
-}
-
-- (void)drawSubtilesInTileAtPosition:(CGPoint)pos
-{
-   CGPoint subtilePosition;
-   double yOffset = _subtileSize.width;
-   for (int row = 0; row < SUBTILE_ROW_MAX; ++row)
-   {
-      for (int col = 0; col < SUBTILE_COL_MAX; ++col)
-      {
-         subtilePosition = ccp(col*_subtileSize.width + pos.x,
-                               _windowSize.height - yOffset - row*_subtileSize.height - pos.y);
-         [self drawTileWithOrigin:subtilePosition
-                             size:_subtileSize];
-      }
-   }
-}
-
-- (void)drawSubGridForRows:(int)rows columns:(int)cols
-{
-   [self setupDrawingForSubGrid];
-   CGPoint tilePosition;
-   for (int row = 0; row < rows; ++row)
-   {
-      for (int col = 0; col < cols; ++col)
-      {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         [self drawSubtilesInTileAtPosition:tilePosition];
-      }
-   }
-}
-
-- (void)drawGridWithRows:(int)rows columns:(int)cols
-{
-   [self setupDrawingForMainGrid];
-   CGPoint tilePosition;
-   for (int row = 0; row < rows; ++row)
-   {
-      for (int col = 0; col < cols; ++col)
-      {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         [self drawTileWithOrigin:tilePosition
-                             size:_tileSize];
-      }
-   }
-}
-
-- (void)setupMaze
-{
-   NSLog(@"setting up maze for level %d: ", [[[GameController gameController] level] levelNumber]);
-   for (int row = 0; row < 10; ++row)
-   {
-      CGPoint tilePosition;
-      for (int col = 0; col < 12; ++col)
-      {
-         tilePosition = ccp(_leftPadding + col*_tileSize.width,
-                            _windowSize.height - _topPadding - row*_tileSize.height);
-         CCSprite *tileSprite = [CCSprite spriteWithFile:@"tron_tile.png"];
-         tileSprite.position = tilePosition;
-         [self addChild:tileSprite];
-      }
-   }
-}
-
-- (BOOL)positionInGameBounds:(CGPoint)pos
-{
-   return CGRectContainsPoint(_gameBounds, pos);
 }
 
 // called when player is done moving to a tile
@@ -174,16 +96,125 @@
    [[GameController gameController] movePlayer];
 }
 
+- (BOOL)playerIsHorizontallyCenteredOnScreen
+{
+   return (_playerSprite.position.x == _windowSize.width/2.0);
+}
+
+- (BOOL)playerIsVerticallyCenteredOnScreen
+{
+   return (_playerSprite.position.y == _windowSize.height/2.0);
+}
+
+- (BOOL)playerIsCenteredOnScreen
+{
+   return ([self playerIsHorizontallyCenteredOnScreen] &&
+           [self playerIsVerticallyCenteredOnScreen]);
+}
+
+- (BOOL)mazeShouldMoveForPlayerDirection:(PlayerDirection)direction
+{
+   BOOL retVal = NO;
+   switch (direction)
+   {
+      case e_NORTH:
+      {
+         float northMazeBound = _mazeLayer.position.y + _mazeLayer.mazeSize.height;
+         if ((northMazeBound > _windowSize.height) && [self playerIsVerticallyCenteredOnScreen])
+            retVal = YES;
+         break;
+      }
+
+      case e_SOUTH:
+      {
+         float southMazeBound = _mazeLayer.position.y;
+         if ((southMazeBound < _outsideEdgePadding) && [self playerIsVerticallyCenteredOnScreen])
+            retVal = YES;
+         break;
+      }
+
+      case e_EAST:
+      {
+         float eastMazeBound = _mazeLayer.position.x + _mazeLayer.mazeSize.width;
+         if ((eastMazeBound > _windowSize.width) && [self playerIsHorizontallyCenteredOnScreen])
+            retVal = YES;
+         break;
+      }
+
+      case e_WEST:
+      {
+         float westMazeBound = _mazeLayer.position.x;
+         if ((westMazeBound < _outsideEdgePadding) && [self playerIsHorizontallyCenteredOnScreen])
+            retVal = YES;
+         break;
+      }
+
+      default:
+         break;
+   }
+   return retVal;
+}
+
+- (BOOL)playerPositionInMazeBounds:(CGPoint)position
+{
+   int padding = (_outsideEdgePadding + _insideEdgePadding);
+   
+   // north
+   if ((position.y + _playerSprite.boundingBox.size.height/2.0) > (_windowSize.height - _outsideEdgePadding))
+      return NO;
+
+   // south
+   if ((position.y - _playerSprite.boundingBox.size.height/2.0) < _outsideEdgePadding)
+      return NO;
+
+   // east
+   if ((position.x + _playerSprite.boundingBox.size.width) > (_windowSize.width - padding))
+      return NO;
+
+   // west
+   if (position.x < padding)
+      return NO;
+
+   return YES;
+}
+
+- (CGPoint)getDestinationPointFor:(int)x
+                                y:(int)y
+{
+   CGPoint destination;
+
+   PlayerDirection playerDirection = [GameController gameController].playerDirection;
+   if ([self mazeShouldMoveForPlayerDirection:playerDirection])
+   {
+      _moveMaze = YES;
+      destination = CGPointMake(_mazeLayer.position.x - x,
+                                _mazeLayer.position.y - y);
+   }
+   else
+   {
+      _moveMaze = NO;
+      destination = CGPointMake(_playerSprite.position.x + x,
+                                _playerSprite.position.y + y);
+
+      if (![self playerPositionInMazeBounds:destination])
+         destination = _playerSprite.position;
+   }
+   return destination;
+}
+
 // TODO: what if the player hits an enemy half way through a move?
 -(void) movePlayerByX:(int)x andY:(int)y
 {
-   CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
-   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
+   CGPoint destination = [self getDestinationPointFor:x y:y];
    
+   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:destination];
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
-
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
-   [_playerSprite runAction:actionSequence];
+
+   if (_moveMaze)
+      [_mazeLayer runAction:actionSequence];
+   else
+      [_playerSprite runAction:actionSequence];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
@@ -192,21 +223,23 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 
-	// 'layer' is an autorelease object.
-	GameLayer *gameLayer = [GameLayer node];
+   int rows = [GameController gameController].level.maze.mazeDimensions.rows;
+   int cols = [GameController gameController].level.maze.mazeDimensions.cols;
+   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithRows:rows columns:cols] autorelease];
+   
+   GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
+   ControlsLayer *controlsLayer = [ControlsLayer node];
+
    // TODO: get the tag to work, currently does nothing. Then we could take
    // the gameLayer out of the controlsLayer class
    gameLayer.tag = 1;
    // currently needed to access the game layer
    [GameController gameController].gameLayer = gameLayer;
-   
-   ControlsLayer *controlsLayer = [ControlsLayer node];
 
-	// add layer as a child to scene
+   [scene addChild:mazeLayer];
 	[scene addChild:gameLayer];
 	[scene addChild:controlsLayer];
-   
-	// return the scene
+
 	return scene;
 }
 

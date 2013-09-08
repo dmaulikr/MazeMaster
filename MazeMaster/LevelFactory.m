@@ -36,7 +36,7 @@ static LevelFactory *s_sharedLevelFactory = nil;
    [super dealloc];
 }
 
-+(Level *) levelForLevelNumber:(int)levelNumber
++ (Level *)levelForLevelNumber:(int)levelNumber
 {
    Level *level = nil;
    

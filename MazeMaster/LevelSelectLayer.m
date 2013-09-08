@@ -31,8 +31,8 @@
 {
    CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
                                                    selectedImage:@"Arrow.png"];
-
-   [backButton setBlock:^(id sender) {
+   [backButton setBlock:^(id sender)
+   {
       CCDirector *director = [CCDirector sharedDirector];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
                                                                     scene:[StartLayer scene]]];
@@ -64,33 +64,33 @@
    GameController *gameController = [GameController gameController];
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
                                                      block:^(id sender)
-                              {
-                                 [gameController setLevel:[LevelFactory levelForLevelNumber:1]];
-                                 CCDirector *director = [CCDirector sharedDirector];
-                                 CCScene *gameScene = [GameLayer scene];
-                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                        scene:gameScene]];
-                              }];
+   {
+      [gameController setLevel:[LevelFactory levelForLevelNumber:1]];
+      CCDirector *director = [CCDirector sharedDirector];
+      CCScene *gameScene = [GameLayer scene];
+      [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                             scene:gameScene]];
+   }];
 
    CCMenuItem *level2Item = [CCMenuItemLabel itemWithLabel:level2Label
                                                      block:^(id sender)
-                              {
-                                 [gameController setLevel:[LevelFactory levelForLevelNumber:2]];
-                                 CCDirector *director = [CCDirector sharedDirector];
-                                 CCScene *gameScene = [GameLayer scene];
-                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                          scene:gameScene]];
-                              }];
+   {
+      [gameController setLevel:[LevelFactory levelForLevelNumber:2]];
+      CCDirector *director = [CCDirector sharedDirector];
+      CCScene *gameScene = [GameLayer scene];
+      [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                               scene:gameScene]];
+   }];
 
    CCMenuItem *level3Item = [CCMenuItemLabel itemWithLabel:level3Label
                                                      block:^(id sender)
-                              {
-                                 [gameController setLevel:[LevelFactory levelForLevelNumber:3]];
-                                 CCDirector *director = [CCDirector sharedDirector];
-                                 CCScene *gameScene = [GameLayer scene];
-                                 [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                                           scene:gameScene]];
-                              }];
+   {
+      [gameController setLevel:[LevelFactory levelForLevelNumber:3]];
+      CCDirector *director = [CCDirector sharedDirector];
+      CCScene *gameScene = [GameLayer scene];
+      [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
+                                                                scene:gameScene]];
+   }];
 
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
    CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
@@ -98,7 +98,7 @@
    int padding = 5;
    level1Item.position = firstMenuItemPosition;
    level2Item.position = ccp(firstMenuItemPosition.x,
-                             firstMenuItemPosition.y - level2Item.boundingBox.size.height - padding);
+                             firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding));
    level3Item.position = ccp(firstMenuItemPosition.x,
                              firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding)*2);
 

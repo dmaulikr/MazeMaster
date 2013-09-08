@@ -10,24 +10,27 @@
 #import "cocos2d.h"
 #import "Level.h"
 #import "Player.h"
+#import "MazeLayer.h"
 
-@class PlayerLayer;
 @interface GameLayer : CCLayer
 {
    CGSize _windowSize;
    CGSize _tileSize;
    CGSize _subtileSize;
 
-   float _topPadding;
-   float _leftPadding;
+   int _outsideEdgePadding;
+   int _insideEdgePadding;
    
    CGRect _gameBounds;
 
-   PlayerLayer *_player;
+   MazeLayer *_mazeLayer;
    Player *_playerSprite;
+
+   BOOL _moveMaze;
 }
 
--(void) movePlayerByX:(int)x andY:(int)y;
+- (id)initWithMaze:(MazeLayer *)mazeLayer;
+-(void)movePlayerByX:(int)x andY:(int)y;
 + (CCScene *)scene;
 
 @end
