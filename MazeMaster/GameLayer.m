@@ -113,7 +113,10 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 
-   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithRows:5 columns:5] autorelease];
+   int rows = [GameController gameController].level.maze.mazeDimensions.rows;
+   int cols = [GameController gameController].level.maze.mazeDimensions.cols;
+   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithRows:rows columns:cols] autorelease];
+   
    GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
    ControlsLayer *controlsLayer = [ControlsLayer node];
 
