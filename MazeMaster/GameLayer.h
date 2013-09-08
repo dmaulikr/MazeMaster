@@ -12,7 +12,6 @@
 #import "Player.h"
 #import "MazeLayer.h"
 
-@class PlayerLayer;
 @interface GameLayer : CCLayer
 {
    CGSize _windowSize;
@@ -24,10 +23,8 @@
    
    CGRect _gameBounds;
 
-   PlayerLayer *_player;
-   Player *_playerSprite;
-
    MazeLayer *_mazeLayer;
+   Player *_playerSprite;
 }
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;

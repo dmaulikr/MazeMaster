@@ -11,7 +11,6 @@
 #import "Tile.h"
 #import "MazeLayer.h"
 #import "LevelSelectLayer.h"
-#import "PlayerLayer.h"
 #import "ControlsLayer.h"
 
 @implementation GameLayer
@@ -28,8 +27,9 @@
    [backButton setBlock:^(id sender)
    {
       CCDirector *director = [CCDirector sharedDirector];
+      CCScene *levelSelectScene = [LevelSelectLayer scene];
       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
-                                                                    scene:[LevelSelectLayer scene]]];
+                                                                    scene:levelSelectScene]];
    }];
 
    backButton.scale = .25;
@@ -116,9 +116,7 @@
    }
 
    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
-   
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
-
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
 
    if (moveMaze)

@@ -145,7 +145,6 @@
 		8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDB17AF1F9200EE917C /* AppDelegate.m */; };
 		8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* StartLayer.m */; };
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
-		8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */; };
 		8EA2A1D917C5AA6800035F64 /* tron_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2A1D717C5AA6800035F64 /* tron_edge.png */; };
 		8EA2A1DA17C5AA6800035F64 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA2A1D817C5AA6800035F64 /* tron_tile.png */; };
 		8EA767F417D2D64700624A43 /* basic_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767F317D2D64700624A43 /* basic_tile.png */; };
@@ -453,8 +452,6 @@
 		8E38CDDE17AF1F9200EE917C /* StartLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
 		8E38CDE017AF1F9200EE917C /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
-		8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerLayer.h; sourceTree = "<group>"; };
-		8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerLayer.m; sourceTree = "<group>"; };
 		8EA2A1D717C5AA6800035F64 /* tron_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_edge.png; sourceTree = "<group>"; };
 		8EA2A1D817C5AA6800035F64 /* tron_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tron_tile.png; sourceTree = "<group>"; };
 		8EA767F317D2D64700624A43 /* basic_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basic_tile.png; sourceTree = "<group>"; };
@@ -568,8 +565,6 @@
 				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
 				DA503CDF17C3292A005CA59D /* Player.h */,
 				DA503CE017C3292A005CA59D /* Player.m */,
-				8E8A6D2A17BC8890003673F2 /* PlayerLayer.h */,
-				8E8A6D2B17BC8890003673F2 /* PlayerLayer.m */,
 				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
 				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
@@ -1171,7 +1166,6 @@
 				8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */,
 				DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */,
 				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
-				8E8A6D2C17BC8890003673F2 /* PlayerLayer.m in Sources */,
 				DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */,
 				4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */,
 				DA503CE117C3292A005CA59D /* Player.m in Sources */,
