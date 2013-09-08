@@ -12,29 +12,37 @@
 
 - (id)init
 {
+   if (self = [super init]) {
+   }
+   return self;
+}
+
+- (id)initWithRows:(int)rows
+           columns:(int)cols
+{
    if (self = [super init])
    {
       _windowSize = [[CCDirector sharedDirector] winSize];
       _tileSize = CGSizeMake(102, 102);
       _topPadding = 50;
       _leftPadding = 90;
-      [self setupMaze];
+      for (int row = 0; row < rows; ++row)
+      {
+         for (int col = 0; col < cols; ++col)
+         {
+            CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
+            tileSprite.position = ccp(_leftPadding + col*_tileSize.width,
+                                      _windowSize.height - _topPadding - row*_tileSize.height);
+            [self addChild:tileSprite];
+         }
+      }
    }
    return self;
 }
 
-- (void)setupMaze
+- (void)dealloc
 {
-   for (int row = 0; row < 3; ++row)
-   {
-      for (int col = 0; col < 3; ++col)
-      {
-         CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
-         tileSprite.position = ccp(_leftPadding + col*_tileSize.width,
-                                   _windowSize.height - _topPadding - row*_tileSize.height);
-         [self addChild:tileSprite];
-      }
-   }
+   [super dealloc];
 }
 
 + (CCScene *)scene

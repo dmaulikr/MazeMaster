@@ -18,5 +18,8 @@
    float _leftPadding;
 }
 
+- (id)initWithRows:(int)rows
+           columns:(int)cols;
+
 + (CCScene *)scene;
 @end

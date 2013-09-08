@@ -56,9 +56,8 @@
 
 - (void)setupPlayer
 {
-//   CCSprite *player = [CCSprite spriteWithFile:@"astronaut_front.png"];
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
-   _playerSprite.position = ccp(_windowSize.width/4.0, _windowSize.height/4.0 + 5);
+   _playerSprite.position = ccp(_windowSize.width/2.0, _windowSize.height/2.0 + 5);
    _playerSprite.scale = 2;
    [self addChild:_playerSprite];
 }
@@ -77,8 +76,15 @@
 	return self;
 }
 
+- (id)initWithMaze:(MazeLayer *)mazeLayer
+{
+   _mazeLayer = mazeLayer;
+   return [self init];
+}
+
 - (void)dealloc
 {
+   [_mazeLayer release];
    [super dealloc];
 }
 
@@ -91,13 +97,14 @@
 // TODO: what if the player hits an enemy half way through a move?
 -(void) movePlayerByX:(int)x andY:(int)y
 {
-   CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
+   //   CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
+   CGPoint newPoint = CGPointMake(_mazeLayer.position.x - x, _mazeLayer.position.y - y);
    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
    
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
 
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
-   [_playerSprite runAction:actionSequence];
+   [_mazeLayer runAction:actionSequence];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
@@ -106,23 +113,20 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 
-	// 'layer' is an autorelease object.
-	GameLayer *gameLayer = [GameLayer node];
+   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithRows:5 columns:5] autorelease];
+   GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
+   ControlsLayer *controlsLayer = [ControlsLayer node];
+
    // TODO: get the tag to work, currently does nothing. Then we could take
    // the gameLayer out of the controlsLayer class
    gameLayer.tag = 1;
    // currently needed to access the game layer
    [GameController gameController].gameLayer = gameLayer;
 
-   MazeLayer *mazeLayer = [MazeLayer node];
-   ControlsLayer *controlsLayer = [ControlsLayer node];
-
-	// add layer as a child to scene
    [scene addChild:mazeLayer];
 	[scene addChild:gameLayer];
 	[scene addChild:controlsLayer];
-   
-	// return the scene
+
 	return scene;
 }
 

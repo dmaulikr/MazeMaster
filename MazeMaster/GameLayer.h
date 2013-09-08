@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "Level.h"
 #import "Player.h"
+#import "MazeLayer.h"
 
 @class PlayerLayer;
 @interface GameLayer : CCLayer
@@ -25,9 +26,12 @@
 
    PlayerLayer *_player;
    Player *_playerSprite;
+
+   MazeLayer *_mazeLayer;
 }
 
--(void) movePlayerByX:(int)x andY:(int)y;
+- (id)initWithMaze:(MazeLayer *)mazeLayer;
+-(void)movePlayerByX:(int)x andY:(int)y;
 + (CCScene *)scene;
 
 @end
