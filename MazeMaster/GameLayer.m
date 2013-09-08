@@ -57,6 +57,7 @@
 - (void)setupPlayer
 {
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
+   _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.position = ccp(_windowSize.width/2.0, _windowSize.height/2.0 + 5);
    _playerSprite.scale = 2;
    [self addChild:_playerSprite];
@@ -79,6 +80,8 @@
 - (id)initWithMaze:(MazeLayer *)mazeLayer
 {
    _mazeLayer = mazeLayer;
+   _mazeLayer.anchorPoint = CGPointZero;
+   NSLog(@"_mazeLayer.position: %@", NSStringFromCGPoint([_mazeLayer position]));
    return [self init];
 }
 
@@ -97,14 +100,31 @@
 // TODO: what if the player hits an enemy half way through a move?
 -(void) movePlayerByX:(int)x andY:(int)y
 {
-   //   CGPoint newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
-   CGPoint newPoint = CGPointMake(_mazeLayer.position.x - x, _mazeLayer.position.y - y);
+   bool moveMaze = false;
+   CGPoint newPoint;
+
+   // this logic will go into another fucntion, and that function will include a case
+   // for each side of the maze
+   if ((_mazeLayer.position.x + _mazeLayer.mazeSize.width) < _windowSize.width)
+   {
+      newPoint = CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y);
+   }
+   else
+   {
+      moveMaze = true;
+      newPoint = CGPointMake(_mazeLayer.position.x - x, _mazeLayer.position.y - y);
+   }
+
    CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:newPoint];
    
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
 
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
-   [_mazeLayer runAction:actionSequence];
+
+   if (moveMaze)
+      [_mazeLayer runAction:actionSequence];
+   else
+      [_playerSprite runAction:actionSequence];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

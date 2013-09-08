@@ -10,6 +10,8 @@
 
 @implementation MazeLayer
 
+@synthesize mazeSize = _mazeSize;
+
 - (id)init
 {
    if (self = [super init]) {
@@ -24,15 +26,16 @@
    {
       _windowSize = [[CCDirector sharedDirector] winSize];
       _tileSize = CGSizeMake(102, 102);
-      _topPadding = 50;
-      _leftPadding = 90;
+      _mazeSize.width = _tileSize.width*cols + 10;
+      _mazeSize.height = _tileSize.height*rows + 10;
       for (int row = 0; row < rows; ++row)
       {
          for (int col = 0; col < cols; ++col)
          {
             CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
-            tileSprite.position = ccp(_leftPadding + col*_tileSize.width,
-                                      _windowSize.height - _topPadding - row*_tileSize.height);
+            tileSprite.anchorPoint = CGPointZero;
+            tileSprite.position = ccp(col*_tileSize.width,
+                                      row*_tileSize.height);
             [self addChild:tileSprite];
          }
       }

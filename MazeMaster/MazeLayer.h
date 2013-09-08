@@ -13,10 +13,13 @@
 {
    CGSize _windowSize;
    CGSize _tileSize;
+   CGSize _mazeSize;
 
    float _topPadding;
    float _leftPadding;
 }
+
+@property (readonly, assign) CGSize mazeSize;
 
 - (id)initWithRows:(int)rows
            columns:(int)cols;
