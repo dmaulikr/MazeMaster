@@ -18,13 +18,15 @@
    CGSize _tileSize;
    CGSize _subtileSize;
 
-   float _topPadding;
-   float _leftPadding;
+   int _outsideEdgePadding;
+   int _insideEdgePadding;
    
    CGRect _gameBounds;
 
    MazeLayer *_mazeLayer;
    Player *_playerSprite;
+
+   BOOL _moveMaze;
 }
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
