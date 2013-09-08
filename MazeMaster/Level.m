@@ -24,6 +24,17 @@
    return self;
 }
 
+-(id) initWithRows:(int)rows andColumns:(int)cols
+{
+   if ( self = [super init] )
+   {
+      _maze = [[Maze alloc] initWithRows:rows withColumns:cols];
+      
+      [_maze testMaze];
+   }
+   return self;
+}
+
 -(void) dealloc
 {
    [_maze release];

@@ -15,6 +15,8 @@
    int _levelNumber;
 }
 
+-(id) initWithRows:(int)rows andColumns:(int)cols;
+
 @property (nonatomic, assign) int levelNumber;
 @property (nonatomic, assign) Maze *maze;
 
