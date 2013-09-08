@@ -12,11 +12,14 @@
 @implementation Maze
 
 @synthesize tiles = _tiles;
+@synthesize mazeDimensions = _mazeDimensions;
 
 -(id) initWithRows:(int)rows withColumns:(int)cols
 {
    if ( self = [super init] )
    {
+      _mazeDimensions.rows = rows;
+      _mazeDimensions.cols = cols;
       _tiles = [[NSMutableArray alloc] init];
       
       // create the 2d array
@@ -146,9 +149,11 @@
 
 -(void) dealloc
 {
+   _mazeDimensions.rows = nil;
+   _mazeDimensions.cols = nil;
+   
    // remove all the objects recursively
    [_tiles release];
-   
    [_tileWithPlayer release];
    
    [super dealloc];
