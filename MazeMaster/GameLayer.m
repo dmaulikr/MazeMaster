@@ -210,7 +210,7 @@
 {
    CGPoint destination = [self getDestinationPointFor:x y:y];
    
-   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.6f position:destination];
+   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.35f position:destination];
    CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self selector:@selector(finishedMovingPlayer:)];
    CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
 
