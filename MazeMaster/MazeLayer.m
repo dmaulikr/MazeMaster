@@ -14,7 +14,10 @@
 
 - (id)init
 {
-   if (self = [super init]) {
+   if (self = [super init])
+   {
+      _windowSize = [[CCDirector sharedDirector] winSize];
+      _tileSize = CGSizeMake(102, 102);
    }
    return self;
 }
@@ -22,10 +25,8 @@
 - (id)initWithRows:(int)rows
            columns:(int)cols
 {
-   if (self = [super init])
+   if (self = [self init])
    {
-      _windowSize = [[CCDirector sharedDirector] winSize];
-      _tileSize = CGSizeMake(102, 102);
       _mazeSize.width = _tileSize.width*cols + 10;
       _mazeSize.height = _tileSize.height*rows + 10;
       for (int row = 0; row < rows; ++row)

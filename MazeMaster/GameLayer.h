@@ -8,10 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "Level.h"
-#import "Player.h"
-#import "MazeLayer.h"
 
+@class MazeLayer;
+@class Player;
 @interface GameLayer : CCLayer
 {
    CGSize _windowSize;
