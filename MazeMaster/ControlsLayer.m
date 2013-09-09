@@ -86,14 +86,6 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    }
 }
 
-// Justin: try the controls with this next function uncommented and then try it with it commented
-//         out again... which do you prefer???
-
-//-(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//   [GameController gameController].isPlayerMoving = NO;
-//}
-
 -(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    [GameController gameController].isPlayerMoving = NO;

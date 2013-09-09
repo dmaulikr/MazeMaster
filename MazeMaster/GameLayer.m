@@ -85,7 +85,6 @@
 
 - (void)dealloc
 {
-   [_mazeLayer release];
    [super dealloc];
 }
 
@@ -124,7 +123,6 @@
             retVal = YES;
          break;
       }
-
       case e_SOUTH:
       {
          float southMazeBound = _mazeLayer.position.y;
@@ -133,7 +131,6 @@
             retVal = YES;
          break;
       }
-
       case e_EAST:
       {
          float eastMazeBound = _mazeLayer.position.x + _mazeLayer.mazeSize.width;
@@ -142,7 +139,6 @@
             retVal = YES;
          break;
       }
-
       case e_WEST:
       {
          float westMazeBound = _mazeLayer.position.x;
@@ -151,7 +147,6 @@
             retVal = YES;
          break;
       }
-
       default:
          break;
    }
@@ -161,21 +156,23 @@
 - (BOOL)playerPositionInMazeBounds:(CGPoint)position
 {
    int padding = (_outsideEdgePadding + _insideEdgePadding);
+   float playerHeightOffset = _playerSprite.boundingBox.size.height/2.0;
+   float playerWidthOffset = _playerSprite.boundingBox.size.width/2.0;
    
    // north
-   if ((position.y + _playerSprite.boundingBox.size.height/2.0) > (_windowSize.height - _outsideEdgePadding))
+   if ((position.y + playerHeightOffset) > (_windowSize.height - _outsideEdgePadding))
       return NO;
 
    // south
-   if ((position.y - _playerSprite.boundingBox.size.height/2.0) < _outsideEdgePadding)
+   if ((position.y - playerHeightOffset) < _outsideEdgePadding)
       return NO;
 
    // east
-   if ((position.x + _playerSprite.boundingBox.size.width) > (_windowSize.width - padding))
+   if ((position.x + playerWidthOffset) > (_windowSize.width - padding))
       return NO;
 
    // west
-   if (position.x < padding)
+   if ((position.x - playerWidthOffset) < _outsideEdgePadding)
       return NO;
 
    return YES;
@@ -185,8 +182,8 @@
                                 y:(int)y
 {
    CGPoint destination;
-
    PlayerDirection playerDirection = [GameController gameController].playerDirection;
+   
    if ([self mazeShouldMoveForPlayerDirection:playerDirection])
    {
       _moveMaze = YES;
