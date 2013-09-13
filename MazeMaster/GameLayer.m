@@ -60,7 +60,7 @@
 {
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.anchorPoint = CGPointZero;
-   _playerSprite.scale = 2;
+   _playerSprite.scale = 1.7;
    [self addChild:_playerSprite];
 }
 
@@ -73,8 +73,8 @@
 
 - (void)setupOffsetForPlayerAndMaze
 {
-   _playerSprite.position = ccp(_outsideEdgePadding,
-                                _outsideEdgePadding);
+   _playerSprite.position = ccp((_tileSize.width - _playerSprite.boundingBox.size.width)/2.0 + _outsideEdgePadding,
+                                (_tileSize.height - _playerSprite.boundingBox.size.height)/2.0 + _outsideEdgePadding);
    _mazeLayer.position = ccp(_outsideEdgePadding,
                              _outsideEdgePadding);
 }
