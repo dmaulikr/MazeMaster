@@ -47,18 +47,18 @@ GameController *s_gameController = nil;
       {
          case e_NORTH:
             x = 0;
-            y = 34;
+            y = 44;
             break;
          case e_EAST:
-            x = 34;
+            x = 44;
             y = 0;
             break;
          case e_SOUTH:
             x = 0;
-            y = -34;
+            y = -44;
             break;
          case e_WEST:
-            x = -34;
+            x = -44;
             y = 0;
             break;
             

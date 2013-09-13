@@ -11,7 +11,7 @@
 
 @class MazeLayer;
 @class Player;
-@interface GameLayer : CCLayer
+@interface GameLayer : CCLayerColor
 {
    CGSize _windowSize;
    CGSize _tileSize;
@@ -19,6 +19,9 @@
 
    int _outsideEdgePadding;
    int _insideEdgePadding;
+
+   NSRange _verticalCenterRange;
+   NSRange _horizontalCenterRange;
    
    CGRect _gameBounds;
 

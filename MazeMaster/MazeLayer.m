@@ -17,7 +17,7 @@
    if (self = [super init])
    {
       _windowSize = [[CCDirector sharedDirector] winSize];
-      _tileSize = CGSizeMake(102, 102);
+      _tileSize = CGSizeMake(44, 44);
    }
    return self;
 }
@@ -27,13 +27,13 @@
 {
    if (self = [self init])
    {
-      _mazeSize.width = _tileSize.width*cols + 10;
-      _mazeSize.height = _tileSize.height*rows + 10;
+      _mazeSize.width = _tileSize.width*cols;
+      _mazeSize.height = _tileSize.height*rows;
       for (int row = 0; row < rows; ++row)
       {
          for (int col = 0; col < cols; ++col)
          {
-            CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile.png"];
+            CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile_44x44.png"];
             tileSprite.anchorPoint = CGPointZero;
             tileSprite.position = ccp(col*_tileSize.width,
                                       row*_tileSize.height);
@@ -53,7 +53,6 @@
 {
 	CCScene *scene = [CCScene node];
 	MazeLayer *mazeLayer = [MazeLayer node];
-
    [scene addChild:mazeLayer];
 	return scene;
 }

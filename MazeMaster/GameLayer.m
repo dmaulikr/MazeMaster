@@ -21,21 +21,16 @@
 - (void)setupVariables
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
-   _tileSize = CGSizeMake(102, 102);
+   _tileSize = CGSizeMake(44, 44);
    _subtileSize = CGSizeMake(20, 20);
 
-   _outsideEdgePadding = 10;
+   _outsideEdgePadding = 20;
    _insideEdgePadding = 5;
-}
 
-- (void)setupPlayer
-{
-   _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
-   _playerSprite.anchorPoint = CGPointZero;
-   _playerSprite.position = ccp(_windowSize.width/2.0,
-                                _windowSize.height/2.0);
-   _playerSprite.scale = 2;
-   [self addChild:_playerSprite];
+   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
+                                      _tileSize.width);
+   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
+                                      _tileSize.height);
 }
 
 - (void)addBackButton
@@ -61,6 +56,14 @@
    [self addChild:backButtonMenu];
 }
 
+- (void)setupPlayer
+{
+   _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
+   _playerSprite.anchorPoint = CGPointZero;
+   _playerSprite.scale = 2;
+   [self addChild:_playerSprite];
+}
+
 - (void)setupMazeLayer:(MazeLayer *)mazeLayer
 {
    _mazeLayer = mazeLayer;
@@ -68,13 +71,23 @@
    _moveMaze = NO;
 }
 
+- (void)setupOffsetForPlayerAndMaze
+{
+   _playerSprite.position = ccp(_outsideEdgePadding,
+                                _outsideEdgePadding);
+   _mazeLayer.position = ccp(_outsideEdgePadding,
+                             _outsideEdgePadding);
+}
+
 - (id)init
 {
-	if (self = [super init])
+	if (self = [super initWithColor:ccc4(255,255,255,100)])
    {
       [self setupVariables];
-      [self setupPlayer];
       [self addBackButton];
+      [self setupPlayer];
+
+      [self setupOffsetForPlayerAndMaze];
 
       [self setTouchEnabled:YES];
       [self scheduleUpdate];
@@ -95,12 +108,14 @@
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
-   return (_playerSprite.position.x == _windowSize.width/2.0);
+//   return (_playerSprite.position.x == _windowSize.width/2.0);
+   return NSLocationInRange(_playerSprite.position.x, _verticalCenterRange);
 }
 
 - (BOOL)playerIsVerticallyCenteredOnScreen
 {
-   return (_playerSprite.position.y == _windowSize.height/2.0);
+//   return (_playerSprite.position.y == _windowSize.height/2.0);
+   return NSLocationInRange(_playerSprite.position.y, _horizontalCenterRange);
 }
 
 - (BOOL)playerIsCenteredOnScreen
@@ -154,17 +169,17 @@
 
 - (BOOL)yValuePastNorthBound:(int)yValue
 {
-   return (yValue > (_windowSize.height - _insideEdgePadding));
+   return (yValue >= _windowSize.height);
 }
 
 - (BOOL)yValuePastSouthBound:(int)yValue
 {
-   return (yValue < 0);
+   return (yValue < _outsideEdgePadding);
 }
 
 - (BOOL)xValuePastEastBound:(int)xValue
 {
-   return (xValue > _windowSize.width - (_outsideEdgePadding + _insideEdgePadding));
+   return (xValue >= _windowSize.width);
 }
 
 - (BOOL)xValuePastWestBound:(int)xValue
@@ -258,7 +273,7 @@
    [scene addChild:mazeLayer];
 	[scene addChild:gameLayer];
 	[scene addChild:controlsLayer];
-
+   
 	return scene;
 }
 
