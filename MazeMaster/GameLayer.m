@@ -170,22 +170,28 @@
    return retVal;
 }
 
-- (BOOL)yValuePastNorthBound:(int)yValue
+- (BOOL)yValuePastNorthMazeBound:(int)yValue
 {
-   return (yValue >= _windowSize.height);
+   float northBound = (_mazeLayer.mazeSize.height < _windowSize.height) ?
+   _mazeLayer.mazeSize.height : _windowSize.height;
+      
+//   return (yValue >= _windowSize.height);
+   return (yValue >= northBound);
 }
 
-- (BOOL)yValuePastSouthBound:(int)yValue
+- (BOOL)yValuePastSouthMazeBound:(int)yValue
 {
    return (yValue < _outsideEdgePadding);
 }
 
-- (BOOL)xValuePastEastBound:(int)xValue
+- (BOOL)xValuePastEastMazeBound:(int)xValue
 {
-   return (xValue >= _windowSize.width);
+   float eastBound = (_mazeLayer.mazeSize.width < _windowSize.width) ?
+   _mazeLayer.mazeSize.width + _outsideEdgePadding : _windowSize.width;
+   return (xValue >= eastBound);
 }
 
-- (BOOL)xValuePastWestBound:(int)xValue
+- (BOOL)xValuePastWestMazeBound:(int)xValue
 {
    return (xValue < _outsideEdgePadding);
 }
@@ -196,16 +202,16 @@
    float playerWidth = _playerSprite.boundingBox.size.width;
    
    // north
-   if ([self yValuePastNorthBound:(position.y + playerHeight)])
+   if ([self yValuePastNorthMazeBound:(position.y + playerHeight)])
       return NO;
    // south
-   if ([self yValuePastSouthBound:position.y])
+   if ([self yValuePastSouthMazeBound:position.y])
       return NO;
    // east
-   if ([self xValuePastEastBound:(position.x + playerWidth)])
+   if ([self xValuePastEastMazeBound:(position.x + playerWidth)])
       return NO;
    // west
-   if ([self xValuePastWestBound:position.x])
+   if ([self xValuePastWestMazeBound:position.x])
       return NO;
 
    return YES;
