@@ -22,8 +22,6 @@
 
    NSRange _verticalCenterRange;
    NSRange _horizontalCenterRange;
-   
-   CGRect _gameBounds;
 
    MazeLayer *_mazeLayer;
    Player *_playerSprite;
@@ -32,7 +30,7 @@
 }
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
--(void)movePlayerByX:(int)x andY:(int)y;
+- (void)movePlayerByX:(int)x andY:(int)y;
 + (CCScene *)scene;
 
 @end

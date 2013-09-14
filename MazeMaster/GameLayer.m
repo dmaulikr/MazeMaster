@@ -60,7 +60,7 @@
 {
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.anchorPoint = CGPointZero;
-   _playerSprite.scale = 1.7;
+   _playerSprite.scale = 1.6;
    [self addChild:_playerSprite];
 }
 
@@ -73,8 +73,11 @@
 
 - (void)setupOffsetForPlayerAndMaze
 {
-   _playerSprite.position = ccp((_tileSize.width - _playerSprite.boundingBox.size.width)/2.0 + _outsideEdgePadding,
-                                (_tileSize.height - _playerSprite.boundingBox.size.height)/2.0 + _outsideEdgePadding);
+   float playerWidth = _playerSprite.boundingBox.size.width;
+   float playerHeight = _playerSprite.boundingBox.size.height;
+   _playerSprite.position = ccp((_tileSize.width - playerWidth)/2.0 + _outsideEdgePadding,
+                                (_tileSize.height - playerHeight)/2.0 + _outsideEdgePadding);
+   
    _mazeLayer.position = ccp(_outsideEdgePadding,
                              _outsideEdgePadding);
 }
@@ -108,14 +111,14 @@
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
-//   return (_playerSprite.position.x == _windowSize.width/2.0);
-   return NSLocationInRange(_playerSprite.position.x, _verticalCenterRange);
+   return NSLocationInRange(_playerSprite.position.x,
+                            _verticalCenterRange);
 }
 
 - (BOOL)playerIsVerticallyCenteredOnScreen
 {
-//   return (_playerSprite.position.y == _windowSize.height/2.0);
-   return NSLocationInRange(_playerSprite.position.y, _horizontalCenterRange);
+   return NSLocationInRange(_playerSprite.position.y,
+                            _horizontalCenterRange);
 }
 
 - (BOOL)playerIsCenteredOnScreen
