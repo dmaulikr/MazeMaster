@@ -24,7 +24,7 @@
    _tileSize = CGSizeMake(44, 44);
    _subtileSize = CGSizeMake(20, 20);
 
-   _outsideEdgePadding = 20;
+   _outsideEdgePadding = 0;
    _insideEdgePadding = 5;
 
    _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
@@ -90,7 +90,7 @@
       [self addBackButton];
       [self setupPlayer];
 
-      [self setupOffsetForPlayerAndMaze];
+//      [self setupOffsetForPlayerAndMaze];
 
       [self setTouchEnabled:YES];
       [self scheduleUpdate];
@@ -246,38 +246,45 @@
    return destination;
 }
 
+- (CGPoint)getXYForPlayerDirection:(PlayerDirection)direction
+{
+   float x, y;
+   switch ( direction )
+   {
+      case e_NORTH:
+         x = 0;
+         y = 1.8;
+         break;
+      case e_EAST:
+         x = 1.8;
+         y = 0;
+         break;
+      case e_SOUTH:
+         x = 0;
+         y = -1.8;
+         break;
+      case e_WEST:
+         x = -1.8;
+         y = 0;
+         break;
+         
+      default:
+         break;
+   }
+   return CGPointMake(x,y);
+}
+
 - (void)movePlayer
 {
-   CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
    GameController *gameController = [GameController gameController];
    
    if ( gameController.isPlayerMoving )
    {
-      int x, y;
-      
-      switch ( gameController.playerDirection )
-      {
-         case e_NORTH:
-            x = 0;
-            y = 1;
-            break;
-         case e_EAST:
-            x = 1;
-            y = 0;
-            break;
-         case e_SOUTH:
-            x = 0;
-            y = -1;
-            break;
-         case e_WEST:
-            x = -1;
-            y = 0;
-            break;
-            
-         default:
-            break;
-      }
-   [moveableObect setPosition:CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y)];
+      CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
+      CGPoint destination = [self getDestinationPointForX:directionPoint.x
+                                                        y:directionPoint.y];
+      CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
+      moveableObect.position = destination;
    }
    
 }
