@@ -109,6 +109,11 @@
    [super dealloc];
 }
 
+-(void) update:(ccTime)delta
+{
+   [[GameController gameController] movePlayer];
+}
+
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
    return NSLocationInRange(_playerSprite.position.x,
@@ -235,6 +240,41 @@
    return destination;
 }
 
+- (void)movePlayer
+{
+   CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
+   GameController *gameController = [GameController gameController];
+   
+   if ( gameController.isPlayerMoving )
+   {
+      int x, y;
+      
+      switch ( gameController.playerDirection )
+      {
+         case e_NORTH:
+            x = 0;
+            y = 1;
+            break;
+         case e_EAST:
+            x = 1;
+            y = 0;
+            break;
+         case e_SOUTH:
+            x = 0;
+            y = -1;
+            break;
+         case e_WEST:
+            x = -1;
+            y = 0;
+            break;
+            
+         default:
+            break;
+      }
+   [moveableObect setPosition:CGPointMake(_playerSprite.position.x + x, _playerSprite.position.y + y)];
+   }
+   
+}
 // TODO: what if the player hits an enemy half way through a move?
 -(void) movePlayerByX:(int)x andY:(int)y
 {
@@ -251,7 +291,7 @@
 // called when player is done moving to a tile
 -(void) finishedMovingPlayer:(id)sender
 {
-   [[GameController gameController] movePlayer];
+   [self movePlayer];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

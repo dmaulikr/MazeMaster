@@ -66,7 +66,8 @@ GameController *s_gameController = nil;
             break;
       }
       
-      [_gameLayer movePlayerByX:x andY:y];
+//      [_gameLayer movePlayerByX:x andY:y];
+      [_gameLayer movePlayer];
    }
 }
 
