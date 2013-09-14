@@ -111,7 +111,7 @@
 
 -(void) update:(ccTime)delta
 {
-   [[GameController gameController] movePlayer];
+   [self movePlayer];
 }
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen

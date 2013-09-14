@@ -26,7 +26,6 @@ typedef enum
 }
 
 +(GameController *) gameController;
--(void) movePlayer;
 
 @property (nonatomic, assign) Level *level;
 @property (nonatomic, assign) PlayerDirection playerDirection;
