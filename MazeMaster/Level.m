@@ -47,15 +47,15 @@
    switch (_levelNumber)
    {
       case 1:
-         [self setupLevel1];
+         [self setupEdgesForLevel1];
          break;
 
       case 2:
-         [self setupLevel2];
+         [self setupEdgesForLevel2];
          break;
 
       case 3:
-         [self setupLevel3];
+         [self setupEdgesForLevel3];
          break;
 
       default:
@@ -63,17 +63,43 @@
    }
 }
 
-- (void)setupLevel1
+- (void)setupEdgesForLevel1
 {
    NSLog(@"setting up level 1");
+   for (NSMutableArray *tiles in _maze.tiles)
+   {
+      for (Tile *tile in tiles)
+      {
+         CGPoint tilePos = tile.position;
+         NSLog(@"tile position: %@", NSStringFromCGPoint(tilePos));
+         if (CGPointEqualToPoint(tilePos, ccp(2,1)) ||
+             CGPointEqualToPoint(tilePos, ccp(2,2)) ||
+             CGPointEqualToPoint(tilePos, ccp(4,3)) ||
+             CGPointEqualToPoint(tilePos, ccp(4,4)) ||
+             CGPointEqualToPoint(tilePos, ccp(1,5)) ||
+             CGPointEqualToPoint(tilePos, ccp(1,6)) ||
+             CGPointEqualToPoint(tilePos, ccp(1,7)) ||
+             CGPointEqualToPoint(tilePos, ccp(2,7)))
+            tile.eastEdge.walkable = NO;
+
+         if (CGPointEqualToPoint(tilePos, ccp(1,4)) ||
+             CGPointEqualToPoint(tilePos, ccp(2,4)) ||
+             CGPointEqualToPoint(tilePos, ccp(3,4)) ||
+             CGPointEqualToPoint(tilePos, ccp(4,4)) ||
+             CGPointEqualToPoint(tilePos, ccp(2,7)) ||
+             CGPointEqualToPoint(tilePos, ccp(3,6)) ||
+             CGPointEqualToPoint(tilePos, ccp(4,6)))
+            tile.northEdge.walkable = NO;
+      }
+   }
 }
 
-- (void)setupLevel2
+- (void)setupEdgesForLevel2
 {
    NSLog(@"setting up level 2");
 }
 
-- (void)setupLevel3
+- (void)setupEdgesForLevel3
 {
    NSLog(@"setting up level 3");
 }

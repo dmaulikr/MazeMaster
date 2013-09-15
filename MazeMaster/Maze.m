@@ -29,7 +29,9 @@
          for (int j = 0; j < cols; j++)
          {
             // add the tile at the index
-            [subArray addObject:[[Tile alloc] init]];
+            Tile *tile = [[Tile alloc] init];
+            tile.position = CGPointMake(j+1, i+1);
+            [subArray addObject:tile];
          }
          
          [_tiles addObject:subArray];
