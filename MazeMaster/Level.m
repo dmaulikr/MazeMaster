@@ -71,7 +71,6 @@
       for (Tile *tile in tiles)
       {
          CGPoint tilePos = tile.position;
-         NSLog(@"tile position: %@", NSStringFromCGPoint(tilePos));
          if (CGPointEqualToPoint(tilePos, ccp(2,1)) ||
              CGPointEqualToPoint(tilePos, ccp(2,2)) ||
              CGPointEqualToPoint(tilePos, ccp(4,3)) ||

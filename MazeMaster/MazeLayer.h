@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class Maze;
 @interface MazeLayer : CCLayer
 {
    CGSize _windowSize;
@@ -21,8 +22,7 @@
 
 @property (readonly, assign) CGSize mazeSize;
 
-- (id)initWithRows:(int)rows
-           columns:(int)cols;
-
+- (id)initWithMaze:(Maze *)maze;
 + (CCScene *)scene;
+
 @end

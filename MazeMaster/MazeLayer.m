@@ -7,6 +7,7 @@
 //
 
 #import "MazeLayer.h"
+#import "Maze.h"
 
 @implementation MazeLayer
 
@@ -22,24 +23,41 @@
    return self;
 }
 
-- (id)initWithRows:(int)rows
-           columns:(int)cols
+- (void)setupVariablesWithMaze:(Maze *)maze
+{
+   _mazeSize.width = _tileSize.width*maze.mazeDimensions.cols;
+   _mazeSize.height = _tileSize.height*maze.mazeDimensions.rows;
+}
+
+- (void)setupMazeTilesForMaze:(Maze *)maze
+{
+   int rows = maze.mazeDimensions.rows;
+   int cols = maze.mazeDimensions.cols;
+   for (int row = 0; row < rows; ++row)
+   {
+      for (int col = 0; col < cols; ++col)
+      {
+         CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile_44x44.png"];
+         tileSprite.anchorPoint = CGPointZero;
+         tileSprite.position = ccp(col*_tileSize.width,
+                                   row*_tileSize.height);
+         [self addChild:tileSprite];
+      }
+   }
+}
+
+- (void)setupMazeEdgesWithMaze:(Maze *)maze
+{
+   NSLog(@"setting up maze edges");
+}
+
+- (id)initWithMaze:(Maze *)maze
 {
    if (self = [self init])
    {
-      _mazeSize.width = _tileSize.width*cols;
-      _mazeSize.height = _tileSize.height*rows;
-      for (int row = 0; row < rows; ++row)
-      {
-         for (int col = 0; col < cols; ++col)
-         {
-            CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile_44x44.png"];
-            tileSprite.anchorPoint = CGPointZero;
-            tileSprite.position = ccp(col*_tileSize.width,
-                                      row*_tileSize.height);
-            [self addChild:tileSprite];
-         }
-      }
+      [self setupVariablesWithMaze:maze];
+      [self setupMazeTilesForMaze:maze];
+      [self setupMazeEdgesWithMaze:maze];
    }
    return self;
 }
