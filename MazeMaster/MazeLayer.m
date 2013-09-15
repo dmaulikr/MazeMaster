@@ -32,14 +32,14 @@
 
 - (void)setupMazeTilesWithMaze:(Maze *)maze
 {
-   for (int row = 0; row < maze.mazeDimensions.rows; ++row)
+   for (NSMutableArray *tiles in maze.tiles)
    {
-      for (int col = 0; col < maze.mazeDimensions.cols; ++col)
+      for (Tile *tile in tiles)
       {
          CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile_44x44.png"];
          tileSprite.anchorPoint = CGPointZero;
-         tileSprite.position = ccp(col*_tileSize.width,
-                                   row*_tileSize.height);
+         tileSprite.position = ccp((tile.position.x-1)*_tileSize.width,
+                                   (tile.position.y-1)*_tileSize.height);
          [self addChild:tileSprite];
       }
    }
