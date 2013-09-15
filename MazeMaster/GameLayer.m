@@ -111,7 +111,7 @@
 
 -(void) update:(ccTime)delta
 {
-   [[GameController gameController] movePlayer];
+   [self movePlayer];
 }
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
@@ -287,24 +287,6 @@
       moveableObect.position = destination;
    }
    
-}
-// TODO: what if the player hits an enemy half way through a move?
--(void) movePlayerByX:(int)x andY:(int)y
-{
-   CGPoint destination = [self getDestinationPointForX:x y:y];
-   CCMoveTo *moveAction = [CCMoveTo actionWithDuration:.35f
-                                              position:destination];
-   CCCallFunc *actionMoveDone = [CCCallFuncN actionWithTarget:self
-                                                     selector:@selector(finishedMovingPlayer:)];
-   CCSequence *actionSequence = [CCSequence actions:moveAction, actionMoveDone, nil];
-
-   [(_moveMaze ? _mazeLayer : _playerSprite) runAction:actionSequence];
-}
-
-// called when player is done moving to a tile
--(void) finishedMovingPlayer:(id)sender
-{
-   [self movePlayer];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

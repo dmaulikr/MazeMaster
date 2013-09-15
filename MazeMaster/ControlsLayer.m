@@ -82,7 +82,6 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    if ( !gameController.isPlayerMoving )
    {
       gameController.isPlayerMoving = YES;
-//      [gameController movePlayer];
    }
 }
 

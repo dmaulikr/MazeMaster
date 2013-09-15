@@ -30,7 +30,6 @@
 }
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
-- (void)movePlayerByX:(int)x andY:(int)y;
 - (void)movePlayer;
 + (CCScene *)scene;
 

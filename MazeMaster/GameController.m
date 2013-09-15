@@ -37,40 +37,6 @@ GameController *s_gameController = nil;
    return s_gameController;
 }
 
--(void)movePlayer
-{
-   if ( _isPlayerMoving )
-   {
-      int x, y;
-      
-      switch ( _playerDirection )
-      {
-         case e_NORTH:
-            x = 0;
-            y = 44;
-            break;
-         case e_EAST:
-            x = 44;
-            y = 0;
-            break;
-         case e_SOUTH:
-            x = 0;
-            y = -44;
-            break;
-         case e_WEST:
-            x = -44;
-            y = 0;
-            break;
-            
-         default:
-            break;
-      }
-      
-//      [_gameLayer movePlayerByX:x andY:y];
-      [_gameLayer movePlayer];
-   }
-}
-
 -(void) dealloc
 {
    [_level dealloc];
