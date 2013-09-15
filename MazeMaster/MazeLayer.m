@@ -30,7 +30,7 @@
    _mazeSize.height = _tileSize.height*maze.mazeDimensions.rows;
 }
 
-- (void)setupMazeTilesForMaze:(Maze *)maze
+- (void)setupMazeTilesWithMaze:(Maze *)maze
 {
    for (int row = 0; row < maze.mazeDimensions.rows; ++row)
    {
@@ -53,20 +53,20 @@
       {
          if (tile.eastEdge && !tile.eastEdge.walkable)
          {
-            CCSprite *edgeSprite = [CCSprite spriteWithFile:@"edge_simple.png"];
-            edgeSprite.anchorPoint = ccp(.5, 1);
-            edgeSprite.position = ccp(tile.position.x*_tileSize.width,
-                                      tile.position.y*_tileSize.height);
-            [self addChild:edgeSprite];
+            CCSprite *eastEdgeSprite = [CCSprite spriteWithFile:@"edge_simple.png"];
+            eastEdgeSprite.anchorPoint = ccp(.5, 1);
+            eastEdgeSprite.position = ccp(tile.position.x*_tileSize.width,
+                                          tile.position.y*_tileSize.height);
+            [self addChild:eastEdgeSprite];
          }
          if (tile.northEdge && !tile.northEdge.walkable)
          {
-            CCSprite *edgeSprite = [CCSprite spriteWithFile:@"edge_simple.png"];
-            edgeSprite.rotation = 90;
-            edgeSprite.anchorPoint = ccp(.5, 1);
-            edgeSprite.position = ccp(tile.position.x*_tileSize.width,
-                                      tile.position.y*_tileSize.height);
-            [self addChild:edgeSprite];
+            CCSprite *northEdgeSprite = [CCSprite spriteWithFile:@"edge_simple.png"];
+            northEdgeSprite.rotation = 90;
+            northEdgeSprite.anchorPoint = ccp(.5, 1);
+            northEdgeSprite.position = ccp(tile.position.x*_tileSize.width,
+                                           tile.position.y*_tileSize.height);
+            [self addChild:northEdgeSprite];
          }
       }
    }
@@ -77,7 +77,7 @@
    if (self = [self init])
    {
       [self setupVariablesWithMaze:maze];
-      [self setupMazeTilesForMaze:maze];
+      [self setupMazeTilesWithMaze:maze];
       [self setupMazeEdgesWithMaze:maze];
    }
    return self;
