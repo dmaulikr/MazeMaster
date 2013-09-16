@@ -319,13 +319,9 @@
 // Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
-	CCScene *scene = [CCScene node];
-
-   int rows = [GameController gameController].level.maze.mazeDimensions.rows;
-   int cols = [GameController gameController].level.maze.mazeDimensions.cols;
-   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithRows:rows
-                                                   columns:cols] autorelease];
+   GameController *gameController = [GameController gameController];
    
+   MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithMaze:gameController.level.maze] autorelease];
    GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
    ControlsLayer *controlsLayer = [ControlsLayer node];
 
@@ -333,8 +329,9 @@
    // the gameLayer out of the controlsLayer class
    gameLayer.tag = 1;
    // currently needed to access the game layer
-   [GameController gameController].gameLayer = gameLayer;
+   gameController.gameLayer = gameLayer;
 
+	CCScene *scene = [CCScene node];
    [scene addChild:mazeLayer];
 	[scene addChild:gameLayer];
 	[scene addChild:controlsLayer];

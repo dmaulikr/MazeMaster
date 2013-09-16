@@ -16,11 +16,14 @@
    Tile* _eastTile;
    Tile* _southTile;
    Tile* _westTile;
+
+   BOOL _walkable;
 }
 
 @property (readwrite, assign) Tile* northTile;
 @property (readwrite, assign) Tile* eastTile;
 @property (readwrite, assign) Tile* southTile;
 @property (readwrite, assign) Tile* westTile;
+@property (readwrite, assign) BOOL walkable;
 
 @end

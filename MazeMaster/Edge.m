@@ -15,12 +15,14 @@
 @synthesize eastTile = _eastTile;
 @synthesize southTile = _southTile;
 @synthesize westTile = _westTile;
+@synthesize walkable = _walkable;
 
 -(id) init
 {
    if ( self = [super init] )
    {
       // initialize stuff
+      _walkable = YES;
    }
    return self;
 }
@@ -35,7 +37,7 @@
       if ( southTile )
          _southTile = [[Tile alloc] init];
    }
-   return self;
+   return [self init];
 }
 
 -(id) initWithEastTile:(BOOL)eastTile withWestTile:(BOOL)westTile
@@ -48,7 +50,7 @@
       if ( westTile )
          _westTile = [[Tile alloc] init];
    }
-   return self;
+   return [self init];
 }
 
 -(NSString *) description
