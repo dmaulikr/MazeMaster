@@ -30,25 +30,28 @@
    _mazeSize.height = _tileSize.height*maze.mazeDimensions.rows;
 }
 
-- (void)setupMazeTilesWithMaze:(Maze *)maze
+- (void)addTileSpriteWithFilename:(NSString *)filename
+                       AtPosition:(CGPoint)position
+{
+   CCSprite *tileSprite = [CCSprite spriteWithFile:filename];
+   tileSprite.anchorPoint = CGPointZero;
+   tileSprite.position = ccp((position.x-1)*_tileSize.width,
+                             (position.y-1)*_tileSize.height);
+   [self addChild:tileSprite];
+
+}
+
+- (void)setupMazeTilesAndEdgesWithMaze:(Maze *)maze
 {
    for (NSMutableArray *tiles in maze.tiles)
-   {
       for (Tile *tile in tiles)
-      {
-         CCSprite *tileSprite = [CCSprite spriteWithFile:@"gray_tile_44x44.png"];
-         tileSprite.anchorPoint = CGPointZero;
-         tileSprite.position = ccp((tile.position.x-1)*_tileSize.width,
-                                   (tile.position.y-1)*_tileSize.height);
-         [self addChild:tileSprite];
-      }
-   }
+         [self addTileSpriteWithFilename:@"gray_tile_44x44.png"
+                              AtPosition:tile.position];
 }
 
 - (void)setupMazeEdgesWithMaze:(Maze *)maze
 {
    for (NSMutableArray *tiles in maze.tiles)
-   {
       for (Tile *tile in tiles)
       {
          if (tile.eastEdge && !tile.eastEdge.walkable)
@@ -69,7 +72,6 @@
             [self addChild:northEdgeSprite];
          }
       }
-   }
 }
 
 - (id)initWithMaze:(Maze *)maze
@@ -77,7 +79,7 @@
    if (self = [self init])
    {
       [self setupVariablesWithMaze:maze];
-      [self setupMazeTilesWithMaze:maze];
+      [self setupMazeTilesAndEdgesWithMaze:maze];
       [self setupMazeEdgesWithMaze:maze];
    }
    return self;

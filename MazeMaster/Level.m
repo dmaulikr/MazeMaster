@@ -65,9 +65,7 @@
 
 - (void)setupEdgesForLevel1
 {
-   NSLog(@"setting up level 1");
    for (NSMutableArray *tiles in _maze.tiles)
-   {
       for (Tile *tile in tiles)
       {
          CGPoint tilePos = tile.position;
@@ -90,17 +88,14 @@
              CGPointEqualToPoint(tilePos, ccp(4,6)))
             tile.northEdge.walkable = NO;
       }
-   }
 }
 
 - (void)setupEdgesForLevel2
 {
-   NSLog(@"setting up level 2");
 }
 
 - (void)setupEdgesForLevel3
 {
-   NSLog(@"setting up level 3");
 }
 
 @end

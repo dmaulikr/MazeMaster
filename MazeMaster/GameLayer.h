@@ -16,10 +16,8 @@
 {
    CGSize _windowSize;
    CGSize _tileSize;
-   CGSize _subtileSize;
 
    int _outsideEdgePadding;
-   int _insideEdgePadding;
 
    NSRange _verticalCenterRange;
    NSRange _horizontalCenterRange;
