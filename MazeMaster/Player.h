@@ -11,7 +11,12 @@
 
 @interface Player : CCSprite
 {
+   CGPoint _payerVelocity;
+   CGPoint _relativePosition;
 }
+
+@property (readwrite, assign) CGPoint playerVelocity;
+@property (readwrite, assign) CGPoint relativePosition;
 
 +(Player *) playerWithFile:(NSString *)filename;
 

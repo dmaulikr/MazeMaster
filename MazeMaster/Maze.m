@@ -44,6 +44,23 @@
    return self;
 }
 
+-(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition
+{
+   // check the position of the player versus the position on the maze
+   
+   int xTile = playerPosition.x / tileSize.width;
+   int yTile = playerPosition.y / tileSize.height;
+   
+   NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
+   
+   _tileWithPlayer = [self tileAtPosition:CGPointMake(xTile, yTile)];
+}
+
+-(Tile *) tileAtPosition:(CGPoint)tileCoordinates
+{
+   return [[_tiles objectAtIndex:tileCoordinates.x] objectAtIndex:tileCoordinates.y];
+}
+
 -(void) addNorthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
 {
    Edge *edge = tile.northEdge;

@@ -11,6 +11,7 @@
 
 @class MazeLayer;
 @class Player;
+
 @interface GameLayer : CCLayerColor
 {
    CGSize _windowSize;
@@ -25,9 +26,11 @@
 
    MazeLayer *_mazeLayer;
    Player *_playerSprite;
-
+   
    BOOL _moveMaze;
 }
+
+@property (readwrite, assign) Player *playerSprite;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
 - (void)movePlayer;

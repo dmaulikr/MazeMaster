@@ -8,21 +8,23 @@
 
 #import "Player.h"
 
-
 @implementation Player
 
-- (id)init
+@synthesize playerVelocity = _playerVelocity;
+
+-(id)initWithFile:(NSString *)filename
 {
-   if (self == [super init])
+   if (self == [super initWithFile:filename])
    {
-      // initialize stuff
+      _playerVelocity = CGPointZero;
    }
    return self;
 }
 
 +(Player *) playerWithFile:(NSString *)filename
 {
-   return [CCSprite spriteWithFile:filename];
+//   return [CCSprite spriteWithFile:filename];
+   return [[[self alloc] initWithFile:filename] autorelease];
 }
 
 - (void)dealloc

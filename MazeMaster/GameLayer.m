@@ -18,6 +18,10 @@
 
 @implementation GameLayer
 
+@synthesize playerSprite = _playerSprite;
+
+#define MAX_VELOCITY 3.0
+
 - (void)setupVariables
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
@@ -249,22 +253,31 @@
 - (CGPoint)getXYForPlayerDirection:(PlayerDirection)direction
 {
    float x, y;
+   GameController *gameController = [GameController gameController];
+   
+   gameController.playerDirection = direction;
+   
+   if ( _playerSprite.playerVelocity.x <= MAX_VELOCITY )
+   {
+      _playerSprite.playerVelocity = CGPointMake(_playerSprite.playerVelocity.x + 0.3, _playerSprite.playerVelocity.y + 0.3);
+   }
+   
    switch ( direction )
    {
       case e_NORTH:
          x = 0;
-         y = 1.8;
+         y = _playerSprite.playerVelocity.y;
          break;
       case e_EAST:
-         x = 1.8;
+         x = _playerSprite.playerVelocity.x;
          y = 0;
          break;
       case e_SOUTH:
          x = 0;
-         y = -1.8;
+         y = -_playerSprite.playerVelocity.y;
          break;
       case e_WEST:
-         x = -1.8;
+         x = -_playerSprite.playerVelocity.x;
          y = 0;
          break;
          
@@ -277,16 +290,30 @@
 - (void)movePlayer
 {
    GameController *gameController = [GameController gameController];
+   CGPoint destination;
    
    if ( gameController.isPlayerMoving )
    {
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
-      CGPoint destination = [self getDestinationPointForX:directionPoint.x
+      destination = [self getDestinationPointForX:directionPoint.x
                                                         y:directionPoint.y];
       CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
       moveableObect.position = destination;
+      
+//      if( _moveMaze )
+//      {
+//         _playerSprite.relativePosition = _playerSprite.destination;
+//      }
+//      else
+//      {
+//         _playerSprite.relativePosition = _playerSprite.destination;
+//      }
    }
-   
+   else
+   {
+   }
+
+   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.relativePosition];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
