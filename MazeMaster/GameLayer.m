@@ -22,15 +22,12 @@
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
    _tileSize = CGSizeMake(44, 44);
-   _subtileSize = CGSizeMake(20, 20);
-
    _outsideEdgePadding = 0;
-   _insideEdgePadding = 5;
 
    _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
-                                      _tileSize.width);
+                                      _tileSize.width/2.0);
    _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
-                                      _tileSize.height);
+                                      _tileSize.height/2.0);
 }
 
 - (void)addBackButton
@@ -84,7 +81,8 @@
 
 - (id)init
 {
-	if (self = [super initWithColor:ccc4(255,255,255,100)])
+   ccColor4B translucentWhite = ccc4(255,255,255,100);
+	if (self = [super initWithColor:translucentWhite])
    {
       [self setupVariables];
       [self addBackButton];
@@ -100,8 +98,11 @@
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer
 {
-   [self setupMazeLayer:mazeLayer];
-   return [self init];
+   if (self = [self init])
+   {
+      [self setupMazeLayer:mazeLayer];
+   }
+   return self;
 }
 
 - (void)dealloc
@@ -109,7 +110,7 @@
    [super dealloc];
 }
 
--(void) update:(ccTime)delta
+- (void)update:(ccTime)delta
 {
    [self movePlayer];
 }
@@ -179,8 +180,7 @@
 {
    float northBound = (_mazeLayer.mazeSize.height < _windowSize.height) ?
    _mazeLayer.mazeSize.height : _windowSize.height;
-      
-//   return (yValue >= _windowSize.height);
+
    return (yValue >= northBound);
 }
 
