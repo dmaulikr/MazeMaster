@@ -313,7 +313,7 @@
    {
    }
 
-   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.relativePosition];
+   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.position];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
