@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "Tile.h"
 
+@class Player;
+
 typedef struct {
    int rows;
    int cols;
@@ -27,7 +29,7 @@ typedef struct {
 @property (readwrite, assign) Tile *tileWithPlayer;
 
 -(void) testMaze;
--(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition;
+-(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player;
 -(id) initWithRows:(int)rows withColumns:(int)cols;
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates;
 

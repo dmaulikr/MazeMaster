@@ -16,6 +16,7 @@
    PlayerDirection _playerDirection;
    GameLayer *_gameLayer;
    BOOL _isPlayerMoving;
+   BOOL _playerShouldMove;
 }
 
 +(GameController *) gameController;
@@ -24,5 +25,6 @@
 @property (nonatomic, assign) PlayerDirection playerDirection;
 @property (readwrite, assign) GameLayer *gameLayer;
 @property (readwrite, assign) BOOL isPlayerMoving;
+@property (readwrite, assign) BOOL playerShouldMove;
 
 @end

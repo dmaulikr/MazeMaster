@@ -17,6 +17,7 @@ GameController *s_gameController = nil;
 @synthesize playerDirection = _playerDirection;
 @synthesize gameLayer = _gameLayer;
 @synthesize isPlayerMoving = _isPlayerMoving;
+@synthesize playerShouldMove = _playerShouldMove;
 
 -(id) init
 {

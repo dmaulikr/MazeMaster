@@ -83,14 +83,17 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    if ( !gameController.isPlayerMoving )
    {
       gameController.isPlayerMoving = YES;
+      gameController.playerShouldMove = YES;
    }
 }
 
 -(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    // TODO decelerate
-   [GameController gameController].isPlayerMoving = NO;
-   [GameController gameController].gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
+   GameController * gameController = [GameController gameController];
+   gameController.playerShouldMove = NO;
+   
+//   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
 }
 
 -(void) dealloc

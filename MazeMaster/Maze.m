@@ -8,6 +8,7 @@
 
 #import "Maze.h"
 #import "Tile.h"
+#import "Player.h"
 
 @implementation Maze
 
@@ -46,12 +47,15 @@
    return self;
 }
 
--(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition
+-(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player
 {
    // check the position of the player versus the position on the maze
    
-   int xTile = playerPosition.x / tileSize.width + 1;
-   int yTile = playerPosition.y / tileSize.height + 1;
+//   int xTile = ((playerPosition.x + (tileSize.width / 2) + ((player.boundingBox.size.width) / 2)) / tileSize.width) + 1;
+//   int yTile = ((playerPosition.y + (tileSize.height / 2) + ((player.boundingBox.size.height)/ 2)) / tileSize.height) + 1;
+   
+   int xTile = (playerPosition.x / tileSize.width) + 1;
+   int yTile = (playerPosition.y / tileSize.height) + 1;
    
    NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
    

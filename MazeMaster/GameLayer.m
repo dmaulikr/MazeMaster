@@ -20,7 +20,7 @@
 
 @synthesize playerSprite = _playerSprite;
 
-#define MAX_VELOCITY 3.0
+#define MAX_VELOCITY 1.0
 
 - (void)setupVariables
 {
@@ -62,6 +62,9 @@
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.scale = 1.6;
+//   _playerSprite.position = ccp(_tileSize.width/2 - _playerSprite.boundingBox.size.width/2,
+//                                _tileSize.height/2 - _playerSprite.boundingBox.size.height/2);
+//   _playerSprite.position = ccp(150, 150);
    [self addChild:_playerSprite];
 }
 
@@ -323,9 +326,24 @@
 //      NSLog(@"diffX: %f  diffY: %f", diffX, diffY);
       
       _playerSprite.absolutePosition = absolutePosition;
+      
+      Tile *currentTile = gameController.level.maze.tileWithPlayer;
+   //   NSLog(@"player bounding box: %@", NSStringFromCGRect(_playerSprite.boundingBox));
+      [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.absolutePosition withPlayer:_playerSprite];
+      if ( currentTile != gameController.level.maze.tileWithPlayer )
+      {
+         // turn the playerIsMoving variable off if plyaerShouldMove is false
+         if ( gameController.playerShouldMove == NO )
+         {
+            gameController.isPlayerMoving = NO;
+//            Tile *tileWithPlayer = gameController.level.maze.tileWithPlayer;
+//            _playerSprite.position = ccp(tileWithPlayer.position.x + _tileSize.width / 2 - _playerSprite.boundingBox.size.width / 2,
+//                                         tileWithPlayer.position.y + _tileSize.height / 2 - _playerSprite.boundingBox.size.height / 2);
+         }
+      }
    }
 
-   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.absolutePosition];
+
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
