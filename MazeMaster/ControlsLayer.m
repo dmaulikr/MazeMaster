@@ -82,8 +82,13 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    // be called automatically at the end of the move)
    if ( !gameController.isPlayerMoving )
    {
-      gameController.isPlayerMoving = YES;
-      gameController.playerShouldMove = YES;
+      NSLog(@"current tile position: %@", NSStringFromCGPoint(gameController.level.maze.tileWithPlayer.position));
+      NSLog(@"player direction: %d", gameController.playerDirection);
+      if ( [gameController playerCanMove] )
+      {
+         gameController.isPlayerMoving = YES;
+         gameController.playerShouldMove = YES;
+      }
    }
 }
 

@@ -57,8 +57,8 @@
    int xTile = (playerPosition.x / tileSize.width) + 1;
    int yTile = (playerPosition.y / tileSize.height) + 1;
    
-   NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
-   
+//   NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
+
    _tileWithPlayer = [self tileAtPosition:CGPointMake(xTile, yTile)];
 }
 

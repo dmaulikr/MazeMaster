@@ -44,4 +44,14 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
+
+-(BOOL) playerCanMove
+{
+   if ( ![_level.maze.tileWithPlayer getAdjacentEdgeForDirection:_playerDirection].walkable )
+   {
+      return NO;
+   }
+   return YES;
+}
+
 @end

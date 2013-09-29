@@ -62,9 +62,10 @@
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.scale = 1.6;
-//   _playerSprite.position = ccp(_tileSize.width/2 - _playerSprite.boundingBox.size.width/2,
-//                                _tileSize.height/2 - _playerSprite.boundingBox.size.height/2);
-//   _playerSprite.position = ccp(150, 150);
+
+   [[GameController gameController].level.maze updateTileContainingPlayer:_tileSize
+                                                             withPosition:_playerSprite.absolutePosition
+                                                               withPlayer:_playerSprite];
    [self addChild:_playerSprite];
 }
 
@@ -329,7 +330,9 @@
       
       Tile *currentTile = gameController.level.maze.tileWithPlayer;
    //   NSLog(@"player bounding box: %@", NSStringFromCGRect(_playerSprite.boundingBox));
-      [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.absolutePosition withPlayer:_playerSprite];
+      [gameController.level.maze updateTileContainingPlayer:_tileSize
+                                               withPosition:_playerSprite.absolutePosition
+                                                 withPlayer:_playerSprite];
       if ( currentTile != gameController.level.maze.tileWithPlayer )
       {
          // turn the playerIsMoving variable off if plyaerShouldMove is false
@@ -340,10 +343,13 @@
 //            _playerSprite.position = ccp(tileWithPlayer.position.x + _tileSize.width / 2 - _playerSprite.boundingBox.size.width / 2,
 //                                         tileWithPlayer.position.y + _tileSize.height / 2 - _playerSprite.boundingBox.size.height / 2);
          }
+         else if ( ![gameController playerCanMove] )
+         {
+            gameController.isPlayerMoving = NO;
+            gameController.playerShouldMove = NO;
+         }
       }
    }
-
-
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
