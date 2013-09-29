@@ -60,7 +60,7 @@
 
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates
 {
-   return [[_tiles objectAtIndex:tileCoordinates.x] objectAtIndex:tileCoordinates.y];
+   return [[_tiles objectAtIndex:tileCoordinates.y] objectAtIndex:tileCoordinates.x];
 }
 
 -(void) addNorthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y

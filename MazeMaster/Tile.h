@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Edge.h"
+#import "PlayerTypedefs.h"
 
 @interface Tile : NSObject
 {
@@ -17,6 +18,9 @@
    Edge* _westEdge;
    CGPoint _position;
 }
+
+- (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction;
+- (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction;
 
 @property (readwrite, assign) Edge* northEdge;
 @property (readwrite, assign) Edge* eastEdge;

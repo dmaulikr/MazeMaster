@@ -171,6 +171,7 @@
 		4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
 		4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = astronaut_front.png; path = Resources/astronaut_front.png; sourceTree = "<group>"; };
+		8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTypedefs.h; sourceTree = "<group>"; };
 		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
 		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
 		8E1A35E317BB193B008FD26A /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
@@ -573,6 +574,7 @@
 				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
 				DA503CDF17C3292A005CA59D /* Player.h */,
 				DA503CE017C3292A005CA59D /* Player.m */,
+				8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */,
 				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
 				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
@@ -1207,7 +1209,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1226,7 +1228,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

@@ -9,14 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Level.h"
 #import "GameLayer.h"
-
-typedef enum
-{
-   e_NORTH,
-   e_EAST,
-   e_SOUTH,
-   e_WEST
-} PlayerDirection;
+#import "PlayerTypedefs.h"
 
 @interface GameController : NSObject
 {

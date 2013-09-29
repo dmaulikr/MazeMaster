@@ -19,7 +19,7 @@
    {
       _maze = [[Maze alloc] initWithRows:5
                              withColumns:5];
-      [_maze testMaze];
+//      [_maze testMaze];
    }
    return self;
 }
@@ -30,7 +30,7 @@
    {
       _maze = [[Maze alloc] initWithRows:rows
                              withColumns:cols];
-      [_maze testMaze];
+//      [_maze testMaze];
    }
    return self;
 }

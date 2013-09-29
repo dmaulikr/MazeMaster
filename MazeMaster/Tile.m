@@ -51,4 +51,54 @@
    [super dealloc];
 }
 
+- (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction
+{
+   switch (direction)
+   {
+      case e_NORTH:
+         return _northEdge.northTile;
+         break;
+
+      case e_SOUTH:
+         return _southEdge.southTile;
+         break;
+
+      case e_EAST:
+         return _eastEdge.eastTile;
+         break;
+
+      case e_WEST:
+         return _westEdge.westTile;
+         break;
+
+      default:
+         break;
+   }
+}
+
+- (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction
+{
+   switch (direction)
+   {
+      case e_NORTH:
+         return _northEdge;
+         break;
+
+      case e_SOUTH:
+         return _southEdge;
+         break;
+
+      case e_EAST:
+         return _eastEdge;
+         break;
+
+      case e_WEST:
+         return _westEdge;
+         break;
+
+      default:
+         break;
+   }
+}
+
 @end
