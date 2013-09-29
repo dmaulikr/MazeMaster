@@ -50,8 +50,8 @@
 {
    // check the position of the player versus the position on the maze
    
-   int xTile = playerPosition.x / tileSize.width;
-   int yTile = playerPosition.y / tileSize.height;
+   int xTile = playerPosition.x / tileSize.width + 1;
+   int yTile = playerPosition.y / tileSize.height + 1;
    
    NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
    
@@ -60,7 +60,7 @@
 
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates
 {
-   return [[_tiles objectAtIndex:tileCoordinates.y] objectAtIndex:tileCoordinates.x];
+   return [[_tiles objectAtIndex:tileCoordinates.y - 1] objectAtIndex:tileCoordinates.x - 1];
 }
 
 -(void) addNorthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y

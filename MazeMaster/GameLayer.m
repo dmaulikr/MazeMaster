@@ -297,23 +297,35 @@
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
       destination = [self getDestinationPointForX:directionPoint.x
                                                         y:directionPoint.y];
+      // _moveMaze is on when the maze moves instead of the player
+      // _playerSprite.destination is
+      float diffX;
+      float diffY;
+      if( _moveMaze )
+      {
+         diffX = _mazeLayer.position.x - destination.x;
+         diffY = _mazeLayer.position.y - destination.y;
+         //         _playerSprite.relativePosition = _playerSprite.destination;
+      }
+      else
+      {
+         diffX = destination.x - _playerSprite.position.x;
+         diffY = destination.y - _playerSprite.position.y;
+//         _playerSprite.relativePosition = _playerSprite.destination;
+      }
+      
       CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
       moveableObect.position = destination;
       
-//      if( _moveMaze )
-//      {
-//         _playerSprite.relativePosition = _playerSprite.destination;
-//      }
-//      else
-//      {
-//         _playerSprite.relativePosition = _playerSprite.destination;
-//      }
-   }
-   else
-   {
+      CGPoint absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
+                                     _playerSprite.absolutePosition.y + diffY);
+//      NSLog(@"absolutePosition: %@", NSStringFromCGPoint(_playerSprite.absolutePosition));
+//      NSLog(@"diffX: %f  diffY: %f", diffX, diffY);
+      
+      _playerSprite.absolutePosition = absolutePosition;
    }
 
-   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.position];
+   [gameController.level.maze updateTileContainingPlayer:_tileSize withPosition:_playerSprite.absolutePosition];
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.

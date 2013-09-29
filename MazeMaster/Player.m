@@ -11,6 +11,7 @@
 @implementation Player
 
 @synthesize playerVelocity = _playerVelocity;
+@synthesize absolutePosition = _absolutePosition;
 
 -(id)initWithFile:(NSString *)filename
 {
