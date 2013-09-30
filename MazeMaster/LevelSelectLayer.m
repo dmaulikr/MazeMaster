@@ -61,7 +61,7 @@
                                                 fontName:@"Helvetica"
                                                 fontSize:24];
 
-   GameController *gameController = [GameController gameController];
+   GameController *gameController = [GameController sharedController];
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
                                                      block:^(id sender)
    {

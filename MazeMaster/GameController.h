@@ -19,7 +19,7 @@
    BOOL _playerShouldMove;
 }
 
-+(GameController *) gameController;
++(GameController *) sharedController;
 
 @property (nonatomic, assign) Level *level;
 @property (nonatomic, assign) PlayerDirection playerDirection;

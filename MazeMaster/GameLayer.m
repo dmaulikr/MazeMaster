@@ -63,7 +63,7 @@
    _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.scale = 1.6;
 
-   [[GameController gameController].level.maze updateTileContainingPlayer:_tileSize
+   [[GameController sharedController].level.maze updateTileContainingPlayer:_tileSize
                                                              withPosition:_playerSprite.absolutePosition
                                                                withPlayer:_playerSprite];
    [self addChild:_playerSprite];
@@ -233,7 +233,7 @@
                                 y:(int)y
 {
    CGPoint destination;
-   PlayerDirection direction = [GameController gameController].playerDirection;
+   PlayerDirection direction = [GameController sharedController].playerDirection;
    
    if ([self mazeShouldMoveForPlayerDirection:direction])
    {
@@ -256,7 +256,7 @@
 - (CGPoint)getXYForPlayerDirection:(PlayerDirection)direction
 {
    float x, y;
-   GameController *gameController = [GameController gameController];
+   GameController *gameController = [GameController sharedController];
    
    gameController.playerDirection = direction;
    
@@ -284,23 +284,49 @@
          x = -_playerSprite.playerVelocity.x;
          y = 0;
          break;
-         
       default:
          break;
    }
    return CGPointMake(x,y);
 }
 
+- (void)updateCurrentTileWithPlayer
+{
+   GameController *gameController = [GameController sharedController];
+   
+   Tile *currentTile = gameController.level.maze.tileWithPlayer;
+   [gameController.level.maze updateTileContainingPlayer:_tileSize
+                                            withPosition:_playerSprite.absolutePosition
+                                              withPlayer:_playerSprite];
+
+   if ( currentTile != gameController.level.maze.tileWithPlayer )
+   {
+      // turn the playerIsMoving variable off if plyaerShouldMove is false
+      if ( gameController.playerShouldMove == NO )
+      {
+         gameController.isPlayerMoving = NO;
+         //            Tile *tileWithPlayer = gameController.level.maze.tileWithPlayer;
+         //            _playerSprite.position = ccp(tileWithPlayer.position.x + _tileSize.width / 2 - _playerSprite.boundingBox.size.width / 2,
+         //                                         tileWithPlayer.position.y + _tileSize.height / 2 - _playerSprite.boundingBox.size.height / 2);
+      }
+      else if ( ![gameController playerCanMove] )
+      {
+         gameController.isPlayerMoving = NO;
+         gameController.playerShouldMove = NO;
+      }
+   }
+}
+
 - (void)movePlayer
 {
-   GameController *gameController = [GameController gameController];
+   GameController *gameController = [GameController sharedController];
    CGPoint destination;
    
    if ( gameController.isPlayerMoving )
    {
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
       destination = [self getDestinationPointForX:directionPoint.x
-                                                        y:directionPoint.y];
+                                                y:directionPoint.y];
       // _moveMaze is on when the maze moves instead of the player
       // _playerSprite.destination is
       float diffX;
@@ -316,42 +342,22 @@
          diffY = destination.y - _playerSprite.position.y;
       }
       
-      CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
-      moveableObect.position = destination;
+      CCNode *moveableObject = (_moveMaze ? _mazeLayer : _playerSprite);
+      moveableObject.position = destination;
       
       CGPoint absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
                                      _playerSprite.absolutePosition.y + diffY);
       
       _playerSprite.absolutePosition = absolutePosition;
       
-      Tile *currentTile = gameController.level.maze.tileWithPlayer;
-      [gameController.level.maze updateTileContainingPlayer:_tileSize
-                                               withPosition:_playerSprite.absolutePosition
-                                                 withPlayer:_playerSprite];
-      
-      if ( currentTile != gameController.level.maze.tileWithPlayer )
-      {
-         // turn the playerIsMoving variable off if plyaerShouldMove is false
-         if ( gameController.playerShouldMove == NO )
-         {
-            gameController.isPlayerMoving = NO;
-//            Tile *tileWithPlayer = gameController.level.maze.tileWithPlayer;
-//            _playerSprite.position = ccp(tileWithPlayer.position.x + _tileSize.width / 2 - _playerSprite.boundingBox.size.width / 2,
-//                                         tileWithPlayer.position.y + _tileSize.height / 2 - _playerSprite.boundingBox.size.height / 2);
-         }
-         else if ( ![gameController playerCanMove] )
-         {
-            gameController.isPlayerMoving = NO;
-            gameController.playerShouldMove = NO;
-         }
-      }
+      [self updateCurrentTileWithPlayer];
    }
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
-   GameController *gameController = [GameController gameController];
+   GameController *gameController = [GameController sharedController];
    
    MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithMaze:gameController.level.maze] autorelease];
    GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];

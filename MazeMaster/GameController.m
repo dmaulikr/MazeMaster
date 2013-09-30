@@ -28,7 +28,7 @@ GameController *s_gameController = nil;
    return self;
 }
 
-+(GameController *) gameController
++(GameController *) sharedController
 {
    if ( s_gameController == nil )
    {

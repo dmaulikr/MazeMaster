@@ -59,7 +59,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 -(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer {
    // TODO: that'd be nice to get the tags working instead of using the game controller...
    
-   GameController *gameController = [GameController gameController];
+   GameController *gameController = [GameController sharedController];
    
    if ( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
    {
@@ -94,7 +94,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 -(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
    // TODO decelerate
-   GameController * gameController = [GameController gameController];
+   GameController * gameController = [GameController sharedController];
    gameController.playerShouldMove = NO;
    
 //   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
