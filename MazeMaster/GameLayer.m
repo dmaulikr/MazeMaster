@@ -80,6 +80,7 @@
 {
    float playerWidth = _playerSprite.boundingBox.size.width;
    float playerHeight = _playerSprite.boundingBox.size.height;
+   
    _playerSprite.position = ccp((_tileSize.width - playerWidth)/2.0 + _outsideEdgePadding,
                                 (_tileSize.height - playerHeight)/2.0 + _outsideEdgePadding);
    
@@ -95,8 +96,6 @@
       [self setupVariables];
       [self addBackButton];
       [self setupPlayer];
-
-//      [self setupOffsetForPlayerAndMaze];
 
       [self setTouchEnabled:YES];
       [self scheduleUpdate];
@@ -263,7 +262,8 @@
    
    if ( _playerSprite.playerVelocity.x <= MAX_VELOCITY )
    {
-      _playerSprite.playerVelocity = CGPointMake(_playerSprite.playerVelocity.x + 0.3, _playerSprite.playerVelocity.y + 0.3);
+      _playerSprite.playerVelocity = ccp(_playerSprite.playerVelocity.x + 0.3,
+                                         _playerSprite.playerVelocity.y + 0.3);
    }
    
    switch ( direction )
@@ -309,13 +309,11 @@
       {
          diffX = _mazeLayer.position.x - destination.x;
          diffY = _mazeLayer.position.y - destination.y;
-         //         _playerSprite.relativePosition = _playerSprite.destination;
       }
       else
       {
          diffX = destination.x - _playerSprite.position.x;
          diffY = destination.y - _playerSprite.position.y;
-//         _playerSprite.relativePosition = _playerSprite.destination;
       }
       
       CCNode *moveableObect = (_moveMaze ? _mazeLayer : _playerSprite);
@@ -323,16 +321,14 @@
       
       CGPoint absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
                                      _playerSprite.absolutePosition.y + diffY);
-//      NSLog(@"absolutePosition: %@", NSStringFromCGPoint(_playerSprite.absolutePosition));
-//      NSLog(@"diffX: %f  diffY: %f", diffX, diffY);
       
       _playerSprite.absolutePosition = absolutePosition;
       
       Tile *currentTile = gameController.level.maze.tileWithPlayer;
-   //   NSLog(@"player bounding box: %@", NSStringFromCGRect(_playerSprite.boundingBox));
       [gameController.level.maze updateTileContainingPlayer:_tileSize
                                                withPosition:_playerSprite.absolutePosition
                                                  withPlayer:_playerSprite];
+      
       if ( currentTile != gameController.level.maze.tileWithPlayer )
       {
          // turn the playerIsMoving variable off if plyaerShouldMove is false

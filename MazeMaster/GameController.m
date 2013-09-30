@@ -47,7 +47,11 @@ GameController *s_gameController = nil;
 
 -(BOOL) playerCanMove
 {
-   if ( ![_level.maze.tileWithPlayer getAdjacentEdgeForDirection:_playerDirection].walkable )
+   NSLog(@"tile with player: %@", NSStringFromCGPoint(_level.maze.tileWithPlayer.position));
+   Edge *nextEdge = [_level.maze.tileWithPlayer getAdjacentEdgeForDirection:_playerDirection];
+   Tile *nextTile = [_level.maze.tileWithPlayer getAdjacentTileForDirection:_playerDirection];
+   NSLog(@"next tile position: %@", NSStringFromCGPoint(nextTile.position));
+   if ( !nextEdge.walkable )
    {
       return NO;
    }

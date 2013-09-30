@@ -47,7 +47,9 @@
    return self;
 }
 
--(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player
+-(void) updateTileContainingPlayer:(CGSize)tileSize
+                      withPosition:(CGPoint)playerPosition
+                        withPlayer:(Player *)player
 {
    // check the position of the player versus the position on the maze
    
@@ -64,60 +66,142 @@
 
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates
 {
+   if (tileCoordinates.x == 0 || tileCoordinates.y == 0)
+      return nil;
+
+   if (tileCoordinates.x > _mazeDimensions.cols || tileCoordinates.y > _mazeDimensions.rows)
+      return nil;
+   
    return [[_tiles objectAtIndex:tileCoordinates.y - 1] objectAtIndex:tileCoordinates.x - 1];
 }
 
--(void) addNorthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+- (void)addNorthEdgeToTileAtPosition:(CGPoint)tilePosition
 {
+   Tile *tile = [self tileAtPosition:tilePosition];
    Edge *edge = tile.northEdge;
-   if ( edge == nil )
+   if (edge == nil)
    {
       edge = [[Edge alloc] init]; // create the north edge
       edge.southTile = tile;
    }
+
+   CGPoint northTilePosition = ccp(tile.position.x,
+                                   tile.position.y+1);
    
-   edge.northTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
-   edge.northTile.southEdge = edge;
+   edge.northTile = [self tileAtPosition:northTilePosition];
+
+   if (edge.northTile)
+      edge.northTile.southEdge = edge;
 }
 
--(void) addEastEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+- (void)addSouthEdgeToTileAtPosition:(CGPoint)tilePosition
 {
-   Edge *edge = tile.eastEdge;
-   if ( edge == nil )
-   {
-      edge = [[Edge alloc] init]; // create the east edge
-      edge.westTile = tile;
-   }
-   
-   edge.eastTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
-   edge.eastTile.westEdge = edge;
-}
-
--(void) addSouthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
-{
+   Tile *tile = [self tileAtPosition:tilePosition];
    Edge *edge = tile.southEdge;
-   if ( edge == nil )
+   if (edge == nil)
    {
-      edge = [[Edge alloc] init];
+      edge = [[Edge alloc] init]; // create the north edge
       edge.northTile = tile;
    }
-   
-   edge.southTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
-   edge.southTile.northEdge = edge;
+
+   CGPoint southTilePosition = ccp(tile.position.x,
+                                   tile.position.y-1);
+
+   edge.southTile = [self tileAtPosition:southTilePosition];
+
+   if (edge.southTile)
+      edge.southTile.northEdge = edge;
 }
 
--(void) addWestEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+- (void)addEastEdgeToTileAtPosition:(CGPoint)tilePosition
 {
+   Tile *tile = [self tileAtPosition:tilePosition];
+   Edge *edge = tile.eastEdge;
+   if (edge == nil)
+   {
+      edge = [[Edge alloc] init];
+      edge.westTile = tile;
+   }
+
+   CGPoint eastTilePosition = ccp(tile.position.x+1,
+                                  tile.position.y);
+
+   edge.eastTile = [self tileAtPosition:eastTilePosition];
+
+   if (edge.eastTile)
+      edge.eastTile.westEdge = edge;
+}
+
+- (void)addWestEdgeToTileAtPosition:(CGPoint)tilePosition
+{
+   Tile *tile = [self tileAtPosition:tilePosition];
    Edge *edge = tile.westEdge;
-   if ( edge == nil )
+   if (edge == nil)
    {
       edge = [[Edge alloc] init];
       edge.eastTile = tile;
    }
-   
-   edge.westTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
-   edge.westTile.eastEdge = edge;
+
+   CGPoint westTilePosition = ccp(tile.position.x-1,
+                                  tile.position.y);
+
+   edge.westTile = [self tileAtPosition:westTilePosition];
+
+   if (edge.westTile)
+      edge.westTile.eastEdge = edge;
 }
+
+//-(void) addNorthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+//{
+//   Edge *edge = tile.northEdge;
+//   if ( edge == nil )
+//   {
+//      edge = [[Edge alloc] init]; // create the north edge
+//      edge.southTile = tile;
+//   }
+//
+//   edge.northTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
+//   edge.northTile.southEdge = edge;
+//}
+//
+//-(void) addEastEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+//{
+//   Edge *edge = tile.eastEdge;
+//   if ( edge == nil )
+//   {
+//      edge = [[Edge alloc] init]; // create the east edge
+//      edge.westTile = tile;
+//   }
+//   
+//   edge.eastTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
+//   edge.eastTile.westEdge = edge;
+//}
+//
+//-(void) addSouthEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+//{
+//   Edge *edge = tile.southEdge;
+//   if ( edge == nil )
+//   {
+//      edge = [[Edge alloc] init];
+//      edge.northTile = tile;
+//   }
+//   
+//   edge.southTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
+//   edge.southTile.northEdge = edge;
+//}
+//
+//-(void) addWestEdgeToTile:(Tile *)tile atX:(int)x andY:(int)y
+//{
+//   Edge *edge = tile.westEdge;
+//   if ( edge == nil )
+//   {
+//      edge = [[Edge alloc] init];
+//      edge.eastTile = tile;
+//   }
+//   
+//   edge.westTile = [[_tiles objectAtIndex:x] objectAtIndex:y];
+//   edge.westTile.eastEdge = edge;
+//}
 
 -(void) connectEdges:(int)rows cols:(int)cols
 {
@@ -126,32 +210,38 @@
       for (int j = 0; j < cols; j++)
       {
          // grab the tile at that index
-         Tile *tile = [[_tiles objectAtIndex:i] objectAtIndex:j];
-         int x, y;
-         
+//         Tile *tile = [[_tiles objectAtIndex:i] objectAtIndex:j];
+         CGPoint tilePosition = ccp(j+1, i+1);
+//         Tile *tile = [self tileAtPosition:tilePosition];
+//         int x, y;
+
          // connect north edge to tile
-         x = i;
-         y = j + 1;
-         if ( x >= 0 && y >= 0 && x < rows && y < cols )
-            [self addNorthEdgeToTile:tile atX:x andY:y];
-      
+//         x = i;
+//         y = j + 1;
+//         if ( x >= 0 && y >= 0 && x < rows && y < cols )
+//            [self addNorthEdgeToTile:tile atX:x andY:y];
+         [self addNorthEdgeToTileAtPosition:tilePosition];
+
          // connect east edge to tile
-         x = i + 1;
-         y = j;
-         if ( x >= 0 && y >= 0 && x < rows && y < cols )
-            [self addEastEdgeToTile:tile atX:x andY:y];
-         
+//         x = i + 1;
+//         y = j;
+//         if ( x >= 0 && y >= 0 && x < rows && y < cols )
+//            [self addEastEdgeToTile:tile atX:x andY:y];
+         [self addEastEdgeToTileAtPosition:tilePosition];
+
          // connect south edge to tile
-         x = i;
-         y = j - 1;
-         if ( x >= 0 && y >= 0 && x < rows && y < cols)
-            [self addSouthEdgeToTile:tile atX:x andY:y];
-         
+//         x = i;
+//         y = j - 1;
+//         if ( x >= 0 && y >= 0 && x < rows && y < cols)
+//            [self addSouthEdgeToTile:tile atX:x andY:y];
+         [self addSouthEdgeToTileAtPosition:tilePosition];
+
          // connect west edge to tile
-         x = i - 1;
-         y = j;
-         if ( x >= 0 && y >= 0 && x < rows && y < cols)
-            [self addWestEdgeToTile:tile atX:x andY:y];
+//         x = i - 1;
+//         y = j;
+//         if ( x >= 0 && y >= 0 && x < rows && y < cols)
+//            [self addWestEdgeToTile:tile atX:x andY:y];
+         [self addWestEdgeToTileAtPosition:tilePosition];
       }
    }
 }
