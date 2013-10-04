@@ -27,6 +27,6 @@
 @property (readwrite, assign) BOOL isPlayerMoving;
 @property (readwrite, assign) BOOL playerShouldMove;
 
--(BOOL) playerCanMove;
+-(BOOL) playerCanMoveFromTile:(Tile *)tile;
 
 @end

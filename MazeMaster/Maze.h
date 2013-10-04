@@ -30,6 +30,7 @@ typedef struct {
 
 -(void) testMaze;
 -(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player;
+-(Tile *) getTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player;
 -(id) initWithRows:(int)rows withColumns:(int)cols;
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates;
 

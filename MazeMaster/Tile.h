@@ -12,11 +12,6 @@
 
 @interface Tile : NSObject
 {
-   Edge* _northEdge;
-   Edge* _eastEdge;
-   Edge* _southEdge;
-   Edge* _westEdge;
-   CGPoint _position;
 }
 
 - (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction;
@@ -27,5 +22,6 @@
 @property (readwrite, assign) Edge* southEdge;
 @property (readwrite, assign) Edge* westEdge;
 @property (readwrite, assign) CGPoint position;
+@property (readwrite, retain) CCSprite *tileSprite;
 
 @end

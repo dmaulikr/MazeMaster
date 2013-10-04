@@ -16,6 +16,7 @@
 @synthesize southEdge = _southEdge;
 @synthesize westEdge = _westEdge;
 @synthesize position = _position;
+@synthesize tileSprite = _tileSprite;
 
 -(id) init
 {
@@ -47,6 +48,8 @@
    
    if ( _westEdge )
       [_westEdge release];
+   
+   [_tileSprite release];
    
    [super dealloc];
 }

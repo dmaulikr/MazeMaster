@@ -295,24 +295,34 @@
    GameController *gameController = [GameController sharedController];
    
    Tile *currentTile = gameController.level.maze.tileWithPlayer;
-   [gameController.level.maze updateTileContainingPlayer:_tileSize
-                                            withPosition:_playerSprite.absolutePosition
-                                              withPlayer:_playerSprite];
+   NSLog(@"currentTile before updating: %@", NSStringFromCGPoint(currentTile.position));
+   
+//   [gameController.level.maze updateTileContainingPlayer:_tileSize
+//                                            withPosition:_playerSprite.absolutePosition
+//                                              withPlayer:_playerSprite];
+   
+   Tile *nextTile = [gameController.level.maze getTileContainingPlayer:_tileSize
+                                                          withPosition:_playerSprite.absolutePosition
+                                                            withPlayer:_playerSprite];
+   
+   NSLog(@"currentTile after updating: %@", NSStringFromCGPoint(nextTile.position));
 
-   if ( currentTile != gameController.level.maze.tileWithPlayer )
+   if ( currentTile != nextTile )
    {
       // turn the playerIsMoving variable off if plyaerShouldMove is false
       if ( gameController.playerShouldMove == NO )
       {
          gameController.isPlayerMoving = NO;
-         //            Tile *tileWithPlayer = gameController.level.maze.tileWithPlayer;
-         //            _playerSprite.position = ccp(tileWithPlayer.position.x + _tileSize.width / 2 - _playerSprite.boundingBox.size.width / 2,
-         //                                         tileWithPlayer.position.y + _tileSize.height / 2 - _playerSprite.boundingBox.size.height / 2);
+         _playerSprite.position = gameController.level.maze.tileWithPlayer.tileSprite.position;
       }
-      else if ( ![gameController playerCanMove] )
+      else if ( ![gameController playerCanMoveFromTile:currentTile] )
       {
          gameController.isPlayerMoving = NO;
          gameController.playerShouldMove = NO;
+      }
+      if ( [gameController playerCanMoveFromTile:currentTile] )
+      {
+         gameController.level.maze.tileWithPlayer = nextTile;
       }
    }
 }
