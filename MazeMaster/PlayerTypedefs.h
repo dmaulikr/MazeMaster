@@ -8,6 +8,7 @@
 
 #ifndef __PLAYER_DIRECTION__
 typedef enum {
+   e_NONE,
    e_NORTH,
    e_EAST,
    e_SOUTH,

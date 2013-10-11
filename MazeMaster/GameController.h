@@ -27,6 +27,8 @@
 -(BOOL) playerCanMoveFromTile:(Tile *)tile;
 -(void) pushSwipeStack:(PlayerDirection)direction;
 -(PlayerDirection) popSwipeStack;
+-(PlayerDirection) topSwipeStack;
 -(void) clearSwipeStack;
+-(BOOL) swipeStackIsEmpty;
 
 @end

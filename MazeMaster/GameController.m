@@ -19,6 +19,7 @@ GameController *s_gameController = nil;
    {
       _level = [Level new];
       _swipeStack = [NSMutableArray new];
+      _playerDirection = e_NONE;
    }
    return self;
 }
@@ -43,28 +44,48 @@ GameController *s_gameController = nil;
 
 - (BOOL)playerCanMoveFromTile:(Tile *)tile
 {
+   if (_playerDirection == e_NONE)
+      return NO;
+
    return [tile getAdjacentEdgeForDirection:_playerDirection].walkable;
 }
 
 - (void)pushSwipeStack:(PlayerDirection)direction
 {
-   [_swipeStack addObject:direction];
+   NSLog(@"pushing to swipeStack...");
+   [_swipeStack addObject:[NSNumber numberWithInt:direction]];
+   NSLog(@"current swipeStack: %@", _swipeStack);
 }
 
 - (PlayerDirection)popSwipeStack
 {
-   PlayerDirection direction = -1;
+   PlayerDirection direction = e_NONE;
    if (_swipeStack.count)
    {
-      direction = [_swipeStack lastObject];
+      NSNumber *directionNumber = [_swipeStack lastObject];
+      direction = directionNumber.intValue;
       [_swipeStack removeLastObject];
    }
+   return direction;
+}
+
+- (PlayerDirection)topSwipeStack
+{
+   PlayerDirection direction = e_NONE;
+   if (_swipeStack.count)
+      direction = [_swipeStack lastObject];
+   
    return direction;
 }
 
 - (void)clearSwipeStack
 {
    [_swipeStack removeAllObjects];
+}
+
+- (BOOL)swipeStackIsEmpty
+{
+   return !_swipeStack.count;
 }
 
 @end

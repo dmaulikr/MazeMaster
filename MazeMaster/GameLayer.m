@@ -260,6 +260,8 @@
          destination = _playerSprite.position;
          [GameController sharedController].playerShouldMove = NO;
          [GameController sharedController].isPlayerMoving = NO;
+         [[GameController sharedController] clearSwipeStack];
+         [GameController sharedController].playerDirection = e_NONE;
       }
    }
    return destination;
@@ -307,9 +309,17 @@
    {
       _playerSprite.position = nextTileLocation;
       gameController.isPlayerMoving = NO;
+      [gameController clearSwipeStack];
+      gameController.playerDirection = e_NONE;
    }
    
    gameController.level.maze.tileWithPlayer = nextTile;
+   
+   if (![gameController swipeStackIsEmpty])
+   {
+      gameController.playerDirection = [gameController popSwipeStack];
+      _playerSprite.position = nextTileLocation;
+   }
 }
 
 - (void)updateCurrentTileWithPlayer
@@ -326,6 +336,8 @@
    {
       gameController.playerShouldMove = NO;
       gameController.isPlayerMoving = NO;
+      [gameController clearSwipeStack];
+      gameController.playerDirection = e_NONE;
    }
    
    switch (gameController.playerDirection)
@@ -376,6 +388,8 @@
    {
       gameController.playerShouldMove = NO;
       gameController.isPlayerMoving = NO;
+      [gameController clearSwipeStack];
+      gameController.playerDirection = e_NONE;
       return;
    }
    

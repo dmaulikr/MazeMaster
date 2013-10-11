@@ -61,21 +61,37 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    
    GameController *gameController = [GameController sharedController];
    
-   if ( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
+   PlayerDirection direction;
+   switch (recognizer.direction)
    {
-      gameController.playerDirection = e_EAST;
+      case UISwipeGestureRecognizerDirectionRight:
+         direction = e_EAST;
+         break;
+         
+      case UISwipeGestureRecognizerDirectionLeft:
+         direction = e_WEST;
+         break;
+         
+      case UISwipeGestureRecognizerDirectionUp:
+         direction = e_NORTH;
+         break;
+         
+      case UISwipeGestureRecognizerDirectionDown:
+         direction = e_SOUTH;
+         break;
+         
+      default:
+         break;
    }
-   else if ( recognizer.direction == UISwipeGestureRecognizerDirectionLeft )
+   
+   if ([gameController swipeStackIsEmpty] &&
+       gameController.playerDirection == e_NONE)
    {
-      gameController.playerDirection = e_WEST;
+      gameController.playerDirection = direction;
    }
-   else if ( recognizer.direction == UISwipeGestureRecognizerDirectionUp )
+   else if ([gameController topSwipeStack] != direction)
    {
-      gameController.playerDirection = e_NORTH;
-   }
-   else if ( recognizer.direction == UISwipeGestureRecognizerDirectionDown )
-   {
-      gameController.playerDirection = e_SOUTH;
+      [gameController pushSwipeStack:direction];
    }
    
    // only call the move player function if it is the first swipe (because it will
@@ -90,12 +106,12 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    }
 }
 
--(void) ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+-(void) ccTouchesEnded:(NSSet *)touches
+             withEvent:(UIEvent *)event
 {
    // TODO decelerate
    GameController * gameController = [GameController sharedController];
    gameController.playerShouldMove = NO;
-   
 //   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
 }
 
