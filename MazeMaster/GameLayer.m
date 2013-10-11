@@ -150,7 +150,9 @@
          float northMazeBound = _mazeLayer.position.y + _mazeLayer.mazeSize.height;
          if ((northMazeBound > _windowSize.height) &&
              [self playerIsVerticallyCenteredOnScreen])
+         {
             retVal = YES;
+         }
          break;
       }
       case e_SOUTH:
@@ -158,7 +160,9 @@
          float southMazeBound = _mazeLayer.position.y;
          if ((southMazeBound < _outsideEdgePadding) &&
              [self playerIsVerticallyCenteredOnScreen])
+         {
             retVal = YES;
+         }
          break;
       }
       case e_EAST:
@@ -166,7 +170,9 @@
          float eastMazeBound = _mazeLayer.position.x + _mazeLayer.mazeSize.width;
          if ((eastMazeBound > _windowSize.width) &&
              [self playerIsHorizontallyCenteredOnScreen])
+         {
             retVal = YES;
+         }
          break;
       }
       case e_WEST:
@@ -174,7 +180,9 @@
          float westMazeBound = _mazeLayer.position.x;
          if ((westMazeBound < _outsideEdgePadding) &&
              [self playerIsHorizontallyCenteredOnScreen])
+         {
             retVal = YES;
+         }
          break;
       }
       default:
@@ -186,7 +194,7 @@
 - (BOOL)yValuePastNorthMazeBound:(int)yValue
 {
    float northBound = (_mazeLayer.mazeSize.height < _windowSize.height) ?
-   _mazeLayer.mazeSize.height : _windowSize.height;
+                       _mazeLayer.mazeSize.height : _windowSize.height;
 
    return (yValue >= northBound);
 }
@@ -199,7 +207,7 @@
 - (BOOL)xValuePastEastMazeBound:(int)xValue
 {
    float eastBound = (_mazeLayer.mazeSize.width < _windowSize.width) ?
-   _mazeLayer.mazeSize.width + _outsideEdgePadding : _windowSize.width;
+                      _mazeLayer.mazeSize.width + _outsideEdgePadding : _windowSize.width;
    return (xValue >= eastBound);
 }
 
@@ -265,10 +273,8 @@
    gameController.playerDirection = direction;
    
    if ( _playerSprite.playerVelocity.x <= MAX_VELOCITY )
-   {
       _playerSprite.playerVelocity = ccp(_playerSprite.playerVelocity.x + 0.3,
                                          _playerSprite.playerVelocity.y + 0.3);
-   }
    
    switch ( direction )
    {
@@ -327,28 +333,32 @@
       case e_NORTH:
          if ( nextTile && _playerSprite.position.y > nextTileLocation.y )
          {
-            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
+            [self updatePlayerPostionForTile:nextTile
+                                  atLocation:nextTileLocation];
          }
          break;
    
       case e_EAST:
          if ( nextTile && _playerSprite.position.x > nextTileLocation.x )
          {
-            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
+            [self updatePlayerPostionForTile:nextTile
+                                  atLocation:nextTileLocation];
          }
          break;
          
       case e_SOUTH:
          if ( nextTile && _playerSprite.position.y <= nextTileLocation.y )
          {
-            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
+            [self updatePlayerPostionForTile:nextTile
+                                  atLocation:nextTileLocation];
          }
          break;
          
       case e_WEST:
          if ( nextTile && _playerSprite.position.x <= nextTileLocation.x )
          {
-            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
+            [self updatePlayerPostionForTile:nextTile
+                                  atLocation:nextTileLocation];
          }
          break;
          
@@ -374,10 +384,9 @@
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
       destination = [self getDestinationPointForX:directionPoint.x
                                                 y:directionPoint.y];
+      
       // _moveMaze is on when the maze moves instead of the player
-      // _playerSprite.destination is
-      float diffX;
-      float diffY;
+      float diffX, diffY;
       if( _moveMaze )
       {
          diffX = _mazeLayer.position.x - destination.x;
