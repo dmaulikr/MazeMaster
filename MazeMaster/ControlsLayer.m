@@ -63,7 +63,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    
    if ( recognizer.direction == UISwipeGestureRecognizerDirectionRight )
    {
-     gameController.playerDirection = e_EAST;
+      gameController.playerDirection = e_EAST;
    }
    else if ( recognizer.direction == UISwipeGestureRecognizerDirectionLeft )
    {

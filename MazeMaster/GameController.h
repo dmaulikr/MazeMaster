@@ -13,10 +13,7 @@
 
 @interface GameController : NSObject
 {
-   PlayerDirection _playerDirection;
-   GameLayer *_gameLayer;
-   BOOL _isPlayerMoving;
-   BOOL _playerShouldMove;
+   NSMutableArray *_swipeStack;
 }
 
 +(GameController *) sharedController;
@@ -28,5 +25,8 @@
 @property (readwrite, assign) BOOL playerShouldMove;
 
 -(BOOL) playerCanMoveFromTile:(Tile *)tile;
+-(void) pushSwipeStack:(PlayerDirection)direction;
+-(PlayerDirection) popSwipeStack;
+-(void) clearSwipeStack;
 
 @end

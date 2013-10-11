@@ -13,17 +13,12 @@ GameController *s_gameController = nil;
 
 @implementation GameController
 
-@synthesize level = _level;
-@synthesize playerDirection = _playerDirection;
-@synthesize gameLayer = _gameLayer;
-@synthesize isPlayerMoving = _isPlayerMoving;
-@synthesize playerShouldMove = _playerShouldMove;
-
 -(id) init
 {
    if ( self = [super init] )
    {
-      _level = [[Level alloc] init];
+      _level = [Level new];
+      _swipeStack = [NSMutableArray new];
    }
    return self;
 }
@@ -41,21 +36,35 @@ GameController *s_gameController = nil;
 -(void) dealloc
 {
    [_level dealloc];
+   [_swipeStack release];
    [super dealloc];
 }
 
 
--(BOOL) playerCanMoveFromTile:(Tile *)tile
+- (BOOL)playerCanMoveFromTile:(Tile *)tile
 {
-//   NSLog(@"tile with player: %@", NSStringFromCGPoint(_level.maze.tileWithPlayer.position));
-   Edge *adjEdge = [tile getAdjacentEdgeForDirection:_playerDirection];
-   Tile *adjTile = [tile getAdjacentTileForDirection:_playerDirection];
-//   NSLog(@"next tile position: %@", NSStringFromCGPoint(nextTile.position));
-   if ( !adjEdge.walkable )
+   return [tile getAdjacentEdgeForDirection:_playerDirection].walkable;
+}
+
+- (void)pushSwipeStack:(PlayerDirection)direction
+{
+   [_swipeStack addObject:direction];
+}
+
+- (PlayerDirection)popSwipeStack
+{
+   PlayerDirection direction = -1;
+   if (_swipeStack.count)
    {
-      return NO;
+      direction = [_swipeStack lastObject];
+      [_swipeStack removeLastObject];
    }
-   return YES;
+   return direction;
+}
+
+- (void)clearSwipeStack
+{
+   [_swipeStack removeAllObjects];
 }
 
 @end
