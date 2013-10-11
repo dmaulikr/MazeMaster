@@ -28,9 +28,9 @@
    _tileSize = CGSizeMake(44, 44);
    _outsideEdgePadding = 0;
 
-   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
+   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0,
                                       _tileSize.width/2.0);
-   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
+   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0,
                                       _tileSize.height/2.0);
 }
 
@@ -74,18 +74,6 @@
    _mazeLayer = mazeLayer;
    _mazeLayer.anchorPoint = CGPointZero;
    _moveMaze = NO;
-}
-
-- (void)setupOffsetForPlayerAndMaze
-{
-   float playerWidth = _playerSprite.boundingBox.size.width;
-   float playerHeight = _playerSprite.boundingBox.size.height;
-   
-   _playerSprite.position = ccp((_tileSize.width - playerWidth)/2.0 + _outsideEdgePadding,
-                                (_tileSize.height - playerHeight)/2.0 + _outsideEdgePadding);
-   
-   _mazeLayer.position = ccp(_outsideEdgePadding,
-                             _outsideEdgePadding);
 }
 
 - (id)init
