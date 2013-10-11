@@ -28,9 +28,9 @@
    _tileSize = CGSizeMake(44, 44);
    _outsideEdgePadding = 0;
 
-   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0,
+   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
                                       _tileSize.width/2.0);
-   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0,
+   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
                                       _tileSize.height/2.0);
 }
 
@@ -112,13 +112,14 @@
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
+   // user the center of player
    return NSLocationInRange(_playerSprite.position.x,
                             _verticalCenterRange);
 }
 
 - (BOOL)playerIsVerticallyCenteredOnScreen
 {
-   return NSLocationInRange(_playerSprite.position.y,
+   return NSLocationInRange(_playerSprite.position.y + _playerSprite.boundingBox.size.height/2.0,
                             _horizontalCenterRange);
 }
 
@@ -301,7 +302,18 @@
    GameController *gameController = [GameController sharedController];
    if ( gameController.playerShouldMove == NO )
    {
-      _playerSprite.position = nextTileLocation;
+      if (_moveMaze)
+      {
+         int diffX = _playerSprite.position.x - nextTileLocation.x;
+         int diffY = _playerSprite.position.y - nextTileLocation.y;
+         _mazeLayer.position = ccp(_mazeLayer.position.x + diffX,
+                                   _mazeLayer.position.y + diffY);
+      }
+      else
+      {
+         _playerSprite.position = nextTileLocation;
+         
+      }
       [self stopPlayer];
    }
    
