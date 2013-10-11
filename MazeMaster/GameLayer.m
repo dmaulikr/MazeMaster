@@ -252,8 +252,6 @@
          destination = _playerSprite.position;
          [GameController sharedController].playerShouldMove = NO;
          [GameController sharedController].isPlayerMoving = NO;
-         
-         
       }
    }
    return destination;
@@ -296,6 +294,18 @@
    return CGPointMake(x,y);
 }
 
+- (void)updatePlayerPostionForTile:(Tile *)nextTile atLocation:(CGPoint)nextTileLocation
+{
+   GameController *gameController = [GameController sharedController];
+   if ( gameController.playerShouldMove == NO )
+   {
+      _playerSprite.position = nextTileLocation;
+      gameController.isPlayerMoving = NO;
+   }
+   
+   gameController.level.maze.tileWithPlayer = nextTile;
+}
+
 - (void)updateCurrentTileWithPlayer
 {
    GameController *gameController = [GameController sharedController];
@@ -324,61 +334,32 @@
       gameController.isPlayerMoving = NO;
    }
    
-//   NSLog(@"currentTile after updating: %@", NSStringFromCGPoint(nextTile.position));
-   
    switch (gameController.playerDirection) {
       case e_NORTH:
          if ( nextTile && _playerSprite.position.y > nextTileLocation.y )
          {
-            if ( gameController.playerShouldMove == NO )
-            {
-               _playerSprite.position = nextTileLocation;
-               gameController.isPlayerMoving = NO;
-            }
-            
-            gameController.level.maze.tileWithPlayer = nextTile;
+            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
          }
          break;
-         
+   
       case e_EAST:
          if ( nextTile && _playerSprite.position.x > nextTileLocation.x )
          {
-            if ( gameController.playerShouldMove == NO )
-            {
-               _playerSprite.position = nextTileLocation;
-               gameController.isPlayerMoving = NO;
-            }
-            
-            _playerSprite.position = nextTileLocation;
-            gameController.level.maze.tileWithPlayer = nextTile;
+            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
          }
          break;
          
       case e_SOUTH:
          if ( nextTile && _playerSprite.position.y <= nextTileLocation.y )
          {
-            if ( gameController.playerShouldMove == NO )
-            {
-               _playerSprite.position = nextTileLocation;
-               gameController.isPlayerMoving = NO;
-            }
-            
-            _playerSprite.position = nextTileLocation;
-            gameController.level.maze.tileWithPlayer = nextTile;
+            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
          }
          break;
          
       case e_WEST:
          if ( nextTile && _playerSprite.position.x <= nextTileLocation.x )
          {
-            if ( gameController.playerShouldMove == NO )
-            {
-               _playerSprite.position = nextTileLocation;
-               gameController.isPlayerMoving = NO;
-            }
-            
-            _playerSprite.position = nextTileLocation;
-            gameController.level.maze.tileWithPlayer = nextTile;
+            [self updatePlayerPostionForTile:nextTile atLocation:nextTileLocation];
          }
          break;
          
