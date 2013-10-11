@@ -259,9 +259,7 @@
       {
          destination = _playerSprite.position;
          [GameController sharedController].playerShouldMove = NO;
-         [GameController sharedController].isPlayerMoving = NO;
-         [[GameController sharedController] clearSwipeStack];
-         [GameController sharedController].playerDirection = e_NONE;
+         [self stopPlayer];
       }
    }
    return destination;
@@ -302,15 +300,21 @@
    return CGPointMake(x,y);
 }
 
+- (void)stopPlayer
+{
+   GameController *gameController = [GameController sharedController];
+   gameController.isPlayerMoving = NO;
+   [gameController clearSwipeStack];
+   gameController.playerDirection = e_NONE;
+}
+
 - (void)updatePlayerPostionForTile:(Tile *)nextTile atLocation:(CGPoint)nextTileLocation
 {
    GameController *gameController = [GameController sharedController];
    if ( gameController.playerShouldMove == NO )
    {
       _playerSprite.position = nextTileLocation;
-      gameController.isPlayerMoving = NO;
-      [gameController clearSwipeStack];
-      gameController.playerDirection = e_NONE;
+      [self stopPlayer];
    }
    
    gameController.level.maze.tileWithPlayer = nextTile;
@@ -335,9 +339,7 @@
    if (!nextTile)
    {
       gameController.playerShouldMove = NO;
-      gameController.isPlayerMoving = NO;
-      [gameController clearSwipeStack];
-      gameController.playerDirection = e_NONE;
+      [self stopPlayer];
    }
    
    switch (gameController.playerDirection)
@@ -387,9 +389,7 @@
    if (![gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer])
    {
       gameController.playerShouldMove = NO;
-      gameController.isPlayerMoving = NO;
-      [gameController clearSwipeStack];
-      gameController.playerDirection = e_NONE;
+      [self stopPlayer];
       return;
    }
    
