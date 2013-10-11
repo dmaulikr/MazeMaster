@@ -345,7 +345,7 @@
    switch (gameController.playerDirection)
    {
       case e_NORTH:
-         if ( nextTile && _playerSprite.position.y > nextTileLocation.y )
+         if ( nextTile && _playerSprite.position.y >= nextTileLocation.y )
          {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
@@ -353,7 +353,7 @@
          break;
    
       case e_EAST:
-         if ( nextTile && _playerSprite.position.x > nextTileLocation.x )
+         if ( nextTile && _playerSprite.position.x >= nextTileLocation.x )
          {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];

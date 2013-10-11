@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */; };
 		4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */; };
+		8E02EC481808C49700369B8A /* astronaut_front@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC461808C49700369B8A /* astronaut_front@2x.png */; };
+		8E02EC491808C49700369B8A /* gray_tile_44x44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */; };
+		8E02EC4B1808C52C00369B8A /* edge_simple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */; };
 		8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */; };
 		8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* SettingsLayer.m */; };
 		8E38CC3617AF1F9000EE917C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3517AF1F9000EE917C /* QuartzCore.framework */; };
@@ -171,6 +174,9 @@
 		4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCNode+SFGestureRecognizers.h"; sourceTree = "<group>"; };
 		4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = astronaut_front.png; path = Resources/astronaut_front.png; sourceTree = "<group>"; };
+		8E02EC461808C49700369B8A /* astronaut_front@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "astronaut_front@2x.png"; path = "Resources/astronaut_front@2x.png"; sourceTree = "<group>"; };
+		8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gray_tile_44x44@2x.png"; path = "Resources/gray_tile_44x44@2x.png"; sourceTree = "<group>"; };
+		8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edge_simple@2x.png"; path = "Resources/edge_simple@2x.png"; sourceTree = "<group>"; };
 		8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTypedefs.h; sourceTree = "<group>"; };
 		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
 		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
@@ -590,6 +596,9 @@
 		8E38CC4A17AF1F9000EE917C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */,
+				8E02EC461808C49700369B8A /* astronaut_front@2x.png */,
+				8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */,
 				8EA7680A17E57C2200624A43 /* edge_simple.png */,
 				8EA767FE17E527A900624A43 /* basic_tile.png */,
 				8EA767FF17E527A900624A43 /* basic.tile.png */,
@@ -1042,9 +1051,12 @@
 				8E38CC5E17AF1F9000EE917C /* Icon@2x.png in Resources */,
 				8E38CC6117AF1F9000EE917C /* iTunesArtwork in Resources */,
 				8E38CDBA17AF1F9200EE917C /* ChangeLog in Resources */,
+				8E02EC481808C49700369B8A /* astronaut_front@2x.png in Resources */,
 				DA09DF8217AF2C920048D300 /* Arrow.png in Resources */,
 				DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */,
+				8E02EC4B1808C52C00369B8A /* edge_simple@2x.png in Resources */,
 				4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */,
+				8E02EC491808C49700369B8A /* gray_tile_44x44@2x.png in Resources */,
 				8EA767FD17E5274500624A43 /* tile_edge_simple.png in Resources */,
 				8EA7680417E527A900624A43 /* basic_tile.png in Resources */,
 				8EA7680517E527A900624A43 /* basic.tile.png in Resources */,
