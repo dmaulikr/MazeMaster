@@ -18,8 +18,6 @@
 
 @implementation GameLayer
 
-@synthesize playerSprite = _playerSprite;
-
 #define MAX_VELOCITY 1.0
 
 - (void)setupVariables
@@ -62,7 +60,13 @@
 {
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
    _playerSprite.anchorPoint = CGPointZero;
-   _playerSprite.scale = 1.6;
+   _playerSprite.scale = 1.8;
+
+   _xPlayerOffset = (_tileSize.width/2.0) - (_playerSprite.boundingBox.size.width/2.0);
+   _yPlayerOffset = (_tileSize.height/2.0) - (_playerSprite.boundingBox.size.height/2.0);
+
+   _playerSprite.position = ccp(_xPlayerOffset, _yPlayerOffset);
+   _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
 
    [[GameController sharedController].level.maze updateTileContainingPlayer:_tileSize
                                                              withPosition:_playerSprite.absolutePosition
@@ -305,14 +309,15 @@
    {
       if (_moveMaze)
       {
-         int xOffset = _playerSprite.position.x - nextTileLocation.x;
-         int yOffset = _playerSprite.position.y - nextTileLocation.y;
-         _mazeLayer.position = ccp(_mazeLayer.position.x + xOffset,
-                                   _mazeLayer.position.y + yOffset);
+         int xMazeOffset = _playerSprite.position.x - nextTileLocation.x;
+         int yMazeOffset = _playerSprite.position.y - nextTileLocation.y;
+         _mazeLayer.position = ccp(_mazeLayer.position.x + xMazeOffset,
+                                   _mazeLayer.position.y + yMazeOffset);
       }
       else
       {
-         _playerSprite.position = nextTileLocation;
+         _playerSprite.position = ccp(nextTileLocation.x,
+                                      nextTileLocation.y);
          
       }
       [self stopPlayer];
@@ -335,8 +340,8 @@
    
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer
-   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x,
-                                          nextTile.tileSprite.position.y + _mazeLayer.position.y);
+   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
+                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
    if (!nextTile)
    {
       gameController.playerShouldMove = NO;
@@ -407,11 +412,12 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    
    if ( gameController.isPlayerMoving )
    {
-      NSLog(@"top: %d", [gameController topSwipeStack]);
-      if ([self direction:[gameController topSwipeStack] isOppositeToDirection:gameController.playerDirection])
+      if ([self direction:[gameController topSwipeStack]
+    isOppositeToDirection:gameController.playerDirection])
       {
+         Tile *currentTile = gameController.level.maze.tileWithPlayer;
          gameController.level.maze.tileWithPlayer =
-            [gameController.level.maze.tileWithPlayer getAdjacentTileForDirection:gameController.playerDirection];
+            [currentTile getAdjacentTileForDirection:gameController.playerDirection];
          gameController.playerDirection = [gameController popSwipeStack];
       }
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
