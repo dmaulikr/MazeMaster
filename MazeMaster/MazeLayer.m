@@ -46,7 +46,7 @@
 {
    for (NSMutableArray *tiles in maze.tiles)
       for (Tile *tile in tiles)
-         [self addTileSpriteWithFilename:@"gray_tile_44x44.png"
+         [self addTileSpriteWithFilename:@"blue_tile.png"
                                  forTile:tile];
 }
 

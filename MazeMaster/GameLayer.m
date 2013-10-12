@@ -304,10 +304,10 @@
    {
       if (_moveMaze)
       {
-         int diffX = _playerSprite.position.x - nextTileLocation.x;
-         int diffY = _playerSprite.position.y - nextTileLocation.y;
-         _mazeLayer.position = ccp(_mazeLayer.position.x + diffX,
-                                   _mazeLayer.position.y + diffY);
+         int xOffset = _playerSprite.position.x - nextTileLocation.x;
+         int yOffset = _playerSprite.position.y - nextTileLocation.y;
+         _mazeLayer.position = ccp(_mazeLayer.position.x + xOffset,
+                                   _mazeLayer.position.y + yOffset);
       }
       else
       {
@@ -346,34 +346,26 @@
    {
       case e_NORTH:
          if ( nextTile && _playerSprite.position.y >= nextTileLocation.y )
-         {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
-         }
          break;
    
       case e_EAST:
          if ( nextTile && _playerSprite.position.x >= nextTileLocation.x )
-         {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
-         }
          break;
          
       case e_SOUTH:
          if ( nextTile && _playerSprite.position.y <= nextTileLocation.y )
-         {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
-         }
          break;
          
       case e_WEST:
          if ( nextTile && _playerSprite.position.x <= nextTileLocation.x )
-         {
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
-         }
          break;
          
       default:
