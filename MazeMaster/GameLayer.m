@@ -291,7 +291,7 @@
       default:
          break;
    }
-   return CGPointMake(x,y);
+   return ccp(x,y);
 }
 
 - (void)stopPlayer
@@ -302,7 +302,8 @@
    gameController.playerDirection = e_NONE;
 }
 
-- (void)updatePlayerPostionForTile:(Tile *)nextTile atLocation:(CGPoint)nextTileLocation
+- (void)updatePlayerPostionForTile:(Tile *)nextTile
+                        atLocation:(CGPoint)nextTileLocation
 {
    GameController *gameController = [GameController sharedController];
    if ( gameController.playerShouldMove == NO )
@@ -316,19 +317,21 @@
       }
       else
       {
-         _playerSprite.position = ccp(nextTileLocation.x,
-                                      nextTileLocation.y);
-         
+         _playerSprite.position = nextTileLocation;
       }
       [self stopPlayer];
    }
-   
+
    gameController.level.maze.tileWithPlayer = nextTile;
    
    if (![gameController swipeStackIsEmpty])
    {
-      gameController.playerDirection = [gameController popSwipeStack];
-      _playerSprite.position = nextTileLocation;
+      PlayerDirection nextDirection = [gameController topSwipeStack];
+      if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
+      {
+         gameController.playerDirection = [gameController popSwipeStack];
+         _playerSprite.position = nextTileLocation;
+      }
    }
 }
 
@@ -410,7 +413,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
       return;
    }
    
-   if ( gameController.isPlayerMoving )
+   if (gameController.isPlayerMoving)
    {
       if ([self direction:[gameController topSwipeStack]
     isOppositeToDirection:gameController.playerDirection])
@@ -426,7 +429,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
       
       // _moveMaze is on when the maze moves instead of the player
       float diffX, diffY;
-      if( _moveMaze )
+      if (_moveMaze)
       {
          diffX = _mazeLayer.position.x - destination.x;
          diffY = _mazeLayer.position.y - destination.y;
