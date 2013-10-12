@@ -51,9 +51,7 @@ GameController *s_gameController = nil;
 
 - (void)pushSwipeStack:(PlayerDirection)direction
 {
-   NSLog(@"pushing to swipeStack...");
    [_swipeStack addObject:[NSNumber numberWithInt:direction]];
-   NSLog(@"current swipeStack: %@", _swipeStack);
 }
 
 - (PlayerDirection)popSwipeStack
