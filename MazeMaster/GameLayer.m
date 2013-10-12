@@ -43,7 +43,8 @@
    backButton.scale = .25;
    backButton.rotation = 180;
    backButton.position = ccp(30, windowSize.height - 30);
-   [backButton setBlock:^(id sender)
+   [backButton setBlock:
+    ^(id sender)
     {
        CCDirector *director = [CCDirector sharedDirector];
        CCScene *levelSelectScene = [LevelSelectLayer scene];

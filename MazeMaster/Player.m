@@ -24,7 +24,6 @@
 
 +(Player *) playerWithFile:(NSString *)filename
 {
-//   return [CCSprite spriteWithFile:filename];
    return [[[self alloc] initWithFile:filename] autorelease];
 }
 

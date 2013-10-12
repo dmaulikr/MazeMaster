@@ -42,17 +42,20 @@ static LevelFactory *s_sharedLevelFactory = nil;
    
    switch (levelNumber) {
       case 1:
-         level = [[Level alloc] initWithRows:13 andColumns:14];
+         level = [[Level alloc] initWithRows:13
+                                  andColumns:14];
          [level setLevelNumber:levelNumber];
          break;
          
       case 2:
-         level = [[Level alloc] initWithRows:10 andColumns:6];
+         level = [[Level alloc] initWithRows:10
+                                  andColumns:6];
          [level setLevelNumber:levelNumber];
          break;
          
       case 3:
-         level = [[Level alloc] initWithRows:15 andColumns:15];
+         level = [[Level alloc] initWithRows:15
+                                  andColumns:15];
          [level setLevelNumber:levelNumber];
          break;
          
