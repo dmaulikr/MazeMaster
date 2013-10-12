@@ -41,7 +41,6 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
-
 - (BOOL)playerCanMoveFromTile:(Tile *)tile
 {
    if (_playerDirection == e_NONE)
@@ -73,8 +72,10 @@ GameController *s_gameController = nil;
 {
    PlayerDirection direction = e_NONE;
    if (_swipeStack.count)
-      direction = [_swipeStack lastObject];
-   
+   {
+      NSNumber *directionNumber = [_swipeStack lastObject];
+      direction = directionNumber.intValue;
+   }
    return direction;
 }
 

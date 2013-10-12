@@ -374,6 +374,25 @@
    }
 }
 
+- (BOOL)direction:(PlayerDirection)direction
+isOppositeToDirection:(PlayerDirection)otherDirection
+{
+   switch (direction)
+   {
+      case e_NORTH:
+         return (otherDirection == e_SOUTH);
+      case e_SOUTH:
+         return (otherDirection == e_NORTH);
+      case e_EAST:
+         return (otherDirection == e_WEST);
+      case e_WEST:
+         return (otherDirection == e_EAST);
+      case e_NONE:
+      default:
+         return NO;
+   }
+}
+
 - (void)movePlayer
 {
    GameController *gameController = [GameController sharedController];
@@ -388,6 +407,13 @@
    
    if ( gameController.isPlayerMoving )
    {
+      NSLog(@"top: %d", [gameController topSwipeStack]);
+      if ([self direction:[gameController topSwipeStack] isOppositeToDirection:gameController.playerDirection])
+      {
+         gameController.level.maze.tileWithPlayer =
+            [gameController.level.maze.tileWithPlayer getAdjacentTileForDirection:gameController.playerDirection];
+         gameController.playerDirection = [gameController popSwipeStack];
+      }
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
       destination = [self getDestinationPointForX:directionPoint.x
                                                 y:directionPoint.y];
