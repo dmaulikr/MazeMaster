@@ -331,36 +331,38 @@
    // original position of the tile sprite by the position of the maze layer
    CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
                                           nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
-   if (!nextTile)
+   if (nextTile == nil)
    {
       gameController.playerShouldMove = NO;
       [self stopPlayer];
    }
-   
-   switch (gameController.playerDirection)
+   else
    {
-      case e_NORTH:
-         if ( nextTile && _playerSprite.position.y >= nextTileLocation.y )
-            [self updatePlayerPostionForTile:nextTile
-                                  atLocation:nextTileLocation];
-         break;
-      case e_EAST:
-         if ( nextTile && _playerSprite.position.x >= nextTileLocation.x )
-            [self updatePlayerPostionForTile:nextTile
-                                  atLocation:nextTileLocation];
-         break;
-      case e_SOUTH:
-         if ( nextTile && _playerSprite.position.y <= nextTileLocation.y )
-            [self updatePlayerPostionForTile:nextTile
-                                  atLocation:nextTileLocation];
-         break;
-      case e_WEST:
-         if ( nextTile && _playerSprite.position.x <= nextTileLocation.x )
-            [self updatePlayerPostionForTile:nextTile
-                                  atLocation:nextTileLocation];
-         break;
-      default:
-         break;
+      switch (gameController.playerDirection)
+      {
+         case e_NORTH:
+            if (_playerSprite.position.y >= nextTileLocation.y)
+               [self updatePlayerPostionForTile:nextTile
+                                     atLocation:nextTileLocation];
+            break;
+         case e_EAST:
+            if (_playerSprite.position.x >= nextTileLocation.x)
+               [self updatePlayerPostionForTile:nextTile
+                                     atLocation:nextTileLocation];
+            break;
+         case e_SOUTH:
+            if (_playerSprite.position.y <= nextTileLocation.y)
+               [self updatePlayerPostionForTile:nextTile
+                                     atLocation:nextTileLocation];
+            break;
+         case e_WEST:
+            if (_playerSprite.position.x <= nextTileLocation.x)
+               [self updatePlayerPostionForTile:nextTile
+                                     atLocation:nextTileLocation];
+            break;
+         default:
+            break;
+      }
    }
 }
 
@@ -388,7 +390,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    GameController *gameController = [GameController sharedController];
    CGPoint destination;
    
-   if (![gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer])
+   if ([gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] == NO)
    {
       gameController.playerShouldMove = NO;
       [self stopPlayer];
@@ -405,6 +407,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
             [currentTile getAdjacentTileForDirection:gameController.playerDirection];
          gameController.playerDirection = [gameController popSwipeStack];
       }
+
       CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
       destination = [self getDestinationPointForX:directionPoint.x
                                                 y:directionPoint.y];
@@ -425,11 +428,8 @@ isOppositeToDirection:(PlayerDirection)otherDirection
       CCNode *moveableObject = (_moveMaze ? _mazeLayer : _playerSprite);
       moveableObject.position = destination;
       
-      CGPoint absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
-                                     _playerSprite.absolutePosition.y + diffY);
-      
-      _playerSprite.absolutePosition = absolutePosition;
-      
+      _playerSprite.absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
+                                           _playerSprite.absolutePosition.y + diffY);
       [self updateCurrentTileWithPlayer];
    }
 }

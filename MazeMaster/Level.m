@@ -63,6 +63,7 @@
    }
 }
 
+// This is terrible and the brute force here needs to be thought over again
 - (void)setupEdgesForLevel1
 {
    for (NSMutableArray *tiles in _maze.tiles)
@@ -159,7 +160,7 @@
              CGPointEqualToPoint(tilePos, ccp(12,5))  ||
              CGPointEqualToPoint(tilePos, ccp(12,7))  ||
              CGPointEqualToPoint(tilePos, ccp(12,10)) ||
-             CGPointEqualToPoint(tilePos, ccp(11,12)))
+             CGPointEqualToPoint(tilePos, ccp(12,12)))
             tile.northEdge.walkable = NO;
       }
 }
