@@ -105,11 +105,6 @@
    return self;
 }
 
-- (void)dealloc
-{
-   [super dealloc];
-}
-
 - (void)update:(ccTime)delta
 {
    [self movePlayer];
@@ -117,8 +112,7 @@
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
-   // user the center of player
-   return NSLocationInRange(_playerSprite.position.x,
+   return NSLocationInRange(_playerSprite.position.x + _playerSprite.boundingBox.size.width/2.0,
                             _verticalCenterRange);
 }
 
