@@ -130,6 +130,7 @@
 
 - (BOOL)mazeShouldMoveForPlayerDirection:(PlayerDirection)direction
 {
+   BOOL retVal = NO;
    switch (direction)
    {
       case e_NORTH:
@@ -137,27 +138,23 @@
          float northMazeBound = _mazeLayer.position.y + _mazeLayer.mazeSize.height;
          if ((northMazeBound > _windowSize.height) &&
              [self playerIsVerticallyCenteredOnScreen])
-         {
-            return YES;
-         }
+            retVal = YES;
+         break;
       }
       case e_SOUTH:
       {
          float southMazeBound = _mazeLayer.position.y;
          if ((southMazeBound < _outsideEdgePadding) &&
              [self playerIsVerticallyCenteredOnScreen])
-         {
-            return YES;
-         }
+            retVal = YES;
+         break;
       }
       case e_EAST:
       {
          float eastMazeBound = _mazeLayer.position.x + _mazeLayer.mazeSize.width;
          if ((eastMazeBound > _windowSize.width) &&
              [self playerIsHorizontallyCenteredOnScreen])
-         {
-            return YES;
-         }
+            retVal = YES;
          break;
       }
       case e_WEST:
@@ -165,15 +162,13 @@
          float westMazeBound = _mazeLayer.position.x;
          if ((westMazeBound < _outsideEdgePadding) &&
              [self playerIsHorizontallyCenteredOnScreen])
-         {
-            return YES;
-         }
+            retVal = YES;
          break;
       }
       default:
          break;
    }
-   return NO;
+   return retVal;
 }
 
 - (BOOL)yValuePastNorthMazeBound:(int)yValue
@@ -349,25 +344,21 @@
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
          break;
-   
       case e_EAST:
          if ( nextTile && _playerSprite.position.x >= nextTileLocation.x )
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
          break;
-         
       case e_SOUTH:
          if ( nextTile && _playerSprite.position.y <= nextTileLocation.y )
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
          break;
-         
       case e_WEST:
          if ( nextTile && _playerSprite.position.x <= nextTileLocation.x )
             [self updatePlayerPostionForTile:nextTile
                                   atLocation:nextTileLocation];
          break;
-         
       default:
          break;
    }
