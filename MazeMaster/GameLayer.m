@@ -18,7 +18,7 @@
 
 @implementation GameLayer
 
-#define MAX_VELOCITY 1.0
+#define MAX_VELOCITY 2.5
 
 - (void)setupVariables
 {
