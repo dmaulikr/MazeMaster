@@ -130,7 +130,6 @@
 
 - (BOOL)mazeShouldMoveForPlayerDirection:(PlayerDirection)direction
 {
-   BOOL retVal = NO;
    switch (direction)
    {
       case e_NORTH:
@@ -139,9 +138,8 @@
          if ((northMazeBound > _windowSize.height) &&
              [self playerIsVerticallyCenteredOnScreen])
          {
-            retVal = YES;
+            return YES;
          }
-         break;
       }
       case e_SOUTH:
       {
@@ -149,9 +147,8 @@
          if ((southMazeBound < _outsideEdgePadding) &&
              [self playerIsVerticallyCenteredOnScreen])
          {
-            retVal = YES;
+            return YES;
          }
-         break;
       }
       case e_EAST:
       {
@@ -159,7 +156,7 @@
          if ((eastMazeBound > _windowSize.width) &&
              [self playerIsHorizontallyCenteredOnScreen])
          {
-            retVal = YES;
+            return YES;
          }
          break;
       }
@@ -169,14 +166,14 @@
          if ((westMazeBound < _outsideEdgePadding) &&
              [self playerIsHorizontallyCenteredOnScreen])
          {
-            retVal = YES;
+            return YES;
          }
          break;
       }
       default:
          break;
    }
-   return retVal;
+   return NO;
 }
 
 - (BOOL)yValuePastNorthMazeBound:(int)yValue
