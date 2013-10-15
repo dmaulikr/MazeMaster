@@ -26,9 +26,9 @@
    _tileSize = CGSizeMake(44, 44);
    _outsideEdgePadding = 0;
 
-   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
+   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/4.0,
                                       _tileSize.width/2.0);
-   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
+   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
                                       _tileSize.height/2.0);
 }
 
