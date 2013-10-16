@@ -18,7 +18,7 @@
 
 @implementation GameLayer
 
-#define MAX_VELOCITY 2.5
+#define MAX_VELOCITY 1.7
 
 - (void)setupVariables
 {
@@ -83,8 +83,7 @@
 
 - (id)init
 {
-   ccColor4B translucentWhite = ccc4(255,255,255,100);
-	if (self = [super initWithColor:translucentWhite])
+	if (self = [super init])
    {
       [self setupVariables];
       [self addBackButton];

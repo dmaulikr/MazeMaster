@@ -12,7 +12,7 @@
 @class MazeLayer;
 @class Player;
 
-@interface GameLayer : CCLayerColor
+@interface GameLayer : CCLayer
 {
    CGSize _windowSize;
    CGSize _tileSize;

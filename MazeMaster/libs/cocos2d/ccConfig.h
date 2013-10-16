@@ -255,8 +255,8 @@
  2 -- draw texture box
  */
 #ifndef CC_SPRITE_DEBUG_DRAW
-//#define CC_SPRITE_DEBUG_DRAW 0
-#define CC_SPRITE_DEBUG_DRAW 1
+#define CC_SPRITE_DEBUG_DRAW 0
+//#define CC_SPRITE_DEBUG_DRAW 1
 #endif
 
 
