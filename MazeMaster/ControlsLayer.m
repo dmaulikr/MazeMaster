@@ -18,23 +18,37 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 - (void)setupSwipeRecognizer:(UISwipeGestureRecognizer *)recognizer
 {
    // add the different gesture recognizers for the 4 directions
-   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                          action:@selector(handleSwipeFrom:)];
    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
    [self addGestureRecognizer:recognizer];
    [recognizer release];
 
-   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                          action:@selector(handleSwipeFrom:)];
    [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
    [self addGestureRecognizer:recognizer];
    [recognizer release];
 
-   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                          action:@selector(handleSwipeFrom:)];
    [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
    [self addGestureRecognizer:recognizer];
    [recognizer release];
 
-   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
+                                                          action:@selector(handleSwipeFrom:)];
    [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+}
+
+- (void)setupTapRecognizer:(UITapGestureRecognizer *)recognizer
+{
+   recognizer =
+      [[UITapGestureRecognizer alloc] initWithTarget:self
+                                              action:@selector(handleDoubleTapFromRecognizer:)];
+   recognizer.numberOfTapsRequired = 2;
    [self addGestureRecognizer:recognizer];
    [recognizer release];
 }
@@ -48,8 +62,8 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
       UISwipeGestureRecognizer *swipeRecognizer;
       [self setupSwipeRecognizer:swipeRecognizer];
 
-//      UITapGestureRecognizer *tapRecognizer;
-//      [self setupTapRecognizer:tapRecognizer];
+      UITapGestureRecognizer *tapRecognizer;
+      [self setupTapRecognizer:tapRecognizer];
    }
    
    return self;
@@ -59,6 +73,11 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
             shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
    return YES;
+}
+
+- (void)handleDoubleTapFromRecognizer:(UITapGestureRecognizer *)recognizer
+{
+   NSLog(@"double tap baby!");
 }
 
 // handles the swipe for each direction
