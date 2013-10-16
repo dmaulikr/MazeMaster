@@ -42,7 +42,7 @@
    [self addChild:tileSprite];
 }
 
-- (void)setupMazeTilesAndEdgesWithMaze:(Maze *)maze
+- (void)setupMazeTilesWithMaze:(Maze *)maze
 {
    for (NSMutableArray *tiles in maze.tiles)
       for (Tile *tile in tiles)
@@ -80,7 +80,7 @@
    if (self = [self init])
    {
       [self setupVariablesWithMaze:maze];
-      [self setupMazeTilesAndEdgesWithMaze:maze];
+      [self setupMazeTilesWithMaze:maze];
       [self setupMazeEdgesWithMaze:maze];
    }
    return self;
