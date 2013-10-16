@@ -15,35 +15,41 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 @implementation ControlsLayer
 
+- (void)setupSwipeRecognizer:(UISwipeGestureRecognizer *)recognizer
+{
+   // add the different gesture recognizers for the 4 directions
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+
+   recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
+   [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+}
+
 -(id) init
 {
    if ( self = [super init] )
    {
       [self setTouchEnabled:YES];
-      
-      // add the different gesture recognizers for the 4 directions
-      UISwipeGestureRecognizer *recognizer;
-      
-      recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-      [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-      [self addGestureRecognizer:recognizer];
-      [recognizer release];
-      
-      recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-      [recognizer setDirection:(UISwipeGestureRecognizerDirectionUp)];
-      [self addGestureRecognizer:recognizer];
-      [recognizer release];
-      
-      recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-      [recognizer setDirection:(UISwipeGestureRecognizerDirectionDown)];
-      [self addGestureRecognizer:recognizer];
-      [recognizer release];
-      
-      recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom:)];
-      [recognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-      [self addGestureRecognizer:recognizer];
-      [recognizer release];
-      
+
+      UISwipeGestureRecognizer *swipeRecognizer;
+      [self setupSwipeRecognizer:swipeRecognizer];
+
+//      UITapGestureRecognizer *tapRecognizer;
+//      [self setupTapRecognizer:tapRecognizer];
    }
    
    return self;
