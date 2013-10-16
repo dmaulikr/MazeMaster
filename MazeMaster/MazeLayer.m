@@ -9,6 +9,7 @@
 #import "MazeLayer.h"
 #import "Maze.h"
 #import "Tile.h"
+#import "TileSprite.h"
 
 @implementation MazeLayer
 
@@ -33,7 +34,7 @@
 - (void)addTileSpriteWithFilename:(NSString *)filename
                           forTile:(Tile *)tile
 {
-   CCSprite *tileSprite = [CCSprite spriteWithFile:filename];
+   TileSprite *tileSprite = [TileSprite spriteWithFile:filename];
    tile.tileSprite = tileSprite;
    
    tileSprite.anchorPoint = CGPointZero;

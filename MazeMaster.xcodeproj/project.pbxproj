@@ -150,6 +150,7 @@
 		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
 		8E88C94A180E31D200F7B872 /* blue_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88C948180E31D200F7B872 /* blue_tile.png */; };
 		8E88C94B180E31D200F7B872 /* blue_tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88C949180E31D200F7B872 /* blue_tile@2x.png */; };
+		8E88C94E180E524900F7B872 /* TileSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E88C94D180E524900F7B872 /* TileSprite.m */; };
 		8EA767F917DC0DE000624A43 /* MazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA767F817DC0DE000624A43 /* MazeLayer.m */; };
 		8EA767FD17E5274500624A43 /* tile_edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767FC17E5274500624A43 /* tile_edge_simple.png */; };
 		8EA7680417E527A900624A43 /* basic_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767FE17E527A900624A43 /* basic_tile.png */; };
@@ -467,6 +468,8 @@
 		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		8E88C948180E31D200F7B872 /* blue_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_tile.png; path = Resources/blue_tile.png; sourceTree = "<group>"; };
 		8E88C949180E31D200F7B872 /* blue_tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue_tile@2x.png"; path = "Resources/blue_tile@2x.png"; sourceTree = "<group>"; };
+		8E88C94C180E524900F7B872 /* TileSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileSprite.h; sourceTree = "<group>"; };
+		8E88C94D180E524900F7B872 /* TileSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileSprite.m; sourceTree = "<group>"; };
 		8EA767F717DC0DE000624A43 /* MazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MazeLayer.h; sourceTree = "<group>"; };
 		8EA767F817DC0DE000624A43 /* MazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MazeLayer.m; sourceTree = "<group>"; };
 		8EA767FC17E5274500624A43 /* tile_edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_simple.png; path = Resources/tile_edge_simple.png; sourceTree = "<group>"; };
@@ -592,6 +595,8 @@
 				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
 				DAF6E4F017BB220B003EED00 /* Tile.h */,
+				8E88C94C180E524900F7B872 /* TileSprite.h */,
+				8E88C94D180E524900F7B872 /* TileSprite.m */,
 				DAF6E4F117BB220B003EED00 /* Tile.m */,
 			);
 			path = MazeMaster;
@@ -1096,6 +1101,7 @@
 				8E38CC7517AF1F9000EE917C /* CCActionGrid3D.m in Sources */,
 				8E38CC7817AF1F9000EE917C /* CCActionInstant.m in Sources */,
 				8E38CC7B17AF1F9000EE917C /* CCActionInterval.m in Sources */,
+				8E88C94E180E524900F7B872 /* TileSprite.m in Sources */,
 				8E38CC7E17AF1F9000EE917C /* CCActionManager.m in Sources */,
 				8E38CC8117AF1F9000EE917C /* CCActionPageTurn3D.m in Sources */,
 				8E38CC8417AF1F9000EE917C /* CCActionProgressTimer.m in Sources */,
