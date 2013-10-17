@@ -51,15 +51,8 @@
                       withPosition:(CGPoint)playerPosition
                         withPlayer:(Player *)player
 {
-   // check the position of the player versus the position on the maze
-   
-//   int xTile = ((playerPosition.x + (tileSize.width / 2) + ((player.boundingBox.size.width) / 2)) / tileSize.width) + 1;
-//   int yTile = ((playerPosition.y + (tileSize.height / 2) + ((player.boundingBox.size.height)/ 2)) / tileSize.height) + 1;
-   
    int xTile = (playerPosition.x / tileSize.width) + 1;
    int yTile = (playerPosition.y / tileSize.height) + 1;
-   
-//   NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
 
    _tileWithPlayer = [self tileAtPosition:CGPointMake(xTile, yTile)];
 }
@@ -68,25 +61,20 @@
                    withPosition:(CGPoint)playerPosition
                      withPlayer:(Player *)player
 {
-   // check the position of the player versus the position on the maze
-   
-   //   int xTile = ((playerPosition.x + (tileSize.width / 2) + ((player.boundingBox.size.width) / 2)) / tileSize.width) + 1;
-   //   int yTile = ((playerPosition.y + (tileSize.height / 2) + ((player.boundingBox.size.height)/ 2)) / tileSize.height) + 1;
-   
    int xTile = (playerPosition.x / tileSize.width) + 1;
    int yTile = (playerPosition.y / tileSize.height) + 1;
-   
-   //   NSLog(@"tilex: %d  tiley: %d  playerPosition: %fx%f", xTile, yTile, playerPosition.x, playerPosition.y);
    
    return [self tileAtPosition:CGPointMake(xTile, yTile)];
 }
 
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates
 {
-   if (tileCoordinates.x == 0 || tileCoordinates.y == 0)
+   if (tileCoordinates.x == 0 ||
+       tileCoordinates.y == 0)
       return nil;
 
-   if (tileCoordinates.x > _mazeDimensions.cols || tileCoordinates.y > _mazeDimensions.rows)
+   if (tileCoordinates.x > _mazeDimensions.cols ||
+       tileCoordinates.y > _mazeDimensions.rows)
       return nil;
    
    return [[_tiles objectAtIndex:tileCoordinates.y - 1] objectAtIndex:tileCoordinates.x - 1];
