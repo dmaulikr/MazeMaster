@@ -145,6 +145,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    location = [[CCDirector sharedDirector] convertToGL:location];
    switch (touch.tapCount) {
       case 2:
+         NSLog(@"single tap canceled");
          [NSObject cancelPreviousPerformRequestsWithTarget:self
                                                   selector:@selector(handleSingleTap:)
                                                     object:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil]];
@@ -152,7 +153,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
          break;
       case 1:
          _lastTouchLocation = ccp(location.x,location.y);
-         [self performSelector:@selector(handleSingleTap:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil] afterDelay:.15];
+         [self performSelector:@selector(handleSingleTap:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil] afterDelay:.17];
          break;
    }
 }
