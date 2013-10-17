@@ -8,6 +8,7 @@
 
 #import "ControlsLayer.h"
 #import "CCNode+SFGestureRecognizers.h"
+#import "DoubleTouchDownRecognizer.h"
 #import "GameController.h"
 #import "Player.h"
 
@@ -15,10 +16,10 @@
 
 - (void)setupMultiTouchRecognizer
 {
-   UITapGestureRecognizer *recognizer;
-   recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                        action:@selector(handleTwoFingerTap:)];
-   recognizer.numberOfTouchesRequired = 2;
+   DoubleTouchDownRecognizer *recognizer;
+   recognizer = [[DoubleTouchDownRecognizer alloc] initWithTarget:self
+                                                           action:@selector(handleTwoFingerPress:)];
+   recognizer.delegate = self;
    [self addGestureRecognizer:recognizer];
    [recognizer release];
 }
@@ -120,14 +121,18 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    }
 }
 
-- (void)handleTwoFingerTap:(UITapGestureRecognizer *)recognizer
+- (void)handleTwoFingerPress:(UITapGestureRecognizer *)recognizer
 {
    [GameController sharedController].playerShouldMove = NO;
 }
 
 - (void)handleSingleTap:(NSArray *)touchPoint
 {
-   [GameController sharedController].playerShouldMove = NO;
+   CGPoint location = ccp([[touchPoint objectAtIndex:0] integerValue],
+                          [[touchPoint objectAtIndex:1] integerValue]);
+
+   if ([_delegate respondsToSelector:@selector(handleTapAtLocation:)])
+      [_delegate handleTapAtLocation:location];
 }
 
 - (void)handleDoubleTap:(NSArray *)touchPoint

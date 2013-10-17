@@ -11,6 +11,7 @@
 
 @protocol ControlsActionDelegate <NSObject>
 @optional
+   - (void)handleTapAtLocation:(CGPoint)location;
    - (void)handleDoubleTapAtLocation:(CGPoint)location;
 @end
 

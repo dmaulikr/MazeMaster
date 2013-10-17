@@ -431,14 +431,25 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    }
 }
 
-// ControlsActionDelegate optional protocol
+- (Tile *)getTileAtScreenLocation:(CGPoint)screenLocation
+{
+   CGPoint realLocation = ccp(screenLocation.x - _mazeLayer.position.x,
+                              screenLocation.y - _mazeLayer.position.y);
+   return [[GameController sharedController].level.maze getTileContainingPlayer:_tileSize
+                                                                   withPosition:realLocation
+                                                                     withPlayer:nil];
+}
+
+// ControlsActionDelegate optional protocols
+- (void)handleTapAtLocation:(CGPoint)location
+{
+   Tile *tile = [self getTileAtScreenLocation:location];
+   NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
+}
+
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
-   CGPoint realLocation = ccp(location.x - _mazeLayer.position.x,
-                              location.y - _mazeLayer.position.y);
-   Tile *tile = [[GameController sharedController].level.maze getTileContainingPlayer:_tileSize
-                                                                         withPosition:realLocation
-                                                                           withPlayer:nil];
+   Tile *tile = [self getTileAtScreenLocation:location];
    NSLog(@"double tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 

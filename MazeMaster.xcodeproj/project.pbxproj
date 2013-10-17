@@ -159,6 +159,7 @@
 		8EA7680817E527A900624A43 /* tron_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680217E527A900624A43 /* tron_edge.png */; };
 		8EA7680917E527A900624A43 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680317E527A900624A43 /* tron_tile.png */; };
 		8EA7680B17E57C2200624A43 /* edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680A17E57C2200624A43 /* edge_simple.png */; };
+		8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */; };
 		8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.m */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
@@ -477,6 +478,8 @@
 		8EA7680217E527A900624A43 /* tron_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tron_edge.png; path = Resources/tron_edge.png; sourceTree = "<group>"; };
 		8EA7680317E527A900624A43 /* tron_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tron_tile.png; path = Resources/tron_tile.png; sourceTree = "<group>"; };
 		8EA7680A17E57C2200624A43 /* edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edge_simple.png; path = Resources/edge_simple.png; sourceTree = "<group>"; };
+		8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleTouchDownRecognizer.h; sourceTree = "<group>"; };
+		8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleTouchDownRecognizer.m; sourceTree = "<group>"; };
 		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		8EF0063B17B1E66B009046C4 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
@@ -563,6 +566,8 @@
 				4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */,
 				DA503CDC17C301F3005CA59D /* ControlsLayer.h */,
 				DA503CDD17C301F3005CA59D /* ControlsLayer.m */,
+				8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */,
+				8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */,
 				DAF6E4EA17BB2194003EED00 /* Edge.h */,
 				DAF6E4EB17BB2194003EED00 /* Edge.m */,
 				DA3731C317BB170A007694C4 /* GameController.h */,
@@ -1166,6 +1171,7 @@
 				8E38CD6117AF1F9100EE917C /* CCGLView.m in Sources */,
 				8E38CD6417AF1F9100EE917C /* CCWindow.m in Sources */,
 				8E38CD6717AF1F9100EE917C /* base64.c in Sources */,
+				8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */,
 				8E38CD6B17AF1F9100EE917C /* CCArray.m in Sources */,
 				8E38CD6E17AF1F9200EE917C /* ccCArray.m in Sources */,
 				8E38CD7117AF1F9200EE917C /* CCFileUtils.m in Sources */,
