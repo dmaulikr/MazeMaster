@@ -79,23 +79,18 @@
       case e_NORTH:
          return _northEdge;
          break;
-
       case e_SOUTH:
          return _southEdge;
          break;
-
       case e_EAST:
          return _eastEdge;
          break;
-
       case e_WEST:
          return _westEdge;
          break;
-
       default:
          break;
    }
-   
    return nil;
 }
 
