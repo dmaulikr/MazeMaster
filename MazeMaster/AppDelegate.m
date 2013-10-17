@@ -136,6 +136,7 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+   [window_ setUserInteractionEnabled:YES];
 	
 	return YES;
 }

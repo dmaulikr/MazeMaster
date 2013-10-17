@@ -50,6 +50,9 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    {
       _touchEnabled = YES;
       [self setupSwipeRecognizer];
+      [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self
+                                                                priority:INT_MIN+1
+                                                         swallowsTouches:YES];
    }
    
    return self;
@@ -59,13 +62,6 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
             shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
    return YES;
-}
-
-- (void)handleDoubleTapFromRecognizer:(UITapGestureRecognizer *)recognizer
-{
-   NSLog(@"recognizer: %@", recognizer);
-   NSLog(@"location: %@", NSStringFromCGPoint([recognizer locationOfTouch:0
-                                                                   inView:[CCDirector sharedDirector].view]));
 }
 
 // handles the swipe for each direction
@@ -115,13 +111,60 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    }
 }
 
--(void) ccTouchesEnded:(NSSet *)touches
-             withEvent:(UIEvent *)event
+//-(void) ccTouchesEnded:(NSSet *)touches
+//             withEvent:(UIEvent *)event
+//{
+//   // TODO decelerate
+//   GameController * gameController = [GameController sharedController];
+//   gameController.playerShouldMove = NO;
+////   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
+//}
+
+- (void)handleSingleTap:(NSArray *)touchPoint
 {
-   // TODO decelerate
+   NSLog(@"single tap!");
    GameController * gameController = [GameController sharedController];
    gameController.playerShouldMove = NO;
-//   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
+}
+
+- (void)handleDoubleTap:(NSArray *)touchPoint
+{
+   NSLog(@"double tap!");
+}
+
+//- (void)ccTouchesBegan:(NSSet *)touches
+//             withEvent:(UIEvent *)event
+//{
+//   UITouch *touch = [touches anyObject];
+//   if (touch.tapCount == 2)
+//   {
+//      //This will cancel the singleTap action
+//      [NSObject cancelPreviousPerformRequestsWithTarget:self];
+//   }
+//}
+
+- (BOOL)ccTouchBegan:(UITouch *)touch
+           withEvent:(UIEvent *)event
+{
+   return YES;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch
+             withEvent:(UIEvent *)event
+{
+   CGPoint location = [touch locationInView:[touch view]];
+   switch (touch.tapCount) {
+      case 2:
+         [NSObject cancelPreviousPerformRequestsWithTarget:self
+                                                  selector:@selector(handleSingleTap:)
+                                                    object:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil]];
+         [self handleDoubleTap:[NSArray arrayWithObjects:[NSNumber numberWithInt:location.x],[NSNumber numberWithInt:location.y],nil]];
+         break;
+      case 1:
+         _lastTouchLocation = ccp(location.x,location.y);
+         [self performSelector:@selector(handleSingleTap:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil] afterDelay:.15];
+         break;
+   }
 }
 
 -(void) dealloc

@@ -9,8 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate>
+@interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate, CCTouchOneByOneDelegate>
 {
+   CGPoint _lastTouchLocation;
 }
 
 @end
