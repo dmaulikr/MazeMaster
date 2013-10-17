@@ -439,7 +439,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    Tile *tile = [[GameController sharedController].level.maze getTileContainingPlayer:_tileSize
                                                                          withPosition:realLocation
                                                                            withPlayer:nil];
-   NSLog(@"double tap at location: %@", NSStringFromCGPoint(tile.position));
+   NSLog(@"double tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
 // Helper class method that creates a Scene with the StartLayer as the only child.
