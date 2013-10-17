@@ -15,8 +15,9 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 @implementation ControlsLayer
 
-- (void)setupSwipeRecognizer:(UISwipeGestureRecognizer *)recognizer
+- (void)setupSwipeRecognizer
 {
+   UISwipeGestureRecognizer *recognizer;
    // add the different gesture recognizers for the 4 directions
    recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
                                                           action:@selector(handleSwipeFrom:)];
@@ -45,12 +46,10 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 -(id) init
 {
-   if ( self = [super init] )
+   if (self = [super init])
    {
-      [self setTouchEnabled:YES];
-
-      UISwipeGestureRecognizer *swipeRecognizer;
-      [self setupSwipeRecognizer:swipeRecognizer];
+      _touchEnabled = YES;
+      [self setupSwipeRecognizer];
    }
    
    return self;
@@ -81,19 +80,15 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
       case UISwipeGestureRecognizerDirectionRight:
          direction = e_EAST;
          break;
-         
       case UISwipeGestureRecognizerDirectionLeft:
          direction = e_WEST;
          break;
-         
       case UISwipeGestureRecognizerDirectionUp:
          direction = e_NORTH;
          break;
-         
       case UISwipeGestureRecognizerDirectionDown:
          direction = e_SOUTH;
          break;
-         
       default:
          break;
    }
