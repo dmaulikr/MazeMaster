@@ -115,7 +115,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
 - (void)handleDoubleTap:(NSArray *)touchPoint
 {
-   NSLog(@"double tap!");
+   CGPoint location = ccp([[touchPoint objectAtIndex:0] integerValue],
+                          [[touchPoint objectAtIndex:1] integerValue]);
+
+   if ([_delegate respondsToSelector:@selector(handleDoubleTapAtLocation:)])
+      [_delegate handleDoubleTapAtLocation:location];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch

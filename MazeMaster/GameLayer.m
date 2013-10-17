@@ -8,7 +8,6 @@
 
 #import "GameLayer.h"
 
-#import "ControlsLayer.h"
 #import "GameController.h"
 #import "Level.h"
 #import "LevelSelectLayer.h"
@@ -433,6 +432,16 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    }
 }
 
+- (void)handleDoubleTapAtLocation:(CGPoint)location
+{
+   CGPoint realLocation = ccp(location.x - _mazeLayer.position.x,
+                              location.y - _mazeLayer.position.y);
+   Tile *tile = [[GameController sharedController].level.maze getTileContainingPlayer:_tileSize
+                                                                         withPosition:realLocation
+                                                                           withPlayer:nil];
+   NSLog(@"double tap at location: %@", NSStringFromCGPoint(tile.position));
+}
+
 // Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
@@ -441,6 +450,8 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    MazeLayer *mazeLayer = [[[MazeLayer alloc] initWithMaze:gameController.level.maze] autorelease];
    GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
    ControlsLayer *controlsLayer = [ControlsLayer node];
+
+   controlsLayer.delegate = gameLayer;
 
    // TODO: get the tag to work, currently does nothing. Then we could take
    // the gameLayer out of the controlsLayer class

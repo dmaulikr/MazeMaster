@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "ControlsLayer.h"
 
 @class MazeLayer;
 @class Player;
-
-@interface GameLayer : CCLayer
+@interface GameLayer : CCLayer <ControlsActionDelegate>
 {
    CGSize _windowSize;
    CGSize _tileSize;

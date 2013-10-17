@@ -9,9 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@protocol ControlsActionDelegate <NSObject>
+@optional
+   - (void)handleDoubleTapAtLocation:(CGPoint)location;
+@end
+
 @interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate, CCTouchOneByOneDelegate>
 {
    CGPoint _lastTouchLocation;
 }
+
+@property (readwrite, retain) id<ControlsActionDelegate> delegate;
 
 @end
