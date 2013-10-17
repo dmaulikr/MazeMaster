@@ -148,7 +148,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)ccTouchEnded:(UITouch *)touch
              withEvent:(UIEvent *)event
 {
-   CGPoint location = [touch locationInView:[touch view]];
+   CGPoint location = [touch locationInView:touch.view];
    location = [[CCDirector sharedDirector] convertToGL:location];
 
    switch (touch.tapCount)
