@@ -153,6 +153,14 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 
    switch (touch.tapCount)
    {
+      case 1:
+         _lastTouchLocation = ccp(location.x, location.y);
+         [self performSelector:@selector(handleSingleTap:)
+                    withObject:[NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:_lastTouchLocation.x],
+                                [NSNumber numberWithInt:_lastTouchLocation.y], nil]
+                    afterDelay:.165];
+         break;
       case 2:
          [NSObject cancelPreviousPerformRequestsWithTarget:self
                                                   selector:@selector(handleSingleTap:)
@@ -164,13 +172,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                                                          [NSNumber numberWithInt:location.y],
                                                          nil]];
          break;
-      case 1:
-         _lastTouchLocation = ccp(location.x, location.y);
-         [self performSelector:@selector(handleSingleTap:)
-                    withObject:[NSArray arrayWithObjects:
-                                [NSNumber numberWithInt:_lastTouchLocation.x],
-                                [NSNumber numberWithInt:_lastTouchLocation.y], nil]
-                    afterDelay:.165];
+      default:
          break;
    }
 }
