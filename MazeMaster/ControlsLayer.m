@@ -17,7 +17,7 @@
 {
    UITapGestureRecognizer *recognizer;
    recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                        action:@selector(handleDoubleTouchDown:)];
+                                                        action:@selector(handleTwoFingerTap:)];
    recognizer.numberOfTouchesRequired = 2;
    [self addGestureRecognizer:recognizer];
    [recognizer release];
@@ -120,7 +120,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    }
 }
 
-- (void)handleDoubleTouchDown:(UITapGestureRecognizer *)recognizer
+- (void)handleTwoFingerTap:(UITapGestureRecognizer *)recognizer
 {
    [GameController sharedController].playerShouldMove = NO;
 }
