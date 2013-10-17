@@ -73,7 +73,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 }
 
 // handles the swipe for each direction
--(void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
 {
    // TODO: that'd be nice to get the tags working instead of using the game controller...
    
