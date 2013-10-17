@@ -77,6 +77,8 @@
       default:
          break;
    }
+   
+   return nil;
 }
 
 - (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction
@@ -102,6 +104,8 @@
       default:
          break;
    }
+   
+   return nil;
 }
 
 @end
