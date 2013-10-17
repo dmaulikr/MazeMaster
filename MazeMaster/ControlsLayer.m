@@ -132,17 +132,6 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    NSLog(@"double tap!");
 }
 
-//- (void)ccTouchesBegan:(NSSet *)touches
-//             withEvent:(UIEvent *)event
-//{
-//   UITouch *touch = [touches anyObject];
-//   if (touch.tapCount == 2)
-//   {
-//      //This will cancel the singleTap action
-//      [NSObject cancelPreviousPerformRequestsWithTarget:self];
-//   }
-//}
-
 - (BOOL)ccTouchBegan:(UITouch *)touch
            withEvent:(UIEvent *)event
 {
@@ -153,6 +142,7 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
              withEvent:(UIEvent *)event
 {
    CGPoint location = [touch locationInView:[touch view]];
+   location = [[CCDirector sharedDirector] convertToGL:location];
    switch (touch.tapCount) {
       case 2:
          [NSObject cancelPreviousPerformRequestsWithTarget:self
