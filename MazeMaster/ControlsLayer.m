@@ -122,9 +122,8 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 
 - (void)handleSingleTap:(NSArray *)touchPoint
 {
-   NSLog(@"single tap!");
-   GameController * gameController = [GameController sharedController];
-   gameController.playerShouldMove = NO;
+//   NSLog(@"single tap!");
+   [GameController sharedController].playerShouldMove = NO;
 }
 
 - (void)handleDoubleTap:(NSArray *)touchPoint
@@ -143,17 +142,26 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
 {
    CGPoint location = [touch locationInView:[touch view]];
    location = [[CCDirector sharedDirector] convertToGL:location];
-   switch (touch.tapCount) {
+   switch (touch.tapCount)
+   {
       case 2:
-         NSLog(@"single tap canceled");
          [NSObject cancelPreviousPerformRequestsWithTarget:self
                                                   selector:@selector(handleSingleTap:)
-                                                    object:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil]];
-         [self handleDoubleTap:[NSArray arrayWithObjects:[NSNumber numberWithInt:location.x],[NSNumber numberWithInt:location.y],nil]];
+                                                    object:[NSArray arrayWithObjects:
+                                                            [NSNumber numberWithInt:_lastTouchLocation.x],
+                                                            [NSNumber numberWithInt:_lastTouchLocation.y],
+                                                            nil]];
+         [self handleDoubleTap:[NSArray arrayWithObjects:[NSNumber numberWithInt:location.x],
+                                                         [NSNumber numberWithInt:location.y],
+                                                         nil]];
          break;
       case 1:
-         _lastTouchLocation = ccp(location.x,location.y);
-         [self performSelector:@selector(handleSingleTap:) withObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:_lastTouchLocation.x],[NSNumber numberWithInt:_lastTouchLocation.y],nil] afterDelay:.17];
+         _lastTouchLocation = ccp(location.x, location.y);
+         [self performSelector:@selector(handleSingleTap:)
+                    withObject:[NSArray arrayWithObjects:
+                                [NSNumber numberWithInt:_lastTouchLocation.x],
+                                [NSNumber numberWithInt:_lastTouchLocation.y], nil]
+                    afterDelay:.17];
          break;
    }
 }
