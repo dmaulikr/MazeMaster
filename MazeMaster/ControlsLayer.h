@@ -14,7 +14,8 @@
    - (void)handleDoubleTapAtLocation:(CGPoint)location;
 @end
 
-@interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate, CCTouchOneByOneDelegate>
+@interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate,
+                                    CCTouchOneByOneDelegate>
 {
    CGPoint _lastTouchLocation;
 }
