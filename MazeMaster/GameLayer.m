@@ -431,6 +431,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    }
 }
 
+// ControlsActionDelegate optional protocol
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
    CGPoint realLocation = ccp(location.x - _mazeLayer.position.x,

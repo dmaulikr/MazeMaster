@@ -49,15 +49,12 @@
       case 1:
          [self setupEdgesForLevel1];
          break;
-
       case 2:
          [self setupEdgesForLevel2];
          break;
-
       case 3:
          [self setupEdgesForLevel3];
          break;
-
       default:
          break;
    }
