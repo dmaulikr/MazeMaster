@@ -442,7 +442,6 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    NSLog(@"double tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
-// Helper class method that creates a Scene with the StartLayer as the only child.
 + (CCScene *)scene
 {
    GameController *gameController = [GameController sharedController];
