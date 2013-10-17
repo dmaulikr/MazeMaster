@@ -13,6 +13,16 @@
 
 @implementation ControlsLayer
 
+- (void)setupMultiTouchRecognizer
+{
+   UITapGestureRecognizer *recognizer;
+   recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                        action:@selector(handleDoubleTouchDown:)];
+   recognizer.numberOfTouchesRequired = 2;
+   [self addGestureRecognizer:recognizer];
+   [recognizer release];
+}
+
 - (void)setupSwipeRecognizer
 {
    UISwipeGestureRecognizer *recognizer;
@@ -48,6 +58,7 @@
    {
       _touchEnabled = YES;
       [self setupSwipeRecognizer];
+      [self setupMultiTouchRecognizer];
       [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self
                                                                 priority:INT_MIN+1
                                                          swallowsTouches:YES];
@@ -109,6 +120,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    }
 }
 
+- (void)handleDoubleTouchDown:(UITapGestureRecognizer *)recognizer
+{
+   [GameController sharedController].playerShouldMove = NO;
+}
+
 - (void)handleSingleTap:(NSArray *)touchPoint
 {
    [GameController sharedController].playerShouldMove = NO;
@@ -153,7 +169,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
                     withObject:[NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:_lastTouchLocation.x],
                                 [NSNumber numberWithInt:_lastTouchLocation.y], nil]
-                    afterDelay:.17];
+                    afterDelay:.165];
          break;
    }
 }
