@@ -60,24 +60,15 @@
    {
       case e_NORTH:
          return _northEdge.northTile;
-         break;
-
       case e_SOUTH:
          return _southEdge.southTile;
-         break;
-
       case e_EAST:
          return _eastEdge.eastTile;
-         break;
-
       case e_WEST:
          return _westEdge.westTile;
-         break;
-
       default:
          break;
    }
-   
    return nil;
 }
 
