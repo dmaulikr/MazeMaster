@@ -24,7 +24,6 @@
    _windowSize = [[CCDirector sharedDirector] winSize];
    _tileSize = CGSizeMake(44, 44);
    _outsideEdgePadding = 0;
-
    _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/4.0,
                                       _tileSize.width/2.0);
    _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
@@ -451,6 +450,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    GameLayer *gameLayer = [[[GameLayer alloc] initWithMaze:mazeLayer] autorelease];
    ControlsLayer *controlsLayer = [ControlsLayer node];
 
+   // this is so the game layer can respond to double tap events
    controlsLayer.delegate = gameLayer;
 
    // TODO: get the tag to work, currently does nothing. Then we could take
