@@ -11,8 +11,6 @@
 #import "GameController.h"
 #import "Player.h"
 
-static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKey";
-
 @implementation ControlsLayer
 
 - (void)setupSwipeRecognizer
@@ -54,12 +52,11 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
                                                                 priority:INT_MIN+1
                                                          swallowsTouches:YES];
    }
-   
    return self;
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
-            shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
    return YES;
 }
@@ -111,18 +108,8 @@ static NSString * const UIGestureRecognizerNodeKey = @"UIGestureRecognizerNodeKe
    }
 }
 
-//-(void) ccTouchesEnded:(NSSet *)touches
-//             withEvent:(UIEvent *)event
-//{
-//   // TODO decelerate
-//   GameController * gameController = [GameController sharedController];
-//   gameController.playerShouldMove = NO;
-////   gameController.gameLayer.playerSprite.playerVelocity = CGPointMake(1.0, 1.0);
-//}
-
 - (void)handleSingleTap:(NSArray *)touchPoint
 {
-//   NSLog(@"single tap!");
    [GameController sharedController].playerShouldMove = NO;
 }
 
