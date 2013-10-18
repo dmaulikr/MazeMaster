@@ -137,11 +137,11 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    
    // only call the move player function if it is the first swipe (because it will
    // be called automatically at the end of the move)
-   if ( !gameController.isPlayerMoving )
+   if ( !gameController.playerIsMoving )
    {
       if ( [gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] )
       {
-         gameController.isPlayerMoving = YES;
+         gameController.playerIsMoving = YES;
          gameController.playerShouldMove = YES;
       }
    }

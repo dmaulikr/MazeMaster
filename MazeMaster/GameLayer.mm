@@ -268,7 +268,7 @@ struct Opaque
 - (void)stopPlayer
 {
    GameController *gameController = [GameController sharedController];
-   gameController.isPlayerMoving = NO;
+   gameController.playerIsMoving = NO;
    [gameController clearSwipeStack];
    gameController.playerDirection = e_NONE;
 }
@@ -382,7 +382,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
       return;
    }
    
-   if (gameController.isPlayerMoving)
+   if (gameController.playerIsMoving)
    {
       if ([self direction:[gameController topSwipeStack]
     isOppositeToDirection:gameController.playerDirection])
