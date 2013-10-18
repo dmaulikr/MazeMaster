@@ -240,7 +240,6 @@ struct Opaque
    if ( _playerSprite.playerVelocity.x <= MAX_VELOCITY )
       _playerSprite.playerVelocity = ccp(_playerSprite.playerVelocity.x + 0.3,
                                          _playerSprite.playerVelocity.y + 0.3);
-   
    switch ( direction )
    {
       case e_NORTH:
@@ -410,7 +409,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
          diffY = destination.y - _playerSprite.position.y;
       }
       
-      CCNode *moveableObject = (_moveMaze ? _mazeLayer : _playerSprite);
+      CCNode *moveableObject = (_moveMaze)? _mazeLayer : _playerSprite;
       moveableObject.position = destination;
       
       _playerSprite.absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,

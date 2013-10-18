@@ -87,7 +87,7 @@
       [self setupMultiTouchRecognizer];
       [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self
                                                                 priority:INT_MIN+1
-                                                         swallowsTouches:YES];
+                                                         swallowsTouches:NO];
       [self addBackButton];
    }
    return self;
