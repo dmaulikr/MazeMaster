@@ -10,9 +10,34 @@
 #import "CCNode+SFGestureRecognizers.h"
 #import "DoubleTouchDownRecognizer.h"
 #import "GameController.h"
+#import "LevelSelectLayer.h"
 #import "Player.h"
 
 @implementation ControlsLayer
+
+- (void)addBackButton
+{
+   CGSize windowSize = [[CCDirector sharedDirector] winSize];
+
+   CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
+                                                   selectedImage:@"Arrow.png"];
+   backButton.scale = .25;
+   backButton.rotation = 180;
+   backButton.position = ccp(30, windowSize.height - 30);
+   [backButton setBlock:
+    ^(id sender)
+    {
+       CCDirector *director = [CCDirector sharedDirector];
+       CCScene *levelSelectScene = [LevelSelectLayer scene];
+       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
+                                                                     scene:levelSelectScene]];
+    }];
+
+   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
+   backButtonMenu.position = CGPointZero;
+
+   [self addChild:backButtonMenu];
+}
 
 - (void)setupMultiTouchRecognizer
 {
@@ -63,6 +88,7 @@
       [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self
                                                                 priority:INT_MIN+1
                                                          swallowsTouches:YES];
+      [self addBackButton];
    }
    return self;
 }

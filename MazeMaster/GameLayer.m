@@ -30,30 +30,6 @@
                                       _tileSize.height/2.0);
 }
 
-- (void)addBackButton
-{
-   CGSize windowSize = [[CCDirector sharedDirector] winSize];
-
-   CCMenuItem *backButton = [CCMenuItemImage itemWithNormalImage:@"Arrow.png"
-                                                   selectedImage:@"Arrow.png"];
-   backButton.scale = .25;
-   backButton.rotation = 180;
-   backButton.position = ccp(30, windowSize.height - 30);
-   [backButton setBlock:
-    ^(id sender)
-    {
-       CCDirector *director = [CCDirector sharedDirector];
-       CCScene *levelSelectScene = [LevelSelectLayer scene];
-       [director replaceScene:[CCTransitionSlideInL transitionWithDuration:0.5
-                                                                     scene:levelSelectScene]];
-    }];
-   
-   CCMenu *backButtonMenu = [CCMenu menuWithItems:backButton, nil];
-   backButtonMenu.position = CGPointZero;
-
-   [self addChild:backButtonMenu];
-}
-
 - (void)setupPlayer
 {
    _playerSprite = [Player playerWithFile:@"astronaut_front.png"];
@@ -84,10 +60,7 @@
 	if (self = [super init])
    {
       [self setupVariables];
-      [self addBackButton];
       [self setupPlayer];
-
-      [self setTouchEnabled:YES];
       [self scheduleUpdate];
 	}
 	return self;
