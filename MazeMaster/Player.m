@@ -10,21 +10,24 @@
 
 @implementation Player
 
-@synthesize playerVelocity = _playerVelocity;
-@synthesize absolutePosition = _absolutePosition;
-
 -(id)initWithFile:(NSString *)filename
 {
-   if (self == [super initWithFile:filename])
+   if (self = [super initWithFile:filename])
    {
-      _playerVelocity = CGPointZero;
+      // stuff
    }
    return self;
 }
 
+-(void) attack
+{
+   NSLog(@"Player attack");
+}
+
 +(Player *) playerWithFile:(NSString *)filename
 {
-   return [[[self alloc] initWithFile:filename] autorelease];
+   // TODO: this is weird
+   return (Player *)[super characterWithFile:filename];
 }
 
 - (void)dealloc

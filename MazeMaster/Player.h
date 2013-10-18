@@ -8,16 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "MMCharacter.h"
 
-@interface Player : CCSprite
+@interface Player : MMCharacter
 {
-   CGPoint _payerVelocity;
-   CGPoint _absolutePosition;
 }
 
-@property (readwrite, assign) CGPoint playerVelocity;
-@property (readwrite, assign) CGPoint absolutePosition;
-
+-(id) initWithFile:(NSString *)filename;
+-(void) attack;
 +(Player *) playerWithFile:(NSString *)filename;
 
 @end
