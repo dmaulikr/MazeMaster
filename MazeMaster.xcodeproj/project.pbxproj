@@ -160,7 +160,8 @@
 		8EA7680917E527A900624A43 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680317E527A900624A43 /* tron_tile.png */; };
 		8EA7680B17E57C2200624A43 /* edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680A17E57C2200624A43 /* edge_simple.png */; };
 		8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */; };
-		8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.m */; };
+		8EB6CA1E1810F5CB00F5D267 /* PathFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */; };
+		8EF0063C17B1E66C009046C4 /* GameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.mm */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
 		DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C117BB119B007694C4 /* LevelFactory.m */; };
@@ -480,8 +481,10 @@
 		8EA7680A17E57C2200624A43 /* edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edge_simple.png; path = Resources/edge_simple.png; sourceTree = "<group>"; };
 		8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleTouchDownRecognizer.h; sourceTree = "<group>"; };
 		8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleTouchDownRecognizer.m; sourceTree = "<group>"; };
+		8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PathFinder.mm; path = ../PathFinder.mm; sourceTree = "<group>"; };
+		8EB6CA1D1810F5CB00F5D267 /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathFinder.h; path = ../PathFinder.h; sourceTree = "<group>"; };
 		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
-		8EF0063B17B1E66B009046C4 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
+		8EF0063B17B1E66B009046C4 /* GameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameLayer.mm; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
 		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
 		DA3731C017BB119B007694C4 /* LevelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelFactory.h; sourceTree = "<group>"; };
@@ -560,6 +563,8 @@
 		8E38CC4917AF1F9000EE917C /* MazeMaster */ = {
 			isa = PBXGroup;
 			children = (
+				8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */,
+				8EB6CA1D1810F5CB00F5D267 /* PathFinder.h */,
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */,
@@ -573,7 +578,7 @@
 				DA3731C317BB170A007694C4 /* GameController.h */,
 				DA3731C417BB170A007694C4 /* GameController.m */,
 				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
-				8EF0063B17B1E66B009046C4 /* GameLayer.m */,
+				8EF0063B17B1E66B009046C4 /* GameLayer.mm */,
 				8E38CDE017AF1F9200EE917C /* IntroLayer.h */,
 				8E38CDE117AF1F9200EE917C /* IntroLayer.m */,
 				DA3731C617BB174E007694C4 /* Level.h */,
@@ -1186,6 +1191,7 @@
 				8E38CD9117AF1F9200EE917C /* CDAudioManager.m in Sources */,
 				8E38CD9517AF1F9200EE917C /* CDOpenALSupport.m in Sources */,
 				8E38CD9817AF1F9200EE917C /* CDXMacOSXSupport.m in Sources */,
+				8EB6CA1E1810F5CB00F5D267 /* PathFinder.mm in Sources */,
 				8E38CD9B17AF1F9200EE917C /* CDXPropertyModifierAction.m in Sources */,
 				8E38CD9E17AF1F9200EE917C /* CocosDenshion.m in Sources */,
 				8E38CDA217AF1F9200EE917C /* SimpleAudioEngine.m in Sources */,
@@ -1206,7 +1212,7 @@
 				8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */,
 				8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */,
 				8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */,
-				8EF0063C17B1E66C009046C4 /* GameLayer.m in Sources */,
+				8EF0063C17B1E66C009046C4 /* GameLayer.mm in Sources */,
 				DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */,
 				DA3731C517BB170A007694C4 /* GameController.m in Sources */,
 				DA3731C817BB174E007694C4 /* Level.m in Sources */,
