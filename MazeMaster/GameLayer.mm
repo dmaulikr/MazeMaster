@@ -15,6 +15,13 @@
 #import "Player.h"
 #import "Tile.h"
 
+#include "PathFinder.h"
+
+struct Opaque
+{
+   PathFinder *pathFinder;
+};
+
 @implementation GameLayer
 
 #define MAX_VELOCITY 1.7
@@ -28,6 +35,8 @@
                                       _tileSize.width/2.0);
    _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
                                       _tileSize.height/2.0);
+   _opaque = new struct Opaque;
+   _opaque->pathFinder = new PathFinder();
 }
 
 - (void)setupPlayer
@@ -73,6 +82,12 @@
       [self setupMazeLayer:mazeLayer];
    }
    return self;
+}
+
+- (void)dealloc
+{
+   delete _opaque->pathFinder;
+   [super dealloc];
 }
 
 - (void)update:(ccTime)delta
@@ -424,6 +439,8 @@ isOppositeToDirection:(PlayerDirection)otherDirection
 {
    Tile *tile = [self getTileAtScreenLocation:location];
    NSLog(@"double tap at tile: %@", NSStringFromCGPoint(tile.position));
+
+   _opaque->pathFinder->getPathToTile(tile);
 }
 
 + (CCScene *)scene

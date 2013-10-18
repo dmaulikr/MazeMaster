@@ -160,7 +160,7 @@
 		8EA7680917E527A900624A43 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680317E527A900624A43 /* tron_tile.png */; };
 		8EA7680B17E57C2200624A43 /* edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680A17E57C2200624A43 /* edge_simple.png */; };
 		8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */; };
-		8EB6CA1E1810F5CB00F5D267 /* PathFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */; };
+		8EB6CA211810F78600F5D267 /* PathFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA201810F78600F5D267 /* PathFinder.mm */; };
 		8EF0063C17B1E66C009046C4 /* GameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.mm */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
@@ -481,8 +481,8 @@
 		8EA7680A17E57C2200624A43 /* edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edge_simple.png; path = Resources/edge_simple.png; sourceTree = "<group>"; };
 		8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleTouchDownRecognizer.h; sourceTree = "<group>"; };
 		8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleTouchDownRecognizer.m; sourceTree = "<group>"; };
-		8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = PathFinder.mm; path = ../PathFinder.mm; sourceTree = "<group>"; };
-		8EB6CA1D1810F5CB00F5D267 /* PathFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PathFinder.h; path = ../PathFinder.h; sourceTree = "<group>"; };
+		8EB6CA1F1810F78600F5D267 /* PathFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PathFinder.h; sourceTree = "<group>"; };
+		8EB6CA201810F78600F5D267 /* PathFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PathFinder.mm; sourceTree = "<group>"; };
 		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		8EF0063B17B1E66B009046C4 /* GameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameLayer.mm; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
@@ -563,8 +563,6 @@
 		8E38CC4917AF1F9000EE917C /* MazeMaster */ = {
 			isa = PBXGroup;
 			children = (
-				8EB6CA1C1810F5CB00F5D267 /* PathFinder.mm */,
-				8EB6CA1D1810F5CB00F5D267 /* PathFinder.h */,
 				8E38CDDA17AF1F9200EE917C /* AppDelegate.h */,
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */,
@@ -592,6 +590,8 @@
 				DA3731CA17BB1764007694C4 /* Maze.m */,
 				8EA767F717DC0DE000624A43 /* MazeLayer.h */,
 				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
+				8EB6CA1F1810F78600F5D267 /* PathFinder.h */,
+				8EB6CA201810F78600F5D267 /* PathFinder.mm */,
 				DA503CDF17C3292A005CA59D /* Player.h */,
 				DA503CE017C3292A005CA59D /* Player.m */,
 				8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */,
@@ -1159,6 +1159,7 @@
 				8E38CD2617AF1F9100EE917C /* CCTexturePVR.m in Sources */,
 				8E38CD2917AF1F9100EE917C /* CCTileMapAtlas.m in Sources */,
 				8E38CD2C17AF1F9100EE917C /* CCTMXLayer.m in Sources */,
+				8EB6CA211810F78600F5D267 /* PathFinder.mm in Sources */,
 				8E38CD2F17AF1F9100EE917C /* CCTMXObjectGroup.m in Sources */,
 				8E38CD3217AF1F9100EE917C /* CCTMXTiledMap.m in Sources */,
 				8E38CD3517AF1F9100EE917C /* CCTMXXMLParser.m in Sources */,
@@ -1191,7 +1192,6 @@
 				8E38CD9117AF1F9200EE917C /* CDAudioManager.m in Sources */,
 				8E38CD9517AF1F9200EE917C /* CDOpenALSupport.m in Sources */,
 				8E38CD9817AF1F9200EE917C /* CDXMacOSXSupport.m in Sources */,
-				8EB6CA1E1810F5CB00F5D267 /* PathFinder.mm in Sources */,
 				8E38CD9B17AF1F9200EE917C /* CDXPropertyModifierAction.m in Sources */,
 				8E38CD9E17AF1F9200EE917C /* CocosDenshion.m in Sources */,
 				8E38CDA217AF1F9200EE917C /* SimpleAudioEngine.m in Sources */,

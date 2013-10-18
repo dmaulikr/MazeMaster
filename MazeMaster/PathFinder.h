@@ -9,7 +9,7 @@
 #ifndef __MazeMaster__PathFinder__
 #define __MazeMaster__PathFinder__
 
-#include <iostream.h>
+#include <iostream>
 
 @class Tile;
 class PathFinder

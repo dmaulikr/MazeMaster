@@ -7,6 +7,8 @@
 //
 
 #include "PathFinder.h"
+
+#include <iostream>
 #import "Tile.h"
 
 PathFinder::PathFinder()
@@ -21,5 +23,5 @@ PathFinder::~PathFinder()
 
 void PathFinder::getPathToTile(Tile *tile)
 {
-   std::cout << "getting path!" << std::endl;
+   std::cout << "getting path to tile: " << tile.position.x << "," << tile.position.y << std::endl;
 }
