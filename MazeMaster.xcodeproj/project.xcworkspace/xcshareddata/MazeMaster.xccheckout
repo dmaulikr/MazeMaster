@@ -5,34 +5,34 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A447D96F-9737-48CB-A318-A0364D491A48</string>
+	<string>00ABFA45-FB1F-413E-8D0B-1F87B47F452D</string>
 	<key>IDESourceControlProjectName</key>
 	<string>MazeMaster</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B0E9CD39-B75A-42FF-BA72-497A66AA0DB6</key>
-		<string>http://github.com/gregoryklein/MazeMaster.git</string>
+		<key>6A831934-5C49-451A-9222-6BD5C67F45F9</key>
+		<string>http://github.com/gregoryklein/MazeMaster</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MazeMaster.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B0E9CD39-B75A-42FF-BA72-497A66AA0DB6</key>
+		<key>6A831934-5C49-451A-9222-6BD5C67F45F9</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://github.com/gregoryklein/MazeMaster.git</string>
+	<string>http://subversion.techsmith.com/svn/Prototypes/WordFinder/MazeMaster/MazeMaster.xcodeproj</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B0E9CD39-B75A-42FF-BA72-497A66AA0DB6</string>
+	<string>6A831934-5C49-451A-9222-6BD5C67F45F9</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B0E9CD39-B75A-42FF-BA72-497A66AA0DB6</string>
+			<string>6A831934-5C49-451A-9222-6BD5C67F45F9</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MazeMaster</string>
 		</dict>

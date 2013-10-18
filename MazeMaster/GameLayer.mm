@@ -17,10 +17,12 @@
 
 #include "PathFinder.h"
 
-struct Opaque
+@interface GameLayer()
 {
-   PathFinder *pathFinder;
-};
+   PathFinder *_pathFinder;
+}
+
+@end
 
 @implementation GameLayer
 
@@ -35,8 +37,8 @@ struct Opaque
                                       _tileSize.width/2.0);
    _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
                                       _tileSize.height/2.0);
-   _opaque = new struct Opaque;
-   _opaque->pathFinder = new PathFinder();
+   
+   _pathFinder = new PathFinder();
 }
 
 - (void)setupPlayer
@@ -86,7 +88,7 @@ struct Opaque
 
 - (void)dealloc
 {
-   delete _opaque->pathFinder;
+   delete _pathFinder;
    [super dealloc];
 }
 
@@ -429,13 +431,14 @@ isOppositeToDirection:(PlayerDirection)otherDirection
 // ControlsActionDelegate optional protocols
 - (void)handleTapAtLocation:(CGPoint)location
 {
-//   Tile *tile = [self getTileAtScreenLocation:location];
+   Tile *tile = [self getTileAtScreenLocation:location];
+   NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
    Tile *tile = [self getTileAtScreenLocation:location];
-   _opaque->pathFinder->getPathToTile(tile);
+   _pathFinder->getPathToTile(tile);
 }
 
 + (CCScene *)scene

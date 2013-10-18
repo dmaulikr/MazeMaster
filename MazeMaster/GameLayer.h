@@ -13,8 +13,6 @@
 @class MazeLayer;
 @class Player;
 
-struct Opaque;
-
 @interface GameLayer : CCLayer <ControlsActionDelegate>
 {
    CGSize _windowSize;
@@ -32,8 +30,6 @@ struct Opaque;
    float _yPlayerOffset;
    
    BOOL _moveMaze;
-
-   struct Opaque *_opaque;
 }
 
 @property (readwrite, assign) Player *playerSprite;
