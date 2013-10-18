@@ -51,9 +51,9 @@ struct Opaque
    _playerSprite.position = ccp(_xPlayerOffset, _yPlayerOffset);
    _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
 
-   [[GameController sharedController].level.maze updateTileContainingPlayer:_tileSize
-                                                             withPosition:_playerSprite.absolutePosition
-                                                               withPlayer:_playerSprite];
+   Maze *maze = [GameController sharedController].level.maze;
+   [maze updateTileContainingPlayerWithPlayerPosition:_playerSprite.absolutePosition
+                                          forTileSize:_tileSize];
    [self addChild:_playerSprite];
 }
 
@@ -423,23 +423,19 @@ isOppositeToDirection:(PlayerDirection)otherDirection
 {
    CGPoint realLocation = ccp(screenLocation.x - _mazeLayer.position.x,
                               screenLocation.y - _mazeLayer.position.y);
-   return [[GameController sharedController].level.maze getTileContainingPlayer:_tileSize
-                                                                   withPosition:realLocation
-                                                                     withPlayer:nil];
+   return [[GameController sharedController].level.maze getTileAtLocation:realLocation
+                                                              forTileSize:_tileSize];
 }
 
 // ControlsActionDelegate optional protocols
 - (void)handleTapAtLocation:(CGPoint)location
 {
-   Tile *tile = [self getTileAtScreenLocation:location];
-   NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
+//   Tile *tile = [self getTileAtScreenLocation:location];
 }
 
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
    Tile *tile = [self getTileAtScreenLocation:location];
-   NSLog(@"double tap at tile: %@", NSStringFromCGPoint(tile.position));
-
    _opaque->pathFinder->getPathToTile(tile);
 }
 

@@ -23,5 +23,6 @@ PathFinder::~PathFinder()
 
 void PathFinder::getPathToTile(Tile *tile)
 {
-   std::cout << "getting path to tile: " << tile.position.x << "," << tile.position.y << std::endl;
+   NSString *location = NSStringFromCGPoint(tile.position);
+   std::cout << "PathFinder: getting path to tile " << location.UTF8String << std::endl;
 }

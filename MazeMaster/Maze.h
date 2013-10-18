@@ -28,9 +28,12 @@ typedef struct {
 @property (readonly, assign) MazeDimensions mazeDimensions;
 @property (readwrite, assign) Tile *tileWithPlayer;
 
+- (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition
+                                         forTileSize:(CGSize)tileSize;
+- (Tile *)getTileAtLocation:(CGPoint)location
+                forTileSize:(CGSize)tileSize;
+
 -(void) testMaze;
--(void) updateTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player;
--(Tile *) getTileContainingPlayer:(CGSize)tileSize withPosition:(CGPoint)playerPosition withPlayer:(Player *)player;
 -(id) initWithRows:(int)rows withColumns:(int)cols;
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates;
 
