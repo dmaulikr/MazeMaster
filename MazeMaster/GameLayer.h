@@ -24,7 +24,6 @@
    NSRange _horizontalCenterRange;
 
    MazeLayer *_mazeLayer;
-   Player *_playerSprite;
 
    float _xPlayerOffset;
    float _yPlayerOffset;

@@ -7,6 +7,7 @@
 //
 
 #import "Level.h"
+#import "MMEnemy.h"
 
 @implementation Level
 
@@ -20,6 +21,7 @@
       _maze = [[Maze alloc] initWithRows:5
                              withColumns:5];
 //      [_maze testMaze];
+      [self initEnemies];
    }
    return self;
 }
@@ -30,14 +32,21 @@
    {
       _maze = [[Maze alloc] initWithRows:rows
                              withColumns:cols];
-//      [_maze testMaze];
+      [self initEnemies];
    }
    return self;
+}
+
+// TODO: general initialize function?
+-(void) initEnemies
+{
+   _enemies = [NSMutableArray array];
 }
 
 -(void) dealloc
 {
    [_maze release];
+   [_enemies release];
    [super dealloc];
 }
 
@@ -48,6 +57,7 @@
    {
       case 1:
          [self setupEdgesForLevel1];
+         [self setupEnemiesForLevel1];
          break;
       case 2:
          [self setupEdgesForLevel2];
@@ -57,6 +67,14 @@
          break;
       default:
          break;
+   }
+}
+
+-(void) addEnemiesToLayer:(CCLayer *)gameLayer
+{
+   for (MMEnemy *enemy in _enemies)
+   {
+      [gameLayer addChild:enemy];
    }
 }
 
@@ -160,6 +178,21 @@
              CGPointEqualToPoint(tilePos, ccp(12,12)))
             tile.northEdge.walkable = NO;
       }
+}
+
+-(void) setupEnemiesForLevel1
+{
+   MMEnemy *enemy = [[MMEnemy alloc] initWithFile:@"astronaut_front.png"];
+   enemy.currentTile = [_maze tileAtPosition:CGPointMake(5,5)];
+   enemy.absolutePosition = enemy.currentTile.position;
+   enemy.scale = 1.8;
+   [_enemies addObject:enemy];
+   
+   enemy = [[MMEnemy alloc] initWithFile:@"astronaut_front.png"];
+   enemy.currentTile = [_maze tileAtPosition:CGPointMake(8,3)];
+   enemy.absolutePosition = enemy.currentTile.position;
+   enemy.scale = 1.8;
+   [_enemies addObject:enemy];
 }
 
 - (void)setupEdgesForLevel2

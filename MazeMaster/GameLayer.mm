@@ -1,3 +1,4 @@
+
 //
 //  GameLayer.m
 //  MazeMaster
@@ -73,6 +74,8 @@
       [self setupVariables];
       [self setupPlayer];
       [self scheduleUpdate];
+      
+      [[GameController sharedController].level addEnemiesToLayer:self];
 	}
 	return self;
 }
@@ -95,6 +98,7 @@
 - (void)update:(ccTime)delta
 {
    [self movePlayer];
+   [self moveEnemies];
 }
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
@@ -239,25 +243,25 @@
    
    gameController.playerDirection = direction;
    
-   if ( _playerSprite.playerVelocity.x <= MAX_VELOCITY )
-      _playerSprite.playerVelocity = ccp(_playerSprite.playerVelocity.x + 0.3,
-                                         _playerSprite.playerVelocity.y + 0.3);
+   if ( _playerSprite.velocity.x <= MAX_VELOCITY )
+      _playerSprite.velocity = ccp(_playerSprite.velocity.x + 0.3,
+                                         _playerSprite.velocity.y + 0.3);
    switch ( direction )
    {
       case e_NORTH:
          x = 0;
-         y = _playerSprite.playerVelocity.y;
+         y = _playerSprite.velocity.y;
          break;
       case e_EAST:
-         x = _playerSprite.playerVelocity.x;
+         x = _playerSprite.velocity.x;
          y = 0;
          break;
       case e_SOUTH:
          x = 0;
-         y = -_playerSprite.playerVelocity.y;
+         y = -_playerSprite.velocity.y;
          break;
       case e_WEST:
-         x = -_playerSprite.playerVelocity.x;
+         x = -_playerSprite.velocity.x;
          y = 0;
          break;
       default:
@@ -418,6 +422,11 @@ isOppositeToDirection:(PlayerDirection)otherDirection
                                            _playerSprite.absolutePosition.y + diffY);
       [self updateCurrentTileWithPlayer];
    }
+}
+
+-(void) moveEnemies
+{
+   // code here
 }
 
 - (Tile *)getTileAtScreenLocation:(CGPoint)screenLocation

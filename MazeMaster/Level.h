@@ -16,8 +16,10 @@
 }
 
 -(id) initWithRows:(int)rows andColumns:(int)cols;
+-(void) addEnemiesToLayer:(CCLayer *)gameLayer;
 
 @property (nonatomic, assign, setter = setLevelNumber:) int levelNumber;
 @property (nonatomic, assign) Maze *maze;
+@property (nonatomic, readwrite, retain) NSMutableArray *enemies;
 
 @end
