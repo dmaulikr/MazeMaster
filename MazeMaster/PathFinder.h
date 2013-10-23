@@ -9,15 +9,23 @@
 #ifndef __MazeMaster__PathFinder__
 #define __MazeMaster__PathFinder__
 
-#include <iostream>
-
 @class Tile;
+
+struct Node
+{
+   CGPoint pos;
+   CCArray *neighbors;
+   int f;
+   int g;
+   int h;
+   struct Node *parent;
+};
+
 class PathFinder
 {
  public:
    PathFinder();
    ~PathFinder();
-
    void getPathToTile(Tile *tile);
  private:
 };

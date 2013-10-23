@@ -13,12 +13,12 @@
 
 PathFinder::PathFinder()
 {
-   std::cout << "constructing PathFinder" << std::endl;
+   std::cout << "constructing PathFinder..." << std::endl;
 }
 
 PathFinder::~PathFinder()
 {
-   std::cout << "destructing PathFinder" << std::endl;
+   std::cout << "destructing PathFinder..." << std::endl;
 }
 
 void PathFinder::getPathToTile(Tile *tile)

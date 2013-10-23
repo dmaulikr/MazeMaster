@@ -25,10 +25,11 @@
 @property (readwrite, assign) BOOL playerShouldMove;
 
 -(BOOL) playerCanMoveFromTile:(Tile *)tile;
--(void) pushSwipeStack:(PlayerDirection)direction;
--(PlayerDirection) popSwipeStack;
--(PlayerDirection) topSwipeStack;
--(void) clearSwipeStack;
--(BOOL) swipeStackIsEmpty;
+
+- (void)pushSwipeStack:(PlayerDirection)direction;
+- (PlayerDirection)popSwipeStack;
+- (PlayerDirection)topSwipeStack;
+- (void)clearSwipeStack;
+- (BOOL)swipeStackIsEmpty;
 
 @end
