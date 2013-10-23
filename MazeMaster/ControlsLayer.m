@@ -106,7 +106,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    
    GameController *gameController = [GameController sharedController];
    
-   PlayerDirection direction;
+   CharacterDirection direction;
    switch (recognizer.direction)
    {
       case UISwipeGestureRecognizerDirectionRight:
@@ -126,9 +126,9 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    }
    
    if ([gameController swipeStackIsEmpty] &&
-       gameController.playerDirection == e_NONE)
+       gameController.gameLayer.playerSprite.direction == e_NONE)
    {
-      gameController.playerDirection = direction;
+      gameController.gameLayer.playerSprite.direction = direction;
    }
    else if ([gameController topSwipeStack] != direction)
    {

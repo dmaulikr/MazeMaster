@@ -116,7 +116,7 @@ struct Opaque
            [self playerIsVerticallyCenteredOnScreen]);
 }
 
-- (BOOL)mazeShouldMoveForPlayerDirection:(PlayerDirection)direction
+- (BOOL)mazeShouldMoveForPlayerDirection:(CharacterDirection)direction
 {
    BOOL retVal = NO;
    switch (direction)
@@ -209,7 +209,7 @@ struct Opaque
                                  y:(int)y
 {
    CGPoint destination;
-   PlayerDirection direction = [GameController sharedController].playerDirection;
+   CharacterDirection direction = _playerSprite.direction;
    
    if ([self mazeShouldMoveForPlayerDirection:direction])
    {
@@ -233,12 +233,11 @@ struct Opaque
    return destination;
 }
 
-- (CGPoint)getXYForPlayerDirection:(PlayerDirection)direction
+- (CGPoint)getXYForPlayerDirection:(CharacterDirection)direction
 {
    float x, y;
-   GameController *gameController = [GameController sharedController];
    
-   gameController.playerDirection = direction;
+   _playerSprite.direction = direction;
    
    if ( _playerSprite.velocity.x <= MAX_VELOCITY )
       _playerSprite.velocity = ccp(_playerSprite.velocity.x + 0.3,
@@ -272,7 +271,7 @@ struct Opaque
    GameController *gameController = [GameController sharedController];
    gameController.playerIsMoving = NO;
    [gameController clearSwipeStack];
-   gameController.playerDirection = e_NONE;
+   _playerSprite.direction = e_NONE;
 }
 
 - (void)updatePlayerPostionForTile:(Tile *)nextTile
@@ -299,10 +298,10 @@ struct Opaque
    
    if (![gameController swipeStackIsEmpty])
    {
-      PlayerDirection nextDirection = [gameController topSwipeStack];
+      CharacterDirection nextDirection = [gameController topSwipeStack];
       if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
       {
-         gameController.playerDirection = [gameController popSwipeStack];
+         _playerSprite.direction = [gameController popSwipeStack];
          _playerSprite.position = nextTileLocation;
       }
    }
@@ -312,7 +311,7 @@ struct Opaque
 {
    GameController *gameController = [GameController sharedController];
    Tile *currentTile = gameController.level.maze.tileWithPlayer;
-   Tile *nextTile = [currentTile getAdjacentTileForDirection:gameController.playerDirection];
+   Tile *nextTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
    
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer
@@ -325,7 +324,7 @@ struct Opaque
    }
    else
    {
-      switch (gameController.playerDirection)
+      switch (_playerSprite.direction)
       {
          case e_NORTH:
             if (_playerSprite.position.y >= nextTileLocation.y)
@@ -353,8 +352,8 @@ struct Opaque
    }
 }
 
-- (BOOL)direction:(PlayerDirection)direction
-isOppositeToDirection:(PlayerDirection)otherDirection
+- (BOOL)direction:(CharacterDirection)direction
+isOppositeToDirection:(CharacterDirection)otherDirection
 {
    switch (direction)
    {
@@ -387,15 +386,15 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    if (gameController.playerIsMoving)
    {
       if ([self direction:[gameController topSwipeStack]
-                        isOppositeToDirection:gameController.playerDirection])
+                        isOppositeToDirection:_playerSprite.direction])
       {
          Tile *currentTile = gameController.level.maze.tileWithPlayer;
          gameController.level.maze.tileWithPlayer =
-            [currentTile getAdjacentTileForDirection:gameController.playerDirection];
-         gameController.playerDirection = [gameController popSwipeStack];
+            [currentTile getAdjacentTileForDirection:_playerSprite.direction];
+         _playerSprite.direction = [gameController popSwipeStack];
       }
 
-      CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
+      CGPoint directionPoint = [self getXYForPlayerDirection:_playerSprite.direction];
       destination = [self getDestinationPointForX:directionPoint.x
                                                 y:directionPoint.y];
       

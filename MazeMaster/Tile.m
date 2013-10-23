@@ -54,7 +54,7 @@
    [super dealloc];
 }
 
-- (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction
+- (Tile *)getAdjacentTileForDirection:(CharacterDirection)direction
 {
    switch (direction)
    {
@@ -72,7 +72,7 @@
    return nil;
 }
 
-- (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction
+- (Edge *)getAdjacentEdgeForDirection:(CharacterDirection)direction
 {
    switch (direction)
    {

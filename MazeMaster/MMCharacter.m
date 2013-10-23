@@ -15,6 +15,7 @@
    if (self = [super initWithFile:filename])
    {
       _velocity = CGPointZero;
+      _direction = e_NONE;
    }
    return self;
 }

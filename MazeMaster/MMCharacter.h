@@ -7,6 +7,7 @@
 //
 
 #import "CCSprite.h"
+#import "PlayerTypedefs.h"
 
 @interface MMCharacter : CCSprite
 {
@@ -15,6 +16,7 @@
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint absolutePosition;
 @property (readwrite, assign) CGPoint offset;
+@property (nonatomic, assign) CharacterDirection direction;
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;

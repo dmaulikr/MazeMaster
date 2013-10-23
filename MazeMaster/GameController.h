@@ -19,15 +19,15 @@
 +(GameController *) sharedController;
 
 @property (nonatomic, assign) Level *level;
-@property (nonatomic, assign) PlayerDirection playerDirection;
+//@property (nonatomic, assign) CharacterDirection playerDirection;
 @property (readwrite, assign) GameLayer *gameLayer;
 @property (readwrite, assign) BOOL playerIsMoving;
 @property (readwrite, assign) BOOL playerShouldMove;
 
 -(BOOL) playerCanMoveFromTile:(Tile *)tile;
--(void) pushSwipeStack:(PlayerDirection)direction;
--(PlayerDirection) popSwipeStack;
--(PlayerDirection) topSwipeStack;
+-(void) pushSwipeStack:(CharacterDirection)direction;
+-(CharacterDirection) popSwipeStack;
+-(CharacterDirection) topSwipeStack;
 -(void) clearSwipeStack;
 -(BOOL) swipeStackIsEmpty;
 

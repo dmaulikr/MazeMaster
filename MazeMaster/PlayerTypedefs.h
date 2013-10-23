@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Binary Gods. All rights reserved.
 //
 
-#ifndef __PLAYER_DIRECTION__
+#ifndef __CHARACTER_DIRECTION__
 typedef enum {
    e_NONE,
    e_NORTH,
    e_EAST,
    e_SOUTH,
    e_WEST
-} PlayerDirection;
+} CharacterDirection;
 #endif
