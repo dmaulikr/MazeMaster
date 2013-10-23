@@ -7,6 +7,7 @@
 //
 
 #include "PathFinder.h"
+#import "GameController.h"
 
 #include <iostream>
 #import "Tile.h"
@@ -24,5 +25,14 @@ PathFinder::~PathFinder()
 void PathFinder::getPathToTile(Tile *tile)
 {
    NSString *location = NSStringFromCGPoint(tile.position);
-   std::cout << "PathFinder: getting path to tile " << location.UTF8String << std::endl;
+   std::cout << "PathFinder: getting path to tile " << location.UTF8String << std::endl << std::endl;
+
+   WalkableDirections direcitons =
+      [[GameController sharedController] getWalkableDirectionsFromTile:tile];
+
+   int mask = 1;
+   std::cout << "north walkable: " << ((direcitons >> 0) & mask) << std::endl;
+   std::cout << "east walkable: " << ((direcitons >> 1) & mask) << std::endl;
+   std::cout << "south walkable: " << ((direcitons >> 2) & mask) << std::endl;
+   std::cout << "west walkable: " << ((direcitons >> 3) & mask) << std::endl;
 }
