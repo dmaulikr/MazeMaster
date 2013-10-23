@@ -14,6 +14,7 @@
 
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint absolutePosition;
+@property (readwrite, assign) CGPoint offset;
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;

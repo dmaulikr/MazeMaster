@@ -25,8 +25,6 @@ struct Opaque;
    NSRange _verticalCenterRange;
    NSRange _horizontalCenterRange;
 
-   MazeLayer *_mazeLayer;
-
    float _xPlayerOffset;
    float _yPlayerOffset;
    
@@ -36,6 +34,7 @@ struct Opaque;
 }
 
 @property (readwrite, assign) Player *playerSprite;
+@property (readwrite, assign) MazeLayer *mazeLayer;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
 - (void)movePlayer;

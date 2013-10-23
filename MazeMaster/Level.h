@@ -17,6 +17,7 @@
 
 -(id) initWithRows:(int)rows andColumns:(int)cols;
 -(void) addEnemiesToLayer:(CCLayer *)gameLayer;
+-(void) moveEnemies;
 
 @property (nonatomic, assign, setter = setLevelNumber:) int levelNumber;
 @property (nonatomic, assign) Maze *maze;

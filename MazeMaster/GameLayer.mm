@@ -71,9 +71,8 @@ struct Opaque
    {
       [self setupVariables];
       [self setupPlayer];
-      [self scheduleUpdate];
-      
       [[GameController sharedController].level addEnemiesToLayer:self];
+      [self scheduleUpdate];
 	}
 	return self;
 }
@@ -207,7 +206,7 @@ struct Opaque
 }
 
 - (CGPoint)getDestinationPointForX:(int)x
-                                y:(int)y
+                                 y:(int)y
 {
    CGPoint destination;
    PlayerDirection direction = [GameController sharedController].playerDirection;
@@ -388,7 +387,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    if (gameController.playerIsMoving)
    {
       if ([self direction:[gameController topSwipeStack]
-    isOppositeToDirection:gameController.playerDirection])
+                        isOppositeToDirection:gameController.playerDirection])
       {
          Tile *currentTile = gameController.level.maze.tileWithPlayer;
          gameController.level.maze.tileWithPlayer =
@@ -424,7 +423,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
 
 -(void) moveEnemies
 {
-   // code here
+   [[GameController sharedController].level moveEnemies];
 }
 
 - (Tile *)getTileAtScreenLocation:(CGPoint)screenLocation

@@ -8,6 +8,8 @@
 
 #import "Level.h"
 #import "MMEnemy.h"
+#import "GameController.h"
+#import "MazeLayer.h"
 
 @implementation Level
 
@@ -40,7 +42,7 @@
 // TODO: general initialize function?
 -(void) initEnemies
 {
-   _enemies = [NSMutableArray array];
+   _enemies = [NSMutableArray new];
 }
 
 -(void) dealloc
@@ -67,14 +69,6 @@
          break;
       default:
          break;
-   }
-}
-
--(void) addEnemiesToLayer:(CCLayer *)gameLayer
-{
-   for (MMEnemy *enemy in _enemies)
-   {
-      [gameLayer addChild:enemy];
    }
 }
 
@@ -180,19 +174,48 @@
       }
 }
 
+-(void) setupEnemy:(CGPoint)location withFile:(NSString *)file
+{
+   GameController *gameController = [GameController sharedController];
+   
+   MMEnemy *enemy = [[MMEnemy alloc] initWithFile:file];
+   enemy.anchorPoint = CGPointZero;
+   enemy.currentTile = [_maze tileAtPosition:location];
+   enemy.scale = 1.8;
+   //TODO get the tile size
+   enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
+                      44.0/2.0 - enemy.boundingBox.size.height/2.0);
+   enemy.position = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
+                        enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
+   
+  // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
+   [_enemies addObject:enemy];
+}
+
+-(void) addEnemiesToLayer:(CCLayer *)gameLayer
+{
+   for (MMEnemy *enemy in _enemies)
+   {
+      [gameLayer addChild:enemy];
+   }
+}
+
+-(void) moveEnemies
+{
+   for (MMEnemy *enemy in _enemies)
+   {
+      GameController *gameController = [GameController sharedController];
+      CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
+                                     enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
+      enemy.position = ccp(nextTileLocation.x,
+                           nextTileLocation.y);
+   }
+}
+
 -(void) setupEnemiesForLevel1
 {
-   MMEnemy *enemy = [[MMEnemy alloc] initWithFile:@"astronaut_front.png"];
-   enemy.currentTile = [_maze tileAtPosition:CGPointMake(5,5)];
-   enemy.absolutePosition = enemy.currentTile.position;
-   enemy.scale = 1.8;
-   [_enemies addObject:enemy];
-   
-   enemy = [[MMEnemy alloc] initWithFile:@"astronaut_front.png"];
-   enemy.currentTile = [_maze tileAtPosition:CGPointMake(8,3)];
-   enemy.absolutePosition = enemy.currentTile.position;
-   enemy.scale = 1.8;
-   [_enemies addObject:enemy];
+   [self setupEnemy:CGPointMake(5,5) withFile:@"astronaut_front.png"];
+   [self setupEnemy:CGPointMake(8,3) withFile:@"astronaut_front.png"];
 }
 
 - (void)setupEdgesForLevel2
