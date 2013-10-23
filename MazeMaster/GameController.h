@@ -21,8 +21,8 @@
 @property (nonatomic, assign) Level *level;
 //@property (nonatomic, assign) CharacterDirection playerDirection;
 @property (readwrite, assign) GameLayer *gameLayer;
-@property (readwrite, assign) BOOL playerIsMoving;
-@property (readwrite, assign) BOOL playerShouldMove;
+//@property (readwrite, assign) BOOL playerIsMoving;
+//@property (readwrite, assign) BOOL playerShouldMove;
 
 -(BOOL) playerCanMoveFromTile:(Tile *)tile;
 -(void) pushSwipeStack:(CharacterDirection)direction;

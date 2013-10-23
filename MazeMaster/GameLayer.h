@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "ControlsLayer.h"
+#import "PlayerTypedefs.h"
 
 @class MazeLayer;
 @class Player;
@@ -38,6 +39,7 @@ struct Opaque;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
 - (void)movePlayer;
+- (CGPoint)getXYForDirection:(CharacterDirection)direction;
 + (CCScene *)scene;
 
 @end

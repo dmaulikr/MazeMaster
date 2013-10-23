@@ -187,6 +187,7 @@
                       44.0/2.0 - enemy.boundingBox.size.height/2.0);
    enemy.position = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
                         enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
+   enemy.direction = e_SOUTH;
    
   // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
    [_enemies addObject:enemy];

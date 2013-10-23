@@ -17,6 +17,8 @@
 @property (readwrite, assign) CGPoint absolutePosition;
 @property (readwrite, assign) CGPoint offset;
 @property (nonatomic, assign) CharacterDirection direction;
+@property (readwrite, assign) BOOL isMoving;
+@property (readwrite, assign) BOOL shouldMove;
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;
