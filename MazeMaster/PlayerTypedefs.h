@@ -9,17 +9,10 @@
 #ifndef __PLAYER_DIRECTION__
 typedef enum {
    e_NONE,
-   e_NORTH,
-   e_EAST,
-   e_SOUTH,
-   e_WEST
+   e_NORTH = 1, // binary: 0001
+   e_EAST = 2,  // binary: 0010
+   e_SOUTH = 4, // binary: 0100
+   e_WEST = 8   // binary: 1000
 } PlayerDirection;
-
-#define kNorthWalkable 1 // binary: 0001
-#define kEastWalkable  2 // binary: 0010
-#define kSouthWalkable 4 // binary: 0100
-#define kWestWalkable  8 // binary: 1000
-
-typedef unsigned WalkableDirections;
 
 #endif

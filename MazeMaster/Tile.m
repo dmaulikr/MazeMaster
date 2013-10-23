@@ -94,4 +94,28 @@
    return nil;
 }
 
+- (CCArray *)getWalkableNeighborTiles
+{
+   CCArray *neighbors = [CCArray arrayWithCapacity:4];
+   
+   if (_northEdge.walkable)
+      [neighbors addObject:_northEdge.northTile];
+   if (_eastEdge.walkable)
+      [neighbors addObject:_eastEdge.eastTile];
+   if (_southEdge.walkable)
+      [neighbors addObject:_southEdge.southTile];
+   if (_westEdge.walkable)
+      [neighbors addObject:_westEdge.westTile];
+
+   if (neighbors.count == 0)
+      return nil;
+
+   return neighbors;
+}
+
+- (int)optimality
+{
+   return _cost + _heuristic;
+}
+
 @end

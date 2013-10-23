@@ -16,6 +16,7 @@
 
 - (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction;
 - (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction;
+- (CCArray *)getWalkableNeighborTiles;
 
 @property (readwrite, assign) Edge* northEdge;
 @property (readwrite, assign) Edge* eastEdge;
@@ -23,5 +24,10 @@
 @property (readwrite, assign) Edge* westEdge;
 @property (readwrite, assign) CGPoint position;
 @property (readwrite, retain) CCSprite *tileSprite;
+
+// used for A* pathfinding
+@property (readwrite, assign) int cost;
+@property (readwrite, assign) int heuristic;
+@property (readonly) int optimality;
 
 @end

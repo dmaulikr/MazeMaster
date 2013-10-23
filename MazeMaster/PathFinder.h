@@ -11,22 +11,12 @@
 
 @class Tile;
 
-struct Node
-{
-   CGPoint pos;
-   CCArray *neighbors;
-   int f;
-   int g;
-   int h;
-   struct Node *parent;
-};
-
 class PathFinder
 {
  public:
    PathFinder();
    ~PathFinder();
-   void getPathToTile(Tile *tile);
+   CCArray* calculatePath(Tile *start, Tile *goal);
  private:
 };
 

@@ -49,14 +49,6 @@ GameController *s_gameController = nil;
    return [tile getAdjacentEdgeForDirection:_playerDirection].walkable;
 }
 
-- (WalkableDirections)getWalkableDirectionsFromTile:(Tile *)tile
-{
-   return (([tile getAdjacentEdgeForDirection:e_NORTH].walkable)? kNorthWalkable : 0) |
-          (([tile getAdjacentEdgeForDirection:e_EAST].walkable)? kEastWalkable : 0) |
-          (([tile getAdjacentEdgeForDirection:e_SOUTH].walkable)? kSouthWalkable : 0) |
-          (([tile getAdjacentEdgeForDirection:e_WEST].walkable)? kWestWalkable : 0);
-}
-
 - (void)pushSwipeStack:(PlayerDirection)direction
 {
    [_swipeStack addObject:[NSNumber numberWithInt:direction]];

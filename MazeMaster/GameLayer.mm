@@ -437,8 +437,11 @@ isOppositeToDirection:(PlayerDirection)otherDirection
 
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
-   Tile *tile = [self getTileAtScreenLocation:location];
-   _pathFinder->getPathToTile(tile);
+   Tile *start = [GameController sharedController].level.maze.tileWithPlayer;
+   Tile *goal = [self getTileAtScreenLocation:location];
+   
+   _pathFinder->calculatePath(start, goal);
+
 }
 
 + (CCScene *)scene

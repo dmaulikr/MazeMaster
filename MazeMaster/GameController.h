@@ -25,7 +25,6 @@
 @property (readwrite, assign) BOOL playerShouldMove;
 
 - (BOOL)playerCanMoveFromTile:(Tile *)tile;
-- (WalkableDirections)getWalkableDirectionsFromTile:(Tile *)tile;
 
 - (void)pushSwipeStack:(PlayerDirection)direction;
 - (PlayerDirection)popSwipeStack;
