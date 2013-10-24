@@ -435,20 +435,27 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
+- (void)testAStarWithDirectionsArray:(CCArray *)directions
+{
+   PlayerDirection direction = e_NONE;
+   for (NSNumber *directionNumber in directions)
+   {
+      direction = (PlayerDirection)directionNumber.intValue;
+      [[GameController sharedController] pushSwipeStack:direction];
+   }
+
+   [GameController sharedController].playerDirection = [GameController sharedController].popSwipeStack;
+   [GameController sharedController].playerIsMoving = YES;
+   [GameController sharedController].playerShouldMove = YES;
+}
+
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
    Tile *start = [GameController sharedController].level.maze.tileWithPlayer;
    Tile *goal = [self getTileAtScreenLocation:location];
    
    CCArray *directions = _pathFinder->calculatePath(start, goal);
-
-   PlayerDirection direction = e_NONE;
-   for (NSNumber *directionNumber in directions)
-   {
-      direction = (PlayerDirection)directionNumber.intValue;
-      NSLog(@"direction: %d", direction);
-   }
-   
+   [self testAStarWithDirectionsArray:directions];
 }
 
 + (CCScene *)scene
