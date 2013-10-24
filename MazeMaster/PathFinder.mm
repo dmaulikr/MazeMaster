@@ -87,9 +87,8 @@ void PathFinder::add_tile_to_open(Tile *tile, CCArray *open)
    for (; i < open.count; ++i)
       if (optimality <= [[open objectAtIndex:i] optimality])
          break;
-   
-   [open insertObject:tile
-              atIndex:i];
+
+   [open insertObject:tile atIndex:i];
 }
 
 void PathFinder::print_path(Tile *tile)
