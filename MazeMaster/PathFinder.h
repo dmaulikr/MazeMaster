@@ -21,6 +21,8 @@ private:
    int manhattan_distance(CGPoint current, CGPoint goal) const;
    static int compare_tiles(const void *, const void *);
    int movement_cost(Tile *from, Tile *to);
+
+   void print_path(Tile *tile);
    
    void astar_search(Tile *start, Tile *goal);
 };

@@ -31,6 +31,8 @@ CCArray* PathFinder::calculatePath(Tile *start, Tile *goal)
    astar_search(start, goal);
    std::cout << "goal parent after search: " << goal.parent << std::endl;
 
+   print_path(goal);
+
    return  nil;
 }
 
@@ -54,6 +56,17 @@ int PathFinder::compare_tiles(const void *lhs, const void *rhs)
 int PathFinder::movement_cost(Tile *from, Tile *to)
 {
    return 1;
+}
+
+void PathFinder::print_path(Tile *tile)
+{
+   std::cout << "from: " << NSStringFromCGPoint(tile.position).UTF8String << std::endl;
+   Tile *current = tile.parent;
+   while (current)
+   {
+      std::cout << "pos: " << NSStringFromCGPoint(current.position).UTF8String << std::endl;
+      current = current.parent;
+   }
 }
 
 void PathFinder::astar_search(Tile *start, Tile *goal)
