@@ -16,7 +16,7 @@
 
 - (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction;
 - (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction;
-- (CCArray *)getWalkableNeighborTiles;
+- (CCArray *)walkableNeighborTiles;
 
 @property (readwrite, assign) CGPoint position;
 @property (readwrite, assign) Edge* northEdge;
@@ -29,6 +29,7 @@
 @property (readwrite, retain) Tile *parent;
 @property (readwrite, assign) int cost;
 @property (readwrite, assign) int heuristic;
+@property (readwrite, assign) int genID;
 @property (readonly) int optimality;
 
 @end

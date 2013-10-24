@@ -94,7 +94,7 @@
    return nil;
 }
 
-- (CCArray *)getWalkableNeighborTiles
+- (CCArray *)walkableNeighborTiles
 {
    CCArray *neighbors = [CCArray arrayWithCapacity:4];
    

@@ -17,7 +17,12 @@ class PathFinder
    PathFinder();
    ~PathFinder();
    CCArray* calculatePath(Tile *start, Tile *goal);
- private:
+private:
+   int manhattan_distance(CGPoint current, CGPoint goal) const;
+   static int compare_tiles(const void *, const void *);
+   int movement_cost(Tile *from, Tile *to);
+   
+   void astar_search(Tile *start, Tile *goal);
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */
