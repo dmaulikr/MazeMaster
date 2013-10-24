@@ -49,8 +49,8 @@ int PathFinder::compare_tiles(const void *lhs, const void *rhs)
    Tile *leftTile = (Tile *)iLHS;
    Tile *rightTile = (Tile *)iRHS;
 
-   return ((leftTile.optimality >= rightTile.optimality) &&
-           (leftTile.genID > rightTile.genID));
+   return ((leftTile.optimality > rightTile.optimality) &&
+           (leftTile.genID < rightTile.genID));
 }
 
 int PathFinder::movement_cost(Tile *from, Tile *to)
