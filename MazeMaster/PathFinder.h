@@ -10,21 +10,21 @@
 #define __MazeMaster__PathFinder__
 
 @class Tile;
-
 class PathFinder
 {
  public:
    PathFinder();
    ~PathFinder();
    CCArray* calculatePath(Tile *start, Tile *goal);
+
 private:
    int manhattan_distance(CGPoint current, CGPoint goal) const;
-   static int compare_tiles(const void *, const void *);
    int movement_cost(Tile *from, Tile *to);
 
-   void print_path(Tile *tile);
-   
    void astar_search(Tile *start, Tile *goal);
+   void print_path(Tile *tile);
+
+   static int compare_tiles(const void *, const void *);
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */

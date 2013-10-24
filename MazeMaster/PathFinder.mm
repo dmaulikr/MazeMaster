@@ -12,6 +12,7 @@
 #include <iostream>
 #import "Tile.h"
 
+// ----- Public Methods -----
 PathFinder::PathFinder()
 {
    std::cout << "constructing PathFinder..." << std::endl;
@@ -24,49 +25,20 @@ PathFinder::~PathFinder()
 
 CCArray* PathFinder::calculatePath(Tile *start, Tile *goal)
 {
-   std::cout << "start: " << NSStringFromCGPoint(start.position).UTF8String << std::endl;
-   std::cout << "goal: " << NSStringFromCGPoint(goal.position).UTF8String << std::endl << std::endl;
-
-   std::cout << "goal parent: " << goal.parent << std::endl;
    astar_search(start, goal);
-   std::cout << "goal parent after search: " << goal.parent << std::endl;
-
-   print_path(goal);
 
    return  nil;
 }
 
+// ----- Private Methods -----
 int PathFinder::manhattan_distance(CGPoint current, CGPoint goal) const
 {
    return abs(goal.x - current.x) + abs(goal.y - current.y);
 }
 
-int PathFinder::compare_tiles(const void *lhs, const void *rhs)
-{
-   id iLHS = ((id *) lhs)[0];
-   id iRHS = ((id *) rhs)[0];
-
-   Tile *leftTile = (Tile *)iLHS;
-   Tile *rightTile = (Tile *)iRHS;
-
-   return ((leftTile.optimality > rightTile.optimality) &&
-           (leftTile.genID < rightTile.genID));
-}
-
 int PathFinder::movement_cost(Tile *from, Tile *to)
 {
    return 1;
-}
-
-void PathFinder::print_path(Tile *tile)
-{
-   std::cout << "from: " << NSStringFromCGPoint(tile.position).UTF8String << std::endl;
-   Tile *current = tile.parent;
-   while (current)
-   {
-      std::cout << "pos: " << NSStringFromCGPoint(current.position).UTF8String << std::endl;
-      current = current.parent;
-   }
 }
 
 void PathFinder::astar_search(Tile *start, Tile *goal)
@@ -79,10 +51,11 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
    goal.parent = nil;
 
    int tileGeneration = 0;
-   int cost;
+   int cost = 0;
+
+   Tile *current = nil;
 
    [open addObject:start];
-   Tile *current = nil;
    while ([open objectAtIndex:0] != goal)
    {
       current = [open objectAtIndex:0];
@@ -106,8 +79,31 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
             neighbor.heuristic = manhattan_distance(neighbor.position, goal.position);
             neighbor.parent = current;
             [open addObject:neighbor];
+            [open qsortUsingCFuncComparator:&PathFinder::compare_tiles];
          }
-         [open qsortUsingCFuncComparator:&PathFinder::compare_tiles];
       }
    }
+}
+
+void PathFinder::print_path(Tile *tile)
+{
+   std::cout << "from: " << NSStringFromCGPoint(tile.position).UTF8String << std::endl;
+   Tile *current = tile.parent;
+   while (current)
+   {
+      std::cout << "pos: " << NSStringFromCGPoint(current.position).UTF8String << std::endl;
+      current = current.parent;
+   }
+}
+
+int PathFinder::compare_tiles(const void *lhs, const void *rhs)
+{
+   id iLHS = ((id *) lhs)[0];
+   id iRHS = ((id *) rhs)[0];
+
+   Tile *leftTile = (Tile *)iLHS;
+   Tile *rightTile = (Tile *)iRHS;
+
+   return ((leftTile.optimality > rightTile.optimality) &&
+           (leftTile.genID < rightTile.genID)); // for tie-breakers
 }
