@@ -206,6 +206,7 @@
    for (MMEnemy *enemy in _enemies)
    {
       GameController *gameController = [GameController sharedController];
+      
       CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
                                      enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
       enemy.position = ccp(nextTileLocation.x,

@@ -14,7 +14,6 @@
 {
    if (self = [super initWithFile:filename])
    {
-      _currentTile = nil;
    }
    return self;
 }

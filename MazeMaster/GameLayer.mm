@@ -269,7 +269,7 @@ struct Opaque
 - (void)stopPlayer
 {
    GameController *gameController = [GameController sharedController];
-   [gameController clearSwipeStack];
+   [gameController.gameLayer.playerSprite clearMoveStack];
    _playerSprite.isMoving = NO;
    _playerSprite.direction = e_NONE;
 }
@@ -296,12 +296,12 @@ struct Opaque
 
    gameController.level.maze.tileWithPlayer = nextTile;
    
-   if (![gameController swipeStackIsEmpty])
+   if (![gameController.gameLayer.playerSprite moveStackIsEmpty])
    {
-      CharacterDirection nextDirection = [gameController topSwipeStack];
+      CharacterDirection nextDirection = [gameController.gameLayer.playerSprite topMoveStack];
       if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
       {
-         _playerSprite.direction = [gameController popSwipeStack];
+         _playerSprite.direction = [gameController.gameLayer.playerSprite popMoveStack];
          _playerSprite.position = nextTileLocation;
       }
    }
@@ -371,12 +371,69 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    }
 }
 
+- (void)moveCharacter:(MMCharacter *)character
+{
+   GameController *gameController = [GameController sharedController];
+   CGPoint destination;
+   
+   if ([gameController canMoveFromTile:character.currentTile
+                           inDirection:character.direction] == NO)
+   {
+      character.shouldMove = NO;
+      //[self stopPlayer];
+      
+      // TODO: put these in their own function
+      character.isMoving = NO;
+      character.direction = e_NONE;
+      return;
+   }
+   
+   if (character.isMoving)
+   {
+      // TODO: enemy moveStack
+      if ([self direction:[gameController.gameLayer.playerSprite topMoveStack]
+                        isOppositeToDirection:_playerSprite.direction])
+      {
+         Tile *currentTile = gameController.level.maze.tileWithPlayer;
+         gameController.level.maze.tileWithPlayer =
+            [currentTile getAdjacentTileForDirection:_playerSprite.direction];
+         _playerSprite.direction = [gameController.gameLayer.playerSprite popMoveStack];
+      }
+
+      CGPoint directionPoint = [self getXYForDirection:_playerSprite.direction];
+      destination = [self getDestinationPointForX:directionPoint.x
+                                                y:directionPoint.y];
+      
+      // _moveMaze is on when the maze moves instead of the player
+      float diffX, diffY;
+      if (_moveMaze)
+      {
+         diffX = _mazeLayer.position.x - destination.x;
+         diffY = _mazeLayer.position.y - destination.y;
+      }
+      else
+      {
+         diffX = destination.x - _playerSprite.position.x;
+         diffY = destination.y - _playerSprite.position.y;
+      }
+      
+      CCNode *moveableObject = (_moveMaze)? _mazeLayer : _playerSprite;
+      moveableObject.position = destination;
+      
+      _playerSprite.absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
+                                           _playerSprite.absolutePosition.y + diffY);
+      [self updateCurrentTileWithPlayer];
+   }
+   
+}
+
 - (void)movePlayer
 {
    GameController *gameController = [GameController sharedController];
    CGPoint destination;
    
-   if ([gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] == NO)
+   if ([gameController canMoveFromTile:gameController.level.maze.tileWithPlayer
+                           inDirection:gameController.gameLayer.playerSprite.direction] == NO)
    {
       _playerSprite.shouldMove = NO;
       [self stopPlayer];
@@ -385,13 +442,13 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    
    if (_playerSprite.isMoving)
    {
-      if ([self direction:[gameController topSwipeStack]
+      if ([self direction:[gameController.gameLayer.playerSprite topMoveStack]
                         isOppositeToDirection:_playerSprite.direction])
       {
          Tile *currentTile = gameController.level.maze.tileWithPlayer;
          gameController.level.maze.tileWithPlayer =
             [currentTile getAdjacentTileForDirection:_playerSprite.direction];
-         _playerSprite.direction = [gameController popSwipeStack];
+         _playerSprite.direction = [gameController.gameLayer.playerSprite popMoveStack];
       }
 
       CGPoint directionPoint = [self getXYForDirection:_playerSprite.direction];

@@ -125,21 +125,22 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
          break;
    }
    
-   if ([gameController swipeStackIsEmpty] &&
+   if ([gameController.gameLayer.playerSprite moveStackIsEmpty] &&
        gameController.gameLayer.playerSprite.direction == e_NONE)
    {
       gameController.gameLayer.playerSprite.direction = direction;
    }
-   else if ([gameController topSwipeStack] != direction)
+   else if ([gameController.gameLayer.playerSprite topMoveStack] != direction)
    {
-      [gameController pushSwipeStack:direction];
+      [gameController.gameLayer.playerSprite pushMoveStack:direction];
    }
    
    // only call the move player function if it is the first swipe (because it will
    // be called automatically at the end of the move)
    if ( !gameController.gameLayer.playerSprite.isMoving )
    {
-      if ( [gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] )
+      if ( [gameController canMoveFromTile:gameController.level.maze.tileWithPlayer
+                               inDirection:gameController.gameLayer.playerSprite.direction] )
       {
          gameController.gameLayer.playerSprite.isMoving = YES;
          gameController.gameLayer.playerSprite.shouldMove = YES;

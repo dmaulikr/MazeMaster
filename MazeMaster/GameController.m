@@ -42,50 +42,12 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
-- (BOOL)playerCanMoveFromTile:(Tile *)tile
+-(BOOL) canMoveFromTile:(Tile *)tile inDirection:(CharacterDirection)direction
 {
-   if (_gameLayer.playerSprite.direction == e_NONE)
+   if (direction == e_NONE)
       return NO;
 
    return [tile getAdjacentEdgeForDirection:_gameLayer.playerSprite.direction].walkable;
-}
-
-- (void)pushSwipeStack:(CharacterDirection)direction
-{
-   [_swipeStack addObject:[NSNumber numberWithInt:direction]];
-}
-
-- (CharacterDirection)popSwipeStack
-{
-   CharacterDirection direction = e_NONE;
-   if (_swipeStack.count)
-   {
-      NSNumber *directionNumber = [_swipeStack lastObject];
-      direction = directionNumber.intValue;
-      [_swipeStack removeLastObject];
-   }
-   return direction;
-}
-
-- (CharacterDirection)topSwipeStack
-{
-   CharacterDirection direction = e_NONE;
-   if (_swipeStack.count)
-   {
-      NSNumber *directionNumber = [_swipeStack lastObject];
-      direction = directionNumber.intValue;
-   }
-   return direction;
-}
-
-- (void)clearSwipeStack
-{
-   [_swipeStack removeAllObjects];
-}
-
-- (BOOL)swipeStackIsEmpty
-{
-   return !_swipeStack.count;
 }
 
 @end
