@@ -27,9 +27,6 @@ struct Opaque;
    NSRange _verticalCenterRange;
    NSRange _horizontalCenterRange;
 
-   float _xPlayerOffset;
-   float _yPlayerOffset;
-   
    BOOL _moveMaze;
 
    struct Opaque *_opaque;
@@ -39,7 +36,7 @@ struct Opaque;
 @property (readwrite, assign) MazeLayer *mazeLayer;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
-- (void)movePlayer;
+- (void)moveCharacter:(MMCharacter *)character;
 - (CGPoint)getXYForDirection:(CharacterDirection)direction;
 - (void)updateTileContainingCharacter:(MMCharacter *)character
                           forTileSize:(CGSize)tileSize;

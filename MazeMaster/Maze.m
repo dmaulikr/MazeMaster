@@ -8,7 +8,6 @@
 
 #import "Maze.h"
 #import "Tile.h"
-#import "Player.h"
 
 @implementation Maze
 

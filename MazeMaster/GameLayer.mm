@@ -46,11 +46,12 @@ struct Opaque
    _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.scale = 1.8;
 
-   _xPlayerOffset = (_tileSize.width/2.0) - (_playerSprite.boundingBox.size.width/2.0);
-   _yPlayerOffset = (_tileSize.height/2.0) - (_playerSprite.boundingBox.size.height/2.0);
-
-   _playerSprite.position = ccp(_xPlayerOffset, _yPlayerOffset);
-   _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
+   float xPlayerOffset = (_tileSize.width/2.0) - (_playerSprite.boundingBox.size.width/2.0);
+   float yPlayerOffset = (_tileSize.height/2.0) - (_playerSprite.boundingBox.size.height/2.0);
+   _playerSprite.offset = ccp(xPlayerOffset, yPlayerOffset);
+   
+   _playerSprite.position = _playerSprite.offset;
+   _playerSprite.absolutePosition = _playerSprite.offset;
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
@@ -104,7 +105,8 @@ struct Opaque
 
 - (void)update:(ccTime)delta
 {
-   [self movePlayer];
+//   [self movePlayer];
+   [self moveCharacter:_playerSprite];
    [self moveEnemies];
 }
 
@@ -283,35 +285,35 @@ struct Opaque
    character.direction = e_NONE;
 }
 
-- (void)updatePlayerPostionForTile:(Tile *)nextTile
-                        atLocation:(CGPoint)nextTileLocation
+- (void)updateCharacterPostion:(MMCharacter *)character
+                       forTile:(Tile *)nextTile
+                    atLocation:(CGPoint)nextTileLocation
 {
-   GameController *gameController = [GameController sharedController];
-   if ( _playerSprite.shouldMove == NO )
+   if ( character.shouldMove == NO )
    {
-      if (_moveMaze)
+      if (_moveMaze && [character isKindOfClass:[Player class]])
       {
-         int xMazeOffset = _playerSprite.position.x - nextTileLocation.x;
-         int yMazeOffset = _playerSprite.position.y - nextTileLocation.y;
+         int xMazeOffset = character.position.x - nextTileLocation.x;
+         int yMazeOffset = character.position.y - nextTileLocation.y;
          _mazeLayer.position = ccp(_mazeLayer.position.x + xMazeOffset,
                                    _mazeLayer.position.y + yMazeOffset);
       }
       else
       {
-         _playerSprite.position = nextTileLocation;
+         character.position = nextTileLocation;
       }
-      [self stopCharacter:_playerSprite];
+      [self stopCharacter:character];
    }
 
-   _playerSprite.currentTile = nextTile;
+   character.currentTile = nextTile;
    
-   if (![gameController.gameLayer.playerSprite moveStackIsEmpty])
+   if (![character moveStackIsEmpty])
    {
-      CharacterDirection nextDirection = [gameController.gameLayer.playerSprite topMoveStack];
+      CharacterDirection nextDirection = [character topMoveStack];
       if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
       {
-         _playerSprite.direction = [gameController.gameLayer.playerSprite popMoveStack];
-         _playerSprite.position = nextTileLocation;
+         character.direction = [character popMoveStack];
+         character.position = nextTileLocation;
       }
    }
 }
@@ -337,23 +339,27 @@ struct Opaque
       {
          case e_NORTH:
             if (character.position.y >= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_EAST:
             if (character.position.x >= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_SOUTH:
             if (character.position.y <= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_WEST:
             if (character.position.x <= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          default:
             break;
@@ -361,49 +367,49 @@ struct Opaque
    }
 }
 
-- (void)updateCurrentTileWithPlayer
-{
-   Tile *currentTile = _playerSprite.currentTile;
-   Tile *nextTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
-   
-   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
-   // original position of the tile sprite by the position of the maze layer
-   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
-                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
-   if (nextTile == nil)
-   {
-      _playerSprite.shouldMove = NO;
-      [self stopCharacter:_playerSprite];
-   }
-   else
-   {
-      switch (_playerSprite.direction)
-      {
-         case e_NORTH:
-            if (_playerSprite.position.y >= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
-            break;
-         case e_EAST:
-            if (_playerSprite.position.x >= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
-            break;
-         case e_SOUTH:
-            if (_playerSprite.position.y <= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
-            break;
-         case e_WEST:
-            if (_playerSprite.position.x <= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
-            break;
-         default:
-            break;
-      }
-   }
-}
+//- (void)updateCurrentTileWithPlayer
+//{
+//   Tile *currentTile = _playerSprite.currentTile;
+//   Tile *nextTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
+//   
+//   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
+//   // original position of the tile sprite by the position of the maze layer
+//   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
+//                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
+//   if (nextTile == nil)
+//   {
+//      _playerSprite.shouldMove = NO;
+//      [self stopCharacter:_playerSprite];
+//   }
+//   else
+//   {
+//      switch (_playerSprite.direction)
+//      {
+//         case e_NORTH:
+//            if (_playerSprite.position.y >= nextTileLocation.y)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_EAST:
+//            if (_playerSprite.position.x >= nextTileLocation.x)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_SOUTH:
+//            if (_playerSprite.position.y <= nextTileLocation.y)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_WEST:
+//            if (_playerSprite.position.x <= nextTileLocation.x)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         default:
+//            break;
+//      }
+//   }
+//}
 
 - (BOOL)direction:(CharacterDirection)direction
 isOppositeToDirection:(CharacterDirection)otherDirection
@@ -433,7 +439,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
                            inDirection:character.direction] == NO)
    {
       character.shouldMove = NO;
-      //[self stopPlayer];
+      [self stopCharacter:character];
       
       // TODO: put these in their own function
       character.isMoving = NO;
@@ -476,55 +482,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
       [self updateCurrentTileWithCharacter:character];
    }
    
-}
-
-- (void)movePlayer
-{
-   GameController *gameController = [GameController sharedController];
-   CGPoint destination;
-   
-   if ([gameController canMoveFromTile:_playerSprite.currentTile
-                           inDirection:_playerSprite.direction] == NO)
-   {
-      _playerSprite.shouldMove = NO;
-      [self stopCharacter:_playerSprite];
-      return;
-   }
-   
-   if (_playerSprite.isMoving)
-   {
-      if ([self direction:[gameController.gameLayer.playerSprite topMoveStack]
-                        isOppositeToDirection:_playerSprite.direction])
-      {
-         Tile *currentTile = _playerSprite.currentTile;
-         _playerSprite.currentTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
-         _playerSprite.direction = [gameController.gameLayer.playerSprite popMoveStack];
-      }
-
-      CGPoint directionPoint = [self getXYForDirection:_playerSprite.direction];
-      destination = [self getDestinationPointForX:directionPoint.x
-                                                y:directionPoint.y];
-      
-      // _moveMaze is on when the maze moves instead of the player
-      float diffX, diffY;
-      if (_moveMaze)
-      {
-         diffX = _mazeLayer.position.x - destination.x;
-         diffY = _mazeLayer.position.y - destination.y;
-      }
-      else
-      {
-         diffX = destination.x - _playerSprite.position.x;
-         diffY = destination.y - _playerSprite.position.y;
-      }
-      
-      CCNode *moveableObject = (_moveMaze)? _mazeLayer : _playerSprite;
-      moveableObject.position = destination;
-      
-      _playerSprite.absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
-                                           _playerSprite.absolutePosition.y + diffY);
-      [self updateCurrentTileWithPlayer];
-   }
 }
 
 -(void) moveEnemies
