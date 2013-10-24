@@ -47,6 +47,7 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
 
    start.parent = nil;
    goal.parent = nil;
+
    start.cost = 0;
    [open addObject:start];
 
@@ -84,7 +85,7 @@ void PathFinder::add_tile_to_open(Tile *tile, CCArray *open)
    float optimality = tile.optimality;
    int i = 0;
    for (; i < open.count; ++i)
-      if (optimality <= [[open objectAtIndex:i] optimality])
+      if (optimality < [[open objectAtIndex:i] optimality])
          break;
 
    [open insertObject:tile atIndex:i];
