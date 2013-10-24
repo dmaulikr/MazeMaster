@@ -139,7 +139,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    // be called automatically at the end of the move)
    if ( !gameController.gameLayer.playerSprite.isMoving )
    {
-      if ( [gameController canMoveFromTile:gameController.level.maze.tileWithPlayer
+      if ( [gameController canMoveFromTile:gameController.gameLayer.playerSprite.currentTile
                                inDirection:gameController.gameLayer.playerSprite.direction] )
       {
          gameController.gameLayer.playerSprite.isMoving = YES;

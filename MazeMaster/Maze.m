@@ -47,15 +47,6 @@
    return self;
 }
 
-- (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition
-                                         forTileSize:(CGSize)tileSize
-{
-   int xTile = (playerPosition.x / tileSize.width) + 1;
-   int yTile = (playerPosition.y / tileSize.height) + 1;
-
-   _tileWithPlayer = [self tileAtPosition:CGPointMake(xTile, yTile)];
-}
-
 - (Tile *)getTileAtLocation:(CGPoint)location
                 forTileSize:(CGSize)tileSize
 {
@@ -189,7 +180,6 @@
    
    // remove all the objects recursively
    [_tiles release];
-   [_tileWithPlayer release];
    
    [super dealloc];
 }

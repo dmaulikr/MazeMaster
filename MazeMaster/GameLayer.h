@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 #import "ControlsLayer.h"
 #import "PlayerTypedefs.h"
+#import "MMCharacter.h"
 
 @class MazeLayer;
 @class Player;
@@ -40,6 +41,8 @@ struct Opaque;
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
 - (void)movePlayer;
 - (CGPoint)getXYForDirection:(CharacterDirection)direction;
+- (void)updateTileContainingCharacter:(MMCharacter *)character
+                          forTileSize:(CGSize)tileSize;
 + (CCScene *)scene;
 
 @end
