@@ -454,6 +454,7 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    Tile *start = [GameController sharedController].level.maze.tileWithPlayer;
    Tile *goal = [self getTileAtScreenLocation:location];
    
+   [[GameController sharedController].level.maze resetTileGenerationIDs];
    CCArray *directions = _pathFinder->calculatePath(start, goal);
    [self testAStarWithDirectionsArray:directions];
 }

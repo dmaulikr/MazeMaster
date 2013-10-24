@@ -12,9 +12,6 @@
 
 @implementation Maze
 
-@synthesize tiles = _tiles;
-@synthesize mazeDimensions = _mazeDimensions;
-
 -(id) initWithRows:(int)rows withColumns:(int)cols
 {
    if ( self = [super init] )
@@ -45,6 +42,13 @@
       [self connectEdges:rows cols:cols];
    }
    return self;
+}
+
+- (void)resetTileGenerationIDs
+{
+   for (NSMutableArray *tileArray in _tiles)
+      for (Tile *tile in tileArray)
+         tile.generationID = 0;
 }
 
 - (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition

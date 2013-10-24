@@ -64,7 +64,8 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
       for (Tile *neighbor in [current walkableNeighborTiles])
       {
          cost = current.cost + movement_cost(current, neighbor);
-         neighbor.generationID = ++tileGeneration;
+         if (!neighbor.generationID)
+            neighbor.generationID = ++tileGeneration;
 
          if ([open containsObject:neighbor] && (cost < neighbor.cost))
             [open removeObject:neighbor];
@@ -121,7 +122,9 @@ int PathFinder::compare_tiles(const void *lhs, const void *rhs)
 
    Tile *leftTile = (Tile *)iLHS;
    Tile *rightTile = (Tile *)iRHS;
-
-   return ((leftTile.optimality > rightTile.optimality) &&
-           (leftTile.generationID < rightTile.generationID)); // for tie-breakers
+   
+   if (leftTile.optimality != rightTile.optimality)
+      return leftTile.optimality > rightTile.optimality;
+   else
+      return leftTile.generationID < rightTile.generationID;
 }
