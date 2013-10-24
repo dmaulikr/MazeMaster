@@ -46,14 +46,13 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
    CCArray *closed = [CCArray array];
 
    start.parent = nil;
-   start.cost = 0;
    goal.parent = nil;
+   start.cost = 0;
+   [open addObject:start];
 
    int cost = 0;
-
    Tile *current = nil;
 
-   [open addObject:start];
    while (open.count && [open objectAtIndex:0] != goal)
    {
       current = [open objectAtIndex:0];
