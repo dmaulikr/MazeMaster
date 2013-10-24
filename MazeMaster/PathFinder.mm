@@ -73,7 +73,6 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
          {
             neighbor.cost = cost;
             neighbor.heuristic = manhattan_distance(neighbor.position, goal.position);
-            neighbor.heuristic *= (1.0 + (1/1000));
             neighbor.parent = current;
             add_tile_to_open(neighbor, open);
          }
