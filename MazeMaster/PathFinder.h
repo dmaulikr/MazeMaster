@@ -24,6 +24,8 @@ private:
    void astar_search(Tile *start, Tile *goal);
    void print_path(Tile *tile);
 
+   CCArray* get_directions(Tile *goal);
+
    static int compare_tiles(const void *, const void *);
 };
 

@@ -11,6 +11,7 @@
 #import "DoubleTouchDownRecognizer.h"
 #import "GameController.h"
 #import "LevelSelectLayer.h"
+#import "Level.h"
 #import "Player.h"
 
 @implementation ControlsLayer

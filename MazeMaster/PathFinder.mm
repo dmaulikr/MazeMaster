@@ -7,9 +7,9 @@
 //
 
 #include "PathFinder.h"
-#import "GameController.h"
-
 #include <iostream>
+
+#import "GameController.h"
 #import "Tile.h"
 
 // ----- Public Methods -----
@@ -26,8 +26,7 @@ PathFinder::~PathFinder()
 CCArray* PathFinder::calculatePath(Tile *start, Tile *goal)
 {
    astar_search(start, goal);
-
-   return  nil;
+   return get_directions(goal);
 }
 
 // ----- Private Methods -----
@@ -56,7 +55,7 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
    Tile *current = nil;
 
    [open addObject:start];
-   while ([open objectAtIndex:0] != goal)
+   while (open.count && [open objectAtIndex:0] != goal)
    {
       current = [open objectAtIndex:0];
       [open removeObjectAtIndex:0];
@@ -65,7 +64,7 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
       for (Tile *neighbor in [current walkableNeighborTiles])
       {
          cost = current.cost + movement_cost(current, neighbor);
-         neighbor.genID = ++tileGeneration;
+         neighbor.generationID = ++tileGeneration;
 
          if ([open containsObject:neighbor] && (cost < neighbor.cost))
             [open removeObject:neighbor];
@@ -96,6 +95,25 @@ void PathFinder::print_path(Tile *tile)
    }
 }
 
+CCArray* PathFinder::get_directions(Tile *goal)
+{
+   if (!goal.parent)
+      return nil;
+
+   CCArray *directions = [CCArray new];
+   Tile *current = goal;
+   while (current)
+   {
+      if (current.parent)
+         [directions addObject:[NSNumber numberWithInt:current.directionFromParent]];
+
+      current = current.parent;
+   }
+
+   [directions reverseObjects];
+   return directions;
+}
+
 int PathFinder::compare_tiles(const void *lhs, const void *rhs)
 {
    id iLHS = ((id *) lhs)[0];
@@ -105,5 +123,5 @@ int PathFinder::compare_tiles(const void *lhs, const void *rhs)
    Tile *rightTile = (Tile *)iRHS;
 
    return ((leftTile.optimality > rightTile.optimality) &&
-           (leftTile.genID < rightTile.genID)); // for tie-breakers
+           (leftTile.generationID < rightTile.generationID)); // for tie-breakers
 }

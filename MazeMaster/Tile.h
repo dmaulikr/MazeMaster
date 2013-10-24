@@ -27,9 +27,11 @@
 
 // used for A* pathfinding
 @property (readwrite, retain) Tile *parent;
+@property (readonly, nonatomic) PlayerDirection directionFromParent;
+@property (readonly, nonatomic) PlayerDirection directionToParent;
 @property (readwrite, assign) int cost;
 @property (readwrite, assign) int heuristic;
-@property (readwrite, assign) int genID;
+@property (readwrite, assign) int generationID;
 @property (readonly) int optimality;
 
 @end

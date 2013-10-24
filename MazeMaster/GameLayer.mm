@@ -440,8 +440,15 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    Tile *start = [GameController sharedController].level.maze.tileWithPlayer;
    Tile *goal = [self getTileAtScreenLocation:location];
    
-   _pathFinder->calculatePath(start, goal);
+   CCArray *directions = _pathFinder->calculatePath(start, goal);
 
+   PlayerDirection direction = e_NONE;
+   for (NSNumber *directionNumber in directions)
+   {
+      direction = (PlayerDirection)directionNumber.intValue;
+      NSLog(@"direction: %d", direction);
+   }
+   
 }
 
 + (CCScene *)scene

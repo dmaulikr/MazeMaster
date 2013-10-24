@@ -8,6 +8,10 @@
 
 #import "GameController.h"
 
+#import "Level.h"
+#import "GameLayer.h"
+#import "PlayerTypedefs.h"
+
 // for singleton
 GameController *s_gameController = nil;
 
@@ -51,7 +55,8 @@ GameController *s_gameController = nil;
 
 - (void)pushSwipeStack:(PlayerDirection)direction
 {
-   [_swipeStack addObject:[NSNumber numberWithInt:direction]];
+   [_swipeStack insertObject:[NSNumber numberWithInt:direction]
+                     atIndex:0];
 }
 
 - (PlayerDirection)popSwipeStack

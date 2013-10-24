@@ -113,6 +113,34 @@
    return neighbors;
 }
 
+- (PlayerDirection)directionFromParent
+{
+   if ([_parent isEqual:_northEdge.northTile])
+      return e_SOUTH;
+   if ([_parent isEqual:_eastEdge.eastTile])
+      return e_WEST;
+   if ([_parent isEqual:_southEdge.southTile])
+      return e_NORTH;
+   if ([_parent isEqual:_westEdge.westTile])
+      return e_EAST;
+
+   return e_NONE;
+}
+
+- (PlayerDirection)directionToParent
+{
+   if ([_parent isEqual:_northEdge.northTile])
+      return e_NORTH;
+   if ([_parent isEqual:_eastEdge.eastTile])
+      return e_EAST;
+   if ([_parent isEqual:_southEdge.southTile])
+      return e_SOUTH;
+   if ([_parent isEqual:_westEdge.westTile])
+      return e_WEST;
+
+   return e_NONE;
+}
+
 - (int)optimality
 {
    return _cost + _heuristic;

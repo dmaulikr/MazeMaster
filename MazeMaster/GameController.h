@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Level.h"
-#import "GameLayer.h"
-#import "PlayerTypedefs.h"
+#include "PlayerTypedefs.h"
+
+@class GameLayer;
+@class Level;
+@class Tile;
 
 @interface GameController : NSObject
 {
