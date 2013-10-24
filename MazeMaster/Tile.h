@@ -30,8 +30,7 @@
 @property (readonly, nonatomic) PlayerDirection directionFromParent;
 @property (readonly, nonatomic) PlayerDirection directionToParent;
 @property (readwrite, assign) int cost;
-@property (readwrite, assign) int heuristic;
-@property (readwrite, assign) int generationID;
-@property (readonly) int optimality;
+@property (readwrite, assign) float heuristic;
+@property (readonly) float optimality;
 
 @end

@@ -44,13 +44,6 @@
    return self;
 }
 
-- (void)resetTileGenerationIDs
-{
-   for (NSMutableArray *tileArray in _tiles)
-      for (Tile *tile in tileArray)
-         tile.generationID = 0;
-}
-
 - (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition
                                          forTileSize:(CGSize)tileSize
 {

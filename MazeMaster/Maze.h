@@ -33,8 +33,6 @@ typedef struct {
 - (Tile *)getTileAtLocation:(CGPoint)location
                 forTileSize:(CGSize)tileSize;
 
-- (void)resetTileGenerationIDs;
-
 -(void) testMaze;
 -(id) initWithRows:(int)rows withColumns:(int)cols;
 -(Tile *) tileAtPosition:(CGPoint)tileCoordinates;

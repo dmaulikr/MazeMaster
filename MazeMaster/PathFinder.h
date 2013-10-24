@@ -22,11 +22,10 @@ private:
    int movement_cost(Tile *from, Tile *to);
 
    void astar_search(Tile *start, Tile *goal);
+   void add_tile_to_open(Tile *tile, CCArray *open);
+   
    void print_path(Tile *tile);
-
    CCArray* get_directions(Tile *goal);
-
-   static int compare_tiles(const void *, const void *);
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */

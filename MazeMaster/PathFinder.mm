@@ -49,7 +49,6 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
    start.cost = 0;
    goal.parent = nil;
 
-   int tileGeneration = 0;
    int cost = 0;
 
    Tile *current = nil;
@@ -64,9 +63,6 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
       for (Tile *neighbor in [current walkableNeighborTiles])
       {
          cost = current.cost + movement_cost(current, neighbor);
-         if (!neighbor.generationID)
-            neighbor.generationID = ++tileGeneration;
-
          if ([open containsObject:neighbor] && (cost < neighbor.cost))
             [open removeObject:neighbor];
 
@@ -77,12 +73,24 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
          {
             neighbor.cost = cost;
             neighbor.heuristic = manhattan_distance(neighbor.position, goal.position);
+            neighbor.heuristic *= (1.0 + (1/1000));
             neighbor.parent = current;
-            [open addObject:neighbor];
-            [open qsortUsingCFuncComparator:&PathFinder::compare_tiles];
+            add_tile_to_open(neighbor, open);
          }
       }
    }
+}
+
+void PathFinder::add_tile_to_open(Tile *tile, CCArray *open)
+{
+   float optimality = tile.optimality;
+   int i = 0;
+   for (; i < open.count; ++i)
+      if (optimality <= [[open objectAtIndex:i] optimality])
+         break;
+   
+   [open insertObject:tile
+              atIndex:i];
 }
 
 void PathFinder::print_path(Tile *tile)
@@ -113,18 +121,4 @@ CCArray* PathFinder::get_directions(Tile *goal)
 
    [directions reverseObjects];
    return directions;
-}
-
-int PathFinder::compare_tiles(const void *lhs, const void *rhs)
-{
-   id iLHS = ((id *) lhs)[0];
-   id iRHS = ((id *) rhs)[0];
-
-   Tile *leftTile = (Tile *)iLHS;
-   Tile *rightTile = (Tile *)iRHS;
-   
-   if (leftTile.optimality != rightTile.optimality)
-      return leftTile.optimality > rightTile.optimality;
-   else
-      return leftTile.generationID < rightTile.generationID;
 }
