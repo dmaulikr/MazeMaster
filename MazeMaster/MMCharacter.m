@@ -15,6 +15,8 @@
    if (self = [super initWithFile:filename])
    {
       _velocity = CGPointZero;
+      _direction = e_NONE;
+      _moveStack = [NSMutableArray new];
    }
    return self;
 }
@@ -31,7 +33,47 @@
 
 - (void)dealloc
 {
+   [_moveStack release];
    [super dealloc];
 }
+
+-(void) pushMoveStack:(CharacterDirection)direction
+{
+   [_moveStack addObject:[NSNumber numberWithInt:direction]];
+}
+
+-(CharacterDirection) popMoveStack
+{
+   CharacterDirection direction = e_NONE;
+   if (_moveStack.count)
+   {
+      NSNumber *directionNumber = [_moveStack lastObject];
+      direction = directionNumber.intValue;
+      [_moveStack removeLastObject];
+   }
+   return direction;
+}
+
+-(CharacterDirection) topMoveStack
+{
+   CharacterDirection direction = e_NONE;
+   if (_moveStack.count)
+   {
+      NSNumber *directionNumber = [_moveStack lastObject];
+      direction = directionNumber.intValue;
+   }
+   return direction;
+}
+
+-(void) clearMoveStack
+{
+   [_moveStack removeAllObjects];
+}
+
+-(BOOL) moveStackIsEmpty
+{
+   return !_moveStack.count;
+}
+
 
 @end

@@ -20,16 +20,12 @@ typedef struct {
 {
    MazeDimensions _mazeDimensions;
    
-   Tile* _tileWithPlayer;
    NSMutableArray* _tiles;
 }
 
 @property (nonatomic, assign) NSMutableArray *tiles;
 @property (readonly, assign) MazeDimensions mazeDimensions;
-@property (readwrite, assign) Tile *tileWithPlayer;
 
-- (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition
-                                         forTileSize:(CGSize)tileSize;
 - (Tile *)getTileAtLocation:(CGPoint)location
                 forTileSize:(CGSize)tileSize;
 

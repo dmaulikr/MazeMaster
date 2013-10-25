@@ -8,7 +8,6 @@
 
 #import "Maze.h"
 #import "Tile.h"
-#import "Player.h"
 
 @implementation Maze
 
@@ -45,15 +44,6 @@
       [self connectEdges:rows cols:cols];
    }
    return self;
-}
-
-- (void)updateTileContainingPlayerWithPlayerPosition:(CGPoint)playerPosition
-                                         forTileSize:(CGSize)tileSize
-{
-   int xTile = (playerPosition.x / tileSize.width) + 1;
-   int yTile = (playerPosition.y / tileSize.height) + 1;
-
-   _tileWithPlayer = [self tileAtPosition:CGPointMake(xTile, yTile)];
 }
 
 - (Tile *)getTileAtLocation:(CGPoint)location
@@ -189,7 +179,6 @@
    
    // remove all the objects recursively
    [_tiles release];
-   [_tileWithPlayer release];
    
    [super dealloc];
 }

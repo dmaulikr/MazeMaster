@@ -14,8 +14,8 @@
 {
 }
 
-- (Tile *)getAdjacentTileForDirection:(PlayerDirection)direction;
-- (Edge *)getAdjacentEdgeForDirection:(PlayerDirection)direction;
+- (Tile *)getAdjacentTileForDirection:(CharacterDirection)direction;
+- (Edge *)getAdjacentEdgeForDirection:(CharacterDirection)direction;
 
 @property (readwrite, assign) Edge* northEdge;
 @property (readwrite, assign) Edge* eastEdge;

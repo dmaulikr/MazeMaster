@@ -13,8 +13,8 @@
 #import "Level.h"
 #import "LevelSelectLayer.h"
 #import "MazeLayer.h"
-#import "Player.h"
 #import "Tile.h"
+#import "Player.h"
 
 #include "PathFinder.h"
 
@@ -48,17 +48,28 @@
    _playerSprite.anchorPoint = CGPointZero;
    _playerSprite.scale = 1.8;
 
-   _xPlayerOffset = (_tileSize.width/2.0) - (_playerSprite.boundingBox.size.width/2.0);
-   _yPlayerOffset = (_tileSize.height/2.0) - (_playerSprite.boundingBox.size.height/2.0);
+   float xPlayerOffset = (_tileSize.width/2.0) - (_playerSprite.boundingBox.size.width/2.0);
+   float yPlayerOffset = (_tileSize.height/2.0) - (_playerSprite.boundingBox.size.height/2.0);
+   _playerSprite.offset = ccp(xPlayerOffset, yPlayerOffset);
+   
+   _playerSprite.position = _playerSprite.offset;
+   _playerSprite.absolutePosition = _playerSprite.offset;
 
-   _playerSprite.position = ccp(_xPlayerOffset, _yPlayerOffset);
-   _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
-
-   Maze *maze = [GameController sharedController].level.maze;
-   [maze updateTileContainingPlayerWithPlayerPosition:_playerSprite.absolutePosition
-                                          forTileSize:_tileSize];
+   [self updateTileContainingCharacter:_playerSprite
+                           forTileSize:_tileSize];
    [self addChild:_playerSprite];
 }
+
+- (void)updateTileContainingCharacter:(MMCharacter *)character
+                          forTileSize:(CGSize)tileSize
+{
+   int xTile = (character.absolutePosition.x / tileSize.width) + 1;
+   int yTile = (character.absolutePosition.y / tileSize.height) + 1;
+
+   character.currentTile = [[GameController sharedController].level.maze
+                                          tileAtPosition:CGPointMake(xTile, yTile)];
+}
+
 
 - (void)setupMazeLayer:(MazeLayer *)mazeLayer
 {
@@ -73,9 +84,8 @@
    {
       [self setupVariables];
       [self setupPlayer];
-      [self scheduleUpdate];
-      
       [[GameController sharedController].level addEnemiesToLayer:self];
+      [self scheduleUpdate];
 	}
 	return self;
 }
@@ -97,7 +107,8 @@
 
 - (void)update:(ccTime)delta
 {
-   [self movePlayer];
+//   [self movePlayer];
+   [self moveCharacter:_playerSprite];
    [self moveEnemies];
 }
 
@@ -119,7 +130,7 @@
            [self playerIsVerticallyCenteredOnScreen]);
 }
 
-- (BOOL)mazeShouldMoveForPlayerDirection:(PlayerDirection)direction
+- (BOOL)mazeShouldMoveForPlayerDirection:(CharacterDirection)direction
 {
    BOOL retVal = NO;
    switch (direction)
@@ -209,10 +220,10 @@
 }
 
 - (CGPoint)getDestinationPointForX:(int)x
-                                y:(int)y
+                                 y:(int)y
 {
    CGPoint destination;
-   PlayerDirection direction = [GameController sharedController].playerDirection;
+   CharacterDirection direction = _playerSprite.direction;
    
    if ([self mazeShouldMoveForPlayerDirection:direction])
    {
@@ -229,19 +240,18 @@
       if (![self playerPositionInMazeBounds:destination])
       {
          destination = _playerSprite.position;
-         [GameController sharedController].playerShouldMove = NO;
-         [self stopPlayer];
+         _playerSprite.shouldMove = NO;
+         [self stopCharacter:_playerSprite];
       }
    }
    return destination;
 }
 
-- (CGPoint)getXYForPlayerDirection:(PlayerDirection)direction
+- (CGPoint)getXYForDirection:(CharacterDirection)direction
 {
    float x, y;
-   GameController *gameController = [GameController sharedController];
    
-   gameController.playerDirection = direction;
+   _playerSprite.direction = direction;
    
    if ( _playerSprite.velocity.x <= MAX_VELOCITY )
       _playerSprite.velocity = ccp(_playerSprite.velocity.x + 0.3,
@@ -270,85 +280,88 @@
    return ccp(x,y);
 }
 
-- (void)stopPlayer
+- (void)stopCharacter:(MMCharacter *)character
 {
-   GameController *gameController = [GameController sharedController];
-   gameController.playerIsMoving = NO;
-   [gameController clearSwipeStack];
-   gameController.playerDirection = e_NONE;
+   [character clearMoveStack];
+   character.isMoving = NO;
+   character.direction = e_NONE;
 }
 
-- (void)updatePlayerPostionForTile:(Tile *)nextTile
-                        atLocation:(CGPoint)nextTileLocation
+- (void)updateCharacterPostion:(MMCharacter *)character
+                       forTile:(Tile *)nextTile
+                    atLocation:(CGPoint)nextTileLocation
 {
-   GameController *gameController = [GameController sharedController];
-   if ( gameController.playerShouldMove == NO )
+   if ( character.shouldMove == NO )
    {
-      if (_moveMaze)
+      if (_moveMaze && [character isKindOfClass:[Player class]])
       {
-         int xMazeOffset = _playerSprite.position.x - nextTileLocation.x;
-         int yMazeOffset = _playerSprite.position.y - nextTileLocation.y;
+         int xMazeOffset = character.position.x - nextTileLocation.x;
+         int yMazeOffset = character.position.y - nextTileLocation.y;
          _mazeLayer.position = ccp(_mazeLayer.position.x + xMazeOffset,
                                    _mazeLayer.position.y + yMazeOffset);
       }
       else
       {
-         _playerSprite.position = nextTileLocation;
+         character.position = nextTileLocation;
       }
-      [self stopPlayer];
+      [self stopCharacter:character];
    }
 
-   gameController.level.maze.tileWithPlayer = nextTile;
+   character.currentTile = nextTile;
    
-   if (![gameController swipeStackIsEmpty])
+   if (![character moveStackIsEmpty])
    {
-      PlayerDirection nextDirection = [gameController topSwipeStack];
+      CharacterDirection nextDirection = [character topMoveStack];
       if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
       {
-         gameController.playerDirection = [gameController popSwipeStack];
-         _playerSprite.position = nextTileLocation;
+         character.direction = [character popMoveStack];
+         character.position = nextTileLocation;
       }
    }
 }
 
-- (void)updateCurrentTileWithPlayer
+- (void)updateCurrentTileWithCharacter:(MMCharacter *)character
 {
-   GameController *gameController = [GameController sharedController];
-   Tile *currentTile = gameController.level.maze.tileWithPlayer;
-   Tile *nextTile = [currentTile getAdjacentTileForDirection:gameController.playerDirection];
+//   GameController *gameController = [GameController sharedController];
+   Tile *currentTile = character.currentTile;
+   Tile *nextTile = [currentTile getAdjacentTileForDirection:character.direction];
    
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer
-   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
-                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
+   CGPoint nextTileLocation = ccp(nextTile.tileSprite.position.x + _mazeLayer.position.x + character.offset.x,
+                                  nextTile.tileSprite.position.y + _mazeLayer.position.y + character.offset.y);
    if (nextTile == nil)
    {
-      gameController.playerShouldMove = NO;
-      [self stopPlayer];
+      character.shouldMove = NO;
+      [self stopCharacter:character];
    }
    else
    {
-      switch (gameController.playerDirection)
+      switch (character.direction)
       {
          case e_NORTH:
-            if (_playerSprite.position.y >= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+            if (character.position.y >= nextTileLocation.y)
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_EAST:
-            if (_playerSprite.position.x >= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+            if (character.position.x >= nextTileLocation.x)
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_SOUTH:
-            if (_playerSprite.position.y <= nextTileLocation.y)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+            if (character.position.y <= nextTileLocation.y)
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          case e_WEST:
-            if (_playerSprite.position.x <= nextTileLocation.x)
-               [self updatePlayerPostionForTile:nextTile
-                                     atLocation:nextTileLocation];
+            if (character.position.x <= nextTileLocation.x)
+               [self updateCharacterPostion:character
+                                    forTile:nextTile
+                                 atLocation:nextTileLocation];
             break;
          default:
             break;
@@ -356,8 +369,52 @@
    }
 }
 
-- (BOOL)direction:(PlayerDirection)direction
-isOppositeToDirection:(PlayerDirection)otherDirection
+//- (void)updateCurrentTileWithPlayer
+//{
+//   Tile *currentTile = _playerSprite.currentTile;
+//   Tile *nextTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
+//   
+//   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
+//   // original position of the tile sprite by the position of the maze layer
+//   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
+//                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
+//   if (nextTile == nil)
+//   {
+//      _playerSprite.shouldMove = NO;
+//      [self stopCharacter:_playerSprite];
+//   }
+//   else
+//   {
+//      switch (_playerSprite.direction)
+//      {
+//         case e_NORTH:
+//            if (_playerSprite.position.y >= nextTileLocation.y)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_EAST:
+//            if (_playerSprite.position.x >= nextTileLocation.x)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_SOUTH:
+//            if (_playerSprite.position.y <= nextTileLocation.y)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         case e_WEST:
+//            if (_playerSprite.position.x <= nextTileLocation.x)
+//               [self updatePlayerPostionForTile:nextTile
+//                                     atLocation:nextTileLocation];
+//            break;
+//         default:
+//            break;
+//      }
+//   }
+//}
+
+- (BOOL)direction:(CharacterDirection)direction
+isOppositeToDirection:(CharacterDirection)otherDirection
 {
    switch (direction)
    {
@@ -375,58 +432,63 @@ isOppositeToDirection:(PlayerDirection)otherDirection
    }
 }
 
-- (void)movePlayer
+- (void)moveCharacter:(MMCharacter *)character
 {
    GameController *gameController = [GameController sharedController];
    CGPoint destination;
    
-   if ([gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] == NO)
+   if ([gameController canMoveFromTile:character.currentTile
+                           inDirection:character.direction] == NO)
    {
-      gameController.playerShouldMove = NO;
-      [self stopPlayer];
+      character.shouldMove = NO;
+      [self stopCharacter:character];
+      
+      // TODO: put these in their own function
+      character.isMoving = NO;
+      character.direction = e_NONE;
       return;
    }
    
-   if (gameController.playerIsMoving)
+   if (character.isMoving)
    {
-      if ([self direction:[gameController topSwipeStack]
-    isOppositeToDirection:gameController.playerDirection])
+      if ([self direction:[character topMoveStack] isOppositeToDirection:character.direction])
       {
-         Tile *currentTile = gameController.level.maze.tileWithPlayer;
-         gameController.level.maze.tileWithPlayer =
-            [currentTile getAdjacentTileForDirection:gameController.playerDirection];
-         gameController.playerDirection = [gameController popSwipeStack];
+         Tile *currentTile = character.currentTile;
+         character.currentTile = [currentTile getAdjacentTileForDirection:character.direction];
+         character.direction = [character popMoveStack];
       }
 
-      CGPoint directionPoint = [self getXYForPlayerDirection:gameController.playerDirection];
+      CGPoint directionPoint = [self getXYForDirection:character.direction];
       destination = [self getDestinationPointForX:directionPoint.x
                                                 y:directionPoint.y];
       
       // _moveMaze is on when the maze moves instead of the player
       float diffX, diffY;
-      if (_moveMaze)
+      if (_moveMaze && [character isKindOfClass:[Player class]])
       {
          diffX = _mazeLayer.position.x - destination.x;
          diffY = _mazeLayer.position.y - destination.y;
       }
       else
       {
-         diffX = destination.x - _playerSprite.position.x;
-         diffY = destination.y - _playerSprite.position.y;
+         diffX = destination.x - character.position.x;
+         diffY = destination.y - character.position.y;
       }
       
-      CCNode *moveableObject = (_moveMaze)? _mazeLayer : _playerSprite;
+      CCNode *moveableObject = (_moveMaze)? _mazeLayer : character;
       moveableObject.position = destination;
       
-      _playerSprite.absolutePosition = ccp(_playerSprite.absolutePosition.x + diffX,
-                                           _playerSprite.absolutePosition.y + diffY);
-      [self updateCurrentTileWithPlayer];
+      character.absolutePosition = ccp(character.absolutePosition.x + diffX,
+                                       character.absolutePosition.y + diffY);
+      
+      [self updateCurrentTileWithCharacter:character];
    }
+   
 }
 
 -(void) moveEnemies
 {
-   // code here
+   [[GameController sharedController].level moveEnemies];
 }
 
 - (Tile *)getTileAtScreenLocation:(CGPoint)screenLocation

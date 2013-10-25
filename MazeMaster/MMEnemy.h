@@ -13,10 +13,9 @@
 {
 }
 
-@property (readwrite, assign) Tile *currentTile;
-
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;
+
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
 
 @end

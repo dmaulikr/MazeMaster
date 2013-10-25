@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "ControlsLayer.h"
+#import "PlayerTypedefs.h"
+#import "MMCharacter.h"
 
 @class MazeLayer;
 @class Player;
@@ -23,18 +25,17 @@
    NSRange _verticalCenterRange;
    NSRange _horizontalCenterRange;
 
-   MazeLayer *_mazeLayer;
-
-   float _xPlayerOffset;
-   float _yPlayerOffset;
-   
    BOOL _moveMaze;
 }
 
 @property (readwrite, assign) Player *playerSprite;
+@property (readwrite, assign) MazeLayer *mazeLayer;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
-- (void)movePlayer;
+- (void)moveCharacter:(MMCharacter *)character;
+- (CGPoint)getXYForDirection:(CharacterDirection)direction;
+- (void)updateTileContainingCharacter:(MMCharacter *)character
+                          forTileSize:(CGSize)tileSize;
 + (CCScene *)scene;
 
 @end

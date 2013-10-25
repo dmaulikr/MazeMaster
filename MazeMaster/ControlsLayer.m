@@ -106,7 +106,7 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    
    GameController *gameController = [GameController sharedController];
    
-   PlayerDirection direction;
+   CharacterDirection direction;
    switch (recognizer.direction)
    {
       case UISwipeGestureRecognizerDirectionRight:
@@ -125,31 +125,32 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
          break;
    }
    
-   if ([gameController swipeStackIsEmpty] &&
-       gameController.playerDirection == e_NONE)
+   if ([gameController.gameLayer.playerSprite moveStackIsEmpty] &&
+       gameController.gameLayer.playerSprite.direction == e_NONE)
    {
-      gameController.playerDirection = direction;
+      gameController.gameLayer.playerSprite.direction = direction;
    }
-   else if ([gameController topSwipeStack] != direction)
+   else if ([gameController.gameLayer.playerSprite topMoveStack] != direction)
    {
-      [gameController pushSwipeStack:direction];
+      [gameController.gameLayer.playerSprite pushMoveStack:direction];
    }
    
    // only call the move player function if it is the first swipe (because it will
    // be called automatically at the end of the move)
-   if ( !gameController.playerIsMoving )
+   if ( !gameController.gameLayer.playerSprite.isMoving )
    {
-      if ( [gameController playerCanMoveFromTile:gameController.level.maze.tileWithPlayer] )
+      if ( [gameController canMoveFromTile:gameController.gameLayer.playerSprite.currentTile
+                               inDirection:gameController.gameLayer.playerSprite.direction] )
       {
-         gameController.playerIsMoving = YES;
-         gameController.playerShouldMove = YES;
+         gameController.gameLayer.playerSprite.isMoving = YES;
+         gameController.gameLayer.playerSprite.shouldMove = YES;
       }
    }
 }
 
 - (void)handleTwoFingerPress:(UITapGestureRecognizer *)recognizer
 {
-   [GameController sharedController].playerShouldMove = NO;
+   [GameController sharedController].gameLayer.playerSprite.shouldMove = NO;
 }
 
 - (void)handleSingleTap:(NSArray *)touchPoint

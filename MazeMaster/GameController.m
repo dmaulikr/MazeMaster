@@ -7,6 +7,7 @@
 //
 
 #import "GameController.h"
+#import "Player.h"
 
 // for singleton
 GameController *s_gameController = nil;
@@ -19,7 +20,7 @@ GameController *s_gameController = nil;
    {
       _level = [Level new];
       _swipeStack = [NSMutableArray new];
-      _playerDirection = e_NONE;
+//      _playerDirection = e_NONE;
    }
    return self;
 }
@@ -41,50 +42,12 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
-- (BOOL)playerCanMoveFromTile:(Tile *)tile
+-(BOOL) canMoveFromTile:(Tile *)tile inDirection:(CharacterDirection)direction
 {
-   if (_playerDirection == e_NONE)
+   if (direction == e_NONE)
       return NO;
 
-   return [tile getAdjacentEdgeForDirection:_playerDirection].walkable;
-}
-
-- (void)pushSwipeStack:(PlayerDirection)direction
-{
-   [_swipeStack addObject:[NSNumber numberWithInt:direction]];
-}
-
-- (PlayerDirection)popSwipeStack
-{
-   PlayerDirection direction = e_NONE;
-   if (_swipeStack.count)
-   {
-      NSNumber *directionNumber = [_swipeStack lastObject];
-      direction = directionNumber.intValue;
-      [_swipeStack removeLastObject];
-   }
-   return direction;
-}
-
-- (PlayerDirection)topSwipeStack
-{
-   PlayerDirection direction = e_NONE;
-   if (_swipeStack.count)
-   {
-      NSNumber *directionNumber = [_swipeStack lastObject];
-      direction = directionNumber.intValue;
-   }
-   return direction;
-}
-
-- (void)clearSwipeStack
-{
-   [_swipeStack removeAllObjects];
-}
-
-- (BOOL)swipeStackIsEmpty
-{
-   return !_swipeStack.count;
+   return [tile getAdjacentEdgeForDirection:_gameLayer.playerSprite.direction].walkable;
 }
 
 @end
