@@ -141,7 +141,7 @@
    return e_NONE;
 }
 
-- (int)optimality
+- (float)optimality
 {
    return _cost + _heuristic;
 }
