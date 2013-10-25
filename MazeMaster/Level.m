@@ -185,11 +185,16 @@
    //TODO get the tile size
    enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
                       44.0/2.0 - enemy.boundingBox.size.height/2.0);
-   enemy.position = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
-                        enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
-   enemy.direction = e_SOUTH;
+   enemy.position = ccp(enemy.currentTile.tileSprite.position.x +
+                        gameController.gameLayer.mazeLayer.position.x +
+                        enemy.offset.x,
+                        enemy.currentTile.tileSprite.position.y +
+                        gameController.gameLayer.mazeLayer.position.y +
+                        enemy.offset.y );
+   enemy.direction = e_NORTH;
+   enemy.isMoving = YES;
+   enemy.shouldMove = YES;
    
-  // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
    [_enemies addObject:enemy];
 }
 
@@ -207,10 +212,18 @@
    {
       GameController *gameController = [GameController sharedController];
       
-      CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x + gameController.gameLayer.mazeLayer.position.x + enemy.offset.x,
-                                     enemy.currentTile.tileSprite.position.y + gameController.gameLayer.mazeLayer.position.y + enemy.offset.y );
+      CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x +
+                                     gameController.gameLayer.mazeLayer.position.x +
+                                     enemy.offset.x,
+                                     enemy.currentTile.tileSprite.position.y +
+                                     gameController.gameLayer.mazeLayer.position.y +
+                                     enemy.offset.y );
       enemy.position = ccp(nextTileLocation.x,
                            nextTileLocation.y);
+      // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
+      
+      // TODO: START HERE
+//      [gameController.gameLayer moveCharacter:enemy];
    }
 }
 
