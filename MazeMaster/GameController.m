@@ -46,6 +46,14 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
+-(BOOL) character:(MMCharacter *)character canMoveFromTile:(Tile *)tile
+{
+   if (character.direction == e_NONE)
+      return NO;
+   
+   return [tile getAdjacentEdgeForDirection:character.direction].walkable;
+}
+
 // TODO: we may need to pass in the character that is trying to move
 -(BOOL) canMoveFromTile:(Tile *)tile inDirection:(CharacterDirection)direction
 {

@@ -192,6 +192,7 @@
                         enemy.currentTile.tileSprite.position.y +
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y );
+   enemy.absolutePosition = enemy.position;
    enemy.direction = e_NORTH;
    enemy.isMoving = YES;
    enemy.shouldMove = YES;
@@ -221,7 +222,7 @@
                                      enemy.offset.y );
       enemy.position = ccp(nextTileLocation.x,
                            nextTileLocation.y);
-      // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
+// _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
       
       // TODO: START HERE
 //      [gameController.gameLayer moveCharacter:enemy];
@@ -230,8 +231,8 @@
 
 -(void) setupEnemiesForLevel1
 {
-   [self setupEnemy:CGPointMake(5,5) withFile:@"astronaut_front.png"];
-   [self setupEnemy:CGPointMake(8,3) withFile:@"astronaut_front.png"];
+   [self setupEnemy:ccp(5,5) withFile:@"astronaut_front.png"];
+   [self setupEnemy:ccp(8,3) withFile:@"astronaut_front.png"];
 }
 
 - (void)setupEdgesForLevel2

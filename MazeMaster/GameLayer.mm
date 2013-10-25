@@ -29,6 +29,18 @@
 
 #define MAX_VELOCITY 1.7
 
+- (void)onEnter
+{
+   [super onEnter];
+   NSLog(@"On Enter");
+}
+
+- (void)onEnterTransitionDidFinish
+{
+   [super onEnterTransitionDidFinish];
+   NSLog(@"");
+}
+
 - (void)setupVariables
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
@@ -437,8 +449,8 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    GameController *gameController = [GameController sharedController];
    CGPoint destination;
    
-   if ([gameController canMoveFromTile:character.currentTile
-                           inDirection:character.direction] == NO)
+   if ([gameController character:character
+                 canMoveFromTile:character.currentTile] == NO)
    {
       character.shouldMove = NO;
       [self stopCharacter:character];

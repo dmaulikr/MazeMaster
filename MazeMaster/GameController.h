@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #include "PlayerTypedefs.h"
 
+@class MMCharacter;
 @class GameLayer;
 @class Level;
 @class Tile;
@@ -26,4 +27,6 @@
 -(BOOL) canMoveFromTile:(Tile *)tile
             inDirection:(CharacterDirection)direction;
 
+-(BOOL) character:(MMCharacter *)character
+  canMoveFromTile:(Tile *)tile;
 @end
