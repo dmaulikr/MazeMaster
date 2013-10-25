@@ -94,4 +94,56 @@
    return nil;
 }
 
+- (CCArray *)walkableNeighborTiles
+{
+   CCArray *neighbors = [CCArray arrayWithCapacity:4];
+   
+   if (_northEdge.walkable)
+      [neighbors addObject:_northEdge.northTile];
+   if (_eastEdge.walkable)
+      [neighbors addObject:_eastEdge.eastTile];
+   if (_southEdge.walkable)
+      [neighbors addObject:_southEdge.southTile];
+   if (_westEdge.walkable)
+      [neighbors addObject:_westEdge.westTile];
+
+   if (neighbors.count == 0)
+      return nil;
+
+   return neighbors;
+}
+
+- (CharacterDirection)directionFromParent
+{
+   if ([_parent isEqual:_northEdge.northTile])
+      return e_SOUTH;
+   if ([_parent isEqual:_eastEdge.eastTile])
+      return e_WEST;
+   if ([_parent isEqual:_southEdge.southTile])
+      return e_NORTH;
+   if ([_parent isEqual:_westEdge.westTile])
+      return e_EAST;
+
+   return e_NONE;
+}
+
+- (CharacterDirection)directionToParent
+{
+   if ([_parent isEqual:_northEdge.northTile])
+      return e_NORTH;
+   if ([_parent isEqual:_eastEdge.eastTile])
+      return e_EAST;
+   if ([_parent isEqual:_southEdge.southTile])
+      return e_SOUTH;
+   if ([_parent isEqual:_westEdge.westTile])
+      return e_WEST;
+
+   return e_NONE;
+}
+
+- (float)optimality
+{
+   return _cost + _heuristic;
+}
+
 @end

@@ -10,7 +10,9 @@
 #import "CCNode+SFGestureRecognizers.h"
 #import "DoubleTouchDownRecognizer.h"
 #import "GameController.h"
+#import "GameLayer.h"
 #import "LevelSelectLayer.h"
+#import "Level.h"
 #import "Player.h"
 
 @implementation ControlsLayer

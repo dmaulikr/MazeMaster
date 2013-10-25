@@ -9,6 +9,10 @@
 #import "GameController.h"
 #import "Player.h"
 
+#import "Level.h"
+#import "GameLayer.h"
+#import "PlayerTypedefs.h"
+
 // for singleton
 GameController *s_gameController = nil;
 
@@ -42,6 +46,7 @@ GameController *s_gameController = nil;
    [super dealloc];
 }
 
+// TODO: we may need to pass in the character that is trying to move
 -(BOOL) canMoveFromTile:(Tile *)tile inDirection:(CharacterDirection)direction
 {
    if (direction == e_NONE)
@@ -49,5 +54,4 @@ GameController *s_gameController = nil;
 
    return [tile getAdjacentEdgeForDirection:_gameLayer.playerSprite.direction].walkable;
 }
-
 @end

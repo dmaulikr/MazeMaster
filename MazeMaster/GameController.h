@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Level.h"
-#import "GameLayer.h"
-#import "PlayerTypedefs.h"
+#include "PlayerTypedefs.h"
+
+@class GameLayer;
+@class Level;
+@class Tile;
 
 @interface GameController : NSObject
 {
@@ -21,6 +23,7 @@
 @property (nonatomic, assign) Level *level;
 @property (readwrite, assign) GameLayer *gameLayer;
 
--(BOOL) canMoveFromTile:(Tile *)tile inDirection:(CharacterDirection)direction;
+-(BOOL) canMoveFromTile:(Tile *)tile
+            inDirection:(CharacterDirection)direction;
 
 @end

@@ -14,14 +14,24 @@
 {
 }
 
+
 - (Tile *)getAdjacentTileForDirection:(CharacterDirection)direction;
 - (Edge *)getAdjacentEdgeForDirection:(CharacterDirection)direction;
+- (CCArray *)walkableNeighborTiles;
 
+@property (readwrite, assign) CGPoint position;
 @property (readwrite, assign) Edge* northEdge;
 @property (readwrite, assign) Edge* eastEdge;
 @property (readwrite, assign) Edge* southEdge;
 @property (readwrite, assign) Edge* westEdge;
-@property (readwrite, assign) CGPoint position;
 @property (readwrite, retain) CCSprite *tileSprite;
+
+// used for A* pathfinding
+@property (readwrite, retain) Tile *parent;
+@property (readonly, nonatomic) CharacterDirection directionFromParent;
+@property (readonly, nonatomic) CharacterDirection directionToParent;
+@property (readwrite, assign) int cost;
+@property (readwrite, assign) float heuristic;
+@property (readonly) float optimality;
 
 @end

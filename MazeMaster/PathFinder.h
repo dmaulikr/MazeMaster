@@ -9,17 +9,23 @@
 #ifndef __MazeMaster__PathFinder__
 #define __MazeMaster__PathFinder__
 
-#include <iostream>
-
 @class Tile;
 class PathFinder
 {
  public:
    PathFinder();
    ~PathFinder();
+   CCArray* calculatePath(Tile *start, Tile *goal);
 
-   void getPathToTile(Tile *tile);
- private:
+private:
+   int manhattan_distance(CGPoint current, CGPoint goal) const;
+   int movement_cost(Tile *from, Tile *to);
+
+   void astar_search(Tile *start, Tile *goal);
+   void add_tile_to_open(Tile *tile, CCArray *open);
+   
+   void print_path(Tile *tile);
+   CCArray* get_directions(Tile *goal);
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */

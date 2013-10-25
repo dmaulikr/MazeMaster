@@ -39,7 +39,8 @@
 
 -(void) pushMoveStack:(CharacterDirection)direction
 {
-   [_moveStack addObject:[NSNumber numberWithInt:direction]];
+   [_moveStack insertObject:[NSNumber numberWithInt:direction]
+                    atIndex:0];
 }
 
 -(CharacterDirection) popMoveStack

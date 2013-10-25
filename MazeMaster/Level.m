@@ -9,6 +9,7 @@
 #import "Level.h"
 #import "MMEnemy.h"
 #import "GameController.h"
+#import "GameLayer.h"
 #import "MazeLayer.h"
 
 @implementation Level

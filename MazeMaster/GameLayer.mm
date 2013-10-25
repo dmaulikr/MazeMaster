@@ -506,10 +506,27 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
+- (void)testAStarWithDirectionsArray:(CCArray *)directions
+{
+   CharacterDirection direction = e_NONE;
+   for (NSNumber *directionNumber in directions)
+   {
+      direction = (CharacterDirection)directionNumber.intValue;
+      [_playerSprite pushMoveStack:direction];
+   }
+
+   _playerSprite.direction = [_playerSprite popMoveStack];
+   _playerSprite.isMoving = YES;
+   _playerSprite.shouldMove = YES;
+}
+
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
-   Tile *tile = [self getTileAtScreenLocation:location];
-   _pathFinder->getPathToTile(tile);
+   Tile *start = _playerSprite.currentTile;
+   Tile *goal = [self getTileAtScreenLocation:location];
+   
+   CCArray *directions = _pathFinder->calculatePath(start, goal);
+   [self testAStarWithDirectionsArray:directions];
 }
 
 + (CCScene *)scene
