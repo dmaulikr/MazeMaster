@@ -60,7 +60,7 @@
    {
       case 1:
          [self setupEdgesForLevel1];
-         [self addEnemiesForLevel1];
+         [self setupEnemiesForLevel1];
          break;
       case 2:
          [self setupEdgesForLevel2];
@@ -201,6 +201,7 @@
 {
    for (MMEnemy *enemy in _enemies)
    {
+      enemy.maxVelocity = ccp(.8,.8);
       [gameLayer addChild:enemy];
    }
 }
@@ -259,7 +260,7 @@
    }
 }
 
--(void) addEnemiesForLevel1
+-(void) setupEnemiesForLevel1
 {
    MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
    [_enemies addObject:enemy1];

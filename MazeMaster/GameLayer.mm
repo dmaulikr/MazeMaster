@@ -28,7 +28,7 @@
 
 @implementation GameLayer
 
-#define MAX_VELOCITY 1.0
+#define MAX_PLAYER_VELOCITY 1.0
 
 - (void)setupVariables
 {
@@ -55,6 +55,8 @@
    
    _playerSprite.position = _playerSprite.offset;
    _playerSprite.absolutePosition = _playerSprite.offset;
+
+   _playerSprite.maxVelocity = ccp(1.0, 1.0);
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
@@ -277,7 +279,7 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    
    character.direction = direction;
    
-   if (character.velocity.x <= MAX_VELOCITY)
+   if (character.velocity.x <= character.maxVelocity.x)
       character.velocity = ccp(character.velocity.x + 0.3,
                                character.velocity.y + 0.3);
    switch ( direction )
