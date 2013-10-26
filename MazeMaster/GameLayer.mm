@@ -56,7 +56,7 @@
    _playerSprite.position = _playerSprite.offset;
    _playerSprite.absolutePosition = _playerSprite.offset;
 
-   _playerSprite.maxVelocity = ccp(1.0, 1.0);
+   _playerSprite.maxVelocity = ccp(.8, .8);
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
