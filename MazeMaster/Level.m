@@ -201,7 +201,6 @@
 {
    for (MMEnemy *enemy in _enemies)
    {
-      enemy.maxVelocity = ccp(.8,.8);
       [gameLayer addChild:enemy];
    }
 }
@@ -210,12 +209,12 @@
 {
    GameController *gameController = [GameController sharedController];
 
-   enemy.anchorPoint = CGPointZero;
    enemy.currentTile = [_maze tileAtPosition:ccp(5,5)];
    enemy.scale = 1.8;
-
    enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
                       44.0/2.0 - enemy.boundingBox.size.height/2.0);
+
+   enemy.anchorPoint = CGPointZero;
    enemy.position = ccp(enemy.currentTile.tileSprite.position.x +
                         gameController.gameLayer.mazeLayer.position.x +
                         enemy.offset.x,
@@ -223,6 +222,8 @@
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y );
    enemy.absolutePosition = enemy.position;
+
+   enemy.maxVelocity = ccp(0.7,0.7);
 }
 
 - (void)setEnemyPositionsForLevel:(int)levelNumber

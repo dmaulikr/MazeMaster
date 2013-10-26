@@ -395,50 +395,6 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    }
 }
 
-//- (void)updateCurrentTileWithPlayer
-//{
-//   Tile *currentTile = _playerSprite.currentTile;
-//   Tile *nextTile = [currentTile getAdjacentTileForDirection:_playerSprite.direction];
-//   
-//   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
-//   // original position of the tile sprite by the position of the maze layer
-//   CGPoint nextTileLocation = CGPointMake(nextTile.tileSprite.position.x + _mazeLayer.position.x + _xPlayerOffset,
-//                                          nextTile.tileSprite.position.y + _mazeLayer.position.y + _yPlayerOffset);
-//   if (nextTile == nil)
-//   {
-//      _playerSprite.shouldMove = NO;
-//      [self stopCharacter:_playerSprite];
-//   }
-//   else
-//   {
-//      switch (_playerSprite.direction)
-//      {
-//         case e_NORTH:
-//            if (_playerSprite.position.y >= nextTileLocation.y)
-//               [self updatePlayerPostionForTile:nextTile
-//                                     atLocation:nextTileLocation];
-//            break;
-//         case e_EAST:
-//            if (_playerSprite.position.x >= nextTileLocation.x)
-//               [self updatePlayerPostionForTile:nextTile
-//                                     atLocation:nextTileLocation];
-//            break;
-//         case e_SOUTH:
-//            if (_playerSprite.position.y <= nextTileLocation.y)
-//               [self updatePlayerPostionForTile:nextTile
-//                                     atLocation:nextTileLocation];
-//            break;
-//         case e_WEST:
-//            if (_playerSprite.position.x <= nextTileLocation.x)
-//               [self updatePlayerPostionForTile:nextTile
-//                                     atLocation:nextTileLocation];
-//            break;
-//         default:
-//            break;
-//      }
-//   }
-//}
-
 - (BOOL)direction:(CharacterDirection)direction
 isOppositeToDirection:(CharacterDirection)otherDirection
 {
@@ -546,7 +502,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    MMEnemy *enemy = [[GameController sharedController].level.enemies objectAtIndex:0];
    Tile *start = enemy.currentTile;
    Tile *goal = [self getTileAtScreenLocation:location];
-   
+
    CCArray *directions = _pathFinder->calculatePath(start, goal);
    [self testAStarWithDirectionsArray:directions];
 }
