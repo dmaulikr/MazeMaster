@@ -141,8 +141,6 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
    // be called automatically at the end of the move)
    if ( !gameController.gameLayer.playerSprite.isMoving )
    {
-//      if ( [gameController canMoveFromTile:gameController.gameLayer.playerSprite.currentTile
-//                               inDirection:gameController.gameLayer.playerSprite.direction] )
       if ([gameController character:gameController.gameLayer.playerSprite
                     canMoveFromTile:gameController.gameLayer.playerSprite.currentTile])
       {

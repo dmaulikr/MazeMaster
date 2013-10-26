@@ -21,6 +21,7 @@
 @property (nonatomic, assign) CharacterDirection direction;
 @property (readwrite, assign) BOOL isMoving;
 @property (readwrite, assign) BOOL shouldMove;
+@property (readwrite, assign) BOOL isPlayer;
 @property (readwrite, assign) Tile *currentTile;
 
 -(id) initWithFile:(NSString *)filename;

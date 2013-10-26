@@ -27,7 +27,9 @@
 +(Player *) playerWithFile:(NSString *)filename
 {
    // TODO: this is weird
-   return (Player *)[super characterWithFile:filename];
+   Player *player = (Player *)[super characterWithFile:filename];
+   player.isPlayer = YES;
+   return player;
 }
 
 - (void)dealloc

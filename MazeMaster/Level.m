@@ -60,7 +60,7 @@
    {
       case 1:
          [self setupEdgesForLevel1];
-         [self setupEnemiesForLevel1];
+         [self addEnemiesForLevel1];
          break;
       case 2:
          [self setupEdgesForLevel2];
@@ -193,10 +193,7 @@
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y );
    enemy.absolutePosition = enemy.position;
-   enemy.direction = e_NORTH;
-   enemy.isMoving = YES;
-   enemy.shouldMove = YES;
-   
+
    [_enemies addObject:enemy];
 }
 
@@ -208,12 +205,45 @@
    }
 }
 
+- (void)setupEnemy:(MMEnemy *)enemy atLocation:(CGPoint)location
+{
+   GameController *gameController = [GameController sharedController];
+
+   enemy.anchorPoint = CGPointZero;
+   enemy.currentTile = [_maze tileAtPosition:ccp(5,5)];
+   enemy.scale = 1.8;
+
+   enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
+                      44.0/2.0 - enemy.boundingBox.size.height/2.0);
+   enemy.position = ccp(enemy.currentTile.tileSprite.position.x +
+                        gameController.gameLayer.mazeLayer.position.x +
+                        enemy.offset.x,
+                        enemy.currentTile.tileSprite.position.y +
+                        gameController.gameLayer.mazeLayer.position.y +
+                        enemy.offset.y );
+   enemy.absolutePosition = enemy.position;
+}
+
+- (void)setEnemyPositionsForLevel:(int)levelNumber
+{
+   switch (levelNumber)
+   {
+      case 1:
+      {
+         [self setupEnemy:[_enemies objectAtIndex:0]
+               atLocation:ccp(5,5)];
+         break;
+      }
+      default:
+         return;
+   }
+}
+
 -(void) moveEnemies
 {
    for (MMEnemy *enemy in _enemies)
    {
       GameController *gameController = [GameController sharedController];
-      
       CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x +
                                      gameController.gameLayer.mazeLayer.position.x +
                                      enemy.offset.x,
@@ -223,16 +253,16 @@
       enemy.position = ccp(nextTileLocation.x,
                            nextTileLocation.y);
 // _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
-      
+
       // TODO: START HERE
 //      [gameController.gameLayer moveCharacter:enemy];
    }
 }
 
--(void) setupEnemiesForLevel1
+-(void) addEnemiesForLevel1
 {
-   [self setupEnemy:ccp(5,5) withFile:@"astronaut_front.png"];
-   [self setupEnemy:ccp(8,3) withFile:@"astronaut_front.png"];
+   MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   [_enemies addObject:enemy1];
 }
 
 - (void)setupEdgesForLevel2

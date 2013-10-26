@@ -33,7 +33,6 @@
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
 - (void)moveCharacter:(MMCharacter *)character;
-- (CGPoint)getXYForDirection:(CharacterDirection)direction;
 - (void)updateTileContainingCharacter:(MMCharacter *)character
                           forTileSize:(CGSize)tileSize;
 + (CCScene *)scene;
