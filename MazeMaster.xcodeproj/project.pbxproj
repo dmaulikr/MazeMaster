@@ -184,8 +184,8 @@
 		4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = astronaut_front.png; path = Resources/astronaut_front.png; sourceTree = "<group>"; };
 		4AFE43D31811DDD300F3E81C /* MMCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCharacter.h; sourceTree = "<group>"; };
 		4AFE43D41811DDD300F3E81C /* MMCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCharacter.m; sourceTree = "<group>"; };
-		4AFE43D61811E19F00F3E81C /* MMEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMEnemy.h; path = MazeMaster/MMEnemy.h; sourceTree = "<group>"; };
-		4AFE43D71811E19F00F3E81C /* MMEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMEnemy.m; path = MazeMaster/MMEnemy.m; sourceTree = "<group>"; };
+		4AFE43D61811E19F00F3E81C /* MMEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEnemy.h; sourceTree = "<group>"; };
+		4AFE43D71811E19F00F3E81C /* MMEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEnemy.m; sourceTree = "<group>"; };
 		8E02EC461808C49700369B8A /* astronaut_front@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "astronaut_front@2x.png"; path = "Resources/astronaut_front@2x.png"; sourceTree = "<group>"; };
 		8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gray_tile_44x44@2x.png"; path = "Resources/gray_tile_44x44@2x.png"; sourceTree = "<group>"; };
 		8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edge_simple@2x.png"; path = "Resources/edge_simple@2x.png"; sourceTree = "<group>"; };
@@ -539,8 +539,6 @@
 		8E38CC2917AF1F8F00EE917C = {
 			isa = PBXGroup;
 			children = (
-				4AFE43D61811E19F00F3E81C /* MMEnemy.h */,
-				4AFE43D71811E19F00F3E81C /* MMEnemy.m */,
 				8E38CC4917AF1F9000EE917C /* MazeMaster */,
 				8E38CC3417AF1F9000EE917C /* Frameworks */,
 				8E38CC3317AF1F9000EE917C /* Products */,
@@ -602,12 +600,14 @@
 				DA3731CA17BB1764007694C4 /* Maze.m */,
 				8EA767F717DC0DE000624A43 /* MazeLayer.h */,
 				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
+				4AFE43D31811DDD300F3E81C /* MMCharacter.h */,
+				4AFE43D41811DDD300F3E81C /* MMCharacter.m */,
+				4AFE43D61811E19F00F3E81C /* MMEnemy.h */,
+				4AFE43D71811E19F00F3E81C /* MMEnemy.m */,
 				8EB6CA1F1810F78600F5D267 /* PathFinder.h */,
 				8EB6CA201810F78600F5D267 /* PathFinder.mm */,
 				DA503CDF17C3292A005CA59D /* Player.h */,
 				DA503CE017C3292A005CA59D /* Player.m */,
-				4AFE43D31811DDD300F3E81C /* MMCharacter.h */,
-				4AFE43D41811DDD300F3E81C /* MMCharacter.m */,
 				8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */,
 				8E38CC4A17AF1F9000EE917C /* Resources */,
 				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
