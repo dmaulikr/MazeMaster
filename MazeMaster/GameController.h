@@ -15,17 +15,11 @@
 @class Tile;
 
 @interface GameController : NSObject
-{
-   NSMutableArray *_swipeStack;
-}
 
 +(GameController *) sharedController;
 
 @property (nonatomic, assign) Level *level;
 @property (readwrite, assign) GameLayer *gameLayer;
-
--(BOOL) canMoveFromTile:(Tile *)tile
-            inDirection:(CharacterDirection)direction;
 
 -(BOOL) character:(MMCharacter *)character
   canMoveFromTile:(Tile *)tile;
