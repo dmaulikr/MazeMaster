@@ -138,13 +138,13 @@
 
 - (BOOL)playerIsHorizontallyCenteredOnScreen
 {
-   return NSLocationInRange(_playerSprite.position.x + _playerSprite.boundingBox.size.width/2.0,
+   return NSLocationInRange(_playerSprite.position.x,
                             _verticalCenterRange);
 }
 
 - (BOOL)playerIsVerticallyCenteredOnScreen
 {
-   return NSLocationInRange(_playerSprite.position.y + _playerSprite.boundingBox.size.height/2.0,
+   return NSLocationInRange(_playerSprite.position.y,
                             _horizontalCenterRange);
 }
 
