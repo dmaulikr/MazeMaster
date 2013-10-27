@@ -325,8 +325,8 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 #pragma mark -- Movement Methods --
 - (void)stopCharacter:(MMCharacter *)character
 {
-   if (character.isPlayer)
-      NSLog(@"");
+   if (!character.isPlayer)
+      [(MMEnemy *)character setState:e_SLEEPING];
 
    [character clearMoveStack];
    character.isMoving = NO;
@@ -389,7 +389,10 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 - (void)makeEnemiesChasePlayer
 {
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      enemy.state = e_CHASING;
       enemy.shouldCalculateNewPath = YES;
+   }
 }
 
 #pragma mark -- Update Methods --
@@ -404,11 +407,27 @@ isOppositeToDirection:(CharacterDirection)otherDirection
                        forTile:(Tile *)nextTile
                     atLocation:(CGPoint)nextTileLocation
 {
-   // since this is where the start of a new tile is happening, the enemy should repath the where
+   // since this is where the start of a new tile is happening, the enemy should repath to where
    // the player currently is
-   if (!character.isPlayer && character.shouldMove)
+   if (!character.isPlayer)
    {
-      [(MMEnemy *)character setShouldCalculateNewPath:YES];
+      EnemyState state = [(MMEnemy *)character state];
+      switch (state)
+      {
+         case e_CHASING:
+            if (character.shouldMove)
+               [(MMEnemy *)character setShouldCalculateNewPath:YES];
+            break;
+
+         case e_SLEEPING:
+            break;
+
+         case e_WANDERING:
+            break;
+
+         default:
+            break;
+      }
    }
    if (character.shouldMove == NO)
    {

@@ -14,6 +14,7 @@
 {
    if (self = [super initWithFile:filename])
    {
+      _state = e_SLEEPING;
       [self scheduleUpdate];
    }
    return self;
