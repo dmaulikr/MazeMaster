@@ -231,7 +231,7 @@
                         enemy.offset.y );
    enemy.absolutePosition = enemy.position;
 
-   enemy.maxVelocity = ccp(0.7,0.7);
+   enemy.maxVelocity = ccp(1,1);
 }
 
 - (void)setEnemyPositionsForLevel:(int)levelNumber
@@ -243,8 +243,8 @@
          [self setupEnemy:[_enemies objectAtIndex:0]
                atLocation:ccp(5,5)];
 
-         [self setupEnemy:[_enemies objectAtIndex:1]
-               atLocation:ccp(8,3)];
+//         [self setupEnemy:[_enemies objectAtIndex:1]
+//               atLocation:ccp(8,3)];
          break;
       }
       default:
@@ -275,10 +275,12 @@
 -(void) setupEnemiesForLevel1
 {
    MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   [enemy1 setupPathFinderWithTravelerKey:@"enemy1"];
    [_enemies addObject:enemy1];
 
-   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
-   [_enemies addObject:enemy2];
+//   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+//   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
+//   [_enemies addObject:enemy2];
 }
 
 - (void)setupEdgesForLevel2

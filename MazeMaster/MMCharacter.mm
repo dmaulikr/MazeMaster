@@ -25,9 +25,25 @@
       _velocity = CGPointZero;
       _direction = e_NONE;
       _moveStack = [NSMutableArray new];
-      _pathFinder = new PathFinder();
    }
    return self;
+}
+
+- (id)initWithFile:(NSString *)filename
+       travelerKey:(NSString *)travelerKey
+{
+   if (self = [self initWithFile:filename])
+   {
+      _travelerKey = travelerKey;
+      _pathFinder = new PathFinder(travelerKey);
+   }
+   return self;
+}
+
+- (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey
+{
+   _travelerKey = travelerKey;
+   _pathFinder = new PathFinder(travelerKey);
 }
 
 -(void) attack
@@ -88,10 +104,12 @@
 
 - (void)addDirectionsToStack:(CCArray *)directions
 {
+   NSLog(@"traveler key: %@", _travelerKey);
    CharacterDirection direction;
    for (NSNumber *directionNumber in directions)
    {
       direction = (CharacterDirection)directionNumber.intValue;
+      NSLog(@"  direction: %d", direction);
       [self pushMoveStack:direction];
    }
 }

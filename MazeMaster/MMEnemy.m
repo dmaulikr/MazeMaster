@@ -35,6 +35,7 @@
    if (_shouldCalculateNewPath)
    {
       [self calculatePathToCharacter:_target];
+      [self beginExecutingCurrentPath];
       _shouldCalculateNewPath = NO;
    }
 }

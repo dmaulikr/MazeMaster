@@ -57,7 +57,7 @@
    _playerSprite.position = _playerSprite.offset;
    _playerSprite.absolutePosition = _playerSprite.offset;
 
-   _playerSprite.maxVelocity = ccp(1, 1);
+   _playerSprite.maxVelocity = ccp(1.5, 1.5);
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
@@ -110,16 +110,8 @@
    [super dealloc];
 }
 
-- (void)offsetEnemy:(MMEnemy *)enemy
-{
-   if (_moveMaze)
-      enemy.position = ccp(enemy.position.x - _mazeLayer.position.x,
-                           enemy.position.y - _mazeLayer.position.y);
-}
-
 - (void)offsetEnemiesWithDeltaPoint:(CGPoint)deltaPoint
 {
-
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
    {
       enemy.position = ccp(enemy.position.x - deltaPoint.x,
@@ -310,6 +302,9 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 
 - (void)stopCharacter:(MMCharacter *)character
 {
+   if (character.isPlayer)
+      NSLog(@"");
+   
    [character clearMoveStack];
    character.isMoving = NO;
    character.direction = e_NONE;
@@ -333,11 +328,10 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    if (!character.isPlayer && character.shouldMove)
    {
       [(MMEnemy *)character setShouldCalculateNewPath:YES];
-      [character beginExecutingCurrentPath];
    }
    if (character.shouldMove == NO)
    {
-      if (_moveMaze && character.isPlayer)
+      if (_moveMaze)
          [self setMazePositionForCharacter:character
                         atNextTileLocation:nextTileLocation];
       else
@@ -492,9 +486,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 {
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
    {
-      [enemy calculatePathToCharacter:_playerSprite];
       enemy.shouldCalculateNewPath = YES;
-      [enemy beginExecutingCurrentPath];
    }
 }
 

@@ -14,6 +14,7 @@
 {
 }
 
+@property (readwrite, assign) NSString *travelerKey;
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint maxVelocity;
 @property (readwrite, assign) CGPoint absolutePosition;
@@ -25,6 +26,11 @@
 @property (readwrite, assign) Tile *currentTile;
 
 -(id) initWithFile:(NSString *)filename;
+- (id)initWithFile:(NSString *)filename
+       travelerKey:(NSString *)travelerKey;
+
+- (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
+
 -(void) attack;
 
 -(void) pushMoveStack:(CharacterDirection)direction;

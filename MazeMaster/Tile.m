@@ -9,6 +9,17 @@
 #import "Tile.h"
 #import "Edge.h"
 
+static const NSString *s_parent = @"parent";
+static const NSString *s_cost = @"cost";
+static const NSString *s_heuristic = @"heuristic";
+static const NSString *s_optimality = @"optimality";
+
+@interface Tile()
+{
+   NSMutableDictionary *_pathingAttribueMap;
+}
+@end
+
 @implementation Tile
 
 @synthesize northEdge = _northEdge;
@@ -23,6 +34,7 @@
    if ( self = [super init] )
    {
       // initialize stuff
+      _pathingAttribueMap = [NSMutableDictionary new];
    }
    return self;
 }
@@ -50,6 +62,7 @@
       [_westEdge release];
    
    [_tileSprite release];
+   [_pathingAttribueMap release];
    
    [super dealloc];
 }
@@ -115,13 +128,14 @@
 
 - (CharacterDirection)directionFromParent
 {
-   if ([_parent isEqual:_northEdge.northTile])
+   Tile *parent = self.parent;
+   if ([parent isEqual:_northEdge.northTile])
       return e_SOUTH;
-   if ([_parent isEqual:_eastEdge.eastTile])
+   if ([parent isEqual:_eastEdge.eastTile])
       return e_WEST;
-   if ([_parent isEqual:_southEdge.southTile])
+   if ([parent isEqual:_southEdge.southTile])
       return e_NORTH;
-   if ([_parent isEqual:_westEdge.westTile])
+   if ([parent isEqual:_westEdge.westTile])
       return e_EAST;
 
    return e_NONE;
@@ -129,21 +143,79 @@
 
 - (CharacterDirection)directionToParent
 {
-   if ([_parent isEqual:_northEdge.northTile])
+   Tile *parent = self.parent;
+   if ([parent isEqual:_northEdge.northTile])
       return e_NORTH;
-   if ([_parent isEqual:_eastEdge.eastTile])
+   if ([parent isEqual:_eastEdge.eastTile])
       return e_EAST;
-   if ([_parent isEqual:_southEdge.southTile])
+   if ([parent isEqual:_southEdge.southTile])
       return e_SOUTH;
-   if ([_parent isEqual:_westEdge.westTile])
+   if ([parent isEqual:_westEdge.westTile])
       return e_WEST;
 
    return e_NONE;
 }
 
+- (void)setParent:(Tile *)parent
+{
+   NSMutableDictionary *tileAttributes = [_pathingAttribueMap objectForKey:_travelerKey];
+   if (!tileAttributes)
+      tileAttributes = [NSMutableDictionary new];
+
+   [tileAttributes setObject:(parent) ? parent : [NSNull null]
+                      forKey:s_parent];
+
+   [_pathingAttribueMap setObject:tileAttributes
+                           forKey:_travelerKey];
+}
+
+- (Tile *)parent
+{
+   if ([[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_parent] isKindOfClass:[NSNull class]])
+      return nil;
+   else
+      return [[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_parent];
+}
+
+- (void)setCost:(int)cost
+{
+   NSMutableDictionary *tileAttributes = [_pathingAttribueMap objectForKey:_travelerKey];
+   if (!tileAttributes)
+      tileAttributes = [NSMutableDictionary new];
+
+   [tileAttributes setObject:[NSNumber numberWithInt:cost]
+                      forKey:s_cost];
+
+   [_pathingAttribueMap setObject:tileAttributes
+                           forKey:_travelerKey];
+}
+
+- (int)cost
+{
+   return [[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_cost] intValue];
+}
+
+- (void)setHeuristic:(float)heuristic
+{
+   NSMutableDictionary *tileAttributes = [_pathingAttribueMap objectForKey:_travelerKey];
+   if (!tileAttributes)
+      tileAttributes = [NSMutableDictionary new];
+
+   [tileAttributes setObject:[NSNumber numberWithFloat:heuristic]
+                      forKey:s_heuristic];
+
+   [_pathingAttribueMap setObject:tileAttributes
+                           forKey:_travelerKey];
+}
+
+- (float)heuristic
+{
+   return [[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_heuristic] floatValue];
+}
+
 - (float)optimality
 {
-   return _cost + _heuristic;
+   return self.cost + self.heuristic;
 }
 
 @end

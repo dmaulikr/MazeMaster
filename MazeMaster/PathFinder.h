@@ -13,7 +13,7 @@
 class PathFinder
 {
  public:
-   PathFinder();
+   PathFinder(NSString *travelerKey);
    ~PathFinder();
    CCArray* calculatePath(Tile *start, Tile *goal);
 
@@ -26,6 +26,8 @@ private:
    
    void print_path(Tile *tile);
    CCArray* get_directions(Tile *goal);
+
+   NSString *_travelerKey;
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */

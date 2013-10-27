@@ -11,9 +11,6 @@
 #import "PlayerTypedefs.h"
 
 @interface Tile : NSObject
-{
-}
-
 
 - (Tile *)getAdjacentTileForDirection:(CharacterDirection)direction;
 - (Edge *)getAdjacentEdgeForDirection:(CharacterDirection)direction;
@@ -27,6 +24,7 @@
 @property (readwrite, retain) CCSprite *tileSprite;
 
 // used for A* pathfinding
+@property (readwrite, retain) NSString *travelerKey;
 @property (readwrite, retain) Tile *parent;
 @property (readonly, nonatomic) CharacterDirection directionFromParent;
 @property (readonly, nonatomic) CharacterDirection directionToParent;

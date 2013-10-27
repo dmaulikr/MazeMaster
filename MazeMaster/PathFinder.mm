@@ -13,13 +13,15 @@
 #import "Tile.h"
 
 // ----- Public Methods -----
-PathFinder::PathFinder()
+PathFinder::PathFinder(NSString *travelerKey)
 {
+   _travelerKey = travelerKey;
    std::cout << "constructing PathFinder..." << std::endl;
 }
 
 PathFinder::~PathFinder()
 {
+   [_travelerKey release];
    std::cout << "destructing PathFinder..." << std::endl;
 }
 
@@ -45,6 +47,9 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
    CCArray *open = [CCArray array];
    CCArray *closed = [CCArray array];
 
+   start.travelerKey = _travelerKey;
+   goal.travelerKey = _travelerKey;
+
    start.parent = nil;
    goal.parent = nil;
 
@@ -62,7 +67,9 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
 
       for (Tile *neighbor in [current walkableNeighborTiles])
       {
+         neighbor.travelerKey = _travelerKey;
          cost = current.cost + movement_cost(current, neighbor);
+
          if ([open containsObject:neighbor] && (cost < neighbor.cost))
             [open removeObject:neighbor];
 
@@ -111,6 +118,7 @@ CCArray* PathFinder::get_directions(Tile *goal)
    Tile *current = goal;
    while (current)
    {
+      current.travelerKey = _travelerKey;
       if (current.parent)
          [directions addObject:[NSNumber numberWithInt:current.directionFromParent]];
 
