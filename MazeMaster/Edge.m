@@ -9,13 +9,17 @@
 #import "Edge.h"
 #import "Tile.h"
 
-@implementation Edge
+@interface Edge()
+{
+   Tile* _northTile;
+   Tile* _eastTile;
+   Tile* _southTile;
+   Tile* _westTile;
+   BOOL _walkable;
+}
+@end
 
-@synthesize northTile = _northTile;
-@synthesize eastTile = _eastTile;
-@synthesize southTile = _southTile;
-@synthesize westTile = _westTile;
-@synthesize walkable = _walkable;
+@implementation Edge
 
 -(id) init
 {

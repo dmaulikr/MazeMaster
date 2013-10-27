@@ -8,15 +8,19 @@
 
 #import "MMCharacter.h"
 
+typedef enum {
+   e_Wandering,
+   e_Chasing
+} EnemyState;
+
 @interface MMEnemy : MMCharacter
-{
-}
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
 
+@property (readwrite, assign) EnemyState state;
 @property (readwrite, assign) BOOL shouldCalculateNewPath;
 @property (readwrite, retain) MMCharacter *target;
 

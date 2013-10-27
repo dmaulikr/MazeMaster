@@ -11,14 +11,6 @@
 @class Tile;
 
 @interface Edge : NSObject
-{
-   Tile* _northTile;
-   Tile* _eastTile;
-   Tile* _southTile;
-   Tile* _westTile;
-
-   BOOL _walkable;
-}
 
 @property (readwrite, assign) Tile* northTile;
 @property (readwrite, assign) Tile* eastTile;

@@ -14,5 +14,4 @@ typedef enum {
    e_SOUTH,
    e_WEST
 } CharacterDirection;
-
 #endif
