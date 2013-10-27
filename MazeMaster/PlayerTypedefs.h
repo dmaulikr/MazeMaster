@@ -22,3 +22,11 @@ typedef enum {
    e_COUNTERCLOCKWISE
 } TileGenerationOrder;
 #endif
+
+#ifndef __ENEMY_STATE__
+typedef enum {
+   e_SLEEPING,
+   e_WANDERING,
+   e_CHASING
+} EnemyState;
+#endif
