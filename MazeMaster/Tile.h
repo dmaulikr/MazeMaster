@@ -22,6 +22,8 @@
 @property (readwrite, assign) Edge* southEdge;
 @property (readwrite, assign) Edge* westEdge;
 @property (readwrite, retain) CCSprite *tileSprite;
+@property (readwrite, assign) BOOL isActive;
+@property (readwrite, assign) BOOL willBeActive;
 
 // used for A* pathfinding
 @property (readwrite, retain) NSString *travelerKey;

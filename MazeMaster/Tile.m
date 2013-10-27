@@ -111,13 +111,13 @@ static const NSString *s_optimality = @"optimality";
 {
    CCArray *neighbors = [CCArray arrayWithCapacity:4];
    
-   if (_northEdge.walkable)
+   if (_northEdge.walkable && !_northEdge.northTile.isActive)
       [neighbors addObject:_northEdge.northTile];
-   if (_eastEdge.walkable)
+   if (_eastEdge.walkable && !_eastEdge.eastTile.isActive)
       [neighbors addObject:_eastEdge.eastTile];
-   if (_southEdge.walkable)
+   if (_southEdge.walkable && !_southEdge.southTile.isActive)
       [neighbors addObject:_southEdge.southTile];
-   if (_westEdge.walkable)
+   if (_westEdge.walkable && !_westEdge.westTile.isActive)
       [neighbors addObject:_westEdge.westTile];
 
    if (neighbors.count == 0)

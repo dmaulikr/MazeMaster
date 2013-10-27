@@ -57,7 +57,7 @@
    _playerSprite.position = _playerSprite.offset;
    _playerSprite.absolutePosition = _playerSprite.offset;
 
-   _playerSprite.maxVelocity = ccp(1.5, 1.5);
+   _playerSprite.maxVelocity = ccp(1.1, 1.1);
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
@@ -70,8 +70,10 @@
    int xTile = (character.absolutePosition.x / tileSize.width) + 1;
    int yTile = (character.absolutePosition.y / tileSize.height) + 1;
 
-   character.currentTile = [[GameController sharedController].level.maze
-                                          tileAtPosition:ccp(xTile, yTile)];
+   Tile *currentTile = [[GameController sharedController].level.maze
+                           tileAtPosition:ccp(xTile, yTile)];
+   character.currentTile = currentTile;
+//   currentTile.isActive = YES;
 }
 
 
@@ -339,7 +341,14 @@ inMazeBoundsForCharacter:(MMCharacter *)character
       
       [self stopCharacter:character];
    }
+
+   if (!character.isPlayer)
+      character.currentTile.isActive = NO;
+   
    character.currentTile = nextTile;
+
+   if (!character.isPlayer)
+      character.currentTile.isActive = YES;
    
    if (![character moveStackIsEmpty])
    {
@@ -493,7 +502,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 - (void)handleTapAtLocation:(CGPoint)location
 {
    Tile *tile = [self getTileAtScreenLocation:location];
-   NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
+   NSLog(@"single tap at tile: %@, active: %d", NSStringFromCGPoint(tile.position), tile.isActive);
 }
 
 - (void)handleDoubleTapAtLocation:(CGPoint)location

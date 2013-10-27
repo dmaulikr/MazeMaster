@@ -231,7 +231,7 @@
                         enemy.offset.y );
    enemy.absolutePosition = enemy.position;
 
-   enemy.maxVelocity = ccp(1,1);
+   enemy.maxVelocity = ccp(.9,.9);
 }
 
 - (void)setEnemyPositionsForLevel:(int)levelNumber
