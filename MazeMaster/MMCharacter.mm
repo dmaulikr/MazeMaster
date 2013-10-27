@@ -103,6 +103,8 @@
 
 - (void)executePathToCharacter:(MMCharacter *)character
 {
+   [self clearMoveStack];
+   
    CCArray *directions = _pathFinder->calculatePath(_currentTile, character.currentTile);
    [self addDirectionsToStack:directions];
    [self beginExecutingCurrentPath];

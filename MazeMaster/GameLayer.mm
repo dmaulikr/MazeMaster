@@ -345,6 +345,10 @@ inMazeBoundsForCharacter:(MMCharacter *)character
          character.position = nextTileLocation;
       }
    }
+   else if (!character.isPlayer && [character moveStackIsEmpty])
+   {
+      [self stopCharacter:character];
+   }
 }
 
 - (void)updateCurrentTileWithCharacter:(MMCharacter *)character
