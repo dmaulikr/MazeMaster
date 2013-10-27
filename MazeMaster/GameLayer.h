@@ -16,17 +16,6 @@
 @class Player;
 
 @interface GameLayer : CCLayer <ControlsActionDelegate>
-{
-   CGSize _windowSize;
-   CGSize _tileSize;
-
-   int _outsideEdgePadding;
-
-   NSRange _verticalCenterRange;
-   NSRange _horizontalCenterRange;
-
-   BOOL _moveMaze;
-}
 
 @property (readwrite, assign) Player *playerSprite;
 @property (readwrite, assign) MazeLayer *mazeLayer;

@@ -17,18 +17,30 @@
 #import "Player.h"
 #import "MMEnemy.h"
 
-@implementation GameLayer
+@interface GameLayer()
+{
+   CGSize _windowSize;
+   CGSize _tileSize;
 
-#define MAX_PLAYER_VELOCITY 1.0
+   int _outsideEdgePadding;
+
+   NSRange _verticalCenterRange;
+   NSRange _horizontalCenterRange;
+
+   BOOL _moveMaze;
+}
+@end
+
+@implementation GameLayer
 
 - (void)setupVariables
 {
    _windowSize = [[CCDirector sharedDirector] winSize];
    _tileSize = CGSizeMake(44, 44);
    _outsideEdgePadding = 0;
-   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/4.0,
+   _verticalCenterRange = NSMakeRange(_windowSize.width/2.0 - _tileSize.width/2.0,
                                       _tileSize.width/2.0);
-   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
+   _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/2.0,
                                       _tileSize.height/2.0);
 }
 
@@ -45,7 +57,7 @@
    _playerSprite.position = _playerSprite.offset;
    _playerSprite.absolutePosition = _playerSprite.offset;
 
-   _playerSprite.maxVelocity = ccp(.8, .8);
+   _playerSprite.maxVelocity = ccp(1, 1);
 
    [self updateTileContainingCharacter:_playerSprite
                            forTileSize:_tileSize];
@@ -303,6 +315,15 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    character.direction = e_NONE;
 }
 
+- (void)setMazePositionForCharacter:(MMCharacter *)character
+                 atNextTileLocation:(CGPoint)nextTileLocation
+{
+   int xMazeOffset = character.position.x - nextTileLocation.x;
+   int yMazeOffset = character.position.y - nextTileLocation.y;
+   _mazeLayer.position = ccp(_mazeLayer.position.x + xMazeOffset,
+                             _mazeLayer.position.y + yMazeOffset);
+}
+
 - (void)updateCharacterPostion:(MMCharacter *)character
                        forTile:(Tile *)nextTile
                     atLocation:(CGPoint)nextTileLocation
@@ -317,16 +338,11 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    if (character.shouldMove == NO)
    {
       if (_moveMaze && character.isPlayer)
-      {
-         int xMazeOffset = character.position.x - nextTileLocation.x;
-         int yMazeOffset = character.position.y - nextTileLocation.y;
-         _mazeLayer.position = ccp(_mazeLayer.position.x + xMazeOffset,
-                                   _mazeLayer.position.y + yMazeOffset);
-      }
+         [self setMazePositionForCharacter:character
+                        atNextTileLocation:nextTileLocation];
       else
-      {
          character.position = nextTileLocation;
-      }
+      
       [self stopCharacter:character];
    }
    character.currentTile = nextTile;
@@ -335,10 +351,7 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    {
       CharacterDirection nextDirection = [character topMoveStack];
       if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
-      {
          character.direction = [character popMoveStack];
-         character.position = nextTileLocation;
-      }
    }
    else if (!character.isPlayer && [character moveStackIsEmpty])
    {

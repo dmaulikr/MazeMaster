@@ -20,7 +20,6 @@ GameController *s_gameController = nil;
 {
    NSMutableArray *_swipeStack;
 }
-
 @end
 
 @implementation GameController
