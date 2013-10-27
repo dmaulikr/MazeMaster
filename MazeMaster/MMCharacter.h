@@ -33,7 +33,8 @@
 -(void) clearMoveStack;
 -(BOOL) moveStackIsEmpty;
 
-- (void)executePathToCharacter:(MMCharacter *)character;
+- (void)calculatePathToCharacter:(MMCharacter *)character;
+- (void)beginExecutingCurrentPath;
 
 +(MMCharacter *) characterWithFile:(NSString *)filename;
 

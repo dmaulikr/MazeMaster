@@ -205,6 +205,14 @@
    }
 }
 
+- (void)setEnemyTargets:(MMCharacter *)character
+{
+   for (MMEnemy *enemy in _enemies)
+   {
+      enemy.target = character;
+   }
+}
+
 - (void)setupEnemy:(MMEnemy *)enemy atLocation:(CGPoint)location
 {
    GameController *gameController = [GameController sharedController];

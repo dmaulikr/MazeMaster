@@ -17,7 +17,7 @@
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
 
-@property (readwrite, assign) BOOL shouldChasePlayer;
-//@property (readwrite, assign) BOOL 
+@property (readwrite, assign) BOOL shouldCalculateNewPath;
+@property (readwrite, retain) MMCharacter *target;
 
 @end

@@ -95,20 +95,19 @@
    }
 }
 
+- (void)calculatePathToCharacter:(MMCharacter *)character
+{
+   [self clearMoveStack];
+   CCArray *directions = _pathFinder->calculatePath(_currentTile,
+                                                    character.currentTile);
+   [self addDirectionsToStack:directions];
+}
+
 - (void)beginExecutingCurrentPath
 {
    _direction = [self popMoveStack];
    _isMoving = YES;
-   _shouldMove = YES;}
-
-- (void)executePathToCharacter:(MMCharacter *)character
-{
-   [self clearMoveStack];
-   
-   CCArray *directions = _pathFinder->calculatePath(_currentTile, character.currentTile);
-   [self addDirectionsToStack:directions];
-   [self beginExecutingCurrentPath];
+   _shouldMove = YES;
 }
-
 
 @end

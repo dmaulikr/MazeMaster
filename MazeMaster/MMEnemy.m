@@ -14,6 +14,7 @@
 {
    if (self = [super initWithFile:filename])
    {
+      [self scheduleUpdate];
    }
    return self;
 }
@@ -27,6 +28,15 @@
 {
    // TODO: this is weird
    return (MMEnemy *)[super characterWithFile:filename];
+}
+
+- (void)update:(ccTime)delta
+{
+   if (_shouldCalculateNewPath)
+   {
+      [self calculatePathToCharacter:_target];
+      _shouldCalculateNewPath = NO;
+   }
 }
 
 - (void)dealloc

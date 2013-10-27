@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Maze.h"
 
+@class MMCharacter;
 @interface Level : NSObject
 {
    Maze* _maze;
@@ -17,6 +18,7 @@
 
 -(id) initWithRows:(int)rows andColumns:(int)cols;
 -(void) addEnemiesToLayer:(CCLayer *)gameLayer;
+- (void)setEnemyTargets:(MMCharacter *)character;
 -(void) moveEnemies;
 - (void)setEnemyPositionsForLevel:(int)levelNumber;
 

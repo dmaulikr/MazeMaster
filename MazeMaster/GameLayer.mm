@@ -88,6 +88,7 @@
       [self setupVariables];
       [self setupPlayer];
       [[GameController sharedController].level addEnemiesToLayer:self];
+      [[GameController sharedController].level setEnemyTargets:_playerSprite];
       [[GameController sharedController].level setEnemyPositionsForLevel:1];
       [self scheduleUpdate];
 	}
@@ -318,7 +319,14 @@ inMazeBoundsForCharacter:(MMCharacter *)character
                        forTile:(Tile *)nextTile
                     atLocation:(CGPoint)nextTileLocation
 {
-   if ( character.shouldMove == NO )
+   // since this is where the start of a new tile is happening, the enemy should repath the where
+   // the player currently is
+   if (!character.isPlayer && character.shouldMove)
+   {
+      [(MMEnemy *)character setShouldCalculateNewPath:YES];
+      [character beginExecutingCurrentPath];
+   }
+   if (character.shouldMove == NO)
    {
       if (_moveMaze && character.isPlayer)
       {
@@ -333,7 +341,6 @@ inMazeBoundsForCharacter:(MMCharacter *)character
       }
       [self stopCharacter:character];
    }
-
    character.currentTile = nextTile;
    
    if (![character moveStackIsEmpty])
@@ -484,7 +491,9 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 {
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
    {
-      [enemy executePathToCharacter:_playerSprite];
+      [enemy calculatePathToCharacter:_playerSprite];
+      enemy.shouldCalculateNewPath = YES;
+      [enemy beginExecutingCurrentPath];
    }
 }
 
