@@ -232,9 +232,9 @@
    enemy.maxVelocity = ccp(.9,.9);
 }
 
-- (void)setEnemyPositionsForLevel:(int)levelNumber
+- (void)setEnemyPositions
 {
-   switch (levelNumber)
+   switch (_levelNumber)
    {
       case 1:
       {
