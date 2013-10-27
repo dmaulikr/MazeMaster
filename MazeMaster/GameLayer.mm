@@ -12,9 +12,10 @@
 #import "GameController.h"
 #import "Level.h"
 #import "LevelSelectLayer.h"
+#import "Maze.h"
 #import "MazeLayer.h"
-#import "Tile.h"
 #import "Player.h"
+#import "Tile.h"
 #import "MMEnemy.h"
 
 @interface GameLayer()
@@ -492,9 +493,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 - (void)makeEnemiesChasePlayer
 {
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
-   {
       enemy.shouldCalculateNewPath = YES;
-   }
 }
 
 - (void)handleTapAtLocation:(CGPoint)location

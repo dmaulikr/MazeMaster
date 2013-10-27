@@ -38,9 +38,7 @@ GameController *s_gameController = nil;
 +(GameController *) sharedController
 {
    if ( s_gameController == nil )
-   {
       s_gameController = [[GameController alloc] init];
-   }
    
    return s_gameController;
 }

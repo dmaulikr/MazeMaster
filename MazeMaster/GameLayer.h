@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "ControlsLayer.h"
-#import "PlayerTypedefs.h"
-#import "MMCharacter.h"
 
 @class MazeLayer;
 @class Player;
