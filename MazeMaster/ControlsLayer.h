@@ -17,9 +17,6 @@
 
 @interface ControlsLayer : CCLayer <UIGestureRecognizerDelegate,
                                     CCTouchOneByOneDelegate>
-{
-   CGPoint _lastTouchLocation;
-}
 
 @property (readwrite, retain) id<ControlsActionDelegate> delegate;
 

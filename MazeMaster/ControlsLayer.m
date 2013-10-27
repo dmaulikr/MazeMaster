@@ -16,6 +16,12 @@
 #import "Player.h"
 #import "MMEnemy.h"
 
+@interface ControlsLayer()
+{
+   CGPoint _lastTouchLocation;
+}
+@end
+
 @implementation ControlsLayer
 
 - (void)addBackButton
