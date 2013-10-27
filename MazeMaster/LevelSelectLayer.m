@@ -54,12 +54,6 @@
    CCLabelTTF *level1Label = [CCLabelTTF labelWithString:@"Level 1"
                                                 fontName:@"Helvetica"
                                                 fontSize:24];
-   CCLabelTTF *level2Label = [CCLabelTTF labelWithString:@"Level 2"
-                                                fontName:@"Helvetica"
-                                                fontSize:24];
-   CCLabelTTF *level3Label = [CCLabelTTF labelWithString:@"Level 3"
-                                                fontName:@"Helvetica"
-                                                fontSize:24];
 
    GameController *gameController = [GameController sharedController];
    CCMenuItem *level1Item = [CCMenuItemLabel itemWithLabel:level1Label
@@ -72,37 +66,13 @@
                                                              scene:gameScene]];
    }];
 
-   CCMenuItem *level2Item = [CCMenuItemLabel itemWithLabel:level2Label
-                                                     block:^(id sender)
-   {
-      [gameController setLevel:[LevelFactory levelForLevelNumber:2]];
-      CCDirector *director = [CCDirector sharedDirector];
-      CCScene *gameScene = [GameLayer scene];
-      [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                               scene:gameScene]];
-   }];
-
-   CCMenuItem *level3Item = [CCMenuItemLabel itemWithLabel:level3Label
-                                                     block:^(id sender)
-   {
-      [gameController setLevel:[LevelFactory levelForLevelNumber:3]];
-      CCDirector *director = [CCDirector sharedDirector];
-      CCScene *gameScene = [GameLayer scene];
-      [director replaceScene:[CCTransitionFade transitionWithDuration:1.0
-                                                                scene:gameScene]];
-   }];
-
    CGSize windowSize = [[CCDirector sharedDirector] winSize];
    CGPoint firstMenuItemPosition = ccp(windowSize.width/2,
                                        windowSize.height/2 - windowSize.height/6);
-   int padding = 5;
+   
    level1Item.position = firstMenuItemPosition;
-   level2Item.position = ccp(firstMenuItemPosition.x,
-                             firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding));
-   level3Item.position = ccp(firstMenuItemPosition.x,
-                             firstMenuItemPosition.y - (level2Item.boundingBox.size.height + padding)*2);
 
-   CCMenu *levelMenu = [CCMenu menuWithItems:level1Item, level2Item, level3Item, nil];
+   CCMenu *levelMenu = [CCMenu menuWithItems:level1Item, nil];
    levelMenu.position = CGPointZero;
 
    [self addChild:levelMenu];

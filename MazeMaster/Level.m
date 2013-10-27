@@ -209,7 +209,7 @@
 {
    GameController *gameController = [GameController sharedController];
 
-   enemy.currentTile = [_maze tileAtPosition:ccp(5,5)];
+   enemy.currentTile = [_maze tileAtPosition:location];
    enemy.scale = 1.8;
    enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
                       44.0/2.0 - enemy.boundingBox.size.height/2.0);
@@ -234,6 +234,9 @@
       {
          [self setupEnemy:[_enemies objectAtIndex:0]
                atLocation:ccp(5,5)];
+
+         [self setupEnemy:[_enemies objectAtIndex:1]
+               atLocation:ccp(8,3)];
          break;
       }
       default:
@@ -265,6 +268,9 @@
 {
    MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
    [_enemies addObject:enemy1];
+
+   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   [_enemies addObject:enemy2];
 }
 
 - (void)setupEdgesForLevel2

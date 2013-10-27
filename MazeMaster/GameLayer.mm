@@ -262,7 +262,8 @@ inMazeBoundsForCharacter:(MMCharacter *)character
       destination = ccp(character.position.x + x,
                         character.position.y + y);
 
-      if (character.isPlayer && ![self position:destination inMazeBoundsForCharacter:character])
+      if (character.isPlayer && ![self position:destination
+                       inMazeBoundsForCharacter:character])
       {
          destination = character.position;
          character.shouldMove = NO;
@@ -475,36 +476,23 @@ isOppositeToDirection:(CharacterDirection)otherDirection
                                                               forTileSize:_tileSize];
 }
 
-// ControlsActionDelegate optional protocols
+- (void)makeEnemiesChasePlayer
+{
+   for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      [enemy executePathToCharacter:_playerSprite];
+   }
+}
+
 - (void)handleTapAtLocation:(CGPoint)location
 {
    Tile *tile = [self getTileAtScreenLocation:location];
    NSLog(@"single tap at tile: %@", NSStringFromCGPoint(tile.position));
 }
 
-- (void)testAStarWithDirectionsArray:(CCArray *)directions
-{
-   MMEnemy *enemy = [[GameController sharedController].level.enemies objectAtIndex:0];
-   CharacterDirection direction = e_NONE;
-   for (NSNumber *directionNumber in directions)
-   {
-      direction = (CharacterDirection)directionNumber.intValue;
-      [enemy pushMoveStack:direction];
-   }
-
-   enemy.direction = [enemy popMoveStack];
-   enemy.isMoving = YES;
-   enemy.shouldMove = YES;
-}
-
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
-   MMEnemy *enemy = [[GameController sharedController].level.enemies objectAtIndex:0];
-   Tile *start = enemy.currentTile;
-   Tile *goal = [self getTileAtScreenLocation:location];
-
-   CCArray *directions = _pathFinder->calculatePath(start, goal);
-   [self testAStarWithDirectionsArray:directions];
+   [self makeEnemiesChasePlayer];
 }
 
 + (CCScene *)scene

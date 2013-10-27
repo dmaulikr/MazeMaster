@@ -12,7 +12,6 @@
 
 @interface MMCharacter : CCSprite
 {
-   NSMutableArray *_moveStack;
 }
 
 @property (readwrite, assign) CGPoint velocity;
@@ -33,6 +32,8 @@
 -(CharacterDirection) topMoveStack;
 -(void) clearMoveStack;
 -(BOOL) moveStackIsEmpty;
+
+- (void)executePathToCharacter:(MMCharacter *)character;
 
 +(MMCharacter *) characterWithFile:(NSString *)filename;
 

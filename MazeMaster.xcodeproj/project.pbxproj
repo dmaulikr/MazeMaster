@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */; };
 		4A51EF1B17C56DE9002BCB1B /* astronaut_front.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */; };
-		4AFE43D51811DDD400F3E81C /* MMCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE43D41811DDD300F3E81C /* MMCharacter.m */; };
+		4AFE43D51811DDD400F3E81C /* MMCharacter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE43D41811DDD300F3E81C /* MMCharacter.mm */; };
 		4AFE43D81811E19F00F3E81C /* MMEnemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AFE43D71811E19F00F3E81C /* MMEnemy.m */; };
 		8E02EC481808C49700369B8A /* astronaut_front@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC461808C49700369B8A /* astronaut_front@2x.png */; };
 		8E02EC491808C49700369B8A /* gray_tile_44x44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */; };
@@ -183,7 +183,7 @@
 		4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCNode+SFGestureRecognizers.m"; sourceTree = "<group>"; };
 		4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = astronaut_front.png; path = Resources/astronaut_front.png; sourceTree = "<group>"; };
 		4AFE43D31811DDD300F3E81C /* MMCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMCharacter.h; sourceTree = "<group>"; };
-		4AFE43D41811DDD300F3E81C /* MMCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMCharacter.m; sourceTree = "<group>"; };
+		4AFE43D41811DDD300F3E81C /* MMCharacter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMCharacter.mm; sourceTree = "<group>"; };
 		4AFE43D61811E19F00F3E81C /* MMEnemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEnemy.h; sourceTree = "<group>"; };
 		4AFE43D71811E19F00F3E81C /* MMEnemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEnemy.m; sourceTree = "<group>"; };
 		8E02EC461808C49700369B8A /* astronaut_front@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "astronaut_front@2x.png"; path = "Resources/astronaut_front@2x.png"; sourceTree = "<group>"; };
@@ -601,7 +601,7 @@
 				8EA767F717DC0DE000624A43 /* MazeLayer.h */,
 				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
 				4AFE43D31811DDD300F3E81C /* MMCharacter.h */,
-				4AFE43D41811DDD300F3E81C /* MMCharacter.m */,
+				4AFE43D41811DDD300F3E81C /* MMCharacter.mm */,
 				4AFE43D61811E19F00F3E81C /* MMEnemy.h */,
 				4AFE43D71811E19F00F3E81C /* MMEnemy.m */,
 				8EB6CA1F1810F78600F5D267 /* PathFinder.h */,
@@ -1243,7 +1243,7 @@
 				4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */,
 				DA503CE117C3292A005CA59D /* Player.m in Sources */,
 				8EA767F917DC0DE000624A43 /* MazeLayer.m in Sources */,
-				4AFE43D51811DDD400F3E81C /* MMCharacter.m in Sources */,
+				4AFE43D51811DDD400F3E81C /* MMCharacter.mm in Sources */,
 				4AFE43D81811E19F00F3E81C /* MMEnemy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

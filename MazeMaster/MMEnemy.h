@@ -7,7 +7,6 @@
 //
 
 #import "MMCharacter.h"
-#import "Tile.h"
 
 @interface MMEnemy : MMCharacter
 {
@@ -17,5 +16,8 @@
 -(void) attack;
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
+
+@property (readwrite, assign) BOOL shouldChasePlayer;
+//@property (readwrite, assign) BOOL 
 
 @end

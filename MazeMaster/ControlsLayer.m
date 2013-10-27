@@ -14,6 +14,7 @@
 #import "LevelSelectLayer.h"
 #import "Level.h"
 #import "Player.h"
+#import "MMEnemy.h"
 
 @implementation ControlsLayer
 
@@ -153,6 +154,8 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 - (void)handleTwoFingerPress:(UITapGestureRecognizer *)recognizer
 {
    [GameController sharedController].gameLayer.playerSprite.shouldMove = NO;
+   for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+      enemy.shouldMove = NO;
 }
 
 - (void)handleSingleTap:(NSArray *)touchPoint

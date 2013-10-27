@@ -7,6 +7,14 @@
 //
 
 #import "MMCharacter.h"
+#include "PathFinder.h"
+
+@interface MMCharacter()
+{
+   NSMutableArray *_moveStack;
+   PathFinder *_pathFinder;
+}
+@end
 
 @implementation MMCharacter
 
@@ -17,6 +25,7 @@
       _velocity = CGPointZero;
       _direction = e_NONE;
       _moveStack = [NSMutableArray new];
+      _pathFinder = new PathFinder();
    }
    return self;
 }
@@ -49,7 +58,7 @@
    if (_moveStack.count)
    {
       NSNumber *directionNumber = [_moveStack lastObject];
-      direction = directionNumber.intValue;
+      direction = (CharacterDirection)directionNumber.intValue;
       [_moveStack removeLastObject];
    }
    return direction;
@@ -61,7 +70,7 @@
    if (_moveStack.count)
    {
       NSNumber *directionNumber = [_moveStack lastObject];
-      direction = directionNumber.intValue;
+      direction = (CharacterDirection)directionNumber.intValue;
    }
    return direction;
 }
@@ -74,6 +83,29 @@
 -(BOOL) moveStackIsEmpty
 {
    return !_moveStack.count;
+}
+
+- (void)addDirectionsToStack:(CCArray *)directions
+{
+   CharacterDirection direction;
+   for (NSNumber *directionNumber in directions)
+   {
+      direction = (CharacterDirection)directionNumber.intValue;
+      [self pushMoveStack:direction];
+   }
+}
+
+- (void)beginExecutingCurrentPath
+{
+   _direction = [self popMoveStack];
+   _isMoving = YES;
+   _shouldMove = YES;}
+
+- (void)executePathToCharacter:(MMCharacter *)character
+{
+   CCArray *directions = _pathFinder->calculatePath(_currentTile, character.currentTile);
+   [self addDirectionsToStack:directions];
+   [self beginExecutingCurrentPath];
 }
 
 
