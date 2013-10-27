@@ -10,8 +10,6 @@
 #import "cocos2d.h"
 
 @interface LevelSelectLayer : CCLayer
-{
-}
 
 + (CCScene *)scene;
 

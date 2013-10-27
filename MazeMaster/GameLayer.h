@@ -21,9 +21,6 @@
 @property (readwrite, assign) MazeLayer *mazeLayer;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
-- (void)moveCharacter:(MMCharacter *)character;
-- (void)updateTileContainingCharacter:(MMCharacter *)character
-                          forTileSize:(CGSize)tileSize;
 + (CCScene *)scene;
 
 @end

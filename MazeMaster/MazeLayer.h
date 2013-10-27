@@ -11,14 +11,6 @@
 
 @class Maze;
 @interface MazeLayer : CCLayer
-{
-   CGSize _windowSize;
-   CGSize _tileSize;
-   CGSize _mazeSize;
-
-   float _topPadding;
-   float _leftPadding;
-}
 
 @property (readonly, assign) CGSize mazeSize;
 

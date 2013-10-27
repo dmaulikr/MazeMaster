@@ -12,6 +12,7 @@
 #import "Level.h"
 #import "GameLayer.h"
 #import "PlayerTypedefs.h"
+#import "Tile.h"
 
 // for singleton
 GameController *s_gameController = nil;

@@ -73,7 +73,6 @@
    Tile *currentTile = [[GameController sharedController].level.maze
                            tileAtPosition:ccp(xTile, yTile)];
    character.currentTile = currentTile;
-//   currentTile.isActive = YES;
 }
 
 
@@ -344,7 +343,7 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 
    if (!character.isPlayer)
       character.currentTile.isActive = NO;
-   
+
    character.currentTile = nextTile;
 
    if (!character.isPlayer)
@@ -364,7 +363,6 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 
 - (void)updateCurrentTileWithCharacter:(MMCharacter *)character
 {
-//   GameController *gameController = [GameController sharedController];
    Tile *currentTile = character.currentTile;
    Tile *nextTile = [currentTile getAdjacentTileForDirection:character.direction];
    

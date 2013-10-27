@@ -10,8 +10,6 @@
 #import "cocos2d.h"
 
 @interface SettingsLayer : CCLayer
-{
-}
 
 + (CCScene *)scene;
 

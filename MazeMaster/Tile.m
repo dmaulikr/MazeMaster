@@ -12,7 +12,6 @@
 static const NSString *s_parent = @"parent";
 static const NSString *s_cost = @"cost";
 static const NSString *s_heuristic = @"heuristic";
-static const NSString *s_optimality = @"optimality";
 
 @interface Tile()
 {

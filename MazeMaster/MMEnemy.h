@@ -9,8 +9,9 @@
 #import "MMCharacter.h"
 
 typedef enum {
-   e_Wandering,
-   e_Chasing
+   e_SLEEPING,
+   e_WANDERING,
+   e_CHASING
 } EnemyState;
 
 @interface MMEnemy : MMCharacter

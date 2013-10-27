@@ -10,8 +10,6 @@
 
 @class Level;
 @interface LevelFactory : NSObject
-{
-}
 
 +(id) levelFactory;
 +(Level *) levelForLevelNumber:(int)levelNumber;

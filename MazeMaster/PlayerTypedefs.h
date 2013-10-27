@@ -16,7 +16,9 @@ typedef enum {
 } CharacterDirection;
 #endif
 
+#ifndef __TILE_GENERATION_ORDER__
 typedef enum {
    e_CLOCKWISE,
    e_COUNTERCLOCKWISE
 } TileGenerationOrder;
+#endif

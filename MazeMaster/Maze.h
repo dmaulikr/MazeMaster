@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Tile.h"
 
 @class Player;
+@class Tile;
 
 typedef struct {
    int rows;
@@ -17,11 +17,6 @@ typedef struct {
 } MazeDimensions;
 
 @interface Maze : NSObject
-{
-   MazeDimensions _mazeDimensions;
-   
-   NSMutableArray* _tiles;
-}
 
 @property (nonatomic, assign) NSMutableArray *tiles;
 @property (readonly, assign) MazeDimensions mazeDimensions;

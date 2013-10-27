@@ -7,10 +7,19 @@
 //
 
 #import "Level.h"
+#import "Maze.h"
 #import "MMEnemy.h"
 #import "GameController.h"
 #import "GameLayer.h"
 #import "MazeLayer.h"
+#import "Tile.h"
+
+@interface Level()
+{
+   Maze* _maze;
+   int _levelNumber;
+}
+@end
 
 @implementation Level
 
@@ -61,12 +70,6 @@
       case 1:
          [self setupEdgesForLevel1];
          [self setupEnemiesForLevel1];
-         break;
-      case 2:
-         [self setupEdgesForLevel2];
-         break;
-      case 3:
-         [self setupEdgesForLevel3];
          break;
       default:
          break;
@@ -228,9 +231,8 @@
                         enemy.offset.x,
                         enemy.currentTile.tileSprite.position.y +
                         gameController.gameLayer.mazeLayer.position.y +
-                        enemy.offset.y );
+                        enemy.offset.y);
    enemy.absolutePosition = enemy.position;
-
    enemy.maxVelocity = ccp(.9,.9);
 }
 
@@ -252,26 +254,6 @@
    }
 }
 
--(void) moveEnemies
-{
-   for (MMEnemy *enemy in _enemies)
-   {
-      GameController *gameController = [GameController sharedController];
-      CGPoint nextTileLocation = ccp(enemy.currentTile.tileSprite.position.x +
-                                     gameController.gameLayer.mazeLayer.position.x +
-                                     enemy.offset.x,
-                                     enemy.currentTile.tileSprite.position.y +
-                                     gameController.gameLayer.mazeLayer.position.y +
-                                     enemy.offset.y );
-      enemy.position = ccp(nextTileLocation.x,
-                           nextTileLocation.y);
-// _playerSprite.absolutePosition = ccp(_xPlayerOffset, _yPlayerOffset);
-
-      // TODO: START HERE
-//      [gameController.gameLayer moveCharacter:enemy];
-   }
-}
-
 -(void) setupEnemiesForLevel1
 {
    MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
@@ -282,14 +264,6 @@
    [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
    enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
    [_enemies addObject:enemy2];
-}
-
-- (void)setupEdgesForLevel2
-{
-}
-
-- (void)setupEdgesForLevel3
-{
 }
 
 @end

@@ -14,8 +14,6 @@
 // StartLayer
 @interface StartLayer : CCLayer <GKAchievementViewControllerDelegate,
                                  GKLeaderboardViewControllerDelegate>
-{
-}
 
 // returns a CCScene that contains the StartLayer as the only child
 + (CCScene *)scene;

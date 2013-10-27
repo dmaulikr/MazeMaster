@@ -10,6 +10,16 @@
 #import "Maze.h"
 #import "Tile.h"
 
+@interface MazeLayer()
+{
+   CGSize _windowSize;
+   CGSize _tileSize;
+
+   float _topPadding;
+   float _leftPadding;
+}
+@end
+
 @implementation MazeLayer
 
 @synthesize mazeSize = _mazeSize;

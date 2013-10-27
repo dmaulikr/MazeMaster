@@ -8,14 +8,30 @@
 
 #import "CCSprite.h"
 #import "PlayerTypedefs.h"
-#import "Tile.h"
 
+@class Tile;
 @interface MMCharacter : CCSprite
-{
-}
+
++(MMCharacter *) characterWithFile:(NSString *)filename;
+
+-(id) initWithFile:(NSString *)filename;
+- (id)initWithFile:(NSString *)filename
+       travelerKey:(NSString *)travelerKey;
+
+-(void) pushMoveStack:(CharacterDirection)direction;
+-(CharacterDirection) popMoveStack;
+-(CharacterDirection) topMoveStack;
+-(void) clearMoveStack;
+-(BOOL) moveStackIsEmpty;
+
+- (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
+- (void)calculatePathToCharacter:(MMCharacter *)character;
+- (void)beginExecutingCurrentPath;
+
+-(void) attack;
 
 @property (readwrite, assign) NSString *travelerKey;
-@property (readwrite, assign) TileGenerationOrder tileGenerationOrder;
+@property (nonatomic, assign, setter = setTileGenerationOrder:) TileGenerationOrder tileGenerationOrder;
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint maxVelocity;
 @property (readwrite, assign) CGPoint absolutePosition;
@@ -25,24 +41,5 @@
 @property (readwrite, assign) BOOL shouldMove;
 @property (readwrite, assign) BOOL isPlayer;
 @property (readwrite, assign) Tile *currentTile;
-
--(id) initWithFile:(NSString *)filename;
-- (id)initWithFile:(NSString *)filename
-       travelerKey:(NSString *)travelerKey;
-
-- (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
-
--(void) attack;
-
--(void) pushMoveStack:(CharacterDirection)direction;
--(CharacterDirection) popMoveStack;
--(CharacterDirection) topMoveStack;
--(void) clearMoveStack;
--(BOOL) moveStackIsEmpty;
-
-- (void)calculatePathToCharacter:(MMCharacter *)character;
-- (void)beginExecutingCurrentPath;
-
-+(MMCharacter *) characterWithFile:(NSString *)filename;
 
 @end

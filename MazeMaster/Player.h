@@ -11,8 +11,6 @@
 #import "MMCharacter.h"
 
 @interface Player : MMCharacter
-{
-}
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;

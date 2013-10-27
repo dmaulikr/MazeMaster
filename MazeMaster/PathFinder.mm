@@ -52,6 +52,7 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
 {
    CCArray *open = [CCArray array];
    CCArray *closed = [CCArray array];
+   CCArray *neighbors = [CCArray array];
 
    start.travelerKey = _travelerKey;
    goal.travelerKey = _travelerKey;
@@ -71,7 +72,7 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
       [open removeObjectAtIndex:0];
       [closed addObject:current];
 
-      CCArray *neighbors = [current walkableNeighborTiles];
+      neighbors = [current walkableNeighborTiles];
       if (_tileGenerationOrder == e_COUNTERCLOCKWISE)
          [neighbors reverseObjects];
 

@@ -7,6 +7,8 @@
 //
 
 #import "MMCharacter.h"
+#import "Tile.h"
+
 #include "PathFinder.h"
 
 @interface MMCharacter()
@@ -17,8 +19,6 @@
 @end
 
 @implementation MMCharacter
-
-@synthesize tileGenerationOrder = _tileGenerationOrder;
 
 -(id) initWithFile:(NSString *)filename
 {
@@ -53,11 +53,6 @@
 {
    _tileGenerationOrder = tileGenerationOrder;
    _pathFinder->setTileGenerationOrder(_tileGenerationOrder);
-}
-
-- (TileGenerationOrder)tileGenerationOrder
-{
-   return _tileGenerationOrder;
 }
 
 -(void) attack
