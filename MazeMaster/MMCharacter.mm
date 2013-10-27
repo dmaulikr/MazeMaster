@@ -18,12 +18,15 @@
 
 @implementation MMCharacter
 
+@synthesize tileGenerationOrder = _tileGenerationOrder;
+
 -(id) initWithFile:(NSString *)filename
 {
    if (self = [super initWithFile:filename])
    {
       _velocity = CGPointZero;
       _direction = e_NONE;
+      _tileGenerationOrder = e_CLOCKWISE;
       _moveStack = [NSMutableArray new];
    }
    return self;
@@ -44,6 +47,17 @@
 {
    _travelerKey = travelerKey;
    _pathFinder = new PathFinder(travelerKey);
+}
+
+- (void)setTileGenerationOrder:(TileGenerationOrder)tileGenerationOrder
+{
+   _tileGenerationOrder = tileGenerationOrder;
+   _pathFinder->setTileGenerationOrder(_tileGenerationOrder);
+}
+
+- (TileGenerationOrder)tileGenerationOrder
+{
+   return _tileGenerationOrder;
 }
 
 -(void) attack

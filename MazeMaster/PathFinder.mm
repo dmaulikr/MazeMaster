@@ -16,6 +16,7 @@
 PathFinder::PathFinder(NSString *travelerKey)
 {
    _travelerKey = travelerKey;
+   _tileGenerationOrder = e_CLOCKWISE;
    std::cout << "constructing PathFinder..." << std::endl;
 }
 
@@ -29,6 +30,11 @@ CCArray* PathFinder::calculatePath(Tile *start, Tile *goal)
 {
    astar_search(start, goal);
    return get_directions(goal);
+}
+
+void PathFinder::setTileGenerationOrder(TileGenerationOrder order)
+{
+   _tileGenerationOrder = order;
 }
 
 // ----- Private Methods -----
@@ -65,7 +71,11 @@ void PathFinder::astar_search(Tile *start, Tile *goal)
       [open removeObjectAtIndex:0];
       [closed addObject:current];
 
-      for (Tile *neighbor in [current walkableNeighborTiles])
+      CCArray *neighbors = [current walkableNeighborTiles];
+      if (_tileGenerationOrder == e_COUNTERCLOCKWISE)
+         [neighbors reverseObjects];
+
+      for (Tile *neighbor in neighbors)
       {
          neighbor.travelerKey = _travelerKey;
          cost = current.cost + movement_cost(current, neighbor);

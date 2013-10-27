@@ -243,8 +243,8 @@
          [self setupEnemy:[_enemies objectAtIndex:0]
                atLocation:ccp(5,5)];
 
-//         [self setupEnemy:[_enemies objectAtIndex:1]
-//               atLocation:ccp(8,3)];
+         [self setupEnemy:[_enemies objectAtIndex:1]
+               atLocation:ccp(8,3)];
          break;
       }
       default:
@@ -278,9 +278,10 @@
    [enemy1 setupPathFinderWithTravelerKey:@"enemy1"];
    [_enemies addObject:enemy1];
 
-//   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
-//   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
-//   [_enemies addObject:enemy2];
+   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
+   enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
+   [_enemies addObject:enemy2];
 }
 
 - (void)setupEdgesForLevel2

@@ -15,6 +15,7 @@
 }
 
 @property (readwrite, assign) NSString *travelerKey;
+@property (readwrite, assign) TileGenerationOrder tileGenerationOrder;
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint maxVelocity;
 @property (readwrite, assign) CGPoint absolutePosition;

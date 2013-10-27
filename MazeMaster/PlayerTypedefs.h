@@ -15,3 +15,8 @@ typedef enum {
    e_WEST
 } CharacterDirection;
 #endif
+
+typedef enum {
+   e_CLOCKWISE,
+   e_COUNTERCLOCKWISE
+} TileGenerationOrder;

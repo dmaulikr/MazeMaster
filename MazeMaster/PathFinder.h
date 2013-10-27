@@ -9,6 +9,8 @@
 #ifndef __MazeMaster__PathFinder__
 #define __MazeMaster__PathFinder__
 
+#include "PlayerTypedefs.h"
+
 @class Tile;
 class PathFinder
 {
@@ -16,6 +18,7 @@ class PathFinder
    PathFinder(NSString *travelerKey);
    ~PathFinder();
    CCArray* calculatePath(Tile *start, Tile *goal);
+   void setTileGenerationOrder(TileGenerationOrder order);
 
 private:
    int manhattan_distance(CGPoint current, CGPoint goal) const;
@@ -28,6 +31,7 @@ private:
    CCArray* get_directions(Tile *goal);
 
    NSString *_travelerKey;
+   TileGenerationOrder _tileGenerationOrder;
 };
 
 #endif /* defined(__MazeMaster__PathFinder__) */

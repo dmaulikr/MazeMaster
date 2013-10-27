@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "PlayerTypedefs.h"
 
 @class MMCharacter;
 @class GameLayer;
