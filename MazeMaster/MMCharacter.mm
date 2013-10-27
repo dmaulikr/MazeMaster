@@ -43,6 +43,7 @@
 - (void)dealloc
 {
    [_moveStack release];
+   delete _pathFinder;
    [super dealloc];
 }
 

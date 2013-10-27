@@ -17,15 +17,6 @@
 #import "Player.h"
 #import "MMEnemy.h"
 
-#include "PathFinder.h"
-
-@interface GameLayer()
-{
-   PathFinder *_pathFinder;
-}
-
-@end
-
 @implementation GameLayer
 
 #define MAX_PLAYER_VELOCITY 1.0
@@ -39,8 +30,6 @@
                                       _tileSize.width/2.0);
    _horizontalCenterRange = NSMakeRange(_windowSize.height/2.0 - _tileSize.height/4.0,
                                       _tileSize.height/2.0);
-   
-   _pathFinder = new PathFinder();
 }
 
 - (void)setupPlayer
@@ -106,7 +95,6 @@
 
 - (void)dealloc
 {
-   delete _pathFinder;
    [super dealloc];
 }
 
