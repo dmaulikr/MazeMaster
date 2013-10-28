@@ -262,15 +262,11 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 
 - (CGPoint)getDirectionPointForCharacter:(MMCharacter *)character
 {
-   CharacterDirection direction = character.direction;
    float x, y;
-   
-   character.direction = direction;
-   
    if (character.velocity.x <= character.maxVelocity.x)
       character.velocity = ccp(character.velocity.x + 0.3,
                                character.velocity.y + 0.3);
-   switch ( direction )
+   switch (character.direction)
    {
       case e_NORTH:
          x = 0;

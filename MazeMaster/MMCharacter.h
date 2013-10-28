@@ -25,7 +25,7 @@
 -(BOOL) moveStackIsEmpty;
 
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
-- (void)calculatePathToCharacter:(MMCharacter *)character;
+- (BOOL)calculatePathToCharacter:(MMCharacter *)character;
 - (void)beginExecutingCurrentPath;
 
 -(void) attack;

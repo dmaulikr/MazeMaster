@@ -122,24 +122,45 @@
    return !_moveStack.count;
 }
 
+- (NSString *)stringForDirection:(CharacterDirection)direction
+{
+   switch (direction)
+   {
+      case e_NORTH:
+         return @"North";
+      case e_EAST:
+         return @"East";
+      case e_SOUTH:
+         return @"South";
+      case e_WEST:
+         return @"West";
+      case e_NONE:
+         return nil;
+   }
+   return nil;
+}
+
 - (void)addDirectionsToStack:(CCArray *)directions
 {
-   NSLog(@"traveler key: %@", _travelerKey);
    CharacterDirection direction;
    for (NSNumber *directionNumber in directions)
    {
       direction = (CharacterDirection)directionNumber.intValue;
-      NSLog(@"  direction: %d", direction);
       [self pushMoveStack:direction];
    }
 }
 
-- (void)calculatePathToCharacter:(MMCharacter *)character
+- (BOOL)calculatePathToCharacter:(MMCharacter *)character
 {
-   [self clearMoveStack];
    CCArray *directions = _pathFinder->calculatePath(_currentTile,
                                                     character.currentTile);
-   [self addDirectionsToStack:directions];
+   if (directions)
+   {
+      [self clearMoveStack];
+      [self addDirectionsToStack:directions];
+      return YES;
+   }
+   return NO;
 }
 
 - (void)beginExecutingCurrentPath

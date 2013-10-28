@@ -70,8 +70,9 @@
 {
    if (_shouldCalculateNewPath)
    {
-      [self calculatePathToCharacter:_target];
-      [self beginExecutingCurrentPath];
+      if ([self calculatePathToCharacter:_target])
+         [self beginExecutingCurrentPath];
+
       _shouldCalculateNewPath = NO;
    }
 }
