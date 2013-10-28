@@ -14,7 +14,7 @@
 {
    if (self = [super initWithFile:filename])
    {
-      // stuff
+      self.isPlayer = YES;
    }
    return self;
 }
