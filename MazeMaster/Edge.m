@@ -65,9 +65,4 @@
    return string;
 }
 
--(void) dealloc
-{
-   [super dealloc];
-}
-
 @end
