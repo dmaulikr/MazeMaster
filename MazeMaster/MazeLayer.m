@@ -22,8 +22,6 @@
 
 @implementation MazeLayer
 
-@synthesize mazeSize = _mazeSize;
-
 - (id)init
 {
    if (self = [super init])
@@ -94,11 +92,6 @@
       [self setupMazeEdgesWithMaze:maze];
    }
    return self;
-}
-
-- (void)dealloc
-{
-   [super dealloc];
 }
 
 + (CCScene *)scene
