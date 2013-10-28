@@ -52,6 +52,12 @@
    return [self tileAtPosition:CGPointMake(xTile, yTile)];
 }
 
+- (Tile *)getRandomTile
+{
+   return [self tileAtPosition:ccp((arc4random() % _mazeDimensions.cols) + 1,
+                                   (arc4random() % _mazeDimensions.rows) + 1)];
+}
+
 - (Tile *)tileAtPosition:(CGPoint)tileCoordinates
 {
    if (tileCoordinates.x == 0 ||

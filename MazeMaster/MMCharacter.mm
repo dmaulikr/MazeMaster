@@ -150,10 +150,9 @@
    }
 }
 
-- (BOOL)calculatePathToCharacter:(MMCharacter *)character
+- (BOOL)calculatePathToTile:(Tile *)tile
 {
-   CCArray *directions = _pathFinder->calculatePath(_currentTile,
-                                                    character.currentTile);
+   CCArray *directions = _pathFinder->calculatePath(_currentTile, tile);
    if (directions)
    {
       [self clearMoveStack];

@@ -17,6 +17,6 @@
 
 @property (nonatomic, assign, setter = setState:) EnemyState state;
 @property (readwrite, assign) BOOL shouldCalculateNewPath;
-@property (readwrite, retain) MMCharacter *target;
+@property (readwrite, retain) Tile *target;
 
 @end

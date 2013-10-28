@@ -23,6 +23,7 @@ typedef struct {
 
 - (Tile *)getTileAtLocation:(CGPoint)location
                 forTileSize:(CGSize)tileSize;
+- (Tile *)getRandomTile;
 
 -(void) testMaze;
 -(id) initWithRows:(int)rows withColumns:(int)cols;

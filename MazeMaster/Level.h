@@ -10,11 +10,12 @@
 
 @class Maze;
 @class MMCharacter;
+@class Tile;
 @interface Level : NSObject
 
 -(id) initWithRows:(int)rows andColumns:(int)cols;
 -(void) addEnemiesToLayer:(CCLayer *)gameLayer;
-- (void)setEnemyTargets:(MMCharacter *)character;
+- (void)setEnemyTargets:(Tile *)tile;
 - (void)setEnemyPositions;
 
 @property (nonatomic, assign, setter = setLevelNumber:) int levelNumber;

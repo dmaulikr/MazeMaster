@@ -70,7 +70,7 @@
 - (void)setupEnemies
 {
    [[GameController sharedController].level addEnemiesToLayer:self];
-   [[GameController sharedController].level setEnemyTargets:_playerSprite];
+   [[GameController sharedController].level setEnemyTargets:_playerSprite.currentTile];
    [[GameController sharedController].level setEnemyPositions];
 }
 
@@ -322,11 +322,31 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 - (void)stopCharacter:(MMCharacter *)character
 {
    if (!character.isPlayer)
-      [(MMEnemy *)character setState:e_SLEEPING];
+   {
+      switch ([(MMEnemy *)character state])
+      {
+         case e_WANDERING:
+            break;
+         case e_CHASING:
+            [(MMEnemy *)character setState:e_SLEEPING];
+            break;
+         default:
+            break;
+      }
+   }
 
    [character clearMoveStack];
    character.isMoving = NO;
    character.direction = e_NONE;
+}
+
+- (void)stopEnemies
+{
+   for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      enemy.state = e_SLEEPING;
+      [self stopCharacter:enemy];
+   }
 }
 
 - (void)moveCharacter:(MMCharacter *)character
@@ -384,6 +404,17 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
    {
       enemy.state = e_CHASING;
+      enemy.target = _playerSprite.currentTile;
+      enemy.shouldCalculateNewPath = YES;
+   }
+}
+
+- (void)makeEnemiesWander
+{
+   for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      enemy.state = e_WANDERING;
+      enemy.target = [[GameController sharedController].level.maze getRandomTile];
       enemy.shouldCalculateNewPath = YES;
    }
 }
@@ -411,6 +442,10 @@ isOppositeToDirection:(CharacterDirection)otherDirection
             if (character.shouldMove)
                [(MMEnemy *)character setShouldCalculateNewPath:YES];
             break;
+
+         case e_WANDERING:
+            if (character.shouldMove && [character moveStackIsEmpty])
+               [(MMEnemy *)character setShouldCalculateNewPath:YES];
          default:
             break;
       }
@@ -500,7 +535,8 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 
 - (void)handleDoubleTapAtLocation:(CGPoint)location
 {
-   [self makeEnemiesChasePlayer];
+//   [self makeEnemiesChasePlayer];
+   [self makeEnemiesWander];
 }
 
 #pragma mark -- Scene Method --

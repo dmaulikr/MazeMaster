@@ -7,6 +7,10 @@
 //
 
 #import "MMEnemy.h"
+#import "GameController.h"
+#import "Level.h"
+#import "Maze.h"
+#import "Tile.h"
 
 @interface MMEnemy()
 {
@@ -47,9 +51,11 @@
          break;
       case e_WANDERING:
          self.texture = _wanderingTexture;
+         self.maxVelocity = ccp(.5,.5);
          break;
       case e_CHASING:
          self.texture = _chasingTexture;
+         self.maxVelocity = ccp(.8,.8);
       default:
          break;
    }
@@ -71,9 +77,24 @@
 {
    if (_shouldCalculateNewPath)
    {
-      if ([self calculatePathToCharacter:_target])
-         [self beginExecutingCurrentPath];
+      switch (_state)
+      {
+         case e_CHASING:
+            if ([self calculatePathToTile:_target])
+               [self beginExecutingCurrentPath];
+            break;
 
+         case e_WANDERING:
+         {
+            while (![self calculatePathToTile:_target])
+               _target = [[GameController sharedController].level.maze getRandomTile];
+
+            NSLog(@"%@ wandering to %@", self.travelerKey, NSStringFromCGPoint(_target.position));
+            [self beginExecutingCurrentPath];
+         }
+         default:
+            break;
+      }
       _shouldCalculateNewPath = NO;
    }
 }

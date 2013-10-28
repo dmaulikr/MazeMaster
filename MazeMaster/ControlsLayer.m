@@ -161,7 +161,10 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
 {
    [GameController sharedController].gameLayer.playerSprite.shouldMove = NO;
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      enemy.state = e_SLEEPING;
       enemy.shouldMove = NO;
+   }
 }
 
 - (void)handleSingleTap:(NSArray *)touchPoint

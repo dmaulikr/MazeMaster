@@ -206,10 +206,10 @@
       [gameLayer addChild:enemy];
 }
 
-- (void)setEnemyTargets:(MMCharacter *)character
+- (void)setEnemyTargets:(Tile *)tile
 {
    for (MMEnemy *enemy in _enemies)
-      enemy.target = character;
+      enemy.target = tile;
 }
 
 - (void)setupEnemy:(MMEnemy *)enemy atLocation:(CGPoint)location
