@@ -252,11 +252,11 @@
 
 -(void) setupEnemiesForLevel1
 {
-   MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
    [enemy1 setupPathFinderWithTravelerKey:@"enemy1"];
    [_enemies addObject:enemy1];
 
-   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front.png"];
+   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
    [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
    enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
    [_enemies addObject:enemy2];

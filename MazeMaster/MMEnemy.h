@@ -15,7 +15,7 @@
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
 
-@property (readwrite, assign) EnemyState state;
+@property (nonatomic, assign, setter = setState:) EnemyState state;
 @property (readwrite, assign) BOOL shouldCalculateNewPath;
 @property (readwrite, retain) MMCharacter *target;
 
