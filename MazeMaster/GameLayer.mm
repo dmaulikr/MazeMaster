@@ -366,7 +366,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
       {
          diffX = _mazeLayer.position.x - destination.x;
          diffY = _mazeLayer.position.y - destination.y;
-
          [self offsetEnemiesWithDeltaPoint:directionPoint];
       }
       else
@@ -402,8 +401,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
       [self moveCharacter:enemy];
 }
-
-
 
 - (void)updateCharacterPostion:(MMCharacter *)character
                        forTile:(Tile *)nextTile
