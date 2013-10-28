@@ -161,7 +161,7 @@ static const NSString *s_heuristic = @"heuristic";
    if (!tileAttributes)
       tileAttributes = [NSMutableDictionary new];
 
-   [tileAttributes setObject:(parent) ? parent : [NSNull null]
+   [tileAttributes setObject:(parent)? parent : [NSNull null]
                       forKey:s_parent];
 
    [_pathingAttribueMap setObject:tileAttributes
@@ -170,7 +170,8 @@ static const NSString *s_heuristic = @"heuristic";
 
 - (Tile *)parent
 {
-   if ([[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_parent] isKindOfClass:[NSNull class]])
+   if ([[[_pathingAttribueMap objectForKey:_travelerKey]
+            objectForKey:s_parent] isKindOfClass:[NSNull class]])
       return nil;
    else
       return [[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_parent];
@@ -191,7 +192,8 @@ static const NSString *s_heuristic = @"heuristic";
 
 - (int)cost
 {
-   return [[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_cost] intValue];
+   return [[[_pathingAttribueMap objectForKey:_travelerKey]
+               objectForKey:s_cost] intValue];
 }
 
 - (void)setHeuristic:(float)heuristic
@@ -209,7 +211,8 @@ static const NSString *s_heuristic = @"heuristic";
 
 - (float)heuristic
 {
-   return [[[_pathingAttribueMap objectForKey:_travelerKey] objectForKey:s_heuristic] floatValue];
+   return [[[_pathingAttribueMap objectForKey:_travelerKey]
+               objectForKey:s_heuristic] floatValue];
 }
 
 - (float)optimality
