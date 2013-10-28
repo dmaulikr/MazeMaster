@@ -40,6 +40,5 @@
 @property (readwrite, assign) BOOL isMoving;
 @property (readwrite, assign) BOOL shouldMove;
 @property (readwrite, assign) BOOL isPlayer;
-@property (readwrite, assign) Tile *currentTile;
-
+@property (nonatomic, assign, setter = setCurrentTile:) Tile *currentTile;
 @end

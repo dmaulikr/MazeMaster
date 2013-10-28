@@ -55,6 +55,17 @@
    _pathFinder->setTileGenerationOrder(_tileGenerationOrder);
 }
 
+- (void)setCurrentTile:(Tile *)currentTile
+{
+   if (!_isPlayer)
+      _currentTile.isActive = NO;
+
+   _currentTile = currentTile;
+
+   if (!_isPlayer)
+      _currentTile.isActive = YES;
+}
+
 -(void) attack
 {
    NSLog(@"Character attack");

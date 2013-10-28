@@ -403,6 +403,8 @@ isOppositeToDirection:(CharacterDirection)otherDirection
       [self moveCharacter:enemy];
 }
 
+
+
 - (void)updateCharacterPostion:(MMCharacter *)character
                        forTile:(Tile *)nextTile
                     atLocation:(CGPoint)nextTileLocation
@@ -418,13 +420,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
             if (character.shouldMove)
                [(MMEnemy *)character setShouldCalculateNewPath:YES];
             break;
-
-         case e_SLEEPING:
-            break;
-
-         case e_WANDERING:
-            break;
-
          default:
             break;
       }
@@ -439,14 +434,8 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 
       [self stopCharacter:character];
    }
-
-   if (!character.isPlayer)
-      character.currentTile.isActive = NO;
-
+   
    character.currentTile = nextTile;
-
-   if (!character.isPlayer)
-      character.currentTile.isActive = YES;
 
    if (![character moveStackIsEmpty])
    {
