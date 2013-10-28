@@ -355,8 +355,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
       destination = [self getDestinationPointForCharacter:character
                                                       atX:directionPoint.x
                                                         y:directionPoint.y];
-
-      // _moveMaze is on when the maze moves instead of the player
       float diffX, diffY;
       if (_moveMaze && character.isPlayer)
       {

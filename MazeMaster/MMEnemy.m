@@ -14,13 +14,13 @@
    CCTexture2D *_wanderingTexture;
    CCTexture2D *_sleepingTexture;
 }
-
 @end
 
 @implementation MMEnemy
 
 - (void)setupTextures
 {
+   // the shared texture cache returns an autoreleased object
    _sleepingTexture = [[CCTextureCache sharedTextureCache] addImage:@"enemy_front_sleeping.png"];
    _wanderingTexture = [[CCTextureCache sharedTextureCache] addImage:@"enemy_front_wandering.png"];
    _chasingTexture = [[CCTextureCache sharedTextureCache] addImage:@"enemy_front_chasing.png"];
