@@ -447,6 +447,9 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    Tile *currentTile = character.currentTile;
    Tile *nextTile = [currentTile getAdjacentTileForDirection:character.direction];
 
+   if (!character.isPlayer)
+      nextTile.isActive = YES;
+
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer
    CGPoint nextTileLocation = ccp(nextTile.tileSprite.position.x + _mazeLayer.position.x + character.offset.x,

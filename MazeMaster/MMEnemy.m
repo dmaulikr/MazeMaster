@@ -43,6 +43,7 @@
    {
       case e_SLEEPING:
          self.texture = _sleepingTexture;
+         _shouldCalculateNewPath = NO;
          break;
       case e_WANDERING:
          self.texture = _wanderingTexture;

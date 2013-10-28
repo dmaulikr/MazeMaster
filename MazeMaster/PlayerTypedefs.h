@@ -23,6 +23,14 @@ typedef enum {
 } TileGenerationOrder;
 #endif
 
+#ifndef __TILE_STATE__
+typedef enum {
+   e_INACTIVE,
+   e_WILL_BE_ACTIVE,
+   e_ACTIVE
+} TileState;
+#endif
+
 #ifndef __ENEMY_STATE__
 typedef enum {
    e_SLEEPING,
