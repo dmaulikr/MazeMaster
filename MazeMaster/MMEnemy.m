@@ -34,11 +34,29 @@
 {
    if (self = [super initWithFile:filename])
    {
+      [self scheduleUpdate];
       [self setupTextures];
       _state = e_SLEEPING;
-      [self scheduleUpdate];
    }
    return self;
+}
+
+- (void)setAwarenessProximityWithSize:(CGSize)size
+{
+   _awarenessProximity.size = size;
+   _awarenessProximity.origin = ccp(self.position.x + (self.boundingBox.size.width/2.0) -
+                                       (_awarenessProximity.size.width/2.0),
+                                    self.position.y + (self.boundingBox.size.height/2.0) -
+                                       (_awarenessProximity.size.height/2.0));
+}
+
+- (void)setPosition:(CGPoint)position
+{
+   _awarenessProximity.origin = ccp(position.x + (self.boundingBox.size.width/2.0) -
+                                       (_awarenessProximity.size.width/2.0),
+                                    position.y + (self.boundingBox.size.height/2.0) -
+                                       (_awarenessProximity.size.height/2.0));
+   [super setPosition:position];
 }
 
 - (void)setState:(EnemyState)state
@@ -51,6 +69,7 @@
          break;
       case e_WANDERING:
          self.texture = _wanderingTexture;
+         self.velocity = ccp(.5,.5);
          self.maxVelocity = ccp(.5,.5);
          break;
       case e_CHASING:
@@ -60,6 +79,38 @@
          break;
    }
    _state = state;
+}
+
+- (void)examineAwarenessProximityForCharacter:(MMCharacter *)character
+{
+   switch (_state)
+   {
+      case e_SLEEPING:
+         if (CGRectIntersectsRect(_awarenessProximity, character.boundingBox))
+         {
+            self.state = e_CHASING;
+            _target = character.currentTile;
+            _shouldCalculateNewPath = YES;
+            [self update:0];
+         }
+         break;
+      case e_WANDERING:
+         if (CGRectIntersectsRect(_awarenessProximity, character.boundingBox))
+         {
+            _target = character.currentTile;
+            self.state = e_CHASING;
+         }
+         break;
+      case e_CHASING:
+         if (!(CGRectIntersectsRect(_awarenessProximity, character.boundingBox)))
+         {
+            _target = [[GameController sharedController].level.maze getRandomTile];
+            self.state = e_WANDERING;
+         }
+         break;
+      default:
+         break;
+   }
 }
 
 -(void) attack

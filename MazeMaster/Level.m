@@ -196,6 +196,7 @@
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y );
    enemy.absolutePosition = enemy.position;
+   [enemy setAwarenessProximityWithSize:CGSizeMake(264, 264)];
 
    [_enemies addObject:enemy];
 }
@@ -228,6 +229,8 @@
                         enemy.currentTile.tileSprite.position.y +
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y);
+
+   [enemy setAwarenessProximityWithSize:CGSizeMake(220, 220)];
    enemy.absolutePosition = enemy.position;
    enemy.maxVelocity = ccp(.9,.9);
 }
@@ -241,8 +244,8 @@
          [self setupEnemy:[_enemies objectAtIndex:0]
                atLocation:ccp(5,5)];
 
-         [self setupEnemy:[_enemies objectAtIndex:1]
-               atLocation:ccp(8,3)];
+//         [self setupEnemy:[_enemies objectAtIndex:1]
+//               atLocation:ccp(8,3)];
          break;
       }
       default:
@@ -256,10 +259,10 @@
    [enemy1 setupPathFinderWithTravelerKey:@"enemy1"];
    [_enemies addObject:enemy1];
 
-   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
-   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
-   enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
-   [_enemies addObject:enemy2];
+//   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
+//   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
+//   enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
+//   [_enemies addObject:enemy2];
 }
 
 @end

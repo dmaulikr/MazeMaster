@@ -424,7 +424,10 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 {
    [self moveCharacter:_playerSprite];
    for (MMEnemy *enemy in [GameController sharedController].level.enemies)
+   {
+      [enemy examineAwarenessProximityForCharacter:_playerSprite];
       [self moveCharacter:enemy];
+   }
 }
 
 - (void)updateCharacterPostion:(MMCharacter *)character

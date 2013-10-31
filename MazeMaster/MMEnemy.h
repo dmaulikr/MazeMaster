@@ -11,6 +11,8 @@
 @interface MMEnemy : MMCharacter
 
 -(id) initWithFile:(NSString *)filename;
+- (void)setAwarenessProximityWithSize:(CGSize)size;
+- (void)examineAwarenessProximityForCharacter:(MMCharacter *)character;
 -(void) attack;
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
@@ -18,5 +20,6 @@
 @property (nonatomic, assign, setter = setState:) EnemyState state;
 @property (readwrite, assign) BOOL shouldCalculateNewPath;
 @property (readwrite, retain) Tile *target;
+@property (readwrite, assign) CGRect awarenessProximity;
 
 @end

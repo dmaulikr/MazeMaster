@@ -32,8 +32,8 @@ static const NSString *s_heuristic = @"heuristic";
 {
    if ( self = [super init] )
    {
-      // initialize stuff
-      _pathingAttribueMap = [NSMutableDictionary new];
+      // need retain to fix random crashes
+      _pathingAttribueMap = [[NSMutableDictionary new] retain];
    }
    return self;
 }
