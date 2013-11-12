@@ -225,22 +225,10 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    CharacterDirection direction = character.direction;
    
    if (character.isPlayer && [self mazeShouldMoveForPlayerDirection:direction])
-   {
       _moveMaze = YES;
-   }
    else
-   {
       _moveMaze = NO;
-//      CGPoint playerLocationOnScreen = ccp(destination.x + _mazeLayer.position.x,
-//                                           destination.y + _mazeLayer.position.y);
-//      if (character.isPlayer && ![self position:playerLocationOnScreen
-//                       inMazeBoundsForCharacter:character])
-//      {
-//         destination = character.position;
-//         character.shouldMove = NO;
-//         [character stopMoving];
-//      }
-   }
+   
    return destination;
 }
 
