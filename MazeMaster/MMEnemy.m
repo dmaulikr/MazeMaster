@@ -192,7 +192,7 @@
 {
    [super updatePositionForTile:nextTile
                      atLocation:nextTileLocation
-                andMazeMovement:mazeMoving];
+                   mazeMovement:mazeMoving];
 
    if ([self moveStackIsEmpty])
       [self stopMoving];

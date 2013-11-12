@@ -124,6 +124,44 @@
    return !_moveStack.count;
 }
 
+- (CGPoint)getDirectionPoint
+{
+   float x, y;
+   if (_velocity.x <= _maxVelocity.x)
+      _velocity = ccp(_velocity.x + 0.3,
+                      _velocity.y + 0.3);
+
+   switch (_direction)
+   {
+      case e_NORTH:
+         x = 0;
+         y = _velocity.y;
+         break;
+      case e_EAST:
+         x = _velocity.x;
+         y = 0;
+         break;
+      case e_SOUTH:
+         x = 0;
+         y = -_velocity.y;
+         break;
+      case e_WEST:
+         x = -_velocity.x;
+         y = 0;
+         break;
+      default:
+         break;
+   }
+   return ccp(x,y);
+}
+
+- (void)updatePositionWithCurrentDirection
+{
+   CGPoint directionPoint = [self getDirectionPoint];
+   _position = ccp(_position.x + directionPoint.x,
+                   _position.y + directionPoint.y);
+}
+
 - (NSString *)stringForDirection:(CharacterDirection)direction
 {
    switch (direction)
@@ -173,7 +211,7 @@
 
 - (void)updatePositionForTile:(Tile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
-              andMazeMovement:(BOOL)mazeMoving
+                 mazeMovement:(BOOL)mazeMoving
 {
    [self evaluateStateAndPotentiallyCalculatePathInTheFuture];
 
@@ -206,11 +244,7 @@
 - (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving
 {
    Tile *nextTile = [_currentTile getAdjacentTileForDirection:_direction];
-
-   // TODO: add to beginning of enemy
-//   if (!character.isPlayer)
-//      nextTile.isActive = YES;
-
+   
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer
    CGPoint nextTileLocation = ccp(nextTile.tileSprite.position.x + _offset.x,
@@ -227,26 +261,26 @@
          case e_NORTH:
             if (_position.y >= nextTileLocation.y)
                [self updatePositionForTile:nextTile
-                                     atLocation:nextTileLocation
-                                andMazeMovement:mazeMoving];
+                                atLocation:nextTileLocation
+                                 mazeMovement:mazeMoving];
             break;
          case e_EAST:
             if (_position.x >= nextTileLocation.x)
                [self updatePositionForTile:nextTile
                                 atLocation:nextTileLocation
-                           andMazeMovement:mazeMoving];
+                              mazeMovement:mazeMoving];
             break;
          case e_SOUTH:
             if (_position.y <= nextTileLocation.y)
                [self updatePositionForTile:nextTile
                                 atLocation:nextTileLocation
-                           andMazeMovement:mazeMoving];
+                              mazeMovement:mazeMoving];
             break;
          case e_WEST:
             if (_position.x <= nextTileLocation.x)
                [self updatePositionForTile:nextTile
                                 atLocation:nextTileLocation
-                           andMazeMovement:mazeMoving];
+                              mazeMovement:mazeMoving];
             break;
          default:
             break;

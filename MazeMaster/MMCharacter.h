@@ -18,23 +18,25 @@
 - (id)initWithFile:(NSString *)filename
        travelerKey:(NSString *)travelerKey;
 
--(void) pushMoveStack:(CharacterDirection)direction;
--(CharacterDirection) popMoveStack;
--(CharacterDirection) topMoveStack;
--(void) clearMoveStack;
--(BOOL) moveStackIsEmpty;
+- (void)pushMoveStack:(CharacterDirection)direction;
+- (CharacterDirection)popMoveStack;
+- (CharacterDirection)topMoveStack;
+- (void)clearMoveStack;
+- (BOOL)moveStackIsEmpty;
 
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
 - (BOOL)calculatePathToTile:(Tile *)tile;
 - (void)beginExecutingCurrentPath;
 
 - (void)stopMoving;
+- (CGPoint)getDirectionPoint;
+- (void)updatePositionWithCurrentDirection;
 - (void)updatePositionForTile:(Tile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
-              andMazeMovement:(BOOL)mazeMoving;
+                 mazeMovement:(BOOL)mazeMoving;
 - (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving;
--(void)attack;
--(void)evaluateStateAndPotentiallyCalculatePathInTheFuture;
+- (void)evaluateStateAndPotentiallyCalculatePathInTheFuture;
+- (void)attack;
 
 @property (readwrite, assign) NSString *travelerKey;
 @property (nonatomic, assign, setter = setTileGenerationOrder:) TileGenerationOrder tileGenerationOrder;

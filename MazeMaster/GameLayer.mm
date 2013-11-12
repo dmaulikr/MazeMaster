@@ -115,12 +115,6 @@
                             _horizontalCenterRange);
 }
 
-- (BOOL)playerIsCenteredOnScreen
-{
-   return ([self playerIsHorizontallyCenteredOnScreen] &&
-           [self playerIsVerticallyCenteredOnScreen]);
-}
-
 - (Tile *)getTileAtScreenLocation:(CGPoint)screenLocation
 {
    CGPoint realLocation = ccp(screenLocation.x - _mazeLayer.position.x,
@@ -176,6 +170,7 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 
    return YES;
 }
+
 - (BOOL)mazeShouldMoveForPlayerDirection:(CharacterDirection)direction
 {
    BOOL retVal = NO;
@@ -220,15 +215,6 @@ inMazeBoundsForCharacter:(MMCharacter *)character
 }
 
 # pragma mark -- Movement Helper Methods --
-- (void)offsetEnemiesWithDeltaPoint:(CGPoint)deltaPoint
-{
-   for (MMEnemy *enemy in [GameController sharedController].level.enemies)
-   {
-      enemy.position = ccp(enemy.position.x - deltaPoint.x,
-                           enemy.position.y - deltaPoint.y);
-   }
-}
-
 - (CGPoint)getDestinationPointForCharacter:(MMCharacter *)character
                                        atX:(float)x
                                          y:(float)y
@@ -245,15 +231,15 @@ inMazeBoundsForCharacter:(MMCharacter *)character
    else
    {
       _moveMaze = NO;
-      CGPoint playerLocationOnScreen = ccp(destination.x + _mazeLayer.position.x,
-                                           destination.y + _mazeLayer.position.y);
-      if (character.isPlayer && ![self position:playerLocationOnScreen
-                       inMazeBoundsForCharacter:character])
-      {
-         destination = character.position;
-         character.shouldMove = NO;
-         [character stopMoving];
-      }
+//      CGPoint playerLocationOnScreen = ccp(destination.x + _mazeLayer.position.x,
+//                                           destination.y + _mazeLayer.position.y);
+//      if (character.isPlayer && ![self position:playerLocationOnScreen
+//                       inMazeBoundsForCharacter:character])
+//      {
+//         destination = character.position;
+//         character.shouldMove = NO;
+//         [character stopMoving];
+//      }
    }
    return destination;
 }
