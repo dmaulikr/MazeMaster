@@ -14,6 +14,7 @@
 
 -(id) initWithFile:(NSString *)filename;
 -(void) attack;
+- (void)stopMoving;
 +(Player *) playerWithFile:(NSString *)filename;
 
 @end

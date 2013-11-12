@@ -13,7 +13,8 @@
 -(id) initWithFile:(NSString *)filename;
 - (void)setAwarenessProximityWithSize:(CGSize)size;
 - (void)examineAwarenessProximityForCharacter:(MMCharacter *)character;
--(void) attack;
+- (void)attack;
+- (void)stopMoving;
 
 +(MMEnemy *) enemyWithFile:(NSString *)filename;
 

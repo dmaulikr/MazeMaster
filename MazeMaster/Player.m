@@ -32,6 +32,13 @@
    return player;
 }
 
+- (void)stopMoving
+{
+   [self clearMoveStack];
+   self.isMoving = NO;
+   self.direction = e_NONE;
+}
+
 - (void)dealloc
 {
    [super dealloc];

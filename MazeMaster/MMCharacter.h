@@ -27,6 +27,7 @@
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
 - (BOOL)calculatePathToTile:(Tile *)tile;
 - (void)beginExecutingCurrentPath;
+- (void)stopMoving;
 
 -(void) attack;
 
@@ -34,7 +35,6 @@
 @property (nonatomic, assign, setter = setTileGenerationOrder:) TileGenerationOrder tileGenerationOrder;
 @property (readwrite, assign) CGPoint velocity;
 @property (readwrite, assign) CGPoint maxVelocity;
-@property (readwrite, assign) CGPoint absolutePosition;
 @property (readwrite, assign) CGPoint offset;
 @property (nonatomic, assign) CharacterDirection direction;
 @property (readwrite, assign) BOOL isMoving;

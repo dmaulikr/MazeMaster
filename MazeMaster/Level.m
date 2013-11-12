@@ -195,7 +195,7 @@
                         enemy.currentTile.tileSprite.position.y +
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y );
-   enemy.absolutePosition = enemy.position;
+
    [enemy setAwarenessProximityWithSize:CGSizeMake(264, 264)];
 
    [_enemies addObject:enemy];
@@ -230,8 +230,7 @@
                         gameController.gameLayer.mazeLayer.position.y +
                         enemy.offset.y);
 
-   [enemy setAwarenessProximityWithSize:CGSizeMake(220, 220)];
-   enemy.absolutePosition = enemy.position;
+   [enemy setAwarenessProximityWithSize:ENEMY_AWARENESS_PROXIMITY_DEFAULT];
    enemy.maxVelocity = ccp(.9,.9);
 }
 

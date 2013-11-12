@@ -66,15 +66,18 @@
       case e_SLEEPING:
          self.texture = _sleepingTexture;
          _shouldCalculateNewPath = NO;
+         [self setAwarenessProximityWithSize:ENEMY_AWARENESS_PROXIMITY_DEFAULT];
          break;
       case e_WANDERING:
          self.texture = _wanderingTexture;
          self.velocity = ccp(.5,.5);
          self.maxVelocity = ccp(.5,.5);
+         [self setAwarenessProximityWithSize:ENEMY_AWARENESS_PROXIMITY_DEFAULT];
          break;
       case e_CHASING:
          self.texture = _chasingTexture;
          self.maxVelocity = ccp(.8,.8);
+         [self setAwarenessProximityWithSize:ENEMY_AWARENESS_PROXIMITY_CHASING];
       default:
          break;
    }
@@ -147,6 +150,22 @@
             break;
       }
       _shouldCalculateNewPath = NO;
+   }
+}
+
+- (void)stopMoving
+{
+   switch (self.state)
+   {
+      case e_WANDERING:
+         break;
+      case e_CHASING:
+         // if enemy found player, then stop
+         // else, start wandering
+         self.state = e_WANDERING;
+         break;
+      default:
+         break;
    }
 }
 

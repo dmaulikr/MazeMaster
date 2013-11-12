@@ -30,3 +30,6 @@ typedef enum {
    e_CHASING
 } EnemyState;
 #endif
+
+#define ENEMY_AWARENESS_PROXIMITY_DEFAULT CGSizeMake(220, 220)
+#define ENEMY_AWARENESS_PROXIMITY_CHASING CGSizeMake(352, 352)
