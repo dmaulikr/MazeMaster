@@ -27,9 +27,14 @@
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
 - (BOOL)calculatePathToTile:(Tile *)tile;
 - (void)beginExecutingCurrentPath;
-- (void)stopMoving;
 
--(void) attack;
+- (void)stopMoving;
+- (void)updatePositionForTile:(Tile *)nextTile
+                   atLocation:(CGPoint)nextTileLocation
+              andMazeMovement:(BOOL)mazeMoving;
+- (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving;
+-(void)attack;
+-(void)evaluateStateAndPotentiallyCalculatePathInTheFuture;
 
 @property (readwrite, assign) NSString *travelerKey;
 @property (nonatomic, assign, setter = setTileGenerationOrder:) TileGenerationOrder tileGenerationOrder;

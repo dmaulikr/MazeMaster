@@ -169,4 +169,41 @@
    }
 }
 
+-(void)evaluateStateAndPotentiallyCalculatePathInTheFuture
+{
+   switch (_state)
+   {
+      case e_CHASING:
+         if (self.shouldMove)
+            self.shouldCalculateNewPath = YES;
+         break;
+
+      case e_WANDERING:
+         if (self.shouldMove && [self moveStackIsEmpty])
+            self.shouldCalculateNewPath = YES;
+      default:
+         break;
+   }
+}
+
+- (void)updatePositionForTile:(Tile *)nextTile
+                   atLocation:(CGPoint)nextTileLocation
+              andMazeMovement:(BOOL)mazeMoving
+{
+   [super updatePositionForTile:nextTile
+                     atLocation:nextTileLocation
+                andMazeMovement:mazeMoving];
+
+   if ([self moveStackIsEmpty])
+      [self stopMoving];
+}
+
+- (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving
+{
+   Tile *nextTile = [self.currentTile getAdjacentTileForDirection:self.direction];
+   nextTile.isActive = YES;
+
+   [super updateCurrentTileForMazeMovement:mazeMoving];
+}
+
 @end

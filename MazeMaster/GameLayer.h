@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "ControlsLayer.h"
+#import "MMCharacter.h"
 
 @class MazeLayer;
 @class Player;
@@ -19,6 +20,8 @@
 @property (readwrite, assign) MazeLayer *mazeLayer;
 
 - (id)initWithMaze:(MazeLayer *)mazeLayer;
+- (void)setMazePositionForCharacter:(MMCharacter *)character
+                 atNextTileLocation:(CGPoint)nextTileLocation;
 + (CCScene *)scene;
 
 @end

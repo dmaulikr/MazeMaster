@@ -10,6 +10,8 @@
 #import "Tile.h"
 
 #include "PathFinder.h"
+#include "GameController.h"
+#include "GameLayer.h"
 
 @interface MMCharacter()
 {
@@ -167,6 +169,89 @@
    _direction = [self popMoveStack];
    _isMoving = YES;
    _shouldMove = YES;
+}
+
+- (void)updatePositionForTile:(Tile *)nextTile
+                   atLocation:(CGPoint)nextTileLocation
+              andMazeMovement:(BOOL)mazeMoving
+{
+   [self evaluateStateAndPotentiallyCalculatePathInTheFuture];
+
+   if (self.shouldMove == NO)
+   {
+      if (mazeMoving)
+         [[GameController sharedController].gameLayer setMazePositionForCharacter:self
+                     atNextTileLocation:nextTileLocation];
+      else
+         self.position = nextTileLocation;
+
+      [self stopMoving];
+   }
+
+   self.currentTile = nextTile;
+
+   if (![self moveStackIsEmpty])
+   {
+      CharacterDirection nextDirection = [self topMoveStack];
+      if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
+         self.direction = [self popMoveStack];
+   }
+}
+
+-(void)evaluateStateAndPotentiallyCalculatePathInTheFuture
+{
+   return;
+}
+
+- (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving
+{
+   Tile *nextTile = [_currentTile getAdjacentTileForDirection:_direction];
+
+   // TODO: add to beginning of enemy
+//   if (!character.isPlayer)
+//      nextTile.isActive = YES;
+
+   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
+   // original position of the tile sprite by the position of the maze layer
+   CGPoint nextTileLocation = ccp(nextTile.tileSprite.position.x + _offset.x,
+                                  nextTile.tileSprite.position.y + _offset.y);
+   if (nextTile == nil)
+   {
+      _shouldMove = NO;
+      [self stopMoving];
+   }
+   else
+   {
+      switch (_direction)
+      {
+         case e_NORTH:
+            if (_position.y >= nextTileLocation.y)
+               [self updatePositionForTile:nextTile
+                                     atLocation:nextTileLocation
+                                andMazeMovement:mazeMoving];
+            break;
+         case e_EAST:
+            if (_position.x >= nextTileLocation.x)
+               [self updatePositionForTile:nextTile
+                                atLocation:nextTileLocation
+                           andMazeMovement:mazeMoving];
+            break;
+         case e_SOUTH:
+            if (_position.y <= nextTileLocation.y)
+               [self updatePositionForTile:nextTile
+                                atLocation:nextTileLocation
+                           andMazeMovement:mazeMoving];
+            break;
+         case e_WEST:
+            if (_position.x <= nextTileLocation.x)
+               [self updatePositionForTile:nextTile
+                                atLocation:nextTileLocation
+                           andMazeMovement:mazeMoving];
+            break;
+         default:
+            break;
+      }
+   }
 }
 
 @end

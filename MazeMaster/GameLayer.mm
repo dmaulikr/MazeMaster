@@ -359,7 +359,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
                                               _mazeLayer.position.y - directionPoint.y) :
                                               _mazeLayer.position;
 
-      [self updateCurrentTileWithCharacter:character];
+      [character updateCurrentTileForMazeMovement:_moveMaze];
    }
 }
 
@@ -392,105 +392,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    {
       [enemy examineAwarenessProximityForCharacter:_playerSprite];
       [self moveCharacter:enemy];
-   }
-}
-
-- (void)updateCharacterPostion:(MMCharacter *)character
-                       forTile:(Tile *)nextTile
-                    atLocation:(CGPoint)nextTileLocation
-{
-   // since this is where the start of a new tile is happening, the enemy should repath to where
-   // the player currently is
-   if (!character.isPlayer)
-   {
-      EnemyState state = [(MMEnemy *)character state];
-      switch (state)
-      {
-         case e_CHASING:
-            if (character.shouldMove)
-               [(MMEnemy *)character setShouldCalculateNewPath:YES];
-            break;
-
-         case e_WANDERING:
-            if (character.shouldMove && [character moveStackIsEmpty])
-               [(MMEnemy *)character setShouldCalculateNewPath:YES];
-         default:
-            break;
-      }
-   }
-   if (character.shouldMove == NO)
-   {
-      if (_moveMaze)
-         [self setMazePositionForCharacter:character
-                        atNextTileLocation:nextTileLocation];
-      else
-         character.position = nextTileLocation;
-
-      [character stopMoving];
-   }
-   
-   character.currentTile = nextTile;
-
-   if (![character moveStackIsEmpty])
-   {
-      CharacterDirection nextDirection = [character topMoveStack];
-      if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
-         character.direction = [character popMoveStack];
-   }
-   else if (!character.isPlayer && [character moveStackIsEmpty])
-   {
-      [character stopMoving];
-   }
-}
-
-- (void)updateCurrentTileWithCharacter:(MMCharacter *)character
-{
-   Tile *currentTile = character.currentTile;
-   Tile *nextTile = [currentTile getAdjacentTileForDirection:character.direction];
-
-   if (!character.isPlayer)
-      nextTile.isActive = YES;
-
-   // tile sprite positions don't update when the maze layer is moved, so we need to offset the
-   // original position of the tile sprite by the position of the maze layer
-   CGPoint nextTileLocation = ccp(nextTile.tileSprite.position.x + character.offset.x,
-                                  nextTile.tileSprite.position.y + character.offset.y);
-   if (nextTile == nil)
-   {
-      character.shouldMove = NO;
-      [character stopMoving];
-   }
-   else
-   {
-      switch (character.direction)
-      {
-         case e_NORTH:
-            if (character.position.y >= nextTileLocation.y)
-               [self updateCharacterPostion:character
-                                    forTile:nextTile
-                                 atLocation:nextTileLocation];
-            break;
-         case e_EAST:
-            if (character.position.x >= nextTileLocation.x)
-               [self updateCharacterPostion:character
-                                    forTile:nextTile
-                                 atLocation:nextTileLocation];
-            break;
-         case e_SOUTH:
-            if (character.position.y <= nextTileLocation.y)
-               [self updateCharacterPostion:character
-                                    forTile:nextTile
-                                 atLocation:nextTileLocation];
-            break;
-         case e_WEST:
-            if (character.position.x <= nextTileLocation.x)
-               [self updateCharacterPostion:character
-                                    forTile:nextTile
-                                 atLocation:nextTileLocation];
-            break;
-         default:
-            break;
-      }
    }
 }
 
