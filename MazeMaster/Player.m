@@ -34,9 +34,7 @@
 
 - (void)stopMoving
 {
-   [self clearMoveStack];
-   self.isMoving = NO;
-   self.direction = e_NONE;
+   [super stopMoving];
 }
 
 - (void)dealloc
