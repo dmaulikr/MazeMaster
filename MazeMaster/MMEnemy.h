@@ -18,7 +18,7 @@
 
 @property (nonatomic, assign, setter = setState:) EnemyState state;
 @property (readwrite, assign) BOOL shouldCalculateNewPath;
-@property (readwrite, retain) Tile *target;
+@property (readwrite, retain) MMTile *target;
 @property (readwrite, assign) CGRect awarenessProximity;
 
 @end

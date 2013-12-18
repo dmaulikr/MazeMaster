@@ -7,16 +7,16 @@
 //
 
 #import "MMCharacter.h"
-#import "Tile.h"
+#import "MMTile.h"
 
-#include "PathFinder.h"
-#include "GameController.h"
-#include "GameLayer.h"
+#include "MMPathFinder.h"
+#include "MMGameController.h"
+#include "MMGameLayer.h"
 
 @interface MMCharacter()
 {
    NSMutableArray *_moveStack;
-   PathFinder *_pathFinder;
+   MMPathFinder *_pathFinder;
 }
 @end
 
@@ -40,7 +40,7 @@
    if (self = [self initWithFile:filename])
    {
       _travelerKey = travelerKey;
-      _pathFinder = new PathFinder(travelerKey);
+      _pathFinder = new MMPathFinder(travelerKey);
    }
    return self;
 }
@@ -48,7 +48,7 @@
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey
 {
    _travelerKey = travelerKey;
-   _pathFinder = new PathFinder(travelerKey);
+   _pathFinder = new MMPathFinder(travelerKey);
 }
 
 - (void)setTileGenerationOrder:(TileGenerationOrder)tileGenerationOrder
@@ -57,7 +57,7 @@
    _pathFinder->setTileGenerationOrder(_tileGenerationOrder);
 }
 
-- (void)setCurrentTile:(Tile *)currentTile
+- (void)setCurrentTile:(MMTile *)currentTile
 {
    if (!_isPlayer)
       _currentTile.isActive = NO;
@@ -197,7 +197,7 @@
    }
 }
 
-- (BOOL)calculatePathToTile:(Tile *)tile
+- (BOOL)calculatePathToTile:(MMTile *)tile
 {
    CCArray *directions = _pathFinder->calculatePath(_currentTile, tile);
    if (directions)
@@ -216,7 +216,7 @@
    _shouldMove = YES;
 }
 
-- (void)updatePositionForTile:(Tile *)nextTile
+- (void)updatePositionForTile:(MMTile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
                  mazeMovement:(BOOL)mazeMoving
 {
@@ -225,7 +225,7 @@
    if (self.shouldMove == NO)
    {
       if (mazeMoving)
-         [[GameController sharedController].gameLayer setMazePositionForCharacter:self
+         [[MMGameController sharedController].gameLayer setMazePositionForCharacter:self
                      atNextTileLocation:nextTileLocation];
       else
          self.position = nextTileLocation;
@@ -250,7 +250,7 @@
 
 - (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving
 {
-   Tile *nextTile = [_currentTile getAdjacentTileForDirection:_direction];
+   MMTile *nextTile = [_currentTile getAdjacentTileForDirection:_direction];
    
    // tile sprite positions don't update when the maze layer is moved, so we need to offset the
    // original position of the tile sprite by the position of the maze layer

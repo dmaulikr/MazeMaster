@@ -14,8 +14,8 @@
 		8E02EC481808C49700369B8A /* astronaut_front@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC461808C49700369B8A /* astronaut_front@2x.png */; };
 		8E02EC491808C49700369B8A /* gray_tile_44x44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */; };
 		8E02EC4B1808C52C00369B8A /* edge_simple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */; };
-		8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */; };
-		8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* SettingsLayer.m */; };
+		8E1A35E217BB1922008FD26A /* MMLevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E117BB1922008FD26A /* MMLevelSelectLayer.m */; };
+		8E1A35E517BB193B008FD26A /* MMSettingsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1A35E417BB193B008FD26A /* MMSettingsLayer.m */; };
 		8E38CC3617AF1F9000EE917C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3517AF1F9000EE917C /* QuartzCore.framework */; };
 		8E38CC3817AF1F9000EE917C /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3717AF1F9000EE917C /* OpenGLES.framework */; };
 		8E38CC3A17AF1F9000EE917C /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E38CC3917AF1F9000EE917C /* OpenAL.framework */; };
@@ -148,11 +148,11 @@
 		8E38CDD417AF1F9200EE917C /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDD317AF1F9200EE917C /* vec4.c */; };
 		8E38CDD917AF1F9200EE917C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDD817AF1F9200EE917C /* main.m */; };
 		8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDB17AF1F9200EE917C /* AppDelegate.m */; };
-		8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* StartLayer.m */; };
-		8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* IntroLayer.m */; };
+		8E38CDDF17AF1F9200EE917C /* MMStartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDDE17AF1F9200EE917C /* MMStartLayer.m */; };
+		8E38CDE217AF1F9200EE917C /* MMIntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E38CDE117AF1F9200EE917C /* MMIntroLayer.m */; };
 		8E88C94A180E31D200F7B872 /* blue_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88C948180E31D200F7B872 /* blue_tile.png */; };
 		8E88C94B180E31D200F7B872 /* blue_tile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E88C949180E31D200F7B872 /* blue_tile@2x.png */; };
-		8EA767F917DC0DE000624A43 /* MazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA767F817DC0DE000624A43 /* MazeLayer.m */; };
+		8EA767F917DC0DE000624A43 /* MMMazeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA767F817DC0DE000624A43 /* MMMazeLayer.m */; };
 		8EA767FD17E5274500624A43 /* tile_edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767FC17E5274500624A43 /* tile_edge_simple.png */; };
 		8EA7680417E527A900624A43 /* basic_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767FE17E527A900624A43 /* basic_tile.png */; };
 		8EA7680517E527A900624A43 /* basic.tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA767FF17E527A900624A43 /* basic.tile.png */; };
@@ -161,25 +161,25 @@
 		8EA7680817E527A900624A43 /* tron_edge.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680217E527A900624A43 /* tron_edge.png */; };
 		8EA7680917E527A900624A43 /* tron_tile.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680317E527A900624A43 /* tron_tile.png */; };
 		8EA7680B17E57C2200624A43 /* edge_simple.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EA7680A17E57C2200624A43 /* edge_simple.png */; };
-		8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */; };
-		8EB6CA211810F78600F5D267 /* PathFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA201810F78600F5D267 /* PathFinder.mm */; };
+		8EB6CA181810999100F5D267 /* MMDoubleTouchDownRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA171810999100F5D267 /* MMDoubleTouchDownRecognizer.m */; };
+		8EB6CA211810F78600F5D267 /* MMPathFinder.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EB6CA201810F78600F5D267 /* MMPathFinder.mm */; };
 		8EC9CF6D181DEE3A00900BCB /* enemy_front_wandering.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC9CF6B181DEE3A00900BCB /* enemy_front_wandering.png */; };
 		8EC9CF6E181DEE3A00900BCB /* enemy_front_wandering@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC9CF6C181DEE3A00900BCB /* enemy_front_wandering@2x.png */; };
 		8EC9CF71181DEF0400900BCB /* enemy_front_sleeping.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC9CF6F181DEF0400900BCB /* enemy_front_sleeping.png */; };
 		8EC9CF72181DEF0400900BCB /* enemy_front_sleeping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EC9CF70181DEF0400900BCB /* enemy_front_sleeping@2x.png */; };
-		8EF0063C17B1E66C009046C4 /* GameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* GameLayer.mm */; };
+		8EF0063C17B1E66C009046C4 /* MMGameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* MMGameLayer.mm */; };
 		8EFBBECD181B809200E21126 /* enemy_front_chasing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBBECB181B809200E21126 /* enemy_front_chasing.png */; };
 		8EFBBED0181B819D00E21126 /* enemy_front_chasing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBBECF181B819D00E21126 /* enemy_front_chasing@2x.png */; };
 		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
-		DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C117BB119B007694C4 /* LevelFactory.m */; };
-		DA3731C517BB170A007694C4 /* GameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* GameController.m */; };
-		DA3731C817BB174E007694C4 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* Level.m */; };
-		DA3731CB17BB1764007694C4 /* Maze.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731CA17BB1764007694C4 /* Maze.m */; };
-		DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA503CDD17C301F3005CA59D /* ControlsLayer.m */; };
-		DA503CE117C3292A005CA59D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = DA503CE017C3292A005CA59D /* Player.m */; };
-		DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4EB17BB2194003EED00 /* Edge.m */; };
-		DAF6E4F217BB220B003EED00 /* Tile.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4F117BB220B003EED00 /* Tile.m */; };
+		DA3731C217BB119B007694C4 /* MMLevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C117BB119B007694C4 /* MMLevelFactory.m */; };
+		DA3731C517BB170A007694C4 /* MMGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* MMGameController.m */; };
+		DA3731C817BB174E007694C4 /* MMLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* MMLevel.m */; };
+		DA3731CB17BB1764007694C4 /* MMMaze.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731CA17BB1764007694C4 /* MMMaze.m */; };
+		DA503CDE17C301F3005CA59D /* MMControlsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA503CDD17C301F3005CA59D /* MMControlsLayer.m */; };
+		DA503CE117C3292A005CA59D /* MMPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DA503CE017C3292A005CA59D /* MMPlayer.m */; };
+		DAF6E4EC17BB2194003EED00 /* MMEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4EB17BB2194003EED00 /* MMEdge.m */; };
+		DAF6E4F217BB220B003EED00 /* MMTile.m in Sources */ = {isa = PBXBuildFile; fileRef = DAF6E4F117BB220B003EED00 /* MMTile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -193,11 +193,11 @@
 		8E02EC461808C49700369B8A /* astronaut_front@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "astronaut_front@2x.png"; path = "Resources/astronaut_front@2x.png"; sourceTree = "<group>"; };
 		8E02EC471808C49700369B8A /* gray_tile_44x44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gray_tile_44x44@2x.png"; path = "Resources/gray_tile_44x44@2x.png"; sourceTree = "<group>"; };
 		8E02EC4A1808C52C00369B8A /* edge_simple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edge_simple@2x.png"; path = "Resources/edge_simple@2x.png"; sourceTree = "<group>"; };
-		8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerTypedefs.h; sourceTree = "<group>"; };
-		8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectLayer.h; sourceTree = "<group>"; };
-		8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelSelectLayer.m; sourceTree = "<group>"; };
-		8E1A35E317BB193B008FD26A /* SettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsLayer.h; sourceTree = "<group>"; };
-		8E1A35E417BB193B008FD26A /* SettingsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsLayer.m; sourceTree = "<group>"; };
+		8E18C61717E80978004F5CA0 /* MMPlayerTypedefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlayerTypedefs.h; sourceTree = "<group>"; };
+		8E1A35E017BB1922008FD26A /* MMLevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLevelSelectLayer.h; sourceTree = "<group>"; };
+		8E1A35E117BB1922008FD26A /* MMLevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLevelSelectLayer.m; sourceTree = "<group>"; };
+		8E1A35E317BB193B008FD26A /* MMSettingsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSettingsLayer.h; sourceTree = "<group>"; };
+		8E1A35E417BB193B008FD26A /* MMSettingsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSettingsLayer.m; sourceTree = "<group>"; };
 		8E38CC3217AF1F9000EE917C /* MazeMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazeMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E38CC3517AF1F9000EE917C /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8E38CC3717AF1F9000EE917C /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -475,14 +475,14 @@
 		8E38CDD817AF1F9200EE917C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8E38CDDA17AF1F9200EE917C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8E38CDDB17AF1F9200EE917C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8E38CDDD17AF1F9200EE917C /* StartLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StartLayer.h; sourceTree = "<group>"; };
-		8E38CDDE17AF1F9200EE917C /* StartLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StartLayer.m; sourceTree = "<group>"; };
-		8E38CDE017AF1F9200EE917C /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
-		8E38CDE117AF1F9200EE917C /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		8E38CDDD17AF1F9200EE917C /* MMStartLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMStartLayer.h; sourceTree = "<group>"; };
+		8E38CDDE17AF1F9200EE917C /* MMStartLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMStartLayer.m; sourceTree = "<group>"; };
+		8E38CDE017AF1F9200EE917C /* MMIntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MMIntroLayer.h; sourceTree = "<group>"; };
+		8E38CDE117AF1F9200EE917C /* MMIntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MMIntroLayer.m; sourceTree = "<group>"; };
 		8E88C948180E31D200F7B872 /* blue_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blue_tile.png; path = Resources/blue_tile.png; sourceTree = "<group>"; };
 		8E88C949180E31D200F7B872 /* blue_tile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blue_tile@2x.png"; path = "Resources/blue_tile@2x.png"; sourceTree = "<group>"; };
-		8EA767F717DC0DE000624A43 /* MazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MazeLayer.h; sourceTree = "<group>"; };
-		8EA767F817DC0DE000624A43 /* MazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MazeLayer.m; sourceTree = "<group>"; };
+		8EA767F717DC0DE000624A43 /* MMMazeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMazeLayer.h; sourceTree = "<group>"; };
+		8EA767F817DC0DE000624A43 /* MMMazeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMazeLayer.m; sourceTree = "<group>"; };
 		8EA767FC17E5274500624A43 /* tile_edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tile_edge_simple.png; path = Resources/tile_edge_simple.png; sourceTree = "<group>"; };
 		8EA767FE17E527A900624A43 /* basic_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = basic_tile.png; path = Resources/basic_tile.png; sourceTree = "<group>"; };
 		8EA767FF17E527A900624A43 /* basic.tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = basic.tile.png; path = Resources/basic.tile.png; sourceTree = "<group>"; };
@@ -491,36 +491,36 @@
 		8EA7680217E527A900624A43 /* tron_edge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tron_edge.png; path = Resources/tron_edge.png; sourceTree = "<group>"; };
 		8EA7680317E527A900624A43 /* tron_tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tron_tile.png; path = Resources/tron_tile.png; sourceTree = "<group>"; };
 		8EA7680A17E57C2200624A43 /* edge_simple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edge_simple.png; path = Resources/edge_simple.png; sourceTree = "<group>"; };
-		8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoubleTouchDownRecognizer.h; sourceTree = "<group>"; };
-		8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoubleTouchDownRecognizer.m; sourceTree = "<group>"; };
-		8EB6CA1F1810F78600F5D267 /* PathFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = PathFinder.h; sourceTree = "<group>"; };
-		8EB6CA201810F78600F5D267 /* PathFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PathFinder.mm; sourceTree = "<group>"; };
+		8EB6CA161810999100F5D267 /* MMDoubleTouchDownRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDoubleTouchDownRecognizer.h; sourceTree = "<group>"; };
+		8EB6CA171810999100F5D267 /* MMDoubleTouchDownRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDoubleTouchDownRecognizer.m; sourceTree = "<group>"; };
+		8EB6CA1F1810F78600F5D267 /* MMPathFinder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = MMPathFinder.h; sourceTree = "<group>"; };
+		8EB6CA201810F78600F5D267 /* MMPathFinder.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMPathFinder.mm; sourceTree = "<group>"; };
 		8EC9CF6B181DEE3A00900BCB /* enemy_front_wandering.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_front_wandering.png; path = Resources/enemy_front_wandering.png; sourceTree = "<group>"; };
 		8EC9CF6C181DEE3A00900BCB /* enemy_front_wandering@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enemy_front_wandering@2x.png"; path = "Resources/enemy_front_wandering@2x.png"; sourceTree = "<group>"; };
 		8EC9CF6F181DEF0400900BCB /* enemy_front_sleeping.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_front_sleeping.png; path = Resources/enemy_front_sleeping.png; sourceTree = "<group>"; };
 		8EC9CF70181DEF0400900BCB /* enemy_front_sleeping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enemy_front_sleeping@2x.png"; path = "Resources/enemy_front_sleeping@2x.png"; sourceTree = "<group>"; };
-		8EF0063A17B1E66A009046C4 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
-		8EF0063B17B1E66B009046C4 /* GameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameLayer.mm; sourceTree = "<group>"; };
+		8EF0063A17B1E66A009046C4 /* MMGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGameLayer.h; sourceTree = "<group>"; };
+		8EF0063B17B1E66B009046C4 /* MMGameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMGameLayer.mm; sourceTree = "<group>"; };
 		8EFBBECB181B809200E21126 /* enemy_front_chasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_front_chasing.png; path = Resources/enemy_front_chasing.png; sourceTree = "<group>"; };
 		8EFBBECF181B819D00E21126 /* enemy_front_chasing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enemy_front_chasing@2x.png"; path = "Resources/enemy_front_chasing@2x.png"; sourceTree = "<group>"; };
 		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
 		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
-		DA3731C017BB119B007694C4 /* LevelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelFactory.h; sourceTree = "<group>"; };
-		DA3731C117BB119B007694C4 /* LevelFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelFactory.m; sourceTree = "<group>"; };
-		DA3731C317BB170A007694C4 /* GameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameController.h; sourceTree = "<group>"; };
-		DA3731C417BB170A007694C4 /* GameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameController.m; sourceTree = "<group>"; };
-		DA3731C617BB174E007694C4 /* Level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
-		DA3731C717BB174E007694C4 /* Level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
-		DA3731C917BB1764007694C4 /* Maze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Maze.h; sourceTree = "<group>"; };
-		DA3731CA17BB1764007694C4 /* Maze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Maze.m; sourceTree = "<group>"; };
-		DA503CDC17C301F3005CA59D /* ControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlsLayer.h; sourceTree = "<group>"; };
-		DA503CDD17C301F3005CA59D /* ControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlsLayer.m; sourceTree = "<group>"; };
-		DA503CDF17C3292A005CA59D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
-		DA503CE017C3292A005CA59D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
-		DAF6E4EA17BB2194003EED00 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
-		DAF6E4EB17BB2194003EED00 /* Edge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edge.m; sourceTree = "<group>"; };
-		DAF6E4F017BB220B003EED00 /* Tile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tile.h; sourceTree = "<group>"; };
-		DAF6E4F117BB220B003EED00 /* Tile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tile.m; sourceTree = "<group>"; };
+		DA3731C017BB119B007694C4 /* MMLevelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLevelFactory.h; sourceTree = "<group>"; };
+		DA3731C117BB119B007694C4 /* MMLevelFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLevelFactory.m; sourceTree = "<group>"; };
+		DA3731C317BB170A007694C4 /* MMGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGameController.h; sourceTree = "<group>"; };
+		DA3731C417BB170A007694C4 /* MMGameController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMGameController.m; sourceTree = "<group>"; };
+		DA3731C617BB174E007694C4 /* MMLevel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLevel.h; sourceTree = "<group>"; };
+		DA3731C717BB174E007694C4 /* MMLevel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLevel.m; sourceTree = "<group>"; };
+		DA3731C917BB1764007694C4 /* MMMaze.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMMaze.h; sourceTree = "<group>"; };
+		DA3731CA17BB1764007694C4 /* MMMaze.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMMaze.m; sourceTree = "<group>"; };
+		DA503CDC17C301F3005CA59D /* MMControlsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMControlsLayer.h; sourceTree = "<group>"; };
+		DA503CDD17C301F3005CA59D /* MMControlsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMControlsLayer.m; sourceTree = "<group>"; };
+		DA503CDF17C3292A005CA59D /* MMPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMPlayer.h; sourceTree = "<group>"; };
+		DA503CE017C3292A005CA59D /* MMPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMPlayer.m; sourceTree = "<group>"; };
+		DAF6E4EA17BB2194003EED00 /* MMEdge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMEdge.h; sourceTree = "<group>"; };
+		DAF6E4EB17BB2194003EED00 /* MMEdge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMEdge.m; sourceTree = "<group>"; };
+		DAF6E4F017BB220B003EED00 /* MMTile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMTile.h; sourceTree = "<group>"; };
+		DAF6E4F117BB220B003EED00 /* MMTile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMTile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -585,46 +585,46 @@
 				8E38CDDB17AF1F9200EE917C /* AppDelegate.m */,
 				4A3DCCAF17C31530000C7D9E /* CCNode+SFGestureRecognizers.h */,
 				4A3DCCB017C31530000C7D9E /* CCNode+SFGestureRecognizers.m */,
-				DA503CDC17C301F3005CA59D /* ControlsLayer.h */,
-				DA503CDD17C301F3005CA59D /* ControlsLayer.m */,
-				8EB6CA161810999100F5D267 /* DoubleTouchDownRecognizer.h */,
-				8EB6CA171810999100F5D267 /* DoubleTouchDownRecognizer.m */,
-				DAF6E4EA17BB2194003EED00 /* Edge.h */,
-				DAF6E4EB17BB2194003EED00 /* Edge.m */,
-				DA3731C317BB170A007694C4 /* GameController.h */,
-				DA3731C417BB170A007694C4 /* GameController.m */,
-				8EF0063A17B1E66A009046C4 /* GameLayer.h */,
-				8EF0063B17B1E66B009046C4 /* GameLayer.mm */,
-				8E38CDE017AF1F9200EE917C /* IntroLayer.h */,
-				8E38CDE117AF1F9200EE917C /* IntroLayer.m */,
-				DA3731C617BB174E007694C4 /* Level.h */,
-				DA3731C717BB174E007694C4 /* Level.m */,
-				DA3731C017BB119B007694C4 /* LevelFactory.h */,
-				DA3731C117BB119B007694C4 /* LevelFactory.m */,
-				8E1A35E017BB1922008FD26A /* LevelSelectLayer.h */,
-				8E1A35E117BB1922008FD26A /* LevelSelectLayer.m */,
+				DA503CDC17C301F3005CA59D /* MMControlsLayer.h */,
+				DA503CDD17C301F3005CA59D /* MMControlsLayer.m */,
+				8EB6CA161810999100F5D267 /* MMDoubleTouchDownRecognizer.h */,
+				8EB6CA171810999100F5D267 /* MMDoubleTouchDownRecognizer.m */,
+				DAF6E4EA17BB2194003EED00 /* MMEdge.h */,
+				DAF6E4EB17BB2194003EED00 /* MMEdge.m */,
+				DA3731C317BB170A007694C4 /* MMGameController.h */,
+				DA3731C417BB170A007694C4 /* MMGameController.m */,
+				8EF0063A17B1E66A009046C4 /* MMGameLayer.h */,
+				8EF0063B17B1E66B009046C4 /* MMGameLayer.mm */,
+				8E38CDE017AF1F9200EE917C /* MMIntroLayer.h */,
+				8E38CDE117AF1F9200EE917C /* MMIntroLayer.m */,
+				DA3731C617BB174E007694C4 /* MMLevel.h */,
+				DA3731C717BB174E007694C4 /* MMLevel.m */,
+				DA3731C017BB119B007694C4 /* MMLevelFactory.h */,
+				DA3731C117BB119B007694C4 /* MMLevelFactory.m */,
+				8E1A35E017BB1922008FD26A /* MMLevelSelectLayer.h */,
+				8E1A35E117BB1922008FD26A /* MMLevelSelectLayer.m */,
 				8E38CC6217AF1F9000EE917C /* libs */,
-				DA3731C917BB1764007694C4 /* Maze.h */,
-				DA3731CA17BB1764007694C4 /* Maze.m */,
-				8EA767F717DC0DE000624A43 /* MazeLayer.h */,
-				8EA767F817DC0DE000624A43 /* MazeLayer.m */,
+				DA3731C917BB1764007694C4 /* MMMaze.h */,
+				DA3731CA17BB1764007694C4 /* MMMaze.m */,
+				8EA767F717DC0DE000624A43 /* MMMazeLayer.h */,
+				8EA767F817DC0DE000624A43 /* MMMazeLayer.m */,
 				4AFE43D31811DDD300F3E81C /* MMCharacter.h */,
 				4AFE43D41811DDD300F3E81C /* MMCharacter.mm */,
 				4AFE43D61811E19F00F3E81C /* MMEnemy.h */,
 				4AFE43D71811E19F00F3E81C /* MMEnemy.m */,
-				8EB6CA1F1810F78600F5D267 /* PathFinder.h */,
-				8EB6CA201810F78600F5D267 /* PathFinder.mm */,
-				DA503CDF17C3292A005CA59D /* Player.h */,
-				DA503CE017C3292A005CA59D /* Player.m */,
-				8E18C61717E80978004F5CA0 /* PlayerTypedefs.h */,
+				8EB6CA1F1810F78600F5D267 /* MMPathFinder.h */,
+				8EB6CA201810F78600F5D267 /* MMPathFinder.mm */,
+				DA503CDF17C3292A005CA59D /* MMPlayer.h */,
+				DA503CE017C3292A005CA59D /* MMPlayer.m */,
+				8E18C61717E80978004F5CA0 /* MMPlayerTypedefs.h */,
 				8E38CC4A17AF1F9000EE917C /* Resources */,
-				8E1A35E317BB193B008FD26A /* SettingsLayer.h */,
-				8E1A35E417BB193B008FD26A /* SettingsLayer.m */,
-				8E38CDDD17AF1F9200EE917C /* StartLayer.h */,
-				8E38CDDE17AF1F9200EE917C /* StartLayer.m */,
+				8E1A35E317BB193B008FD26A /* MMSettingsLayer.h */,
+				8E1A35E417BB193B008FD26A /* MMSettingsLayer.m */,
+				8E38CDDD17AF1F9200EE917C /* MMStartLayer.h */,
+				8E38CDDE17AF1F9200EE917C /* MMStartLayer.m */,
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
-				DAF6E4F017BB220B003EED00 /* Tile.h */,
-				DAF6E4F117BB220B003EED00 /* Tile.m */,
+				DAF6E4F017BB220B003EED00 /* MMTile.h */,
+				DAF6E4F117BB220B003EED00 /* MMTile.m */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
@@ -1193,7 +1193,7 @@
 				8E38CD2617AF1F9100EE917C /* CCTexturePVR.m in Sources */,
 				8E38CD2917AF1F9100EE917C /* CCTileMapAtlas.m in Sources */,
 				8E38CD2C17AF1F9100EE917C /* CCTMXLayer.m in Sources */,
-				8EB6CA211810F78600F5D267 /* PathFinder.mm in Sources */,
+				8EB6CA211810F78600F5D267 /* MMPathFinder.mm in Sources */,
 				8E38CD2F17AF1F9100EE917C /* CCTMXObjectGroup.m in Sources */,
 				8E38CD3217AF1F9100EE917C /* CCTMXTiledMap.m in Sources */,
 				8E38CD3517AF1F9100EE917C /* CCTMXXMLParser.m in Sources */,
@@ -1211,7 +1211,7 @@
 				8E38CD6117AF1F9100EE917C /* CCGLView.m in Sources */,
 				8E38CD6417AF1F9100EE917C /* CCWindow.m in Sources */,
 				8E38CD6717AF1F9100EE917C /* base64.c in Sources */,
-				8EB6CA181810999100F5D267 /* DoubleTouchDownRecognizer.m in Sources */,
+				8EB6CA181810999100F5D267 /* MMDoubleTouchDownRecognizer.m in Sources */,
 				8E38CD6B17AF1F9100EE917C /* CCArray.m in Sources */,
 				8E38CD6E17AF1F9200EE917C /* ccCArray.m in Sources */,
 				8E38CD7117AF1F9200EE917C /* CCFileUtils.m in Sources */,
@@ -1244,21 +1244,21 @@
 				8E38CDD417AF1F9200EE917C /* vec4.c in Sources */,
 				8E38CDD917AF1F9200EE917C /* main.m in Sources */,
 				8E38CDDC17AF1F9200EE917C /* AppDelegate.m in Sources */,
-				8E38CDDF17AF1F9200EE917C /* StartLayer.m in Sources */,
-				8E38CDE217AF1F9200EE917C /* IntroLayer.m in Sources */,
-				8EF0063C17B1E66C009046C4 /* GameLayer.mm in Sources */,
-				DA3731C217BB119B007694C4 /* LevelFactory.m in Sources */,
-				DA3731C517BB170A007694C4 /* GameController.m in Sources */,
-				DA3731C817BB174E007694C4 /* Level.m in Sources */,
-				DA3731CB17BB1764007694C4 /* Maze.m in Sources */,
-				8E1A35E217BB1922008FD26A /* LevelSelectLayer.m in Sources */,
-				8E1A35E517BB193B008FD26A /* SettingsLayer.m in Sources */,
-				DAF6E4EC17BB2194003EED00 /* Edge.m in Sources */,
-				DAF6E4F217BB220B003EED00 /* Tile.m in Sources */,
-				DA503CDE17C301F3005CA59D /* ControlsLayer.m in Sources */,
+				8E38CDDF17AF1F9200EE917C /* MMStartLayer.m in Sources */,
+				8E38CDE217AF1F9200EE917C /* MMIntroLayer.m in Sources */,
+				8EF0063C17B1E66C009046C4 /* MMGameLayer.mm in Sources */,
+				DA3731C217BB119B007694C4 /* MMLevelFactory.m in Sources */,
+				DA3731C517BB170A007694C4 /* MMGameController.m in Sources */,
+				DA3731C817BB174E007694C4 /* MMLevel.m in Sources */,
+				DA3731CB17BB1764007694C4 /* MMMaze.m in Sources */,
+				8E1A35E217BB1922008FD26A /* MMLevelSelectLayer.m in Sources */,
+				8E1A35E517BB193B008FD26A /* MMSettingsLayer.m in Sources */,
+				DAF6E4EC17BB2194003EED00 /* MMEdge.m in Sources */,
+				DAF6E4F217BB220B003EED00 /* MMTile.m in Sources */,
+				DA503CDE17C301F3005CA59D /* MMControlsLayer.m in Sources */,
 				4A3DCCB117C31530000C7D9E /* CCNode+SFGestureRecognizers.m in Sources */,
-				DA503CE117C3292A005CA59D /* Player.m in Sources */,
-				8EA767F917DC0DE000624A43 /* MazeLayer.m in Sources */,
+				DA503CE117C3292A005CA59D /* MMPlayer.m in Sources */,
+				8EA767F917DC0DE000624A43 /* MMMazeLayer.m in Sources */,
 				4AFE43D51811DDD400F3E81C /* MMCharacter.mm in Sources */,
 				4AFE43D81811E19F00F3E81C /* MMEnemy.m in Sources */,
 			);

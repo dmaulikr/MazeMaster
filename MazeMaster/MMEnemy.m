@@ -7,10 +7,10 @@
 //
 
 #import "MMEnemy.h"
-#import "GameController.h"
-#import "Level.h"
-#import "Maze.h"
-#import "Tile.h"
+#import "MMGameController.h"
+#import "MMLevel.h"
+#import "MMMaze.h"
+#import "MMTile.h"
 
 @interface MMEnemy()
 {
@@ -107,7 +107,7 @@
       case e_CHASING:
          if (!(CGRectIntersectsRect(_awarenessProximity, character.boundingBox)))
          {
-            _target = [[GameController sharedController].level.maze getRandomTile];
+            _target = [[MMGameController sharedController].level.maze getRandomTile];
             self.state = e_WANDERING;
          }
          break;
@@ -141,7 +141,7 @@
          case e_WANDERING:
          {
             while (![self calculatePathToTile:_target])
-               _target = [[GameController sharedController].level.maze getRandomTile];
+               _target = [[MMGameController sharedController].level.maze getRandomTile];
 
             NSLog(@"%@ wandering to %@", self.travelerKey, NSStringFromCGPoint(_target.position));
             [self beginExecutingCurrentPath];
@@ -186,7 +186,7 @@
    }
 }
 
-- (void)updatePositionForTile:(Tile *)nextTile
+- (void)updatePositionForTile:(MMTile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
               andMazeMovement:(BOOL)mazeMoving
 {
@@ -200,7 +200,7 @@
 
 - (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving
 {
-   Tile *nextTile = [self.currentTile getAdjacentTileForDirection:self.direction];
+   MMTile *nextTile = [self.currentTile getAdjacentTileForDirection:self.direction];
    nextTile.isActive = YES;
 
    [super updateCurrentTileForMazeMovement:mazeMoving];

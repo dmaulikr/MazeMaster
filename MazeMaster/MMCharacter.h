@@ -7,9 +7,9 @@
 //
 
 #import "CCSprite.h"
-#import "PlayerTypedefs.h"
+#import "MMPlayerTypedefs.h"
 
-@class Tile;
+@class MMTile;
 @interface MMCharacter : CCSprite
 
 +(MMCharacter *) characterWithFile:(NSString *)filename;
@@ -25,13 +25,13 @@
 - (BOOL)moveStackIsEmpty;
 
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
-- (BOOL)calculatePathToTile:(Tile *)tile;
+- (BOOL)calculatePathToTile:(MMTile *)tile;
 - (void)beginExecutingCurrentPath;
 
 - (void)stopMoving;
 - (CGPoint)getDirectionPoint;
 - (void)updatePositionWithCurrentDirection;
-- (void)updatePositionForTile:(Tile *)nextTile
+- (void)updatePositionForTile:(MMTile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
                  mazeMovement:(BOOL)mazeMoving;
 - (void)updateCurrentTileForMazeMovement:(BOOL)mazeMoving;
@@ -47,5 +47,5 @@
 @property (readwrite, assign) BOOL isMoving;
 @property (readwrite, assign) BOOL shouldMove;
 @property (readwrite, assign) BOOL isPlayer;
-@property (nonatomic, assign, setter = setCurrentTile:) Tile *currentTile;
+@property (nonatomic, assign, setter = setCurrentTile:) MMTile *currentTile;
 @end
