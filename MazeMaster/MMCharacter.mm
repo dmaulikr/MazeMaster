@@ -73,6 +73,13 @@
    NSLog(@"Character attack");
 }
 
+- (void)stopMoving
+{
+   [self clearMoveStack];
+   self.isMoving = NO;
+   self.direction = e_NONE;
+}
+
 +(MMCharacter *) characterWithFile:(NSString *)filename;
 {
    return [[[self alloc] initWithFile:filename] autorelease];
