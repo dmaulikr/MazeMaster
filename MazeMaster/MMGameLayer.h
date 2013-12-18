@@ -1,5 +1,5 @@
 //
-//  GameLayer.h
+//  MMGameLayer.h
 //  MazeMaster
 //
 //  Created by Gregory Klein on 8/6/13.

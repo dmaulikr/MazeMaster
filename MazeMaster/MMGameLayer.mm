@@ -366,7 +366,11 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    {
       [enemy examineAwarenessProximityForCharacter:_playerSprite];
       [self moveCharacter:enemy];
+      
+      if ( !CGRectIsNull(CGRectIntersection(_playerSprite.boundingBox, enemy.boundingBox)) )
+          [enemy stopMoving];
    }
+   
 }
 
 #pragma mark -- Controls Action Delegate Protocols --
