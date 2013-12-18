@@ -9,6 +9,7 @@
 #import "MMLevel.h"
 #import "MMMaze.h"
 #import "MMEnemy.h"
+#import "MMVictim.h"
 #import "MMGameController.h"
 #import "MMGameLayer.h"
 #import "MMMazeLayer.h"
@@ -34,6 +35,7 @@
                              withColumns:5];
 //      [_maze testMaze];
       [self initEnemies];
+      [self initVictims];
    }
    return self;
 }
@@ -45,6 +47,7 @@
       _maze = [[MMMaze alloc] initWithRows:rows
                              withColumns:cols];
       [self initEnemies];
+      [self initVictims];
    }
    return self;
 }
@@ -55,10 +58,16 @@
    _enemies = [NSMutableArray new];
 }
 
+-(void) initVictims
+{
+   _victims = [NSMutableArray new];
+}
+
 -(void) dealloc
 {
    [_maze release];
    [_enemies release];
+   [_victims release];
    [super dealloc];
 }
 
@@ -70,6 +79,7 @@
       case 1:
          [self setupEdgesForLevel1];
          [self setupEnemiesForLevel1];
+         [self setupVictimsForLevel1];
          break;
       default:
          break;
@@ -178,33 +188,39 @@
       }
 }
 
--(void) setupEnemy:(CGPoint)location withFile:(NSString *)file
-{
-   MMGameController *gameController = [MMGameController sharedController];
-   
-   MMEnemy *enemy = [[MMEnemy alloc] initWithFile:file];
-   enemy.anchorPoint = CGPointZero;
-   enemy.currentTile = [_maze tileAtPosition:location];
-   enemy.scale = 1.8;
-   //TODO get the tile size
-   enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
-                      44.0/2.0 - enemy.boundingBox.size.height/2.0);
-   enemy.position = ccp(enemy.currentTile.tileSprite.position.x +
-                        gameController.gameLayer.mazeLayer.position.x +
-                        enemy.offset.x,
-                        enemy.currentTile.tileSprite.position.y +
-                        gameController.gameLayer.mazeLayer.position.y +
-                        enemy.offset.y );
-
-   [enemy setAwarenessProximityWithSize:CGSizeMake(264, 264)];
-
-   [_enemies addObject:enemy];
-}
+//-(void) setupEnemy:(CGPoint)location withFile:(NSString *)file
+//{
+//   MMGameController *gameController = [MMGameController sharedController];
+//   
+//   MMEnemy *enemy = [[MMEnemy alloc] initWithFile:file];
+//   enemy.anchorPoint = CGPointZero;
+//   enemy.currentTile = [_maze tileAtPosition:location];
+//   enemy.scale = 1.8;
+//   //TODO get the tile size
+//   enemy.offset = ccp(44.0/2.0 - enemy.boundingBox.size.width/2.0,
+//                      44.0/2.0 - enemy.boundingBox.size.height/2.0);
+//   enemy.position = ccp(enemy.currentTile.tileSprite.position.x +
+//                        gameController.gameLayer.mazeLayer.position.x +
+//                        enemy.offset.x,
+//                        enemy.currentTile.tileSprite.position.y +
+//                        gameController.gameLayer.mazeLayer.position.y +
+//                        enemy.offset.y );
+//
+//   [enemy setAwarenessProximityWithSize:CGSizeMake(264, 264)];
+//
+//   [_enemies addObject:enemy];
+//}
 
 -(void) addEnemiesToLayer:(CCLayer *)gameLayer
 {
    for (MMEnemy *enemy in _enemies)
       [gameLayer addChild:enemy];
+}
+
+-(void) addVictimsToLayer:(CCLayer *)gameLayer
+{
+   for (MMVictim *victim in _victims)
+      [gameLayer addChild:victim];
 }
 
 - (void)setEnemyTargets:(MMTile *)tile
@@ -234,6 +250,26 @@
    enemy.maxVelocity = ccp(.9,.9);
 }
 
+- (void)setupVictim:(MMVictim *)victim atLocation:(CGPoint)location
+{
+   MMGameController *gameController = [MMGameController sharedController];
+
+   victim.currentTile = [_maze tileAtPosition:location];
+   victim.scale = 1.0;
+   victim.offset = ccp(44.0/2.0 - victim.boundingBox.size.width/2.0,
+                      44.0/2.0 - victim.boundingBox.size.height/2.0);
+
+   victim.anchorPoint = CGPointZero;
+   victim.position = ccp(victim.currentTile.tileSprite.position.x +
+                        gameController.gameLayer.mazeLayer.position.x +
+                        victim.offset.x,
+                        victim.currentTile.tileSprite.position.y +
+                        gameController.gameLayer.mazeLayer.position.y +
+                        victim.offset.y);
+
+   victim.maxVelocity = ccp(.9,.9);
+}
+
 - (void)setEnemyPositions
 {
    switch (_levelNumber)
@@ -252,16 +288,43 @@
    }
 }
 
+- (void)setVictimPositions
+{
+   switch (_levelNumber)
+   {
+      case 1:
+      {
+         [self setupVictim:[_victims objectAtIndex:0]
+               atLocation:ccp(2,6)];
+
+//         [self setupVictim:[_victims objectAtIndex:1]
+//               atLocation:ccp(4,4)];
+         break;
+      }
+      default:
+         return;
+   }
+}
+
 -(void) setupEnemiesForLevel1
 {
-   MMEnemy *enemy1 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
-   [enemy1 setupPathFinderWithTravelerKey:@"enemy1"];
-   [_enemies addObject:enemy1];
+   MMEnemy *enemy;
+   enemy = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
+   [enemy setupPathFinderWithTravelerKey:@"enemy1"];
+   [_enemies addObject:enemy];
 
 //   MMEnemy *enemy2 = [[MMEnemy alloc] initWithFile:@"enemy_front_sleeping.png"];
 //   [enemy2 setupPathFinderWithTravelerKey:@"enemy2"];
 //   enemy2.tileGenerationOrder = e_COUNTERCLOCKWISE;
 //   [_enemies addObject:enemy2];
+}
+
+-(void) setupVictimsForLevel1
+{
+   MMVictim *victim;
+   
+   victim = [[MMVictim alloc] initWithFile:@"pikmin_red_front.png"];
+   [_victims addObject:victim];
 }
 
 @end

@@ -71,14 +71,20 @@
    [[MMGameController sharedController].level setEnemyPositions];
 }
 
+- (void)setupVictims
+{
+   [[MMGameController sharedController].level setVictimPositions];
+}
+
 - (void)setupMazeLayer:(MMMazeLayer *)mazeLayer
 {
    _mazeLayer = mazeLayer;
    _mazeLayer.anchorPoint = CGPointZero;
    _moveMaze = NO;
-   [mazeLayer addChild:_playerSprite];
+   [[MMGameController sharedController].level addVictimsToLayer:mazeLayer];
    [[MMGameController sharedController].level addEnemiesToLayer:mazeLayer];
-
+   [mazeLayer addChild:_playerSprite];
+   
 }
 
 #pragma mark -- Init Methods --
@@ -89,6 +95,7 @@
       [self setupVariables];
       [self setupPlayer];
       [self setupEnemies];
+      [self setupVictims];
       [self scheduleUpdate];
 	}
 	return self;

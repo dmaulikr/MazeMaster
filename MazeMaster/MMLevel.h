@@ -15,11 +15,14 @@
 
 -(id) initWithRows:(int)rows andColumns:(int)cols;
 -(void) addEnemiesToLayer:(CCLayer *)gameLayer;
+-(void) addVictimsToLayer:(CCLayer *)gameLayer;
 - (void)setEnemyTargets:(MMTile *)tile;
 - (void)setEnemyPositions;
+- (void)setVictimPositions;
 
 @property (nonatomic, assign, setter = setLevelNumber:) int levelNumber;
 @property (nonatomic, assign) MMMaze *maze;
 @property (nonatomic, readwrite, retain) NSMutableArray *enemies;
+@property (nonatomic, readwrite, retain) NSMutableArray *victims;
 
 @end

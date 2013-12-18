@@ -170,8 +170,12 @@
 		8EF0063C17B1E66C009046C4 /* MMGameLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EF0063B17B1E66B009046C4 /* MMGameLayer.mm */; };
 		8EFBBECD181B809200E21126 /* enemy_front_chasing.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBBECB181B809200E21126 /* enemy_front_chasing.png */; };
 		8EFBBED0181B819D00E21126 /* enemy_front_chasing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EFBBECF181B819D00E21126 /* enemy_front_chasing@2x.png */; };
-		DA09DF8217AF2C920048D300 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8017AF2C920048D300 /* Arrow.png */; };
 		DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = DA09DF8117AF2C920048D300 /* Arrow@2x.png */; };
+		DA21B0BC1862216300A3B8C7 /* pikmin_red_front.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21B0BA1862216300A3B8C7 /* pikmin_red_front.png */; };
+		DA21B0BD1862216300A3B8C7 /* pikmin_yellow_front.png in Resources */ = {isa = PBXBuildFile; fileRef = DA21B0BB1862216300A3B8C7 /* pikmin_yellow_front.png */; };
+		DA21B0C0186221A500A3B8C7 /* MMVictim.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21B0BF186221A400A3B8C7 /* MMVictim.m */; };
+		DA21B0C3186221DD00A3B8C7 /* MMRedVictim.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21B0C2186221DB00A3B8C7 /* MMRedVictim.m */; };
+		DA21B0C61862220600A3B8C7 /* MMYellowVictim.m in Sources */ = {isa = PBXBuildFile; fileRef = DA21B0C51862220500A3B8C7 /* MMYellowVictim.m */; };
 		DA3731C217BB119B007694C4 /* MMLevelFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C117BB119B007694C4 /* MMLevelFactory.m */; };
 		DA3731C517BB170A007694C4 /* MMGameController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C417BB170A007694C4 /* MMGameController.m */; };
 		DA3731C817BB174E007694C4 /* MMLevel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA3731C717BB174E007694C4 /* MMLevel.m */; };
@@ -503,8 +507,15 @@
 		8EF0063B17B1E66B009046C4 /* MMGameLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MMGameLayer.mm; sourceTree = "<group>"; };
 		8EFBBECB181B809200E21126 /* enemy_front_chasing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_front_chasing.png; path = Resources/enemy_front_chasing.png; sourceTree = "<group>"; };
 		8EFBBECF181B819D00E21126 /* enemy_front_chasing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "enemy_front_chasing@2x.png"; path = "Resources/enemy_front_chasing@2x.png"; sourceTree = "<group>"; };
-		DA09DF8017AF2C920048D300 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Arrow.png; path = Resources/Arrow.png; sourceTree = "<group>"; };
 		DA09DF8117AF2C920048D300 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Arrow@2x.png"; path = "Resources/Arrow@2x.png"; sourceTree = "<group>"; };
+		DA21B0BA1862216300A3B8C7 /* pikmin_red_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikmin_red_front.png; path = Resources/pikmin_red_front.png; sourceTree = "<group>"; };
+		DA21B0BB1862216300A3B8C7 /* pikmin_yellow_front.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikmin_yellow_front.png; path = Resources/pikmin_yellow_front.png; sourceTree = "<group>"; };
+		DA21B0BE186221A300A3B8C7 /* MMVictim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMVictim.h; sourceTree = "<group>"; };
+		DA21B0BF186221A400A3B8C7 /* MMVictim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMVictim.m; sourceTree = "<group>"; };
+		DA21B0C1186221DA00A3B8C7 /* MMRedVictim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMRedVictim.h; sourceTree = "<group>"; };
+		DA21B0C2186221DB00A3B8C7 /* MMRedVictim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMRedVictim.m; sourceTree = "<group>"; };
+		DA21B0C41862220300A3B8C7 /* MMYellowVictim.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMYellowVictim.h; sourceTree = "<group>"; };
+		DA21B0C51862220500A3B8C7 /* MMYellowVictim.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMYellowVictim.m; sourceTree = "<group>"; };
 		DA3731C017BB119B007694C4 /* MMLevelFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMLevelFactory.h; sourceTree = "<group>"; };
 		DA3731C117BB119B007694C4 /* MMLevelFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMLevelFactory.m; sourceTree = "<group>"; };
 		DA3731C317BB170A007694C4 /* MMGameController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMGameController.h; sourceTree = "<group>"; };
@@ -625,6 +636,12 @@
 				8E38CDD617AF1F9200EE917C /* Supporting Files */,
 				DAF6E4F017BB220B003EED00 /* MMTile.h */,
 				DAF6E4F117BB220B003EED00 /* MMTile.m */,
+				DA21B0BE186221A300A3B8C7 /* MMVictim.h */,
+				DA21B0BF186221A400A3B8C7 /* MMVictim.m */,
+				DA21B0C1186221DA00A3B8C7 /* MMRedVictim.h */,
+				DA21B0C2186221DB00A3B8C7 /* MMRedVictim.m */,
+				DA21B0C41862220300A3B8C7 /* MMYellowVictim.h */,
+				DA21B0C51862220500A3B8C7 /* MMYellowVictim.m */,
 			);
 			path = MazeMaster;
 			sourceTree = "<group>";
@@ -632,7 +649,8 @@
 		8E38CC4A17AF1F9000EE917C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DA09DF8017AF2C920048D300 /* Arrow.png */,
+				DA21B0BA1862216300A3B8C7 /* pikmin_red_front.png */,
+				DA21B0BB1862216300A3B8C7 /* pikmin_yellow_front.png */,
 				DA09DF8117AF2C920048D300 /* Arrow@2x.png */,
 				4A51EF1A17C56DE9002BCB1B /* astronaut_front.png */,
 				8E02EC461808C49700369B8A /* astronaut_front@2x.png */,
@@ -1101,7 +1119,6 @@
 				8E38CC6117AF1F9000EE917C /* iTunesArtwork in Resources */,
 				8E38CDBA17AF1F9200EE917C /* ChangeLog in Resources */,
 				8E02EC481808C49700369B8A /* astronaut_front@2x.png in Resources */,
-				DA09DF8217AF2C920048D300 /* Arrow.png in Resources */,
 				8E88C94A180E31D200F7B872 /* blue_tile.png in Resources */,
 				DA09DF8317AF2C920048D300 /* Arrow@2x.png in Resources */,
 				8E02EC4B1808C52C00369B8A /* edge_simple@2x.png in Resources */,
@@ -1122,6 +1139,8 @@
 				8EC9CF6E181DEE3A00900BCB /* enemy_front_wandering@2x.png in Resources */,
 				8EA7680917E527A900624A43 /* tron_tile.png in Resources */,
 				8EA7680B17E57C2200624A43 /* edge_simple.png in Resources */,
+				DA21B0BC1862216300A3B8C7 /* pikmin_red_front.png in Resources */,
+				DA21B0BD1862216300A3B8C7 /* pikmin_yellow_front.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1261,6 +1280,9 @@
 				8EA767F917DC0DE000624A43 /* MMMazeLayer.m in Sources */,
 				4AFE43D51811DDD400F3E81C /* MMCharacter.mm in Sources */,
 				4AFE43D81811E19F00F3E81C /* MMEnemy.m in Sources */,
+				DA21B0C0186221A500A3B8C7 /* MMVictim.m in Sources */,
+				DA21B0C3186221DD00A3B8C7 /* MMRedVictim.m in Sources */,
+				DA21B0C61862220600A3B8C7 /* MMYellowVictim.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
