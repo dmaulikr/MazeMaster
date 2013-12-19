@@ -298,7 +298,6 @@ isOppositeToDirection:(CharacterDirection)otherDirection
 }
 
 #pragma mark -- Movement Methods --
-
 - (void)stopEnemies
 {
    for (MMEnemy *enemy in [MMGameController sharedController].level.enemies)
