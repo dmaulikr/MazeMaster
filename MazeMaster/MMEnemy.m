@@ -153,7 +153,7 @@
    }
 }
 
-- (void)stopMoving
+- (BOOL)stopMoving
 {
    switch (self.state)
    {
@@ -167,6 +167,8 @@
       default:
          break;
    }
+   
+   return YES;
 }
 
 -(void)evaluateStateAndPotentiallyCalculatePathInTheFuture

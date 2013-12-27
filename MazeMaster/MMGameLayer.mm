@@ -17,6 +17,7 @@
 #import "MMPlayer.h"
 #import "MMTile.h"
 #import "MMEnemy.h"
+#import "MMVictim.h"
 
 @interface MMGameLayer()
 {
@@ -315,19 +316,24 @@ isOppositeToDirection:(CharacterDirection)otherDirection
    if ([gameController character:character
                  canMoveFromTile:character.currentTile] == NO)
    {
-      character.shouldMove = NO;
-      [character stopMoving];
-      return;
+      if ([character stopMoving])
+      {
+         character.shouldMove = NO;
+         return;
+      }
    }
 
    if (character.isMoving)
    {
-      if ([self direction:[character topMoveStack] isOppositeToDirection:character.direction])
-      {
-         MMTile *currentTile = character.currentTile;
-         character.currentTile = [currentTile getAdjacentTileForDirection:character.direction];
-         character.direction = [character popMoveStack];
-      }
+      //TODO-MM: comment this out for moving in opposite dir
+//      if ([self direction:[character topMoveStack] isOppositeToDirection:character.direction])
+//      {
+//         // TODO: special case for victim following
+//         MMTile *currentTile = character.currentTile;
+//         character.currentTile = [currentTile getAdjacentTileForDirection:character.direction];
+//         character.direction = [character popMoveStack];
+//         
+//      }
 
       CGPoint directionPoint = [self getDirectionPointForCharacter:character];
 
@@ -340,6 +346,12 @@ isOppositeToDirection:(CharacterDirection)otherDirection
                                               _mazeLayer.position;
 
       [character updateCurrentTileForMazeMovement:_moveMaze];
+   }
+   
+   if ([character parentStoppedMoving])
+   {
+      character.shouldMove = NO;
+      [character stopMoving];
    }
 }
 
@@ -377,6 +389,7 @@ isOppositeToDirection:(CharacterDirection)otherDirection
           [enemy stopMoving];
    }
    
+   [self moveCharacter:_playerSprite.victim];
 }
 
 #pragma mark -- Controls Action Delegate Protocols --

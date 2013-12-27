@@ -11,7 +11,9 @@
 @interface MMVictim : MMCharacter
    
 - (id) initWithFile:(NSString *)filename;
-
+- (void) moveFromDelayToMoveStack;
 + (MMVictim *) victimWithFile:(NSString *)filename;
+
+@property (nonatomic, assign, setter = setState:) VictimState state;
 
 @end

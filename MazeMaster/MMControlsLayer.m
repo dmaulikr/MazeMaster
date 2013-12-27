@@ -138,10 +138,21 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
        gameController.gameLayer.playerSprite.direction == e_NONE)
    {
       gameController.gameLayer.playerSprite.direction = direction;
+      
+      // TODO-MM: might want to have it's own if statement for victim
+      if (gameController.gameLayer.playerSprite.victim)
+      {
+         [gameController.gameLayer.playerSprite.victim moveFromDelayToMoveStack];
+         [gameController.gameLayer.playerSprite.victim pushMoveStack:direction];
+         gameController.gameLayer.playerSprite.victim.direction = [gameController.gameLayer.playerSprite.victim popMoveStack];
+      }
    }
    else if ([gameController.gameLayer.playerSprite topMoveStack] != direction)
    {
       [gameController.gameLayer.playerSprite pushMoveStack:direction];
+      
+      if (gameController.gameLayer.playerSprite.victim)
+          [gameController.gameLayer.playerSprite.victim pushMoveStack:direction];
    }
    
    // only call the move player function if it is the first swipe (because it will
@@ -153,6 +164,12 @@ shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherG
       {
          gameController.gameLayer.playerSprite.isMoving = YES;
          gameController.gameLayer.playerSprite.shouldMove = YES;
+         
+         if (gameController.gameLayer.playerSprite.victim)
+         {
+            gameController.gameLayer.playerSprite.victim.isMoving = YES;
+            gameController.gameLayer.playerSprite.victim.shouldMove = YES;
+         }
       }
    }
 }

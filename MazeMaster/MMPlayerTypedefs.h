@@ -12,7 +12,8 @@ typedef enum {
    e_NORTH,
    e_EAST,
    e_SOUTH,
-   e_WEST
+   e_WEST,
+   e_DUMMY
 } CharacterDirection;
 #endif
 
@@ -29,6 +30,14 @@ typedef enum {
    e_WANDERING,
    e_CHASING
 } EnemyState;
+#endif
+
+#ifndef __VICTIM_STATE__
+typedef enum {
+   e_WAITING,
+   e_FOLLOWING,
+   e_SAVED
+} VictimState;
 #endif
 
 #define ENEMY_AWARENESS_PROXIMITY_DEFAULT CGSizeMake(220, 220)

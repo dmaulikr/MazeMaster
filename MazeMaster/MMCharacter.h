@@ -23,12 +23,14 @@
 - (CharacterDirection)topMoveStack;
 - (void)clearMoveStack;
 - (BOOL)moveStackIsEmpty;
+- (BOOL)moveFromMoveStackTo:(NSMutableArray *)stack;
 
 - (void)setupPathFinderWithTravelerKey:(NSString *)travelerKey;
 - (BOOL)calculatePathToTile:(MMTile *)tile;
 - (void)beginExecutingCurrentPath;
 
-- (void)stopMoving;
+- (BOOL)stopMoving;
+- (BOOL)parentStoppedMoving;
 - (CGPoint)getDirectionPoint;
 - (void)updatePositionWithCurrentDirection;
 - (void)updatePositionForTile:(MMTile *)nextTile

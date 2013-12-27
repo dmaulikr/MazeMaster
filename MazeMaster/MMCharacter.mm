@@ -7,6 +7,7 @@
 //
 
 #import "MMCharacter.h"
+#import "MMPlayer.h"
 #import "MMTile.h"
 
 #include "MMPathFinder.h"
@@ -73,11 +74,17 @@
    NSLog(@"Character attack");
 }
 
-- (void)stopMoving
+- (BOOL)stopMoving
 {
    [self clearMoveStack];
    self.isMoving = NO;
    self.direction = e_NONE;
+   return YES;
+}
+
+- (BOOL)parentStoppedMoving
+{
+   return NO;
 }
 
 +(MMCharacter *) characterWithFile:(NSString *)filename;
@@ -129,6 +136,21 @@
 -(BOOL) moveStackIsEmpty
 {
    return !_moveStack.count;
+}
+
+- (BOOL) moveFromMoveStackTo:(NSMutableArray *)stack
+{
+   CharacterDirection direction = e_NONE;
+   if (_moveStack.count)
+   {
+      NSNumber *directionNumber = [_moveStack lastObject];
+      direction = (CharacterDirection)directionNumber.intValue;
+      
+      [stack addObject:[NSNumber numberWithInt:direction]];
+      [_moveStack removeLastObject];
+      return YES;
+   }
+   return NO;
 }
 
 - (CGPoint)getDirectionPoint
@@ -183,8 +205,9 @@
          return @"West";
       case e_NONE:
          return nil;
+      default:
+         return nil;
    }
-   return nil;
 }
 
 - (void)addDirectionsToStack:(CCArray *)directions
@@ -216,6 +239,7 @@
    _shouldMove = YES;
 }
 
+// called every time a character reaches a tile
 - (void)updatePositionForTile:(MMTile *)nextTile
                    atLocation:(CGPoint)nextTileLocation
                  mazeMovement:(BOOL)mazeMoving
@@ -234,11 +258,16 @@
    }
 
    self.currentTile = nextTile;
+   [self updateCurrentDirection];
+}
 
+- (void) updateCurrentDirection
+{
+   // pop the move stack if the next tile is walkable
    if (![self moveStackIsEmpty])
    {
       CharacterDirection nextDirection = [self topMoveStack];
-      if ([nextTile getAdjacentEdgeForDirection:nextDirection].walkable)
+      if ([self.currentTile getAdjacentEdgeForDirection:nextDirection].walkable)
          self.direction = [self popMoveStack];
    }
 }
@@ -258,8 +287,8 @@
                                   nextTile.tileSprite.position.y + _offset.y);
    if (nextTile == nil)
    {
-      _shouldMove = NO;
-      [self stopMoving];
+      if ([self stopMoving])
+         _shouldMove = NO;
    }
    else
    {

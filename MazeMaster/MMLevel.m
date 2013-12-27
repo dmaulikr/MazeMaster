@@ -295,10 +295,11 @@
       case 1:
       {
          [self setupVictim:[_victims objectAtIndex:0]
-               atLocation:ccp(2,6)];
+               atLocation:ccp(2,3)];
 
-//         [self setupVictim:[_victims objectAtIndex:1]
-//               atLocation:ccp(4,4)];
+         [self setupVictim:[_victims objectAtIndex:1]
+               atLocation:ccp(4,4)];
+         
          break;
       }
       default:
@@ -324,6 +325,9 @@
    MMVictim *victim;
    
    victim = [[MMVictim alloc] initWithFile:@"pikmin_red_front.png"];
+   [_victims addObject:victim];
+   
+   victim = [[MMVictim alloc] initWithFile:@"pikmin_yellow_front.png"];
    [_victims addObject:victim];
 }
 
