@@ -57,18 +57,8 @@
 
 - (void) pushMoveStack:(CharacterDirection)direction
 {
-   // push to the actual move stack with the delay
-//   if (_delayMoveStack.count)
-//   {
-//      NSNumber *num = [_delayMoveStack lastObject];
-//      CharacterDirection dir = (CharacterDirection)num.intValue;
-//      [super pushMoveStack:dir];
-//      [_delayMoveStack removeLastObject];
-//   }
-   
    // push to the delayed move stack
    [_delayMoveStack insertObject:[NSNumber numberWithInt:direction] atIndex:0];
-   NSLog(@"pushed to delay stack: %d", direction);
 }
 
 - (void) moveFromDelayToMoveStack
@@ -82,22 +72,11 @@
       [_delayMoveStack removeLastObject];
       NSLog(@"next direction: %d", direction);
    }
-//   else
-//   {
-//      direction = [MMGameController sharedController].gameLayer.playerSprite.direction;
-//      [super pushMoveStack:direction];
-//   }
 }
 
 -(CharacterDirection) topMoveStack
 {
    CharacterDirection retDir = [super topMoveStack];
-//   if (retDir == e_NONE)
-//   {
-//      [self moveFromDelayToMoveStack];
-////      NSNumber *directionNumber = [_delayMoveStack lastObject];
-////      retDir = (CharacterDirection)directionNumber.intValue;
-//   }
    return retDir;
 }
 
